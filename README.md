@@ -1,5 +1,5 @@
 # Fusion by Design (FBD)
-This repository includes the supporting data and code for the article: Fusion of common factor spaces for designed, heteromodal datasets by Michael Sorochan Armstrong and Jos\'e Camacho. Please note that MATLAB scripts require the use of the Statistics and Machine Learning Toolbox.
+This repository includes the supporting data and code for the article: __Fusion of common factor spaces for designed, heteromodal datasets by Michael Sorochan Armstrong and Jos\'e Camacho__. Please note that MATLAB scripts require the use of the Statistics and Machine Learning Toolbox.
 
 ## Directories
 ### data_cleaning 
