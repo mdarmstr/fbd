@@ -1,5 +1,5 @@
 % Add the MEDA toolbox to the path (ensure MEDA toolbox is installed)
-addpath('MEDA/');
+addpath(genpath('../MEDA'));
 
 % Define colors
 red = rgb2hsv([202, 45, 48] ./ 255);
@@ -8,7 +8,7 @@ blk = [52, 53, 54] ./ 255;
 col_mat_table = hsv2rgb(interpolateColors(red, tel, 100));
 
 % Generate and plot datasets
-%[X1,X1e,D1,F1] = create_plots_for_datasets(1, 10, 70, {[1, 2, 3], [1, 2, 3]}, col_mat_table);
+[X1,X1e,D1,F1] = create_plots_for_datasets(1, 10, 70, {[1, 2, 3], [1, 2, 3]}, col_mat_table);
 
 rp = randperm(size(X1,1));
 
@@ -164,7 +164,7 @@ exportgraphics(gcf,'rotation_subplots.pdf','ContentType','vector');
 % Function to create plots for all datasets
 function [Xn,Xe,D,F] = create_plots_for_datasets(dataset_number, reps, vars, levels, col_mat_table)
     % Generate design matrix F using create_design (external function)
-    F = create_design(levels, 'Replicates', reps);
+    F = createDesign(levels, 'Replicates', reps);
     writematrix(F, ['F', num2str(dataset_number), '.csv']);
     
     % Initialize data matrix X
@@ -201,15 +201,15 @@ function [Xn,Xe,D,F] = create_plots_for_datasets(dataset_number, reps, vars, lev
     D = parglmo.D;
 
     % Write matrices to CSV files
-    writematrix(Xn, ['X', num2str(dataset_number), '.csv']);
-    writematrix(parglmo.D, ['D', num2str(dataset_number), '.csv']);
-    writematrix(parglmo.Xnan, ['X', num2str(dataset_number), 'e.csv']);
-    
-    % Plot matrices
-    plot_matrix(Xn, col_mat_table, ' ', ' ', ['X', num2str(dataset_number)]);
-    plot_matrix(parglmo.D, col_mat_table, ' ', ' ', ['D', num2str(dataset_number)]);
-    plot_matrix(parglmo.Xnan, col_mat_table, ' ', ' ', ['X', num2str(dataset_number), 'e']);
-    plot_matrix(parglmo.B, col_mat_table, ' ', ' ', ['B', num2str(dataset_number)]);
+    % writematrix(Xn, ['X', num2str(dataset_number), '.csv']);
+    % writematrix(parglmo.D, ['D', num2str(dataset_number), '.csv']);
+    % writematrix(parglmo.Xnan, ['X', num2str(dataset_number), 'e.csv']);
+    % 
+    % % Plot matrices
+    % plot_matrix(Xn, col_mat_table, ' ', ' ', ['X', num2str(dataset_number)]);
+    % plot_matrix(parglmo.D, col_mat_table, ' ', ' ', ['D', num2str(dataset_number)]);
+    % plot_matrix(parglmo.Xnan, col_mat_table, ' ', ' ', ['X', num2str(dataset_number), 'e']);
+    % plot_matrix(parglmo.B, col_mat_table, ' ', ' ', ['B', num2str(dataset_number)]);
 end
 
 % Define the plot_matrix function
