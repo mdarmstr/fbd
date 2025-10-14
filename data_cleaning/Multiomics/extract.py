@@ -1,110 +1,74 @@
-import mwtab
-import pandas as pd
-from mwtab.mwextract import write_metabolites_csv, extract_metabolites, generate_matchers, extract_metadata
-import re
 import json
+import pandas as pd
 
-#Extracting the peak table information from the first dataset.
-with open("ST000355_AN000580.json") as f:
-    data = json.load(f)
+def extract_dataset(json_file):
+    """Extracts metabolite and metadata tables from a MW JSON file."""
+    with open(json_file) as f:
+        data = json.load(f)
 
-table_section = data.get("MS_METABOLITE_DATA",None)
-if table_section is None:
-    raise KeyError("Peak table section not found in JSON")
+    table_section = data.get("MS_METABOLITE_DATA", None)
+    if table_section is None:
+        raise KeyError(f"Peak table section not found in {json_file}")
 
-meta_data = data.get("SUBJECT_SAMPLE_FACTORS",None)
-if meta_data is None:
-    raise KeyError("Meta data section is not found in JSON")
+    meta_data = data.get("SUBJECT_SAMPLE_FACTORS", None)
+    if meta_data is None:
+        raise KeyError(f"Meta data section not found in {json_file}")
 
-meta_data = pd.DataFrame(meta_data)
-meta_data.set_index("Sample ID",inplace=True)
+    meta_data = pd.DataFrame(meta_data).set_index("Sample ID")
 
-metabolite_data = pd.DataFrame(table_section["Data"]).T
-metabolites = metabolite_data.iloc[0].tolist()
-metabolite_data = metabolite_data.iloc[1:].copy()
-metabolite_data.index.name = "Sample ID"
-metabolite_data.columns = metabolites
+    metabolite_data = pd.DataFrame(table_section["Data"]).T
+    metabolites = metabolite_data.iloc[0].tolist()
+    metabolite_data = metabolite_data.iloc[1:].copy()
+    metabolite_data.index.name = "Sample ID"
+    metabolite_data.columns = metabolites
 
-metabolite_data = metabolite_data[~metabolite_data.index.duplicated(keep="first")]
-meta_data = meta_data[~meta_data.index.duplicated(keep="first")]
+    # Drop duplicate sample IDs
+    metabolite_data = metabolite_data[~metabolite_data.index.duplicated(keep="first")]
+    meta_data = meta_data[~meta_data.index.duplicated(keep="first")]
 
-common_ids = metabolite_data.index.intersection(meta_data.index)
+    # Find common samples
+    common_ids = metabolite_data.index.intersection(meta_data.index)
+    metabolite_data = metabolite_data.loc[common_ids]
+    meta_data = meta_data.loc[common_ids]
 
-df_metabolites = metabolite_data.loc[common_ids]
-df_metadata = meta_data.loc[common_ids]
+    # Expand "Factors" into separate columns
+    factors_df = meta_data["Factors"].apply(pd.Series)
+    for col in ["Genotype", "Treatment", "Sample source"]:
+        if col in factors_df.columns:
+            factors_df[col] = pd.factorize(factors_df[col])[0]
 
-df_metabolites.to_csv("ST000355_AN000580.csv",index=False,header=True)
-df_metadata.to_csv("580_ref.csv")
-
-factors_df = df_metadata["Factors"].apply(pd.Series)
-additional_df = df_metadata["Additional sample data"].apply(pd.Series)
-
-for col in ["Stage", "Diagnosis"]:
-    factors_df[col] = pd.factorize(factors_df[col])[0]
-
-for col in ['Sub-group', 'Clinical_Parameters', 'ER', 'PR', 'HER-2 neu', 'YOB',
-       'Age (now)', 'Age (BOD-OD)', 'Race', 'Stage OB', 'BMI',
-       'Year of Sample Collection', 'Prog/Relapse by 9/7/11']:
-    additional_df[col] = pd.factorize(additional_df[col])[0]
-
-factors_df = factors_df.add_prefix("F_")
-additional_df  = additional_df.add_prefix("A_")
-
-out = pd.concat([factors_df,additional_df],axis=1)
-
-out.to_csv("meta_ST000355_AN00580.csv", index=False, header=True)
-
-## Extracting the peak table information for the second dataset. Different formatting.
-with open("ST000356_AN000583.json") as f:
-    data = json.load(f)
-
-table_section = data.get("MS_METABOLITE_DATA",None)
-if table_section is None:
-    raise KeyError("Peak table section not found in JSON")
-
-meta_data = data.get("SUBJECT_SAMPLE_FACTORS",None)
-if meta_data is None:
-    raise KeyError("Meta data section is not found in JSON")
+    return metabolite_data, meta_data, factors_df
 
 
-rows = []
-for entry in meta_data:
-    row = {
-        "Sample ID": entry["Sample ID"],
-        "Diagnosis": entry["Factors"]["Diagnosis"],
-        "Stage": entry["Factors"]["stage"],
-        "YOB": entry["Additional sample data"].get("YOB", "-"),
-        "Race": entry["Additional sample data"].get("race", "-")
-    }
-    rows.append(row)
+# --- Extract both datasets ---
+metabo_6992, meta_6992, factors_6992 = extract_dataset("ST004205_AN006992.json")
+metabo_6994, meta_6994, factors_6994 = extract_dataset("ST004205_AN006994.json")
 
-meta_df = pd.DataFrame(rows)
+# --- Align datasets by common Sample IDs ---
+common_samples = metabo_6992.index.intersection(metabo_6994.index)
+metabo_6992_aligned = metabo_6992.loc[common_samples]
+metabo_6994_aligned = metabo_6994.loc[common_samples]
 
+meta_6992_aligned = meta_6992.loc[common_samples]
+meta_6994_aligned = meta_6994.loc[common_samples]
 
-for col in ["Stage", "Diagnosis", "YOB", "Race"]:
-    meta_df[col] = pd.factorize(meta_df[col])[0]
+# --- Write aligned data to CSV ---
+metabo_6992_aligned.to_csv("ST004205_AN006992.csv", index=True, header=True)
+metabo_6994_aligned.to_csv("ST004205_AN006994.csv", index=True, header=True)
 
-meta_df.set_index("Sample ID",inplace=True)
+meta_6992_aligned.to_csv("meta_ref_6992.csv", index=True, header=True)
+meta_6994_aligned.to_csv("meta_ref_6994.csv", index=True, header=True)
 
-metabolite_data = pd.DataFrame(table_section["Data"]).T
-metabolites = metabolite_data.iloc[0].tolist()
-metabolite_data = metabolite_data.iloc[1:].copy()
-metabolite_data.index.name = "Sample ID"
-metabolite_data.columns = metabolites
+# --- Write processed factors ---
+factors_6992.to_csv("meta_ST004205_AN006992.csv", index=True, header=True)
+factors_6994.to_csv("meta_ST004205_AN006994.csv", index=True, header=True)
 
-
-print(metabolite_data)
-
-common_ids = metabolite_data.index.intersection(meta_df.index)
-
-pd.DataFrame(meta_data).to_csv("583_ref.csv")
-df_metabolites = metabolite_data.loc[common_ids]
-df_metadata = meta_df.loc[common_ids]
-
-#The last five rows have missing experimental information
-df_metadata = df_metadata.iloc[:-5]
-df_metabolites = df_metabolites.iloc[:-5]
-
-print(df_metadata)
-
-df_metadata.to_csv("meta_ST000356_AN00583.csv", index=False, header=True)
+# --- Optional: concatenate both for cross-omics alignment ---
+aligned_concat = pd.concat(
+    [metabo_6992_aligned.add_prefix("MS1_"),
+     metabo_6994_aligned.add_prefix("MS2_")],
+    axis=1
+)
+aligned_concat = aligned_concat.loc[:, (aligned_concat != "N.D.").any(axis=0)]
+aligned_concat = aligned_concat.replace("N.D.", pd.NA)
+aligned_concat.to_csv("aligned_ST004205_MS1_MS2.csv", index=True, header=True)
