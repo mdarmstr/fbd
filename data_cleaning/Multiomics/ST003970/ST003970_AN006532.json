@@ -1,0 +1,649 @@
+{
+"METABOLOMICS WORKBENCH":{"STUDY_ID":"ST003970","ANALYSIS_ID":"AN006532","PROJECT_ID":"PR002486","VERSION":"1","CREATED_ON":"June 13, 2025, 5:09 am"},
+
+"PROJECT":{"PROJECT_TITLE":"Evaluation of Babesia divergens metabolism","PROJECT_SUMMARY":"The project aims to evaluate the metabolism of the piroplasmid apicomplexa Babesia divergens through metabolomics and complementary functional assays involving metabolites.","INSTITUTE":"Centro Nacional de Microbiología CNM-ISCIII","LAST_NAME":"Estrella","FIRST_NAME":"Montero","ADDRESS":"Ctra. de Pozuelo, 28, 28222 Majadahonda, Madrid, España","EMAIL":"estrella.montero@isciii.es","PHONE":"+34 918 22 36 57"},
+
+"STUDY":{"STUDY_TITLE":"Comprehensive multiplatform mass spectrometry-based metabolomics unveils insights into Babesia divergens metabolism.","STUDY_SUMMARY":"Babesia divergens is a zoonotic parasite belonging to the apicomplexa phyla causing human babesiosis. However, its metabolism remains poorly understood as scarce biochemical studies have been reported, and no global metabolic network reconstructions have been reported up to date. Comprehensive understanding of the B. divergens metabolism could reveal novel therapeutic targets. We performed a multiplatform analysis combining targeted and non-targeted mass spectrometry based metabolomics of samples (pellets, supernatants) obtained from Babesia divergens-infected erythrocyte cultures and non-infected culture controls, acquired with CE-ESI(+)/MS, GC-CI(+)/MS, LC-ESI(+)/MS, LC-ESI(-)/MS (all non-targeted analyses) and LC-ESI(-)/MS (targeted analysis). Profound metabolite level changes occur in both the B. divergens-RBC system and its supernatant compared to controls, including those related with central carbon metabolism, pyrimidine nucleotide biosynthesis, redox metabolism, glycerophospholipid and sphingolipid metabolism, amino acid metabolism and nucleotide metabolism. This resource serves as a comprehensive dataset describing how the metabolic alterations caused by the intraerythrocytic stage of Babesia divergens are reflected in different metabolite profiles across multiple mass-spectrometry-based platforms.","INSTITUTE":"CEMBIO","LAST_NAME":"Fernández-García","FIRST_NAME":"Miguel","ADDRESS":"Universidad San Pablo-CEU, Urbanización Montepríncipe, 28925, Alcorcón, Madrid, Spain","EMAIL":"mig.fernandez.ce@ceindo.ceu.es","PHONE":"690090778"},
+
+"SUBJECT":{"SUBJECT_TYPE":"Cultured cells","SUBJECT_SPECIES":"Homo sapiens","TAXONOMY_ID":"9606"},
+"SUBJECT_SAMPLE_FACTORS":[
+{
+"Subject ID":"iRBC1",
+"Sample ID":"iRBC1_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"iRBC1_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"iRBC2",
+"Sample ID":"iRBC2_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"iRBC2_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"iRBC3",
+"Sample ID":"iRBC3_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"iRBC3_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"iRBC4",
+"Sample ID":"iRBC4_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"iRBC4_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"iRBC5",
+"Sample ID":"iRBC5_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"iRBC5_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"uRBC1",
+"Sample ID":"uRBC1_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"uRBC1_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"uRBC2",
+"Sample ID":"uRBC2_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"uRBC2_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"uRBC3",
+"Sample ID":"uRBC3_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"uRBC3_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"uRBC4",
+"Sample ID":"uRBC4_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"uRBC4_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"uRBC5",
+"Sample ID":"uRBC5_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"uRBC5_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"iS1",
+"Sample ID":"iS1_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"iS1_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"iS2",
+"Sample ID":"iS2_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"iS2_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"iS3",
+"Sample ID":"iS3_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"iS3_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"iS4",
+"Sample ID":"iS4_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"iS4_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"iS5",
+"Sample ID":"iS5_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"iS5_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"uS1",
+"Sample ID":"uS1_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"uS1_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"uS2",
+"Sample ID":"uS2_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"uS2_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"uS3",
+"Sample ID":"uS3_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"uS3_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"uS4",
+"Sample ID":"uS4_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"uS4_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"uS5",
+"Sample ID":"uS5_CE-TOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"CE-TOF-MS","RAW_FILE_NAME":"uS5_CE-TOF-MS.mzML"}
+},
+{
+"Subject ID":"iRBC1",
+"Sample ID":"iRBC1_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"iRBC1_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"iRBC2",
+"Sample ID":"iRBC2_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"iRBC2_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"iRBC3",
+"Sample ID":"iRBC3_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"iRBC3_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"iRBC4",
+"Sample ID":"iRBC4_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"iRBC4_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"iRBC5",
+"Sample ID":"iRBC5_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"iRBC5_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"uRBC1",
+"Sample ID":"uRBC1_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"uRBC1_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"uRBC2",
+"Sample ID":"uRBC2_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"uRBC2_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"uRBC3",
+"Sample ID":"uRBC3_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"uRBC3_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"uRBC4",
+"Sample ID":"uRBC4_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"uRBC4_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"uRBC5",
+"Sample ID":"uRBC5_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"uRBC5_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"iS1",
+"Sample ID":"iS1_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"iS1_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"iS2",
+"Sample ID":"iS2_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"iS2_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"iS3",
+"Sample ID":"iS3_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"iS3_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"iS4",
+"Sample ID":"iS4_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"iS4_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"iS5",
+"Sample ID":"iS5_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"iS5_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"uS2",
+"Sample ID":"uS2_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"uS2_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"uS3",
+"Sample ID":"uS3_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"uS3_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"uS4",
+"Sample ID":"uS4_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"uS4_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"uS5",
+"Sample ID":"uS5_GC-QTOF-MS",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"GC-QTOF-MS","RAW_FILE_NAME":"uS5_GC-QTOF-MS.mzML"}
+},
+{
+"Subject ID":"iRBC1",
+"Sample ID":"iRBC1_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"iRBC1_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"iRBC2",
+"Sample ID":"iRBC2_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"iRBC2_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"iRBC3",
+"Sample ID":"iRBC3_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"iRBC3_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"iRBC4",
+"Sample ID":"iRBC4_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"iRBC4_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"iRBC5",
+"Sample ID":"iRBC5_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"iRBC5_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"uRBC1",
+"Sample ID":"uRBC1_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"uRBC1_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"uRBC2",
+"Sample ID":"uRBC2_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"uRBC2_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"uRBC3",
+"Sample ID":"uRBC3_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"uRBC3_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"uRBC4",
+"Sample ID":"uRBC4_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"uRBC4_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"uRBC5",
+"Sample ID":"uRBC5_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"uRBC5_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"iS1",
+"Sample ID":"iS1_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"iS1_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"iS2",
+"Sample ID":"iS2_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"iS2_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"iS3",
+"Sample ID":"iS3_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"iS3_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"iS4",
+"Sample ID":"iS4_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"iS4_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"iS5",
+"Sample ID":"iS5_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"iS5_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"uS1",
+"Sample ID":"uS1_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"uS1_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"uS2",
+"Sample ID":"uS2_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"uS2_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"uS3",
+"Sample ID":"uS3_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"uS3_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"uS4",
+"Sample ID":"uS4_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"uS4_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"uS5",
+"Sample ID":"uS5_LC-QTOF-MSpos",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSpos","RAW_FILE_NAME":"uS5_LC-QTOF-MSpos.mzML"}
+},
+{
+"Subject ID":"iRBC1",
+"Sample ID":"iRBC1_LC-QTOF-MSneg",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSneg","RAW_FILE_NAME":"iRBC1_LC-QTOF-MSneg.mzML"}
+},
+{
+"Subject ID":"iRBC2",
+"Sample ID":"iRBC2_LC-QTOF-MSneg",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSneg","RAW_FILE_NAME":"iRBC2_LC-QTOF-MSneg.mzML"}
+},
+{
+"Subject ID":"iRBC3",
+"Sample ID":"iRBC3_LC-QTOF-MSneg",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSneg","RAW_FILE_NAME":"iRBC3_LC-QTOF-MSneg.mzML"}
+},
+{
+"Subject ID":"iRBC4",
+"Sample ID":"iRBC4_LC-QTOF-MSneg",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSneg","RAW_FILE_NAME":"iRBC4_LC-QTOF-MSneg.mzML"}
+},
+{
+"Subject ID":"iRBC5",
+"Sample ID":"iRBC5_LC-QTOF-MSneg",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSneg","RAW_FILE_NAME":"iRBC5_LC-QTOF-MSneg.mzML"}
+},
+{
+"Subject ID":"uRBC1",
+"Sample ID":"uRBC1_LC-QTOF-MSneg",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSneg","RAW_FILE_NAME":"uRBC1_LC-QTOF-MSneg.mzML"}
+},
+{
+"Subject ID":"uRBC3",
+"Sample ID":"uRBC3_LC-QTOF-MSneg",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSneg","RAW_FILE_NAME":"uRBC3_LC-QTOF-MSneg.mzML"}
+},
+{
+"Subject ID":"uRBC4",
+"Sample ID":"uRBC4_LC-QTOF-MSneg",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSneg","RAW_FILE_NAME":"uRBC4_LC-QTOF-MSneg.mzML"}
+},
+{
+"Subject ID":"uRBC5",
+"Sample ID":"uRBC5_LC-QTOF-MSneg",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QTOF-MSneg","RAW_FILE_NAME":"uRBC5_LC-QTOF-MSneg.mzML"}
+},
+{
+"Subject ID":"iRBC3",
+"Sample ID":"iRBC3_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"iRBC3_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"iRBC4",
+"Sample ID":"iRBC4_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"iRBC4_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"iRBC5",
+"Sample ID":"iRBC5_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"iRBC5_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"uRBC2",
+"Sample ID":"uRBC2_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"uRBC2_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"uRBC3",
+"Sample ID":"uRBC3_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"uRBC3_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"uRBC4",
+"Sample ID":"uRBC4_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"uRBC4_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"uRBC5",
+"Sample ID":"uRBC5_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"uRBC5_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"iS1",
+"Sample ID":"iS1_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"iS1_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"iS2",
+"Sample ID":"iS2_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"iS2_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"iS3",
+"Sample ID":"iS3_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"iS3_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"iS4",
+"Sample ID":"iS4_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"iS4_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"iS5",
+"Sample ID":"iS5_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"iS5_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"uS1",
+"Sample ID":"uS1_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"uS1_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"uS2",
+"Sample ID":"uS2_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"uS2_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"uS3",
+"Sample ID":"uS3_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"uS3_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"uS4",
+"Sample ID":"uS4_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"uS4_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"uS5",
+"Sample ID":"uS5_LC-QqQ-MS A",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS A","RAW_FILE_NAME":"uS5_LC-QqQ-MS A.mzML"}
+},
+{
+"Subject ID":"iRBC1",
+"Sample ID":"iRBC1_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"iRBC1_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"iRBC3",
+"Sample ID":"iRBC3_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"iRBC3_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"iRBC4",
+"Sample ID":"iRBC4_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"iRBC4_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"iRBC5",
+"Sample ID":"iRBC5_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"iRBC5_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"uRBC2",
+"Sample ID":"uRBC2_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"uRBC2_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"uRBC3",
+"Sample ID":"uRBC3_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"uRBC3_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"uRBC4",
+"Sample ID":"uRBC4_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"uRBC4_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"uRBC5",
+"Sample ID":"uRBC5_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"uRBC5_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"iS1",
+"Sample ID":"iS1_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"iS1_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"iS2",
+"Sample ID":"iS2_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"iS2_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"iS3",
+"Sample ID":"iS3_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"iS3_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"iS4",
+"Sample ID":"iS4_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"iS4_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"iS5",
+"Sample ID":"iS5_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from infected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"iS5_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"uS1",
+"Sample ID":"uS1_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"uS1_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"uS2",
+"Sample ID":"uS2_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"uS2_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"uS3",
+"Sample ID":"uS3_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"uS3_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"uS4",
+"Sample ID":"uS4_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"uS4_LC-QqQ-MS B.mzML"}
+},
+{
+"Subject ID":"uS5",
+"Sample ID":"uS5_LC-QqQ-MS B",
+"Factors":{"Sample source":"erythrocyte culture","Sample type":"supernatant from uninfected RBC"},
+"Additional sample data":{"Analytical platform":"LC-QqQ-MS B","RAW_FILE_NAME":"uS5_LC-QqQ-MS B.mzML"}
+}
+],
+"COLLECTION":{"COLLECTION_SUMMARY":"Human A+ erythrocytes were obtained from healthy volunteer donors at the Blood Transfusion Center in Madrid, Spain. Donors provided written informed consent for the use of their blood in research. All procedures were approved by the center and carried out in accordance with institutional and regulatory guidelines. Asynchronous cultures of Babesia divergens (Bd Rouen 1986 strain) were maintained using human A+ erythrocytes at 5% hematocrit in RPMI 1640 medium (Gibco, Grand Island, NY, USA), supplemented with 10% human serum (The Interstate Companies, Memphis, TN, USA), 7.5% (w/v) sodium bicarbonate (Lonza Group Ltd., Basel, Switzerland), and 50 μg/mL hypoxanthine (Sigma-Aldrich, St. Louis, MO, USA). Control flasks containing uninfected erythrocytes were incubated under the same conditions using identical medium. All cultures were maintained at 37 °C in a humidified atmosphere with 5% CO₂. Samples were collected from independent asynchronous cultures of B. divergens at approximately 40% parasitemia. Infected cultures were centrifuged at 600 × g for 5 minutes at 4 °C using fixed-angle rotors to pellet the cells (iRBC). The pellets, containing a mixture of infected and uninfected erythrocytes, were washed and centrifuged three times (2,000 × g, 5 minutes, 4 °C), resuspended in RPMI, and kept on ice. Supernatants (iS) were obtained from infected cultures by sequential centrifugation at 2,000 × g and 8,000 × g (5 minutes each, 4 °C), and stored at –80 °C. Control samples (uRBC and uS) from uninfected cultures were processed in parallel using the same protocol. Detailed description of sample collection can be found at DOI: 10.1007/978-1-0716-1681-9_13","SAMPLE_TYPE":"Red blood cells and culture media"},
+
+"TREATMENT":{"TREATMENT_SUMMARY":"Since the study was aimed to describe changes ocurring upon an in vitro model of a natural disease, no treatment was performed."},
+
+"SAMPLEPREP":{"SAMPLEPREP_SUMMARY":"Metabolite extraction was carried out using a multi-step procedure designed to rapidly quench metabolism, promote cell lysis, and enhance metabolite recovery. For intracellular extraction, 800 μL of cold (–20 °C) methanol (Thermo Fisher Scientific, Loughborough, UK) was added to 200 μL of either infected (iRBC) or uninfected (uRBC) red blood cells. Samples underwent two freeze–thaw cycles by immersion in liquid nitrogen for 10 minutes, followed by thawing on ice and light vortexing. After centrifugation at 5,725 × g for 5 minutes at 4 °C, the supernatants were collected. The residual pellets were re-extracted twice with 400 μL of cold methanol per step, using the same freeze–thaw and centrifugation conditions. All supernatants from the same sample were pooled and stored at –80 °C until analysis. Extracellular samples (iS and uS) were processed based on the analytical platform. For untargeted CE-TOF/MS, GC-QTOF/MS, and LC-QTOF/MS analyses, cold acetonitrile (Thermo Fisher Scientific, Loughborough, UK) was used in a 1:4 (v/v) sample-to-solvent ratio. For targeted LC-QqQ/MS profiling, cold methanol was used in a 1:3 (v/v) ratio. Following quenching and extraction, supernatants were filtered through 0.22 μm MS® Nylon syringe filters (Membrane Solutions, Plano, USA) and stored at –80 °C. For CE-TOF/MS analysis, 250 μL of each extract (iRBC, uRBC, iS, and uS) was dried under vacuum and reconstituted in 50 μL of CE/MS sample solution prepared by dissolving methionine sulfone (internal standard; Sigma-Aldrich, Steinheim, Germany) at 0.2 mM in Milli-Q water with 0.1 M formic acid (Sigma-Aldrich). After vortexing for 1 minute and centrifugation at 12,600 × g for 15 minutes at 4 °C, the supernatants were used for analysis. GC-QTOF/MS samples were prepared by adding 10 μL of ethoxymation solution and 12 μL of internal standard to 240 μL of each sample. The ethoxymation reagent was anhydrous pyridine containing 19 mg·mL⁻¹ O-ethoxyamine (Sigma-Aldrich, Steinheim, Germany), and the internal standard solution contained 10 mg·L⁻¹ meso-erythritol in Milli-Q water. After vacuum drying, derivatization was performed automatically using an MPS autosampler. O-ethyloxime derivatives were formed by incubating the extracts for 90 minutes at 40 °C, followed by silylation of acidic compounds using 42 μL of N-methyl-N-(trimethylsilyl)trifluoroacetamide (MSTFA) with 1% trimethylchlorosilane (TCMS; Sigma-Aldrich, Germany) for 50 minutes at 40 °C. For LC-QTOF/MS analysis, 100 μL of each processed extract (iRBC, uRBC, iS, and uS) was transferred to LC vials after brief vortexing. For LC-QqQ/MS analysis of polar metabolites, 12 μL of internal standard solution (50.09 µM p-chlorophenylalanine in Milli-Q water; Sigma-Aldrich, Steinheim, Germany) were added to 300 μL of each extract — methanol for iRBC/uRBC and methanol:water (3:1, v/v) for iS/uS. Samples were then evaporated under vacuum, reconstituted in 60 μL of Milli-Q water with the aid of a 5-minute sonication bath, and centrifuged at 3,000 × g for 10 minutes at 4 °C before injection. Detailed protocols of the conditions followed sample preparation can be found at DOI: 10.1007/978-1-0716-1681-9_13"},
+
+"CHROMATOGRAPHY":{"CHROMATOGRAPHY_SUMMARY":"Cromatography summary. Non-targeted, CE-ESI-MS, method applied for the determination of positively-charged metabolites under acidic conditions.","CHROMATOGRAPHY_TYPE":"CE","INSTRUMENT_NAME":"Agilent 7100 CE","COLUMN_NAME":"Agilent bare fused silica capillary, (96 cm x 50 um)","SOLVENT_A":"-","SOLVENT_B":"-","FLOW_GRADIENT":"-","FLOW_RATE":"-","COLUMN_TEMPERATURE":"-"},
+
+"ANALYSIS":{"ANALYSIS_TYPE":"MS"},
+
+"MS":{"INSTRUMENT_NAME":"Agilent 6224 TOF","INSTRUMENT_TYPE":"TOF","MS_TYPE":"ESI","ION_MODE":"POSITIVE","MS_COMMENTS":"MS method associated with CE-MS source type = ESI polarity = positive capillary voltage = 3500 V mass range = 74 - 1000 mz acquisition rate = 1 spectra/s reference mass correction = 121.0509, 922.0098 acquisition mode = full MS fragmentor, skimmer, octopole voltages = 125, 65, 750 V Nebulizer pressure = 10 psi drying gas temperature = 200 ºC drying gas flow = 10 L/min"},
+
+"MS_METABOLITE_DATA":{
+"Units":"normalized (total useful signal) abundances",
+
+"Data":[{"Metabolite":"1-Methyladenosine (2''-O-)","iRBC1_CE-TOF-MS":"0.000213279","iRBC2_CE-TOF-MS":"0.000243938","iRBC3_CE-TOF-MS":"0.000229673","iRBC4_CE-TOF-MS":"0.000233218","iRBC5_CE-TOF-MS":"0.000236318","uRBC1_CE-TOF-MS":"0.000163462","uRBC2_CE-TOF-MS":"0.000219903","uRBC3_CE-TOF-MS":"0.000234751","uRBC4_CE-TOF-MS":"0.000205264","uRBC5_CE-TOF-MS":"0.000264657","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"2-(4-(2-(phosphonooxy)ethyl)piperazinyl)-ethanesulfonic acid","iRBC1_CE-TOF-MS":"0.001908048","iRBC2_CE-TOF-MS":"0.001827596","iRBC3_CE-TOF-MS":"0.001790025","iRBC4_CE-TOF-MS":"0.001907577","iRBC5_CE-TOF-MS":"0.001730841","uRBC1_CE-TOF-MS":"1.78694E-05","uRBC2_CE-TOF-MS":"1.63916E-05","uRBC3_CE-TOF-MS":"1.43751E-05","uRBC4_CE-TOF-MS":"2.48234E-05","uRBC5_CE-TOF-MS":"4.87382E-06","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"2-Aminoadipic acid","iRBC1_CE-TOF-MS":"6.40499E-05","iRBC2_CE-TOF-MS":"4.34772E-05","iRBC3_CE-TOF-MS":"4.72537E-05","iRBC4_CE-TOF-MS":"3.97423E-05","iRBC5_CE-TOF-MS":"NaN","uRBC1_CE-TOF-MS":"0.000136013","uRBC2_CE-TOF-MS":"0.000116939","uRBC3_CE-TOF-MS":"8.90002E-05","uRBC4_CE-TOF-MS":"9.2393E-05","uRBC5_CE-TOF-MS":"8.48267E-05","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"2-Aminobutyric acid // 4-Aminobutyric acid","iRBC1_CE-TOF-MS":"0.000129161","iRBC2_CE-TOF-MS":"0.00013746","iRBC3_CE-TOF-MS":"0.000144567","iRBC4_CE-TOF-MS":"0.000131352","iRBC5_CE-TOF-MS":"0.000113983","uRBC1_CE-TOF-MS":"0.00012299","uRBC2_CE-TOF-MS":"0.000169223","uRBC3_CE-TOF-MS":"0.000188029","uRBC4_CE-TOF-MS":"0.000147705","uRBC5_CE-TOF-MS":"0.000204314","iS1_CE-TOF-MS":"0.000172835","iS2_CE-TOF-MS":"0.000125285","iS3_CE-TOF-MS":"0.000201657","iS4_CE-TOF-MS":"0.000247776","iS5_CE-TOF-MS":"0.000249278","uS1_CE-TOF-MS":"0.000237332","uS2_CE-TOF-MS":"0.00022265","uS3_CE-TOF-MS":"0.000221252","uS4_CE-TOF-MS":"0.000197599","uS5_CE-TOF-MS":"0.000176158"},{"Metabolite":"3-Dehydroxycarnitine","iRBC1_CE-TOF-MS":"0.001157353","iRBC2_CE-TOF-MS":"0.001128161","iRBC3_CE-TOF-MS":"0.001108065","iRBC4_CE-TOF-MS":"0.00116401","iRBC5_CE-TOF-MS":"0.001038991","uRBC1_CE-TOF-MS":"0.001160256","uRBC2_CE-TOF-MS":"0.001334899","uRBC3_CE-TOF-MS":"0.00137832","uRBC4_CE-TOF-MS":"0.00116318","uRBC5_CE-TOF-MS":"0.001301319","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"3-Hydroxydodecenoylcarnitine","iRBC1_CE-TOF-MS":"0.000252289","iRBC2_CE-TOF-MS":"0.000262175","iRBC3_CE-TOF-MS":"0.000258628","iRBC4_CE-TOF-MS":"0.000252306","iRBC5_CE-TOF-MS":"0.000236686","uRBC1_CE-TOF-MS":"0.000190317","uRBC2_CE-TOF-MS":"0.00025646","uRBC3_CE-TOF-MS":"0.000290712","uRBC4_CE-TOF-MS":"0.000231078","uRBC5_CE-TOF-MS":"0.000334245","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"4-Aminobenzoic acid","iRBC1_CE-TOF-MS":"0.000312613","iRBC2_CE-TOF-MS":"0.000307989","iRBC3_CE-TOF-MS":"0.000327787","iRBC4_CE-TOF-MS":"0.000320795","iRBC5_CE-TOF-MS":"0.000288641","uRBC1_CE-TOF-MS":"0.000328822","uRBC2_CE-TOF-MS":"0.000318846","uRBC3_CE-TOF-MS":"0.000323242","uRBC4_CE-TOF-MS":"0.000306032","uRBC5_CE-TOF-MS":"0.000325897","iS1_CE-TOF-MS":"0.000185519","iS2_CE-TOF-MS":"0.000226249","iS3_CE-TOF-MS":"0.000122163","iS4_CE-TOF-MS":"0.000130908","iS5_CE-TOF-MS":"0.000112537","uS1_CE-TOF-MS":"0.000120912","uS2_CE-TOF-MS":"0.000114241","uS3_CE-TOF-MS":"8.00594E-05","uS4_CE-TOF-MS":"0.000161105","uS5_CE-TOF-MS":"0.000155785"},{"Metabolite":"5-Methyldeoxycytidine","iRBC1_CE-TOF-MS":"0.000230876","iRBC2_CE-TOF-MS":"0.000234295","iRBC3_CE-TOF-MS":"0.000241599","iRBC4_CE-TOF-MS":"0.000223023","iRBC5_CE-TOF-MS":"0.000186584","uRBC1_CE-TOF-MS":"0.00016182","uRBC2_CE-TOF-MS":"0.000275504","uRBC3_CE-TOF-MS":"0.000273938","uRBC4_CE-TOF-MS":"0.000203757","uRBC5_CE-TOF-MS":"0.000271976","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"5''-Methylthioadenosine","iRBC1_CE-TOF-MS":"2.96697E-05","iRBC2_CE-TOF-MS":"2.55547E-05","iRBC3_CE-TOF-MS":"2.70788E-05","iRBC4_CE-TOF-MS":"2.88633E-05","iRBC5_CE-TOF-MS":"2.31691E-05","uRBC1_CE-TOF-MS":"2.54905E-05","uRBC2_CE-TOF-MS":"2.33625E-05","uRBC3_CE-TOF-MS":"2.4819E-05","uRBC4_CE-TOF-MS":"3.63551E-05","uRBC5_CE-TOF-MS":"1.93479E-05","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Acetylcarnitine","iRBC1_CE-TOF-MS":"0.001430529","iRBC2_CE-TOF-MS":"0.001381055","iRBC3_CE-TOF-MS":"0.001360723","iRBC4_CE-TOF-MS":"0.001404586","iRBC5_CE-TOF-MS":"0.001275758","uRBC1_CE-TOF-MS":"0.002480721","uRBC2_CE-TOF-MS":"0.002721736","uRBC3_CE-TOF-MS":"0.002803145","uRBC4_CE-TOF-MS":"0.002438555","uRBC5_CE-TOF-MS":"0.002422024","iS1_CE-TOF-MS":"0.000686722","iS2_CE-TOF-MS":"0.000719456","iS3_CE-TOF-MS":"0.000642912","iS4_CE-TOF-MS":"0.000575803","iS5_CE-TOF-MS":"0.000573326","uS1_CE-TOF-MS":"0.000511574","uS2_CE-TOF-MS":"0.000523459","uS3_CE-TOF-MS":"0.000461008","uS4_CE-TOF-MS":"0.000504387","uS5_CE-TOF-MS":"0.000571196"},{"Metabolite":"Adenosine","iRBC1_CE-TOF-MS":"0.000193657","iRBC2_CE-TOF-MS":"0.000213481","iRBC3_CE-TOF-MS":"0.000201362","iRBC4_CE-TOF-MS":"0.000205844","iRBC5_CE-TOF-MS":"0.000177502","uRBC1_CE-TOF-MS":"0.000118825","uRBC2_CE-TOF-MS":"0.000217042","uRBC3_CE-TOF-MS":"0.000227959","uRBC4_CE-TOF-MS":"0.000144904","uRBC5_CE-TOF-MS":"0.000262879","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Aminooctanoic acid","iRBC1_CE-TOF-MS":"0.008359018","iRBC2_CE-TOF-MS":"0.00829895","iRBC3_CE-TOF-MS":"0.00830155","iRBC4_CE-TOF-MS":"0.008628544","iRBC5_CE-TOF-MS":"0.007983448","uRBC1_CE-TOF-MS":"0.005928024","uRBC2_CE-TOF-MS":"0.006397778","uRBC3_CE-TOF-MS":"0.006488376","uRBC4_CE-TOF-MS":"0.005777528","uRBC5_CE-TOF-MS":"0.006292803","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Arginine","iRBC1_CE-TOF-MS":"0.112454155","iRBC2_CE-TOF-MS":"0.112804489","iRBC3_CE-TOF-MS":"0.112139141","iRBC4_CE-TOF-MS":"0.116095387","iRBC5_CE-TOF-MS":"0.110091444","uRBC1_CE-TOF-MS":"0.115823529","uRBC2_CE-TOF-MS":"0.107350875","uRBC3_CE-TOF-MS":"0.111874155","uRBC4_CE-TOF-MS":"0.127005176","uRBC5_CE-TOF-MS":"0.1163554","iS1_CE-TOF-MS":"0.027404772","iS2_CE-TOF-MS":"0.025521185","iS3_CE-TOF-MS":"0.02109338","iS4_CE-TOF-MS":"0.021375065","iS5_CE-TOF-MS":"0.018255914","uS1_CE-TOF-MS":"0.020682208","uS2_CE-TOF-MS":"0.018413789","uS3_CE-TOF-MS":"0.018413151","uS4_CE-TOF-MS":"0.026053334","uS5_CE-TOF-MS":"0.023133945"},{"Metabolite":"Aspartic acid","iRBC1_CE-TOF-MS":"0.009976348","iRBC2_CE-TOF-MS":"0.00982167","iRBC3_CE-TOF-MS":"0.009773888","iRBC4_CE-TOF-MS":"0.010028689","iRBC5_CE-TOF-MS":"0.009059337","uRBC1_CE-TOF-MS":"0.013496286","uRBC2_CE-TOF-MS":"0.012284346","uRBC3_CE-TOF-MS":"0.012408711","uRBC4_CE-TOF-MS":"0.01236622","uRBC5_CE-TOF-MS":"0.010848302","iS1_CE-TOF-MS":"0.011180226","iS2_CE-TOF-MS":"0.010865889","iS3_CE-TOF-MS":"0.006858237","iS4_CE-TOF-MS":"0.007008321","iS5_CE-TOF-MS":"0.005373335","uS1_CE-TOF-MS":"0.004140868","uS2_CE-TOF-MS":"0.002966713","uS3_CE-TOF-MS":"0.003109579","uS4_CE-TOF-MS":"0.006343587","uS5_CE-TOF-MS":"0.004862012"},{"Metabolite":"Betaine","iRBC1_CE-TOF-MS":"0.007677319","iRBC2_CE-TOF-MS":"0.007677533","iRBC3_CE-TOF-MS":"0.007650715","iRBC4_CE-TOF-MS":"0.007818151","iRBC5_CE-TOF-MS":"0.00717749","uRBC1_CE-TOF-MS":"0.011452402","uRBC2_CE-TOF-MS":"0.011971562","uRBC3_CE-TOF-MS":"0.012289043","uRBC4_CE-TOF-MS":"0.011340748","uRBC5_CE-TOF-MS":"0.011828415","iS1_CE-TOF-MS":"0.00462824","iS2_CE-TOF-MS":"0.003743366","iS3_CE-TOF-MS":"0.004343002","iS4_CE-TOF-MS":"0.006859318","iS5_CE-TOF-MS":"0.006457785","uS1_CE-TOF-MS":"0.004036703","uS2_CE-TOF-MS":"0.003923716","uS3_CE-TOF-MS":"0.003775898","uS4_CE-TOF-MS":"0.003454584","uS5_CE-TOF-MS":"0.002806786"},{"Metabolite":"Butyrylcarnitine","iRBC1_CE-TOF-MS":"0.000167539","iRBC2_CE-TOF-MS":"0.000246283","iRBC3_CE-TOF-MS":"0.000212105","iRBC4_CE-TOF-MS":"0.000123337","iRBC5_CE-TOF-MS":"0.0002534","uRBC1_CE-TOF-MS":"0.000276572","uRBC2_CE-TOF-MS":"0.000286038","uRBC3_CE-TOF-MS":"0.000223635","uRBC4_CE-TOF-MS":"0.000271457","uRBC5_CE-TOF-MS":"0.00034756","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Carnitine","iRBC1_CE-TOF-MS":"0.000549446","iRBC2_CE-TOF-MS":"0.000557817","iRBC3_CE-TOF-MS":"0.000586553","iRBC4_CE-TOF-MS":"0.000565131","iRBC5_CE-TOF-MS":"0.000528295","uRBC1_CE-TOF-MS":"0.001461071","uRBC2_CE-TOF-MS":"0.001713506","uRBC3_CE-TOF-MS":"0.001853009","uRBC4_CE-TOF-MS":"0.001522365","uRBC5_CE-TOF-MS":"0.0019011","iS1_CE-TOF-MS":"0.002978896","iS2_CE-TOF-MS":"0.00254806","iS3_CE-TOF-MS":"0.002483148","iS4_CE-TOF-MS":"0.002335357","iS5_CE-TOF-MS":"0.002282256","uS1_CE-TOF-MS":"0.001943821","uS2_CE-TOF-MS":"0.001925839","uS3_CE-TOF-MS":"0.001861591","uS4_CE-TOF-MS":"0.002017784","uS5_CE-TOF-MS":"0.001961341"},{"Metabolite":"Choline","iRBC1_CE-TOF-MS":"0.007404698","iRBC2_CE-TOF-MS":"0.007586179","iRBC3_CE-TOF-MS":"0.007272349","iRBC4_CE-TOF-MS":"0.00757754","iRBC5_CE-TOF-MS":"0.007812781","uRBC1_CE-TOF-MS":"0.006514855","uRBC2_CE-TOF-MS":"0.006794384","uRBC3_CE-TOF-MS":"0.007073233","uRBC4_CE-TOF-MS":"0.00784822","uRBC5_CE-TOF-MS":"0.00679555","iS1_CE-TOF-MS":"0.01727235","iS2_CE-TOF-MS":"0.015255939","iS3_CE-TOF-MS":"0.018486435","iS4_CE-TOF-MS":"0.022845452","iS5_CE-TOF-MS":"0.024425949","uS1_CE-TOF-MS":"0.014830885","uS2_CE-TOF-MS":"0.014347754","uS3_CE-TOF-MS":"0.017079077","uS4_CE-TOF-MS":"0.010207976","uS5_CE-TOF-MS":"0.011840971"},{"Metabolite":"Citrulline","iRBC1_CE-TOF-MS":"0.004140036","iRBC2_CE-TOF-MS":"0.004097978","iRBC3_CE-TOF-MS":"0.004066953","iRBC4_CE-TOF-MS":"0.004222745","iRBC5_CE-TOF-MS":"0.003874276","uRBC1_CE-TOF-MS":"0.001223858","uRBC2_CE-TOF-MS":"0.001300621","uRBC3_CE-TOF-MS":"0.001347795","uRBC4_CE-TOF-MS":"0.001198104","uRBC5_CE-TOF-MS":"0.001287278","iS1_CE-TOF-MS":"0.0258526","iS2_CE-TOF-MS":"0.025352122","iS3_CE-TOF-MS":"0.021216853","iS4_CE-TOF-MS":"0.019265226","iS5_CE-TOF-MS":"0.017850473","uS1_CE-TOF-MS":"0.000620365","uS2_CE-TOF-MS":"0.000429639","uS3_CE-TOF-MS":"0.000461328","uS4_CE-TOF-MS":"0.000552002","uS5_CE-TOF-MS":"0.000484743"},{"Metabolite":"Creatine","iRBC1_CE-TOF-MS":"0.017828644","iRBC2_CE-TOF-MS":"0.017922829","iRBC3_CE-TOF-MS":"0.017937116","iRBC4_CE-TOF-MS":"0.017850596","iRBC5_CE-TOF-MS":"0.016541538","uRBC1_CE-TOF-MS":"0.029831605","uRBC2_CE-TOF-MS":"0.032028547","uRBC3_CE-TOF-MS":"0.03372718","uRBC4_CE-TOF-MS":"0.029249364","uRBC5_CE-TOF-MS":"0.032875952","iS1_CE-TOF-MS":"0.002089051","iS2_CE-TOF-MS":"0.0019932","iS3_CE-TOF-MS":"0.001987961","iS4_CE-TOF-MS":"0.002027264","iS5_CE-TOF-MS":"0.001827475","uS1_CE-TOF-MS":"0.001406293","uS2_CE-TOF-MS":"0.001485096","uS3_CE-TOF-MS":"0.001522556","uS4_CE-TOF-MS":"0.001596479","uS5_CE-TOF-MS":"0.00158538"},{"Metabolite":"Creatinine","iRBC1_CE-TOF-MS":"0.000954191","iRBC2_CE-TOF-MS":"0.000854532","iRBC3_CE-TOF-MS":"0.000869878","iRBC4_CE-TOF-MS":"0.001099621","iRBC5_CE-TOF-MS":"0.000956598","uRBC1_CE-TOF-MS":"0.001621915","uRBC2_CE-TOF-MS":"0.001311163","uRBC3_CE-TOF-MS":"0.001177287","uRBC4_CE-TOF-MS":"0.001662652","uRBC5_CE-TOF-MS":"0.001264837","iS1_CE-TOF-MS":"0.003100724","iS2_CE-TOF-MS":"0.002900678","iS3_CE-TOF-MS":"0.003895652","iS4_CE-TOF-MS":"0.003903335","iS5_CE-TOF-MS":"0.004377504","uS1_CE-TOF-MS":"0.003307852","uS2_CE-TOF-MS":"0.003561521","uS3_CE-TOF-MS":"0.004318648","uS4_CE-TOF-MS":"0.002992548","uS5_CE-TOF-MS":"0.003063216"},{"Metabolite":"Cystine","iRBC1_CE-TOF-MS":"0.003760477","iRBC2_CE-TOF-MS":"0.00389984","iRBC3_CE-TOF-MS":"0.003831446","iRBC4_CE-TOF-MS":"0.004014014","iRBC5_CE-TOF-MS":"0.004319798","uRBC1_CE-TOF-MS":"0.00077664","uRBC2_CE-TOF-MS":"0.000869986","uRBC3_CE-TOF-MS":"0.000745991","uRBC4_CE-TOF-MS":"0.000688562","uRBC5_CE-TOF-MS":"0.001473248","iS1_CE-TOF-MS":"0.005007433","iS2_CE-TOF-MS":"0.00480073","iS3_CE-TOF-MS":"0.002347225","iS4_CE-TOF-MS":"0.001858903","iS5_CE-TOF-MS":"0.001165321","uS1_CE-TOF-MS":"0.003591771","uS2_CE-TOF-MS":"0.002114973","uS3_CE-TOF-MS":"0.001972159","uS4_CE-TOF-MS":"0.006866322","uS5_CE-TOF-MS":"0.004884528"},{"Metabolite":"Deoxyguanosine","iRBC1_CE-TOF-MS":"0.001690447","iRBC2_CE-TOF-MS":"0.001659639","iRBC3_CE-TOF-MS":"0.001682784","iRBC4_CE-TOF-MS":"0.001594393","iRBC5_CE-TOF-MS":"0.001281258","uRBC1_CE-TOF-MS":"0.000936889","uRBC2_CE-TOF-MS":"0.001465673","uRBC3_CE-TOF-MS":"0.001435027","uRBC4_CE-TOF-MS":"0.001012817","uRBC5_CE-TOF-MS":"0.001176147","iS1_CE-TOF-MS":"0.000868422","iS2_CE-TOF-MS":"0.000927561","iS3_CE-TOF-MS":"0.000771739","iS4_CE-TOF-MS":"0.000822998","iS5_CE-TOF-MS":"0.000651988","uS1_CE-TOF-MS":"0.000538982","uS2_CE-TOF-MS":"0.000620016","uS3_CE-TOF-MS":"0.000565779","uS4_CE-TOF-MS":"0.000759604","uS5_CE-TOF-MS":"0.000742108"},{"Metabolite":"Dipeptide: Asp-Lys","iRBC1_CE-TOF-MS":"0.000670698","iRBC2_CE-TOF-MS":"0.000699394","iRBC3_CE-TOF-MS":"0.000701481","iRBC4_CE-TOF-MS":"0.000681485","iRBC5_CE-TOF-MS":"0.000546577","uRBC1_CE-TOF-MS":"0.00045091","uRBC2_CE-TOF-MS":"0.000646754","uRBC3_CE-TOF-MS":"0.000675628","uRBC4_CE-TOF-MS":"0.000481989","uRBC5_CE-TOF-MS":"0.00061259","iS1_CE-TOF-MS":"0.000200793","iS2_CE-TOF-MS":"0.000189346","iS3_CE-TOF-MS":"0.000136695","iS4_CE-TOF-MS":"8.02542E-05","iS5_CE-TOF-MS":"6.02731E-05","uS1_CE-TOF-MS":"0.000201187","uS2_CE-TOF-MS":"0.000248661","uS3_CE-TOF-MS":"0.000195251","uS4_CE-TOF-MS":"0.000320371","uS5_CE-TOF-MS":"0.000341741"},{"Metabolite":"Dipeptide: Leu-Ala // Ile-Ala","iRBC1_CE-TOF-MS":"9.11225E-05","iRBC2_CE-TOF-MS":"8.13537E-05","iRBC3_CE-TOF-MS":"8.41145E-05","iRBC4_CE-TOF-MS":"8.66772E-05","iRBC5_CE-TOF-MS":"8.22722E-05","uRBC1_CE-TOF-MS":"0.000156441","uRBC2_CE-TOF-MS":"0.00015641","uRBC3_CE-TOF-MS":"0.000155159","uRBC4_CE-TOF-MS":"0.000163721","uRBC5_CE-TOF-MS":"0.000171727","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Dipeptide: Leu-Glu // Ile-Glu // Gammaglutamyl-Leu // Gammaglutamyl-Ile","iRBC1_CE-TOF-MS":"0.000265911","iRBC2_CE-TOF-MS":"0.000253966","iRBC3_CE-TOF-MS":"0.000259231","iRBC4_CE-TOF-MS":"0.000278614","iRBC5_CE-TOF-MS":"0.000249635","uRBC1_CE-TOF-MS":"0.000338898","uRBC2_CE-TOF-MS":"0.000335191","uRBC3_CE-TOF-MS":"0.000337722","uRBC4_CE-TOF-MS":"0.00030552","uRBC5_CE-TOF-MS":"0.000334221","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Dipeptide: Leu-Pro // Ile-Pro","iRBC1_CE-TOF-MS":"0.000393268","iRBC2_CE-TOF-MS":"0.000406804","iRBC3_CE-TOF-MS":"0.000392543","iRBC4_CE-TOF-MS":"0.000403149","iRBC5_CE-TOF-MS":"0.000370085","uRBC1_CE-TOF-MS":"0.000379813","uRBC2_CE-TOF-MS":"0.000411937","uRBC3_CE-TOF-MS":"0.000437129","uRBC4_CE-TOF-MS":"0.000407245","uRBC5_CE-TOF-MS":"0.000435237","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Dipeptide: Lys-Val","iRBC1_CE-TOF-MS":"0.000275334","iRBC2_CE-TOF-MS":"0.000321892","iRBC3_CE-TOF-MS":"0.000294545","iRBC4_CE-TOF-MS":"0.000287043","iRBC5_CE-TOF-MS":"0.000288641","uRBC1_CE-TOF-MS":"0.000273602","uRBC2_CE-TOF-MS":"0.000250031","uRBC3_CE-TOF-MS":"0.000280381","uRBC4_CE-TOF-MS":"0.000344505","uRBC5_CE-TOF-MS":"0.000264023","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Dipeptide: Thr-Arg","iRBC1_CE-TOF-MS":"0.000113122","iRBC2_CE-TOF-MS":"0.000124286","iRBC3_CE-TOF-MS":"0.00011465","iRBC4_CE-TOF-MS":"0.000117472","iRBC5_CE-TOF-MS":"9.29455E-05","uRBC1_CE-TOF-MS":"7.06521E-05","uRBC2_CE-TOF-MS":"0.000168585","uRBC3_CE-TOF-MS":"0.000200602","uRBC4_CE-TOF-MS":"9.54021E-05","uRBC5_CE-TOF-MS":"0.000201811","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Glutathione","iRBC1_CE-TOF-MS":"0.000241173","iRBC2_CE-TOF-MS":"0.000122653","iRBC3_CE-TOF-MS":"0.000114674","iRBC4_CE-TOF-MS":"0.000111871","iRBC5_CE-TOF-MS":"9.3977E-05","uRBC1_CE-TOF-MS":"0.001601739","uRBC2_CE-TOF-MS":"0.001151712","uRBC3_CE-TOF-MS":"0.000411697","uRBC4_CE-TOF-MS":"0.000697922","uRBC5_CE-TOF-MS":"0.000165003","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Glycerophosphocholine","iRBC1_CE-TOF-MS":"0.00989564","iRBC2_CE-TOF-MS":"0.009001525","iRBC3_CE-TOF-MS":"0.008963781","iRBC4_CE-TOF-MS":"0.009445147","iRBC5_CE-TOF-MS":"0.00616394","uRBC1_CE-TOF-MS":"0.023264334","uRBC2_CE-TOF-MS":"0.018130583","uRBC3_CE-TOF-MS":"0.019584971","uRBC4_CE-TOF-MS":"0.020392091","uRBC5_CE-TOF-MS":"0.014031156","iS1_CE-TOF-MS":"0.004475227","iS2_CE-TOF-MS":"0.004491934","iS3_CE-TOF-MS":"0.003381381","iS4_CE-TOF-MS":"0.003233171","iS5_CE-TOF-MS":"0.00280573","uS1_CE-TOF-MS":"0.000930106","uS2_CE-TOF-MS":"0.001007783","uS3_CE-TOF-MS":"0.001455582","uS4_CE-TOF-MS":"0.001106529","uS5_CE-TOF-MS":"0.001055964"},{"Metabolite":"Glycine","iRBC1_CE-TOF-MS":"0.008899248","iRBC2_CE-TOF-MS":"0.009103473","iRBC3_CE-TOF-MS":"0.009097408","iRBC4_CE-TOF-MS":"0.009450292","iRBC5_CE-TOF-MS":"0.008635277","uRBC1_CE-TOF-MS":"0.009238275","uRBC2_CE-TOF-MS":"0.009283933","uRBC3_CE-TOF-MS":"0.009444704","uRBC4_CE-TOF-MS":"0.008516889","uRBC5_CE-TOF-MS":"0.009159213","iS1_CE-TOF-MS":"0.006377966","iS2_CE-TOF-MS":"0.005708057","iS3_CE-TOF-MS":"0.005458619","iS4_CE-TOF-MS":"0.004963969","iS5_CE-TOF-MS":"0.004267661","uS1_CE-TOF-MS":"0.005896468","uS2_CE-TOF-MS":"0.005717608","uS3_CE-TOF-MS":"0.006068849","uS4_CE-TOF-MS":"0.006800747","uS5_CE-TOF-MS":"0.006106047"},{"Metabolite":"Heteropyrithiamine","iRBC1_CE-TOF-MS":"0.000133062","iRBC2_CE-TOF-MS":"0.000143451","iRBC3_CE-TOF-MS":"0.00015121","iRBC4_CE-TOF-MS":"0.000143083","iRBC5_CE-TOF-MS":"0.00010985","uRBC1_CE-TOF-MS":"4.23695E-05","uRBC2_CE-TOF-MS":"0.000139721","uRBC3_CE-TOF-MS":"0.000160398","uRBC4_CE-TOF-MS":"0.000139458","uRBC5_CE-TOF-MS":"0.000164136","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Hexadecasphinganine","iRBC1_CE-TOF-MS":"0.001291919","iRBC2_CE-TOF-MS":"0.000703833","iRBC3_CE-TOF-MS":"0.000851805","iRBC4_CE-TOF-MS":"0.001871967","iRBC5_CE-TOF-MS":"0.001987315","uRBC1_CE-TOF-MS":"0.000844138","uRBC2_CE-TOF-MS":"0.001056471","uRBC3_CE-TOF-MS":"0.0016585","uRBC4_CE-TOF-MS":"0.001215691","uRBC5_CE-TOF-MS":"0.001784892","iS1_CE-TOF-MS":"0.002051188","iS2_CE-TOF-MS":"0.004900723","iS3_CE-TOF-MS":"0.003324947","iS4_CE-TOF-MS":"0.003944831","iS5_CE-TOF-MS":"0.00167526","uS1_CE-TOF-MS":"0.001326336","uS2_CE-TOF-MS":"0.001415425","uS3_CE-TOF-MS":"0.001388833","uS4_CE-TOF-MS":"0.001211389","uS5_CE-TOF-MS":"0.001239113"},{"Metabolite":"Histidine trimethylbetaine","iRBC1_CE-TOF-MS":"0.013611963","iRBC2_CE-TOF-MS":"0.013672163","iRBC3_CE-TOF-MS":"0.013590749","iRBC4_CE-TOF-MS":"0.013976801","iRBC5_CE-TOF-MS":"0.010919251","uRBC1_CE-TOF-MS":"0.012236508","uRBC2_CE-TOF-MS":"0.012678301","uRBC3_CE-TOF-MS":"0.013041427","uRBC4_CE-TOF-MS":"0.014031644","uRBC5_CE-TOF-MS":"0.012475277","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Hypoxanthine","iRBC1_CE-TOF-MS":"0.035477374","iRBC2_CE-TOF-MS":"0.034635596","iRBC3_CE-TOF-MS":"0.034180327","iRBC4_CE-TOF-MS":"0.035525187","iRBC5_CE-TOF-MS":"0.0350768","uRBC1_CE-TOF-MS":"0.034334182","uRBC2_CE-TOF-MS":"0.030507976","uRBC3_CE-TOF-MS":"0.031329417","uRBC4_CE-TOF-MS":"0.032707776","uRBC5_CE-TOF-MS":"0.030963997","iS1_CE-TOF-MS":"0.061174155","iS2_CE-TOF-MS":"0.061183348","iS3_CE-TOF-MS":"0.071749179","iS4_CE-TOF-MS":"0.073962969","iS5_CE-TOF-MS":"0.08263855","uS1_CE-TOF-MS":"0.053494791","uS2_CE-TOF-MS":"0.05603694","uS3_CE-TOF-MS":"0.060589076","uS4_CE-TOF-MS":"0.045036819","uS5_CE-TOF-MS":"0.051882209"},{"Metabolite":"Inosine","iRBC1_CE-TOF-MS":"0.000497998","iRBC2_CE-TOF-MS":"0.000476909","iRBC3_CE-TOF-MS":"0.000494025","iRBC4_CE-TOF-MS":"0.000514336","iRBC5_CE-TOF-MS":"0.000504097","uRBC1_CE-TOF-MS":"0.000318641","uRBC2_CE-TOF-MS":"0.00029613","uRBC3_CE-TOF-MS":"0.000304055","uRBC4_CE-TOF-MS":"0.000313229","uRBC5_CE-TOF-MS":"0.000298633","iS1_CE-TOF-MS":"0.000350451","iS2_CE-TOF-MS":"0.000395581","iS3_CE-TOF-MS":"0.000400876","iS4_CE-TOF-MS":"0.00036542","iS5_CE-TOF-MS":"0.000388375","uS1_CE-TOF-MS":"0.00045386","uS2_CE-TOF-MS":"0.00053225","uS3_CE-TOF-MS":"0.000452735","uS4_CE-TOF-MS":"0.000483087","uS5_CE-TOF-MS":"0.000482576"},{"Metabolite":"Isobutirylcarnitine","iRBC1_CE-TOF-MS":"5.52854E-05","iRBC2_CE-TOF-MS":"5.77545E-05","iRBC3_CE-TOF-MS":"5.95789E-05","iRBC4_CE-TOF-MS":"5.96922E-05","iRBC5_CE-TOF-MS":"5.99108E-05","uRBC1_CE-TOF-MS":"8.12979E-05","uRBC2_CE-TOF-MS":"9.79429E-05","uRBC3_CE-TOF-MS":"9.37888E-05","uRBC4_CE-TOF-MS":"8.00259E-05","uRBC5_CE-TOF-MS":"8.62833E-05","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Lysine","iRBC1_CE-TOF-MS":"0.018832627","iRBC2_CE-TOF-MS":"0.019849796","iRBC3_CE-TOF-MS":"0.019730219","iRBC4_CE-TOF-MS":"0.020500958","iRBC5_CE-TOF-MS":"0.020511098","uRBC1_CE-TOF-MS":"0.017874421","uRBC2_CE-TOF-MS":"0.017268571","uRBC3_CE-TOF-MS":"0.017854348","uRBC4_CE-TOF-MS":"0.020371394","uRBC5_CE-TOF-MS":"0.017210177","iS1_CE-TOF-MS":"0.010566922","iS2_CE-TOF-MS":"0.010959843","iS3_CE-TOF-MS":"0.007137229","iS4_CE-TOF-MS":"0.006426287","iS5_CE-TOF-MS":"0.004765307","uS1_CE-TOF-MS":"0.008953699","uS2_CE-TOF-MS":"0.006685011","uS3_CE-TOF-MS":"0.007569141","uS4_CE-TOF-MS":"0.01521961","uS5_CE-TOF-MS":"0.01143984"},{"Metabolite":"Lys-Ser // Lysinoalanine","iRBC1_CE-TOF-MS":"0.000383425","iRBC2_CE-TOF-MS":"0.000375749","iRBC3_CE-TOF-MS":"0.000368548","iRBC4_CE-TOF-MS":"0.000384416","iRBC5_CE-TOF-MS":"0.000315565","uRBC1_CE-TOF-MS":"0.000145552","uRBC2_CE-TOF-MS":"0.000280015","uRBC3_CE-TOF-MS":"0.000311925","uRBC4_CE-TOF-MS":"0.000175797","uRBC5_CE-TOF-MS":"0.000305047","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Methionine sulfoxide","iRBC1_CE-TOF-MS":"0.000539942","iRBC2_CE-TOF-MS":"0.000543955","iRBC3_CE-TOF-MS":"0.000539269","iRBC4_CE-TOF-MS":"0.000549149","iRBC5_CE-TOF-MS":"0.000527939","uRBC1_CE-TOF-MS":"0.000474663","uRBC2_CE-TOF-MS":"0.000474589","uRBC3_CE-TOF-MS":"0.000498634","uRBC4_CE-TOF-MS":"0.000476419","uRBC5_CE-TOF-MS":"0.000486587","iS1_CE-TOF-MS":"0.001040034","iS2_CE-TOF-MS":"0.000825446","iS3_CE-TOF-MS":"0.000908851","iS4_CE-TOF-MS":"0.000878736","iS5_CE-TOF-MS":"0.000814931","uS1_CE-TOF-MS":"0.001168836","uS2_CE-TOF-MS":"0.001114136","uS3_CE-TOF-MS":"0.001044858","uS4_CE-TOF-MS":"0.001673661","uS5_CE-TOF-MS":"0.00128118"},{"Metabolite":"N,N-Dimethylhistidine","iRBC1_CE-TOF-MS":"0.000488902","iRBC2_CE-TOF-MS":"0.000540238","iRBC3_CE-TOF-MS":"0.000508087","iRBC4_CE-TOF-MS":"0.000470125","iRBC5_CE-TOF-MS":"0.000471577","uRBC1_CE-TOF-MS":"0.000342841","uRBC2_CE-TOF-MS":"0.000566189","uRBC3_CE-TOF-MS":"0.000585415","uRBC4_CE-TOF-MS":"0.000353376","uRBC5_CE-TOF-MS":"0.000603467","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"N-Deoxyfructosyl-leucine // N-Deoxyfructosyl-isoleucine","iRBC1_CE-TOF-MS":"0.003587526","iRBC2_CE-TOF-MS":"0.00191806","iRBC3_CE-TOF-MS":"0.001917092","iRBC4_CE-TOF-MS":"0.001960862","iRBC5_CE-TOF-MS":"0.001838042","uRBC1_CE-TOF-MS":"0.001453537","uRBC2_CE-TOF-MS":"0.001495961","uRBC3_CE-TOF-MS":"0.001508601","uRBC4_CE-TOF-MS":"0.001451125","uRBC5_CE-TOF-MS":"0.001497134","iS1_CE-TOF-MS":"0.006169864","iS2_CE-TOF-MS":"0.008746142","iS3_CE-TOF-MS":"0.009351923","iS4_CE-TOF-MS":"0.011833971","iS5_CE-TOF-MS":"0.010739322","uS1_CE-TOF-MS":"0.011196473","uS2_CE-TOF-MS":"0.01547007","uS3_CE-TOF-MS":"0.009758195","uS4_CE-TOF-MS":"0.007445243","uS5_CE-TOF-MS":"0.010731736"},{"Metabolite":"N-Deoxyfructosyl-phenylalanine","iRBC1_CE-TOF-MS":"0.000778174","iRBC2_CE-TOF-MS":"0.000565388","iRBC3_CE-TOF-MS":"0.000564836","iRBC4_CE-TOF-MS":"0.000573977","iRBC5_CE-TOF-MS":"0.000542748","uRBC1_CE-TOF-MS":"0.000423825","uRBC2_CE-TOF-MS":"0.000437851","uRBC3_CE-TOF-MS":"0.000451295","uRBC4_CE-TOF-MS":"0.000438952","uRBC5_CE-TOF-MS":"0.000440192","iS1_CE-TOF-MS":"0.001928707","iS2_CE-TOF-MS":"0.002642134","iS3_CE-TOF-MS":"0.002598562","iS4_CE-TOF-MS":"0.003004113","iS5_CE-TOF-MS":"0.002930905","uS1_CE-TOF-MS":"0.002613434","uS2_CE-TOF-MS":"0.003396964","uS3_CE-TOF-MS":"0.002340314","uS4_CE-TOF-MS":"0.002174445","uS5_CE-TOF-MS":"0.002735342"},{"Metabolite":"N-Deoxyfructosyl-tyrosine","iRBC1_CE-TOF-MS":"0.000370548","iRBC2_CE-TOF-MS":"0.000197766","iRBC3_CE-TOF-MS":"0.000192407","iRBC4_CE-TOF-MS":"0.000203754","iRBC5_CE-TOF-MS":"0.000191793","uRBC1_CE-TOF-MS":"0.000149784","uRBC2_CE-TOF-MS":"0.000148656","uRBC3_CE-TOF-MS":"0.000149901","uRBC4_CE-TOF-MS":"0.000157704","uRBC5_CE-TOF-MS":"0.000155331","iS1_CE-TOF-MS":"0.000573387","iS2_CE-TOF-MS":"0.000876515","iS3_CE-TOF-MS":"0.00093769","iS4_CE-TOF-MS":"0.001235373","iS5_CE-TOF-MS":"0.001182169","uS1_CE-TOF-MS":"0.001039166","uS2_CE-TOF-MS":"0.001470513","uS3_CE-TOF-MS":"0.000889978","uS4_CE-TOF-MS":"0.000730641","uS5_CE-TOF-MS":"0.000976644"},{"Metabolite":"N-Deoxyfructosyl-valine","iRBC1_CE-TOF-MS":"0.000943048","iRBC2_CE-TOF-MS":"0.000644692","iRBC3_CE-TOF-MS":"0.000640708","iRBC4_CE-TOF-MS":"0.000646033","iRBC5_CE-TOF-MS":"0.000588786","uRBC1_CE-TOF-MS":"0.000508303","uRBC2_CE-TOF-MS":"0.000519171","uRBC3_CE-TOF-MS":"0.000551525","uRBC4_CE-TOF-MS":"0.000503484","uRBC5_CE-TOF-MS":"0.000511763","iS1_CE-TOF-MS":"0.001374753","iS2_CE-TOF-MS":"0.001874684","iS3_CE-TOF-MS":"0.001780809","iS4_CE-TOF-MS":"0.002130417","iS5_CE-TOF-MS":"0.001753416","uS1_CE-TOF-MS":"0.002329736","uS2_CE-TOF-MS":"0.003098067","uS3_CE-TOF-MS":"0.001947072","uS4_CE-TOF-MS":"0.001755371","uS5_CE-TOF-MS":"0.002277427"},{"Metabolite":"Neuraminic acid","iRBC1_CE-TOF-MS":"0.000660599","iRBC2_CE-TOF-MS":"0.000543219","iRBC3_CE-TOF-MS":"0.000526361","iRBC4_CE-TOF-MS":"0.000529394","iRBC5_CE-TOF-MS":"0.000504288","uRBC1_CE-TOF-MS":"0.000431719","uRBC2_CE-TOF-MS":"0.000424867","uRBC3_CE-TOF-MS":"0.000426915","uRBC4_CE-TOF-MS":"0.000411526","uRBC5_CE-TOF-MS":"0.000409527","iS1_CE-TOF-MS":"0.000539911","iS2_CE-TOF-MS":"0.000680667","iS3_CE-TOF-MS":"0.000427932","iS4_CE-TOF-MS":"0.000438402","iS5_CE-TOF-MS":"0.000327568","uS1_CE-TOF-MS":"0.000559513","uS2_CE-TOF-MS":"0.000548248","uS3_CE-TOF-MS":"0.000388048","uS4_CE-TOF-MS":"0.000640228","uS5_CE-TOF-MS":"0.000696925"},{"Metabolite":"N-Fructosyl-arginine","iRBC1_CE-TOF-MS":"0.001612308","iRBC2_CE-TOF-MS":"0.001081362","iRBC3_CE-TOF-MS":"0.00106862","iRBC4_CE-TOF-MS":"0.001114084","iRBC5_CE-TOF-MS":"0.001109184","uRBC1_CE-TOF-MS":"0.001017148","uRBC2_CE-TOF-MS":"0.000995142","uRBC3_CE-TOF-MS":"0.001037798","uRBC4_CE-TOF-MS":"0.000987096","uRBC5_CE-TOF-MS":"0.001043204","iS1_CE-TOF-MS":"0.001499339","iS2_CE-TOF-MS":"0.001478715","iS3_CE-TOF-MS":"0.001371673","iS4_CE-TOF-MS":"0.001352989","iS5_CE-TOF-MS":"0.001412957","uS1_CE-TOF-MS":"0.001716502","uS2_CE-TOF-MS":"0.001402949","uS3_CE-TOF-MS":"0.001109597","uS4_CE-TOF-MS":"0.001414675","uS5_CE-TOF-MS":"0.001564574"},{"Metabolite":"N-Fructosyllysine 1","iRBC1_CE-TOF-MS":"0.000333891","iRBC2_CE-TOF-MS":"0.000198053","iRBC3_CE-TOF-MS":"0.000198386","iRBC4_CE-TOF-MS":"0.000203222","iRBC5_CE-TOF-MS":"0.000204058","uRBC1_CE-TOF-MS":"0.000168905","uRBC2_CE-TOF-MS":"0.000177214","uRBC3_CE-TOF-MS":"0.000167182","uRBC4_CE-TOF-MS":"0.000177427","uRBC5_CE-TOF-MS":"0.000184084","iS1_CE-TOF-MS":"0.000141305","iS2_CE-TOF-MS":"0.000193759","iS3_CE-TOF-MS":"0.000114952","iS4_CE-TOF-MS":"0.000126993","iS5_CE-TOF-MS":"9.47701E-05","uS1_CE-TOF-MS":"0.0001827","uS2_CE-TOF-MS":"0.0002007","uS3_CE-TOF-MS":"0.000127687","uS4_CE-TOF-MS":"0.000256572","uS5_CE-TOF-MS":"0.000243023"},{"Metabolite":"N-Fructosyllysine 2","iRBC1_CE-TOF-MS":"0.00123182","iRBC2_CE-TOF-MS":"0.000869177","iRBC3_CE-TOF-MS":"0.000873769","iRBC4_CE-TOF-MS":"0.000899433","iRBC5_CE-TOF-MS":"0.000848937","uRBC1_CE-TOF-MS":"0.000784781","uRBC2_CE-TOF-MS":"0.000729907","uRBC3_CE-TOF-MS":"0.000807497","uRBC4_CE-TOF-MS":"0.000727959","uRBC5_CE-TOF-MS":"0.000790312","iS1_CE-TOF-MS":"0.000529457","iS2_CE-TOF-MS":"0.000743109","iS3_CE-TOF-MS":"0.000443203","iS4_CE-TOF-MS":"0.000487384","iS5_CE-TOF-MS":"0.000327625","uS1_CE-TOF-MS":"0.000793474","uS2_CE-TOF-MS":"0.000671835","uS3_CE-TOF-MS":"0.000429511","uS4_CE-TOF-MS":"0.000841942","uS5_CE-TOF-MS":"0.000970484"},{"Metabolite":"N-Heptanoylglycine","iRBC1_CE-TOF-MS":"0.000308037","iRBC2_CE-TOF-MS":"0.000336606","iRBC3_CE-TOF-MS":"0.000306977","iRBC4_CE-TOF-MS":"0.000278181","iRBC5_CE-TOF-MS":"0.000309818","uRBC1_CE-TOF-MS":"0.0003898","uRBC2_CE-TOF-MS":"0.00039615","uRBC3_CE-TOF-MS":"0.000386528","uRBC4_CE-TOF-MS":"0.000336026","uRBC5_CE-TOF-MS":"0.00045102","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Nicotinamide // Isonicotinamide","iRBC1_CE-TOF-MS":"0.001849214","iRBC2_CE-TOF-MS":"0.001814271","iRBC3_CE-TOF-MS":"0.001767706","iRBC4_CE-TOF-MS":"0.002149177","iRBC5_CE-TOF-MS":"0.001746518","uRBC1_CE-TOF-MS":"0.00155858","uRBC2_CE-TOF-MS":"0.001597961","uRBC3_CE-TOF-MS":"0.001731726","uRBC4_CE-TOF-MS":"0.001715526","uRBC5_CE-TOF-MS":"0.001658404","iS1_CE-TOF-MS":"0.001940968","iS2_CE-TOF-MS":"0.001956171","iS3_CE-TOF-MS":"0.002506822","iS4_CE-TOF-MS":"0.002935724","iS5_CE-TOF-MS":"0.002832994","uS1_CE-TOF-MS":"0.001933578","uS2_CE-TOF-MS":"0.001828946","uS3_CE-TOF-MS":"0.002006354","uS4_CE-TOF-MS":"0.001751669","uS5_CE-TOF-MS":"0.001650151"},{"Metabolite":"Nicotinamide mononucleotide","iRBC1_CE-TOF-MS":"0.001725436","iRBC2_CE-TOF-MS":"0.001941935","iRBC3_CE-TOF-MS":"0.001860219","iRBC4_CE-TOF-MS":"0.00176635","iRBC5_CE-TOF-MS":"0.001520416","uRBC1_CE-TOF-MS":"0.001147084","uRBC2_CE-TOF-MS":"0.001834919","uRBC3_CE-TOF-MS":"0.002044751","uRBC4_CE-TOF-MS":"0.001405571","uRBC5_CE-TOF-MS":"0.002301265","iS1_CE-TOF-MS":"0.000403538","iS2_CE-TOF-MS":"0.000399959","iS3_CE-TOF-MS":"0.000581385","iS4_CE-TOF-MS":"0.00057411","iS5_CE-TOF-MS":"0.000630094","uS1_CE-TOF-MS":"0.000470865","uS2_CE-TOF-MS":"0.000440771","uS3_CE-TOF-MS":"0.000511056","uS4_CE-TOF-MS":"0.000307907","uS5_CE-TOF-MS":"0.000330075"},{"Metabolite":"Nicotinamide-N-oxide","iRBC1_CE-TOF-MS":"0.000135155","iRBC2_CE-TOF-MS":"NaN","iRBC3_CE-TOF-MS":"0.000111024","iRBC4_CE-TOF-MS":"0.000167403","iRBC5_CE-TOF-MS":"0.000262059","uRBC1_CE-TOF-MS":"0.000204946","uRBC2_CE-TOF-MS":"0.000264816","uRBC3_CE-TOF-MS":"0.000210762","uRBC4_CE-TOF-MS":"0.000132074","uRBC5_CE-TOF-MS":"0.000199709","iS1_CE-TOF-MS":"0.000135211","iS2_CE-TOF-MS":"0.00015412","iS3_CE-TOF-MS":"0.000208846","iS4_CE-TOF-MS":"0.000182577","iS5_CE-TOF-MS":"0.000204795","uS1_CE-TOF-MS":"0.000127496","uS2_CE-TOF-MS":"0.000171333","uS3_CE-TOF-MS":"0.00029626","uS4_CE-TOF-MS":"0.000295999","uS5_CE-TOF-MS":"0.000128982"},{"Metabolite":"Nε,Nε,Nε-Trimethyllysine","iRBC1_CE-TOF-MS":"0.000309339","iRBC2_CE-TOF-MS":"0.000329192","iRBC3_CE-TOF-MS":"0.000305273","iRBC4_CE-TOF-MS":"0.00032755","iRBC5_CE-TOF-MS":"0.00028674","uRBC1_CE-TOF-MS":"0.000353044","uRBC2_CE-TOF-MS":"0.000349654","uRBC3_CE-TOF-MS":"0.000380206","uRBC4_CE-TOF-MS":"0.000427141","uRBC5_CE-TOF-MS":"0.000380804","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Ornithine","iRBC1_CE-TOF-MS":"0.02115372","iRBC2_CE-TOF-MS":"0.022186179","iRBC3_CE-TOF-MS":"0.021991547","iRBC4_CE-TOF-MS":"0.02268411","iRBC5_CE-TOF-MS":"0.022123178","uRBC1_CE-TOF-MS":"0.019650771","uRBC2_CE-TOF-MS":"0.018852553","uRBC3_CE-TOF-MS":"0.019304458","uRBC4_CE-TOF-MS":"0.021904119","uRBC5_CE-TOF-MS":"0.019149187","iS1_CE-TOF-MS":"0.036589963","iS2_CE-TOF-MS":"0.035326206","iS3_CE-TOF-MS":"0.024624231","iS4_CE-TOF-MS":"0.022833867","iS5_CE-TOF-MS":"0.017823593","uS1_CE-TOF-MS":"0.016966578","uS2_CE-TOF-MS":"0.012662697","uS3_CE-TOF-MS":"0.013290991","uS4_CE-TOF-MS":"0.023722201","uS5_CE-TOF-MS":"0.020697363"},{"Metabolite":"Phosphocholine","iRBC1_CE-TOF-MS":"0.004399662","iRBC2_CE-TOF-MS":"0.004155792","iRBC3_CE-TOF-MS":"0.004200514","iRBC4_CE-TOF-MS":"0.004377359","iRBC5_CE-TOF-MS":"0.004250182","uRBC1_CE-TOF-MS":"0.000403145","uRBC2_CE-TOF-MS":"0.000365244","uRBC3_CE-TOF-MS":"0.000390671","uRBC4_CE-TOF-MS":"0.000407771","uRBC5_CE-TOF-MS":"0.000399347","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Phytosphingosine","iRBC1_CE-TOF-MS":"0.000375142","iRBC2_CE-TOF-MS":"0.000111691","iRBC3_CE-TOF-MS":"0.00022063","iRBC4_CE-TOF-MS":"0.000552232","iRBC5_CE-TOF-MS":"0.000662605","uRBC1_CE-TOF-MS":"0.000184952","uRBC2_CE-TOF-MS":"0.000298484","uRBC3_CE-TOF-MS":"0.000615559","uRBC4_CE-TOF-MS":"0.000404484","uRBC5_CE-TOF-MS":"0.000631372","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"0.000255032","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Proline betaine","iRBC1_CE-TOF-MS":"0.001680455","iRBC2_CE-TOF-MS":"0.001684311","iRBC3_CE-TOF-MS":"0.001657725","iRBC4_CE-TOF-MS":"0.001693455","iRBC5_CE-TOF-MS":"0.001480299","uRBC1_CE-TOF-MS":"0.002542218","uRBC2_CE-TOF-MS":"0.002714147","uRBC3_CE-TOF-MS":"0.002746544","uRBC4_CE-TOF-MS":"0.002550674","uRBC5_CE-TOF-MS":"0.002671144","iS1_CE-TOF-MS":"0.042464473","iS2_CE-TOF-MS":"0.043464625","iS3_CE-TOF-MS":"0.046606402","iS4_CE-TOF-MS":"0.045556665","iS5_CE-TOF-MS":"0.052441981","uS1_CE-TOF-MS":"0.047975789","uS2_CE-TOF-MS":"0.053379161","uS3_CE-TOF-MS":"0.050908572","uS4_CE-TOF-MS":"0.044519825","uS5_CE-TOF-MS":"0.047641753"},{"Metabolite":"Propionylcarnitine","iRBC1_CE-TOF-MS":"0.000251897","iRBC2_CE-TOF-MS":"0.000251238","iRBC3_CE-TOF-MS":"0.000241994","iRBC4_CE-TOF-MS":"0.0002469","iRBC5_CE-TOF-MS":"0.000229244","uRBC1_CE-TOF-MS":"0.000525626","uRBC2_CE-TOF-MS":"0.00059762","uRBC3_CE-TOF-MS":"0.000611681","uRBC4_CE-TOF-MS":"0.000521113","uRBC5_CE-TOF-MS":"0.0005639","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Putrescine","iRBC1_CE-TOF-MS":"0.000242396","iRBC2_CE-TOF-MS":"0.000290435","iRBC3_CE-TOF-MS":"0.000293627","iRBC4_CE-TOF-MS":"0.000294359","iRBC5_CE-TOF-MS":"0.0003743","uRBC1_CE-TOF-MS":"0.000236002","uRBC2_CE-TOF-MS":"0.000280348","uRBC3_CE-TOF-MS":"0.000410319","uRBC4_CE-TOF-MS":"0.000359387","uRBC5_CE-TOF-MS":"0.000430068","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Pyridoxal","iRBC1_CE-TOF-MS":"0.00014634","iRBC2_CE-TOF-MS":"0.000170139","iRBC3_CE-TOF-MS":"0.000142393","iRBC4_CE-TOF-MS":"0.000147587","iRBC5_CE-TOF-MS":"0.000145675","uRBC1_CE-TOF-MS":"0.000140165","uRBC2_CE-TOF-MS":"0.000144514","uRBC3_CE-TOF-MS":"0.000151957","uRBC4_CE-TOF-MS":"0.000122494","uRBC5_CE-TOF-MS":"0.00015719","iS1_CE-TOF-MS":"0.000422968","iS2_CE-TOF-MS":"0.00038724","iS3_CE-TOF-MS":"0.00031132","iS4_CE-TOF-MS":"0.000370623","iS5_CE-TOF-MS":"0.00027112","uS1_CE-TOF-MS":"0.000385306","uS2_CE-TOF-MS":"0.00046857","uS3_CE-TOF-MS":"0.000474107","uS4_CE-TOF-MS":"0.00037444","uS5_CE-TOF-MS":"0.000501646"},{"Metabolite":"Pyridoxine // Noradrenaline","iRBC1_CE-TOF-MS":"0.000804277","iRBC2_CE-TOF-MS":"0.00081879","iRBC3_CE-TOF-MS":"0.000821677","iRBC4_CE-TOF-MS":"0.000840038","iRBC5_CE-TOF-MS":"0.000722483","uRBC1_CE-TOF-MS":"0.000589449","uRBC2_CE-TOF-MS":"0.000627102","uRBC3_CE-TOF-MS":"0.000656844","uRBC4_CE-TOF-MS":"0.000563787","uRBC5_CE-TOF-MS":"0.000615853","iS1_CE-TOF-MS":"0.000215813","iS2_CE-TOF-MS":"0.000208161","iS3_CE-TOF-MS":"0.000201806","iS4_CE-TOF-MS":"0.00022963","iS5_CE-TOF-MS":"0.000289482","uS1_CE-TOF-MS":"2.45784E-05","uS2_CE-TOF-MS":"4.31501E-05","uS3_CE-TOF-MS":"3.90991E-05","uS4_CE-TOF-MS":"3.44691E-05","uS5_CE-TOF-MS":"5.60102E-05"},{"Metabolite":"Pyroglutamic acid","iRBC1_CE-TOF-MS":"0.01038765","iRBC2_CE-TOF-MS":"0.009201683","iRBC3_CE-TOF-MS":"0.008983728","iRBC4_CE-TOF-MS":"0.012036626","iRBC5_CE-TOF-MS":"0.011914511","uRBC1_CE-TOF-MS":"0.014724789","uRBC2_CE-TOF-MS":"0.010812043","uRBC3_CE-TOF-MS":"0.010299249","uRBC4_CE-TOF-MS":"0.013203184","uRBC5_CE-TOF-MS":"0.011504979","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Pyroglutamine","iRBC1_CE-TOF-MS":"0.000263172","iRBC2_CE-TOF-MS":"0.000261767","iRBC3_CE-TOF-MS":"0.000273872","iRBC4_CE-TOF-MS":"0.000278814","iRBC5_CE-TOF-MS":"0.000239487","uRBC1_CE-TOF-MS":"0.000271693","uRBC2_CE-TOF-MS":"0.000318866","uRBC3_CE-TOF-MS":"0.00032246","uRBC4_CE-TOF-MS":"0.000277854","uRBC5_CE-TOF-MS":"0.000330813","iS1_CE-TOF-MS":"0.000594195","iS2_CE-TOF-MS":"0.000536776","iS3_CE-TOF-MS":"0.000512764","iS4_CE-TOF-MS":"0.00058143","iS5_CE-TOF-MS":"0.000534465","uS1_CE-TOF-MS":"0.000455696","uS2_CE-TOF-MS":"0.000462902","uS3_CE-TOF-MS":"0.000405797","uS4_CE-TOF-MS":"0.00057164","uS5_CE-TOF-MS":"0.00052403"},{"Metabolite":"S-Glutathionyl-L-cysteine","iRBC1_CE-TOF-MS":"0.008683775","iRBC2_CE-TOF-MS":"0.008047071","iRBC3_CE-TOF-MS":"0.008136841","iRBC4_CE-TOF-MS":"0.008532513","iRBC5_CE-TOF-MS":"0.006837591","uRBC1_CE-TOF-MS":"0.00616223","uRBC2_CE-TOF-MS":"0.006053708","uRBC3_CE-TOF-MS":"0.00525844","uRBC4_CE-TOF-MS":"0.005279928","uRBC5_CE-TOF-MS":"0.005828175","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"S-Methylcysteine sulfoxide","iRBC1_CE-TOF-MS":"0.005979665","iRBC2_CE-TOF-MS":"0.006218224","iRBC3_CE-TOF-MS":"0.006533677","iRBC4_CE-TOF-MS":"0.00631096","iRBC5_CE-TOF-MS":"0.004519494","uRBC1_CE-TOF-MS":"0.010392514","uRBC2_CE-TOF-MS":"0.010005091","uRBC3_CE-TOF-MS":"0.011150297","uRBC4_CE-TOF-MS":"0.010624381","uRBC5_CE-TOF-MS":"0.007624615","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Spermidine","iRBC1_CE-TOF-MS":"9.23193E-05","iRBC2_CE-TOF-MS":"8.49827E-05","iRBC3_CE-TOF-MS":"4.12289E-05","iRBC4_CE-TOF-MS":"8.8435E-05","iRBC5_CE-TOF-MS":"7.88373E-05","uRBC1_CE-TOF-MS":"0.000347048","uRBC2_CE-TOF-MS":"0.000247657","uRBC3_CE-TOF-MS":"0.000252751","uRBC4_CE-TOF-MS":"0.000365463","uRBC5_CE-TOF-MS":"0.000278736","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Thiamine","iRBC1_CE-TOF-MS":"0.00042533","iRBC2_CE-TOF-MS":"0.000360525","iRBC3_CE-TOF-MS":"0.000290568","iRBC4_CE-TOF-MS":"0.000363459","iRBC5_CE-TOF-MS":"0.000281416","uRBC1_CE-TOF-MS":"0.000453585","uRBC2_CE-TOF-MS":"0.000385448","uRBC3_CE-TOF-MS":"0.00043404","uRBC4_CE-TOF-MS":"0.000509639","uRBC5_CE-TOF-MS":"0.00033255","iS1_CE-TOF-MS":"0.002341957","iS2_CE-TOF-MS":"0.002524574","iS3_CE-TOF-MS":"0.002135861","iS4_CE-TOF-MS":"0.002447719","iS5_CE-TOF-MS":"0.002496817","uS1_CE-TOF-MS":"0.001326434","uS2_CE-TOF-MS":"0.001543394","uS3_CE-TOF-MS":"0.001684776","uS4_CE-TOF-MS":"0.000100585","uS5_CE-TOF-MS":"0.001457166"},{"Metabolite":"trans-4-Hydroxyproline","iRBC1_CE-TOF-MS":"0.012669245","iRBC2_CE-TOF-MS":"0.012858442","iRBC3_CE-TOF-MS":"0.012472112","iRBC4_CE-TOF-MS":"0.01308417","iRBC5_CE-TOF-MS":"0.01235885","uRBC1_CE-TOF-MS":"0.011687585","uRBC2_CE-TOF-MS":"0.012324867","uRBC3_CE-TOF-MS":"0.012530977","uRBC4_CE-TOF-MS":"0.011958152","uRBC5_CE-TOF-MS":"0.012507367","iS1_CE-TOF-MS":"0.020812037","iS2_CE-TOF-MS":"0.020032629","iS3_CE-TOF-MS":"0.018678442","iS4_CE-TOF-MS":"0.019496939","iS5_CE-TOF-MS":"0.016278188","uS1_CE-TOF-MS":"0.014003374","uS2_CE-TOF-MS":"0.013721891","uS3_CE-TOF-MS":"0.012826065","uS4_CE-TOF-MS":"0.017057489","uS5_CE-TOF-MS":"0.016122551"},{"Metabolite":"Triethylamine // Hexylamine","iRBC1_CE-TOF-MS":"0.007704712","iRBC2_CE-TOF-MS":"0.009211214","iRBC3_CE-TOF-MS":"0.019598417","iRBC4_CE-TOF-MS":"0.003104068","iRBC5_CE-TOF-MS":"0.017110706","uRBC1_CE-TOF-MS":"0.01797491","uRBC2_CE-TOF-MS":"0.016563603","uRBC3_CE-TOF-MS":"0.012037652","uRBC4_CE-TOF-MS":"0.01400362","uRBC5_CE-TOF-MS":"0.017395638","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Tripeptide: Ala-Ala-Phe","iRBC1_CE-TOF-MS":"0.000186654","iRBC2_CE-TOF-MS":"0.000211412","iRBC3_CE-TOF-MS":"0.000200026","iRBC4_CE-TOF-MS":"0.000209966","iRBC5_CE-TOF-MS":"0.000167092","uRBC1_CE-TOF-MS":"0.000111684","uRBC2_CE-TOF-MS":"0.000187997","uRBC3_CE-TOF-MS":"0.000191681","uRBC4_CE-TOF-MS":"0.00013486","uRBC5_CE-TOF-MS":"0.000205305","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Tripeptide: Ala-Asp-Cys","iRBC1_CE-TOF-MS":"0.000169017","iRBC2_CE-TOF-MS":"0.000140079","iRBC3_CE-TOF-MS":"0.000155287","iRBC4_CE-TOF-MS":"0.000162285","iRBC5_CE-TOF-MS":"0.000131548","uRBC1_CE-TOF-MS":"0.000120019","uRBC2_CE-TOF-MS":"0.000112141","uRBC3_CE-TOF-MS":"8.82011E-05","uRBC4_CE-TOF-MS":"8.83119E-05","uRBC5_CE-TOF-MS":"9.01464E-05","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Tripeptide: Asn-Ser-Val","iRBC1_CE-TOF-MS":"0.000271778","iRBC2_CE-TOF-MS":"0.000182645","iRBC3_CE-TOF-MS":"0.000165423","iRBC4_CE-TOF-MS":"0.000173094","iRBC5_CE-TOF-MS":"0.000203515","uRBC1_CE-TOF-MS":"0.00020085","uRBC2_CE-TOF-MS":"0.000184593","uRBC3_CE-TOF-MS":"0.000191373","uRBC4_CE-TOF-MS":"0.000180868","uRBC5_CE-TOF-MS":"0.000212314","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Tripeptide: Gly Asp Val // Glu Ala Ala // Ser Pro Ser // Ophthalmic acid","iRBC1_CE-TOF-MS":"0.000311974","iRBC2_CE-TOF-MS":"0.000301291","iRBC3_CE-TOF-MS":"0.000306024","iRBC4_CE-TOF-MS":"0.000314591","iRBC5_CE-TOF-MS":"0.000273868","uRBC1_CE-TOF-MS":"0.000303647","uRBC2_CE-TOF-MS":"0.000306775","uRBC3_CE-TOF-MS":"0.000323367","uRBC4_CE-TOF-MS":"0.000288218","uRBC5_CE-TOF-MS":"0.000263294","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Tripeptide: Gly-Asn-His","iRBC1_CE-TOF-MS":"0.002635148","iRBC2_CE-TOF-MS":"0.001321993","iRBC3_CE-TOF-MS":"0.001309215","iRBC4_CE-TOF-MS":"0.001281435","iRBC5_CE-TOF-MS":"0.001240496","uRBC1_CE-TOF-MS":"0.000953877","uRBC2_CE-TOF-MS":"0.001093932","uRBC3_CE-TOF-MS":"0.001097977","uRBC4_CE-TOF-MS":"0.001003172","uRBC5_CE-TOF-MS":"0.001020057","iS1_CE-TOF-MS":"0.001214949","iS2_CE-TOF-MS":"0.001867995","iS3_CE-TOF-MS":"0.001282559","iS4_CE-TOF-MS":"0.001427258","iS5_CE-TOF-MS":"0.001135446","uS1_CE-TOF-MS":"0.002591471","uS2_CE-TOF-MS":"0.002990732","uS3_CE-TOF-MS":"0.001781377","uS4_CE-TOF-MS":"0.002414147","uS5_CE-TOF-MS":"0.003051269"},{"Metabolite":"Tripeptide: Ile-Pro-Lys // Leu-Pro-Lys","iRBC1_CE-TOF-MS":"0.00086933","iRBC2_CE-TOF-MS":"0.000879526","iRBC3_CE-TOF-MS":"0.00086907","iRBC4_CE-TOF-MS":"0.000905842","iRBC5_CE-TOF-MS":"0.000736877","uRBC1_CE-TOF-MS":"0.000797613","uRBC2_CE-TOF-MS":"0.000776003","uRBC3_CE-TOF-MS":"0.000848251","uRBC4_CE-TOF-MS":"0.000807921","uRBC5_CE-TOF-MS":"0.0007981","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Tripeptide: Ile-Thr-Thr // Leu-Thr-Thr","iRBC1_CE-TOF-MS":"0.000322977","iRBC2_CE-TOF-MS":"0.000353059","iRBC3_CE-TOF-MS":"0.000337359","iRBC4_CE-TOF-MS":"0.0003218","iRBC5_CE-TOF-MS":"0.000278184","uRBC1_CE-TOF-MS":"0.000189557","uRBC2_CE-TOF-MS":"0.00034201","uRBC3_CE-TOF-MS":"0.000392066","uRBC4_CE-TOF-MS":"0.000249666","uRBC5_CE-TOF-MS":"0.000415298","iS1_CE-TOF-MS":"NaN","iS2_CE-TOF-MS":"NaN","iS3_CE-TOF-MS":"NaN","iS4_CE-TOF-MS":"NaN","iS5_CE-TOF-MS":"NaN","uS1_CE-TOF-MS":"NaN","uS2_CE-TOF-MS":"NaN","uS3_CE-TOF-MS":"NaN","uS4_CE-TOF-MS":"NaN","uS5_CE-TOF-MS":"NaN"},{"Metabolite":"Tryptophan","iRBC1_CE-TOF-MS":"0.004032774","iRBC2_CE-TOF-MS":"0.004056976","iRBC3_CE-TOF-MS":"0.00403872","iRBC4_CE-TOF-MS":"0.004121828","iRBC5_CE-TOF-MS":"0.00407376","uRBC1_CE-TOF-MS":"0.004226586","uRBC2_CE-TOF-MS":"0.004102265","uRBC3_CE-TOF-MS":"0.004200999","uRBC4_CE-TOF-MS":"0.004140526","uRBC5_CE-TOF-MS":"0.004310698","iS1_CE-TOF-MS":"0.008831911","iS2_CE-TOF-MS":"0.009761005","iS3_CE-TOF-MS":"0.010478526","iS4_CE-TOF-MS":"0.010690812","iS5_CE-TOF-MS":"0.011885293","uS1_CE-TOF-MS":"0.010296463","uS2_CE-TOF-MS":"0.01071175","uS3_CE-TOF-MS":"0.010796296","uS4_CE-TOF-MS":"0.008862369","uS5_CE-TOF-MS":"0.009918138"},{"Metabolite":"Tryptophan betaine","iRBC1_CE-TOF-MS":"0.001090986","iRBC2_CE-TOF-MS":"0.001194282","iRBC3_CE-TOF-MS":"0.001203409","iRBC4_CE-TOF-MS":"0.001061567","iRBC5_CE-TOF-MS":"0.001043513","uRBC1_CE-TOF-MS":"0.001583132","uRBC2_CE-TOF-MS":"0.001798899","uRBC3_CE-TOF-MS":"0.001722546","uRBC4_CE-TOF-MS":"0.001717997","uRBC5_CE-TOF-MS":"0.00185711","iS1_CE-TOF-MS":"0.000246232","iS2_CE-TOF-MS":"0.000285581","iS3_CE-TOF-MS":"0.000278252","iS4_CE-TOF-MS":"0.000308627","iS5_CE-TOF-MS":"0.000373003","uS1_CE-TOF-MS":"0.000209834","uS2_CE-TOF-MS":"0.000171252","uS3_CE-TOF-MS":"0.000169742","uS4_CE-TOF-MS":"0.000152914","uS5_CE-TOF-MS":"0.000183148"},{"Metabolite":"Valine","iRBC1_CE-TOF-MS":"0.021132","iRBC2_CE-TOF-MS":"0.021483884","iRBC3_CE-TOF-MS":"0.021074184","iRBC4_CE-TOF-MS":"0.022275388","iRBC5_CE-TOF-MS":"0.020868713","uRBC1_CE-TOF-MS":"0.02009603","uRBC2_CE-TOF-MS":"0.020953955","uRBC3_CE-TOF-MS":"0.021244694","uRBC4_CE-TOF-MS":"0.020370502","uRBC5_CE-TOF-MS":"0.021518283","iS1_CE-TOF-MS":"0.025943065","iS2_CE-TOF-MS":"0.026783013","iS3_CE-TOF-MS":"0.026934698","iS4_CE-TOF-MS":"0.027143391","iS5_CE-TOF-MS":"0.025541366","uS1_CE-TOF-MS":"0.026491446","uS2_CE-TOF-MS":"0.028602789","uS3_CE-TOF-MS":"0.028045004","uS4_CE-TOF-MS":"0.028677111","uS5_CE-TOF-MS":"0.026892914"}],
+
+"Metabolites":[{"Metabolite":"1-Methyladenosine (2''-O-)","KEGG COMPOUND ID":"C02494","Molecular feature (M@RT)":"281.111@12.93","experimental M":"281.111","MT":"12.93","ppm error":"3.91","ΔMT error (%)":"3.22"},{"Metabolite":"2-(4-(2-(phosphonooxy)ethyl)piperazinyl)-ethanesulfonic acid","KEGG COMPOUND ID":"NA","Molecular feature (M@RT)":"318.0648@22.13","experimental M":"318.0648","MT":"22.13","ppm error":"-","ΔMT error (%)":"-"},{"Metabolite":"2-Aminoadipic acid","KEGG COMPOUND ID":"C00956","Molecular feature (M@RT)":"161.0689@13.99","experimental M":"161.0689","MT":"13.99","ppm error":"-2.48","ΔMT error (%)":"-1.1"},{"Metabolite":"2-Aminobutyric acid // 4-Aminobutyric acid","KEGG COMPOUND ID":"C02356 // C02261 // C00334","Molecular feature (M@RT)":"103.0649@10.91","experimental M":"103.0649","MT":"10.91","ppm error":"-17.47","ΔMT error (%)":"-0.44"},{"Metabolite":"3-Dehydroxycarnitine","KEGG COMPOUND ID":"C01181","Molecular feature (M@RT)":"145.1099@11.3","experimental M":"145.1099","MT":"11.3","ppm error":"0","ΔMT error (%)":"3.87"},{"Metabolite":"3-Hydroxydodecenoylcarnitine","KEGG COMPOUND ID":"C02301","Molecular feature (M@RT)":"357.254@13.42","experimental M":"357.254","MT":"13.42","ppm error":"-9.52","ΔMT error (%)":"-"},{"Metabolite":"4-Aminobenzoic acid","KEGG COMPOUND ID":"C00568","Molecular feature (M@RT)":"137.0479@13.26","experimental M":"137.0479","MT":"13.26","ppm error":"-2.92","ΔMT error (%)":"2.07"},{"Metabolite":"5-Methyldeoxycytidine","KEGG COMPOUND ID":"C03495","Molecular feature (M@RT)":"241.1051@14.5","experimental M":"241.1051","MT":"14.5","ppm error":"3.32","ΔMT error (%)":"-"},{"Metabolite":"5''-Methylthioadenosine","KEGG COMPOUND ID":"C00170","Molecular feature (M@RT)":"297.0907@10.41","experimental M":"297.0907","MT":"10.41","ppm error":"-4.71","ΔMT error (%)":"18.65"},{"Metabolite":"Acetylcarnitine","KEGG COMPOUND ID":"C02571","Molecular feature (M@RT)":"203.1161@12.27","experimental M":"203.1161","MT":"12.27","ppm error":"-3.94","ΔMT error (%)":"-5.72"},{"Metabolite":"Adenosine","KEGG COMPOUND ID":"C00212","Molecular feature (M@RT)":"267.098@14.07","experimental M":"267.098","MT":"14.07","ppm error":"-5.62","ΔMT error (%)":"-11.24"},{"Metabolite":"Aminooctanoic acid","KEGG COMPOUND ID":"NA","Molecular feature (M@RT)":"159.1258@11.64","experimental M":"159.1258","MT":"11.64","ppm error":"-1.89","ΔMT error (%)":"14.04"},{"Metabolite":"Arginine","KEGG COMPOUND ID":"C00062","Molecular feature (M@RT)":"174.1124@10.34","experimental M":"174.1124","MT":"10.34","ppm error":"-5.74","ΔMT error (%)":"3.49"},{"Metabolite":"Aspartic acid","KEGG COMPOUND ID":"C00049","Molecular feature (M@RT)":"133.0375@14.5","experimental M":"133.0375","MT":"14.5","ppm error":"-1.5","ΔMT error (%)":"-0.46"},{"Metabolite":"Betaine","KEGG COMPOUND ID":"C00719","Molecular feature (M@RT)":"117.079@14.41","experimental M":"117.079","MT":"14.41","ppm error":"-2.56","ΔMT error (%)":"-0.88"},{"Metabolite":"Butyrylcarnitine","KEGG COMPOUND ID":"C02862","Molecular feature (M@RT)":"231.1454@21.43","experimental M":"231.1454","MT":"21.43","ppm error":"4.76","ΔMT error (%)":"-"},{"Metabolite":"Carnitine","KEGG COMPOUND ID":"C00487","Molecular feature (M@RT)":"161.1054@11.76","experimental M":"161.1054","MT":"11.76","ppm error":"-3.72","ΔMT error (%)":"-8.26"},{"Metabolite":"Choline","KEGG COMPOUND ID":"C00114","Molecular feature (M@RT)":"103.0999@9.91","experimental M":"103.0999","MT":"9.91","ppm error":"-4.85","ΔMT error (%)":"-14.83"},{"Metabolite":"Citrulline","KEGG COMPOUND ID":"C00327","Molecular feature (M@RT)":"175.0959@14.15","experimental M":"175.0959","MT":"14.15","ppm error":"-2.86","ΔMT error (%)":"-0.1"},{"Metabolite":"Creatine","KEGG COMPOUND ID":"C00300","Molecular feature (M@RT)":"131.0696@12.11","experimental M":"131.0696","MT":"12.11","ppm error":"-2.29","ΔMT error (%)":"1.95"},{"Metabolite":"Creatinine","KEGG COMPOUND ID":"C00791","Molecular feature (M@RT)":"113.0594@10.48","experimental M":"113.0594","MT":"10.48","ppm error":"-5.31","ΔMT error (%)":"3.52"},{"Metabolite":"Cystine","KEGG COMPOUND ID":"C00491","Molecular feature (M@RT)":"240.0241@14.15","experimental M":"240.0241","MT":"14.15","ppm error":"-2.08","ΔMT error (%)":"-1.16"},{"Metabolite":"Deoxyguanosine","KEGG COMPOUND ID":"C00330","Molecular feature (M@RT)":"267.0973@14.97","experimental M":"267.0973","MT":"14.97","ppm error":"-3","ΔMT error (%)":"-0.6"},{"Metabolite":"Dipeptide: Asp-Lys","KEGG COMPOUND ID":"C00107","Molecular feature (M@RT)":"261.1328@13.91","experimental M":"261.1328","MT":"13.91","ppm error":"-3.06","ΔMT error (%)":"-"},{"Metabolite":"Dipeptide: Leu-Ala // Ile-Ala","KEGG COMPOUND ID":"C00107","Molecular feature (M@RT)":"202.1308@12.79","experimental M":"202.1308","MT":"12.79","ppm error":"2.47","ΔMT error (%)":"-"},{"Metabolite":"Dipeptide: Leu-Glu // Ile-Glu // Gammaglutamyl-Leu // Gammaglutamyl-Ile","KEGG COMPOUND ID":"C00107","Molecular feature (M@RT)":"260.1374@15.63","experimental M":"260.1374","MT":"15.63","ppm error":"-2.69","ΔMT error (%)":"-"},{"Metabolite":"Dipeptide: Leu-Pro // Ile-Pro","KEGG COMPOUND ID":"C00107","Molecular feature (M@RT)":"228.1463@12.7","experimental M":"228.1463","MT":"12.7","ppm error":"2.63","ΔMT error (%)":"-"},{"Metabolite":"Dipeptide: Lys-Val","KEGG COMPOUND ID":"C00107","Molecular feature (M@RT)":"245.1748@9.98","experimental M":"245.1748","MT":"9.98","ppm error":"-5.71","ΔMT error (%)":"-"},{"Metabolite":"Dipeptide: Thr-Arg","KEGG COMPOUND ID":"C00107","Molecular feature (M@RT)":"257.1503@12.11","experimental M":"257.1503","MT":"12.11","ppm error":"-7.39","ΔMT error (%)":"-"},{"Metabolite":"Glutathione","KEGG COMPOUND ID":"C00051","Molecular feature (M@RT)":"307.086@15.93","experimental M":"307.086","MT":"15.93","ppm error":"-8.47","ΔMT error (%)":"0.87"},{"Metabolite":"Glycerophosphocholine","KEGG COMPOUND ID":"C00670","Molecular feature (M@RT)":"257.103@21.34","experimental M":"257.103","MT":"21.34","ppm error":"-2.72","ΔMT error (%)":"6.27"},{"Metabolite":"Glycine","KEGG COMPOUND ID":"C00037","Molecular feature (M@RT)":"75.0328@11.56","experimental M":"75.0328","MT":"11.56","ppm error":"-11.99","ΔMT error (%)":"2.89"},{"Metabolite":"Heteropyrithiamine","KEGG COMPOUND ID":"C02691","Molecular feature (M@RT)":"201.1127@11.56","experimental M":"201.1127","MT":"11.56","ppm error":"5.47","ΔMT error (%)":"-"},{"Metabolite":"Hexadecasphinganine","KEGG COMPOUND ID":"C13915","Molecular feature (M@RT)":"273.2662@14.03","experimental M":"273.2662","MT":"14.03","ppm error":"-1.1","ΔMT error (%)":"-"},{"Metabolite":"Histidine trimethylbetaine","KEGG COMPOUND ID":"C05575","Molecular feature (M@RT)":"197.1163@11.75","experimental M":"197.1163","MT":"11.75","ppm error":"-1.01","ΔMT error (%)":"-"},{"Metabolite":"Hypoxanthine","KEGG COMPOUND ID":"C00262","Molecular feature (M@RT)":"136.0387@14.93","experimental M":"136.0387","MT":"14.93","ppm error":"-1.47","ΔMT error (%)":"0.66"},{"Metabolite":"Inosine","KEGG COMPOUND ID":"C00294","Molecular feature (M@RT)":"268.0821@20.38","experimental M":"268.0821","MT":"20.38","ppm error":"-5.97","ΔMT error (%)":"6.19"},{"Metabolite":"Isobutirylcarnitine","KEGG COMPOUND ID":"C02301","Molecular feature (M@RT)":"231.1454@12.65","experimental M":"231.1454","MT":"12.65","ppm error":"4.76","ΔMT error (%)":"-0.02"},{"Metabolite":"Lysine","KEGG COMPOUND ID":"C00047","Molecular feature (M@RT)":"146.1057@10.09","experimental M":"146.1057","MT":"10.09","ppm error":"-3.42","ΔMT error (%)":"-9.37"},{"Metabolite":"Lys-Ser // Lysinoalanine","KEGG COMPOUND ID":"C00107","Molecular feature (M@RT)":"197.1162@12.26","experimental M":"197.1162","MT":"12.26","ppm error":"-0.51","ΔMT error (%)":"-"},{"Metabolite":"Methionine sulfoxide","KEGG COMPOUND ID":"C02989","Molecular feature (M@RT)":"165.047@14.76","experimental M":"165.047","MT":"14.76","ppm error":"-7.88","ΔMT error (%)":"-"},{"Metabolite":"N,N-Dimethylhistidine","KEGG COMPOUND ID":"C04259","Molecular feature (M@RT)":"183.1018@11.56","experimental M":"183.1018","MT":"11.56","ppm error":"-7.1","ΔMT error (%)":"-"},{"Metabolite":"N-Deoxyfructosyl-leucine // N-Deoxyfructosyl-isoleucine","KEGG COMPOUND ID":"NA","Molecular feature (M@RT)":"293.1481@16.44","experimental M":"293.1481","MT":"16.44","ppm error":"-4.43","ΔMT error (%)":"-"},{"Metabolite":"N-Deoxyfructosyl-phenylalanine","KEGG COMPOUND ID":"NA","Molecular feature (M@RT)":"327.1326@17.1","experimental M":"327.1326","MT":"17.1","ppm error":"-4.28","ΔMT error (%)":"-"},{"Metabolite":"N-Deoxyfructosyl-tyrosine","KEGG COMPOUND ID":"NA","Molecular feature (M@RT)":"343.1285@17.08","experimental M":"343.1285","MT":"17.08","ppm error":"-6.99","ΔMT error (%)":"-"},{"Metabolite":"N-Deoxyfructosyl-valine","KEGG COMPOUND ID":"NA","Molecular feature (M@RT)":"279.136@16.54","experimental M":"279.136","MT":"16.54","ppm error":"-17.2","ΔMT error (%)":"-"},{"Metabolite":"Neuraminic acid","KEGG COMPOUND ID":"C06469","Molecular feature (M@RT)":"267.0973@16.69","experimental M":"267.0973","MT":"16.69","ppm error":"-3","ΔMT error (%)":"-"},{"Metabolite":"N-Fructosyl-arginine","KEGG COMPOUND ID":"NA","Molecular feature (M@RT)":"336.1645@12.76","experimental M":"336.1645","MT":"12.76","ppm error":"-1.78","ΔMT error (%)":"-"},{"Metabolite":"N-Fructosyllysine 1","KEGG COMPOUND ID":"C16488","Molecular feature (M@RT)":"308.1616@12.63","experimental M":"308.1616","MT":"12.63","ppm error":"-12.66","ΔMT error (%)":"-"},{"Metabolite":"N-Fructosyllysine 2","KEGG COMPOUND ID":"C16488","Molecular feature (M@RT)":"308.159@12.08","experimental M":"308.159","MT":"12.08","ppm error":"-4.22","ΔMT error (%)":"-"},{"Metabolite":"N-Heptanoylglycine","KEGG COMPOUND ID":"NA","Molecular feature (M@RT)":"187.1213@12.18","experimental M":"187.1213","MT":"12.18","ppm error":"-4.81","ΔMT error (%)":"-"},{"Metabolite":"Nicotinamide // Isonicotinamide","KEGG COMPOUND ID":"C00153 // C00153","Molecular feature (M@RT)":"122.049@10.66","experimental M":"122.049","MT":"10.66","ppm error":"-9.01","ΔMT error (%)":"-5.35"},{"Metabolite":"Nicotinamide mononucleotide","KEGG COMPOUND ID":"C00455","Molecular feature (M@RT)":"256.0823@14.98","experimental M":"256.0823","MT":"14.98","ppm error":"-2.34","ΔMT error (%)":"-"},{"Metabolite":"Nicotinamide-N-oxide","KEGG COMPOUND ID":"NA","Molecular feature (M@RT)":"138.0442@11.55","experimental M":"138.0442","MT":"11.55","ppm error":"-10.14","ΔMT error (%)":"-"},{"Metabolite":"Nε,Nε,Nε-Trimethyllysine","KEGG COMPOUND ID":"C03793","Molecular feature (M@RT)":"188.1513@10.4","experimental M":"188.1513","MT":"10.4","ppm error":"3.72","ΔMT error (%)":"-"},{"Metabolite":"Ornithine","KEGG COMPOUND ID":"C00077","Molecular feature (M@RT)":"132.0902@10.02","experimental M":"132.0902","MT":"10.02","ppm error":"-4.54","ΔMT error (%)":"-10.39"},{"Metabolite":"Phosphocholine","KEGG COMPOUND ID":"C00588","Molecular feature (M@RT)":"183.0661@20.66","experimental M":"183.0661","MT":"20.66","ppm error":"-2.19","ΔMT error (%)":"11"},{"Metabolite":"Phytosphingosine","KEGG COMPOUND ID":"C12144","Molecular feature (M@RT)":"317.2911@14.32","experimental M":"317.2911","MT":"14.32","ppm error":"2.84","ΔMT error (%)":"-"},{"Metabolite":"Proline betaine","KEGG COMPOUND ID":"C10172","Molecular feature (M@RT)":"143.0954@14.59","experimental M":"143.0954","MT":"14.59","ppm error":"-7.69","ΔMT error (%)":"-0.05"},{"Metabolite":"Propionylcarnitine","KEGG COMPOUND ID":"C03017","Molecular feature (M@RT)":"217.1324@12.51","experimental M":"217.1324","MT":"12.51","ppm error":"-6.91","ΔMT error (%)":"1.09"},{"Metabolite":"Putrescine","KEGG COMPOUND ID":"C00134","Molecular feature (M@RT)":"88.0984@6.41","experimental M":"88.0984","MT":"6.41","ppm error":"15.89","ΔMT error (%)":"-2.57"},{"Metabolite":"Pyridoxal","KEGG COMPOUND ID":"C00250","Molecular feature (M@RT)":"167.0599@12.06","experimental M":"167.0599","MT":"12.06","ppm error":"-11.37","ΔMT error (%)":"-5.26"},{"Metabolite":"Pyridoxine // Noradrenaline","KEGG COMPOUND ID":"C00314 // C00547","Molecular feature (M@RT)":"169.0759@11.89","experimental M":"169.0759","MT":"11.89","ppm error":"-13.6","ΔMT error (%)":"-5.14"},{"Metabolite":"Pyroglutamic acid","KEGG COMPOUND ID":"C01879","Molecular feature (M@RT)":"129.043@22.22","experimental M":"129.043","MT":"22.22","ppm error":"-4.65","ΔMT error (%)":"14.67"},{"Metabolite":"Pyroglutamine","KEGG COMPOUND ID":"NA","Molecular feature (M@RT)":"128.059@12.01","experimental M":"128.059","MT":"12.01","ppm error":"-4.69","ΔMT error (%)":"-"},{"Metabolite":"S-Glutathionyl-L-cysteine","KEGG COMPOUND ID":"C05526","Molecular feature (M@RT)":"426.0888@14.7","experimental M":"426.0888","MT":"14.7","ppm error":"-3.29","ΔMT error (%)":"-0.81"},{"Metabolite":"S-Methylcysteine sulfoxide","KEGG COMPOUND ID":"NA","Molecular feature (M@RT)":"133.0198@16.47","experimental M":"133.0198","MT":"16.47","ppm error":"-1.5","ΔMT error (%)":"-"},{"Metabolite":"Spermidine","KEGG COMPOUND ID":"C00315","Molecular feature (M@RT)":"145.1575@7.18","experimental M":"145.1575","MT":"7.18","ppm error":"0","ΔMT error (%)":"-14.89"},{"Metabolite":"Thiamine","KEGG COMPOUND ID":"C00378","Molecular feature (M@RT)":"264.1062@9.73","experimental M":"264.1062","MT":"9.73","ppm error":"-7.57","ΔMT error (%)":"-10.83"},{"Metabolite":"trans-4-Hydroxyproline","KEGG COMPOUND ID":"C01157","Molecular feature (M@RT)":"131.0584@15.03","experimental M":"131.0584","MT":"15.03","ppm error":"-3.05","ΔMT error (%)":"-0.01"},{"Metabolite":"Triethylamine // Hexylamine","KEGG COMPOUND ID":"C14691 // C08306","Molecular feature (M@RT)":"101.1205@10.7","experimental M":"101.1205","MT":"10.7","ppm error":"-3.96","ΔMT error (%)":"-"},{"Metabolite":"Tripeptide: Ala-Ala-Phe","KEGG COMPOUND ID":"C00012 ","Molecular feature (M@RT)":"289.1439@14.38","experimental M":"289.1439","MT":"14.38","ppm error":"-5.88","ΔMT error (%)":"-"},{"Metabolite":"Tripeptide: Ala-Asp-Cys","KEGG COMPOUND ID":"C00012 ","Molecular feature (M@RT)":"307.0866@14.68","experimental M":"307.0866","MT":"14.68","ppm error":"-10.42","ΔMT error (%)":"-"},{"Metabolite":"Tripeptide: Asn-Ser-Val","KEGG COMPOUND ID":"C00012 ","Molecular feature (M@RT)":"318.1573@12.76","experimental M":"318.1573","MT":"12.76","ppm error":"-12.26","ΔMT error (%)":"-"},{"Metabolite":"Tripeptide: Gly Asp Val // Glu Ala Ala // Ser Pro Ser // Ophthalmic acid","KEGG COMPOUND ID":"C00012 ","Molecular feature (M@RT)":"289.1283@15.92","experimental M":"289.1283","MT":"15.92","ppm error":"-4.84","ΔMT error (%)":"-"},{"Metabolite":"Tripeptide: Gly-Asn-His","KEGG COMPOUND ID":"C00012 ","Molecular feature (M@RT)":"308.1231@17.14","experimental M":"308.1231","MT":"17.14","ppm error":"-0.32","ΔMT error (%)":"-"},{"Metabolite":"Tripeptide: Ile-Pro-Lys // Leu-Pro-Lys","KEGG COMPOUND ID":"C00012 ","Molecular feature (M@RT)":"356.2432@10.88","experimental M":"356.2432","MT":"10.88","ppm error":"-4.49","ΔMT error (%)":"-"},{"Metabolite":"Tripeptide: Ile-Thr-Thr // Leu-Thr-Thr","KEGG COMPOUND ID":"C00012 ","Molecular feature (M@RT)":"333.1892@13.85","experimental M":"333.1892","MT":"13.85","ppm error":"0.3","ΔMT error (%)":"-"},{"Metabolite":"Tryptophan","KEGG COMPOUND ID":"C00078","Molecular feature (M@RT)":"204.09@14.09","experimental M":"204.09","MT":"14.09","ppm error":"-1.96","ΔMT error (%)":"-1.82"},{"Metabolite":"Tryptophan betaine","KEGG COMPOUND ID":"C09213","Molecular feature (M@RT)":"246.1351@16.54","experimental M":"246.1351","MT":"16.54","ppm error":"5.28","ΔMT error (%)":"-"},{"Metabolite":"Valine","KEGG COMPOUND ID":"C00183","Molecular feature (M@RT)":"117.0791@13.18","experimental M":"117.0791","MT":"13.18","ppm error":"-3.42","ΔMT error (%)":"0.48"}]
+}
+
+}

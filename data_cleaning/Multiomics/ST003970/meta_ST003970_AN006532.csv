@@ -1,0 +1,21 @@
+Sample ID,Sample source,Sample type
+iRBC1_CE-TOF-MS,0,infected RBC
+iRBC2_CE-TOF-MS,0,infected RBC
+iRBC3_CE-TOF-MS,0,infected RBC
+iRBC4_CE-TOF-MS,0,infected RBC
+iRBC5_CE-TOF-MS,0,infected RBC
+uRBC1_CE-TOF-MS,0,uninfected RBC
+uRBC2_CE-TOF-MS,0,uninfected RBC
+uRBC3_CE-TOF-MS,0,uninfected RBC
+uRBC4_CE-TOF-MS,0,uninfected RBC
+uRBC5_CE-TOF-MS,0,uninfected RBC
+iS1_CE-TOF-MS,0,supernatant from infected RBC
+iS2_CE-TOF-MS,0,supernatant from infected RBC
+iS3_CE-TOF-MS,0,supernatant from infected RBC
+iS4_CE-TOF-MS,0,supernatant from infected RBC
+iS5_CE-TOF-MS,0,supernatant from infected RBC
+uS1_CE-TOF-MS,0,supernatant from uninfected RBC
+uS2_CE-TOF-MS,0,supernatant from uninfected RBC
+uS3_CE-TOF-MS,0,supernatant from uninfected RBC
+uS4_CE-TOF-MS,0,supernatant from uninfected RBC
+uS5_CE-TOF-MS,0,supernatant from uninfected RBC
