@@ -1,0 +1,49 @@
+%% Multiomics Dataset
+% LEGEND FOR MAPPINGS
+% O1...O18: 1-17
+% Me1...Me36: 18-53
+%
+% T0: 0
+% T1: 1
+% T2: 2
+%
+% Omaluzimab: 0
+% Mepolizumab: 1
+%
+% Female: 0
+% Male: 1
+
+malign = readtable('meta_ST002948_AN004834.csv'); %#ok
+malign = malign{:,{'SubjectID','Time','Treatment','Gender'}};
+disp(malign)
+
+% Row block samples
+blk1_smpl = 1:2:max(malign(:,1));
+disp(blk1_smpl')
+
+blk2_smpl = 2:2:max(malign(:,1));
+disp(blk2_smpl')
+
+%Logical mask
+blk1_msk = ismember(malign(:,1),blk1_smpl);
+blk2_msk = ismember(malign(:,1),blk2_smpl);
+
+blk1_mta = malign(blk1_msk,:);
+blk2_mta = malign(blk2_msk,:);
+
+aligned_data = readtable('aligned_ST002948_HILIC_REVER.csv'); %#ok
+%colNum = find(strcmp(aligned_data.Properties.VariableNames, 'REVER_Sphingosine'))
+%colNum = 21
+
+data_mat = aligned_data{:,2:end};
+
+rowblk1 = data_mat(blk1_msk,:);
+rowblk2 = data_mat(blk2_msk,:);
+
+trainblk11 = rowblk1(:,1:21);
+trainblk22 = rowblk2(:,21:end);
+
+testblk12 = rowblk1(:,21:end);
+testblk21 = rowblk2(:,1:21);
+
+save('ST002948.mat','trainblk11','trainblk22','testblk12','testblk21','blk1_mta','blk2_mta')

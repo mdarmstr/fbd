@@ -1,0 +1,1003 @@
+{
+"METABOLOMICS WORKBENCH":{"STUDY_ID":"ST002948","ANALYSIS_ID":"AN004835","VERSION":"1","CREATED_ON":"October 30, 2023, 1:09 pm"},
+
+"PROJECT":{"PROJECT_TITLE":"Targeted metabolomics in severe asthmatic patients treated with biologics.","PROJECT_TYPE":"Targeted MS analysis","PROJECT_SUMMARY":"Severe asthmatic patients prescribed either Mepolizumab or Omalizumab were followed during treatment, and serum samples were collected before treatment (T0), and both at 6 (T1) and 18 months (T2) after starting biological treatment. Treatment monitoring was performed by the analysis of a set of inflammatory metabolites using targeted metabolomics.","INSTITUTE":"CEMBIO","LAST_NAME":"Contreras","FIRST_NAME":"Nuria","ADDRESS":"Urb. Montepríncipe s/n, Ctra. Boadilla del Monte km 5.3, Madrid 28668, Spain","EMAIL":"nuria.contrerasgomez1@ceu.es","PHONE":"+3491372470014750"},
+
+"STUDY":{"STUDY_TITLE":"Multi-omics Approach Reveals a Specific Profile in Severe Asthmatic Patients Treated with Mepolizumab or Omalizumab","STUDY_SUMMARY":"The prevalence and severity of asthma continue to increase, and patients with uncontrolled severe asthma may require additional biological treatment. Given the pathophysiological heterogeneity underlying severe asthma, there is a lack of reliable biomarkers to monitor treatment response. In this context, this study aimed to identify potential biomarkers for monitoring the response to either Mepolizumab or Omalizumab in severe asthmatic patients using metabolomics and proteomics. Severe asthmatic patients who were prescribed either Mepolizumab (n=36) or Omalizumab (n=20) were followed during treatment, and serum samples were collected before treatment (T0), and both at 6 (T1) and 18 months (T2) after starting biological treatment. Treatment monitoring was performed by the analysis of a set of inflammatory metabolites and proteins using targeted metabolomic and proteomic approaches, along with the study of clinical variables such as the number of blood eosinophils, hospitalizations, and severe exacerbations. Mepolizumab and Omalizumab induced changes in the metabolomic and proteomic profiles of severe asthmatic patients. For both treatments, the greatest differences in metabolites were seen at T1 and maintained up to T2, whereas protein changes were seen throughout the treatment. Notable changes associated with anti-inflammatory effects included a decrease in several fatty acids, sphingosine-1-phosphate (S1P), L-arginine, and IL-10RA. Interestingly, S1P was the main feature that correlated significantly with eosinophilia in both treatments. These results unveil underlying molecular mechanisms that occur during Mepolizumab and Omalizumab treatments and provide potential biomarkers for monitoring treatment response in severe asthmatic patients.","INSTITUTE":"CEMBIO","LAST_NAME":"Contreras","FIRST_NAME":"Nuria","ADDRESS":"Urb. Montepríncipe s/n, Ctra. Boadilla del Monte km 5.3, Madrid 28668, Spain","EMAIL":"nuria.contrerasgomez1@ceu.es","PHONE":"+3491372470014750","NUM_GROUPS":"2","TOTAL_SUBJECTS":"54"},
+
+"SUBJECT":{"SUBJECT_TYPE":"Human","SUBJECT_SPECIES":"Homo sapiens","TAXONOMY_ID":"9606","AGE_OR_AGE_RANGE":"≥ 18 years","GENDER":"Male and female","HUMAN_MEDICATIONS":"Mepolizumab or Omalizumab"},
+"SUBJECT_SAMPLE_FACTORS":[
+{
+"Subject ID":"O1",
+"Sample ID":"O-T0-01",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T0-01.mzML"}
+},
+{
+"Subject ID":"O1",
+"Sample ID":"O-T1-01",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T1-01.mzML"}
+},
+{
+"Subject ID":"O1",
+"Sample ID":"O-T2-01",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T2-01.mzML"}
+},
+{
+"Subject ID":"O2",
+"Sample ID":"O-T0-02",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T0-02.mzML"}
+},
+{
+"Subject ID":"O2",
+"Sample ID":"O-T1-02",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T1-02.mzML"}
+},
+{
+"Subject ID":"O2",
+"Sample ID":"O-T2-02",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T2-02.mzML"}
+},
+{
+"Subject ID":"O3",
+"Sample ID":"O-T0-03",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T0-03.mzML"}
+},
+{
+"Subject ID":"O3",
+"Sample ID":"O-T1-03",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T1-03.mzML"}
+},
+{
+"Subject ID":"O3",
+"Sample ID":"O-T2-03",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T2-03.mzML"}
+},
+{
+"Subject ID":"O4",
+"Sample ID":"O-T0-04",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T0-04.mzML"}
+},
+{
+"Subject ID":"O4",
+"Sample ID":"O-T1-04",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T1-04.mzML"}
+},
+{
+"Subject ID":"O4",
+"Sample ID":"O-T2-04",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T2-04.mzML"}
+},
+{
+"Subject ID":"O5",
+"Sample ID":"O-T0-05",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T0-05.mzML"}
+},
+{
+"Subject ID":"O5",
+"Sample ID":"O-T1-05",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T1-05.mzML"}
+},
+{
+"Subject ID":"O5",
+"Sample ID":"O-T2-05",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T2-05.mzML"}
+},
+{
+"Subject ID":"O6",
+"Sample ID":"O-T0-06",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T0-06.mzML"}
+},
+{
+"Subject ID":"O6",
+"Sample ID":"O-T1-06",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T1-06.mzML"}
+},
+{
+"Subject ID":"O6",
+"Sample ID":"O-T2-06",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T2-06.mzML"}
+},
+{
+"Subject ID":"O7",
+"Sample ID":"O-T0-08",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T0-08.mzML"}
+},
+{
+"Subject ID":"O7",
+"Sample ID":"O-T1-08",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T1-08.mzML"}
+},
+{
+"Subject ID":"O7",
+"Sample ID":"O-T2-08",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T2-08.mzML"}
+},
+{
+"Subject ID":"O8",
+"Sample ID":"O-T0-09",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T0-09.mzML"}
+},
+{
+"Subject ID":"O8",
+"Sample ID":"O-T1-09",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T1-09.mzML"}
+},
+{
+"Subject ID":"O8",
+"Sample ID":"O-T2-09",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T2-09.mzML"}
+},
+{
+"Subject ID":"O9",
+"Sample ID":"O-T0-10",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T0-10.mzML"}
+},
+{
+"Subject ID":"O9",
+"Sample ID":"O-T1-10",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T1-10.mzML"}
+},
+{
+"Subject ID":"O9",
+"Sample ID":"O-T2-10",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T2-10.mzML"}
+},
+{
+"Subject ID":"O10",
+"Sample ID":"O-T0-12",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T0-12.mzML"}
+},
+{
+"Subject ID":"O10",
+"Sample ID":"O-T1-12",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T1-12.mzML"}
+},
+{
+"Subject ID":"O10",
+"Sample ID":"O-T2-12",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T2-12.mzML"}
+},
+{
+"Subject ID":"O11",
+"Sample ID":"O-T0-13",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T0-13.mzML"}
+},
+{
+"Subject ID":"O11",
+"Sample ID":"O-T1-13",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T1-13.mzML"}
+},
+{
+"Subject ID":"O11",
+"Sample ID":"O-T2-13",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T2-13.mzML"}
+},
+{
+"Subject ID":"O12",
+"Sample ID":"O-T0-14",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T0-14.mzML"}
+},
+{
+"Subject ID":"O12",
+"Sample ID":"O-T1-14",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T1-14.mzML"}
+},
+{
+"Subject ID":"O12",
+"Sample ID":"O-T2-14",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T2-14.mzML"}
+},
+{
+"Subject ID":"O13",
+"Sample ID":"O-T0-16",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T0-16.mzML"}
+},
+{
+"Subject ID":"O13",
+"Sample ID":"O-T1-16",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T1-16.mzML"}
+},
+{
+"Subject ID":"O13",
+"Sample ID":"O-T2-16",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T2-16.mzML"}
+},
+{
+"Subject ID":"O14",
+"Sample ID":"O-T0-17",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T0-17.mzML"}
+},
+{
+"Subject ID":"O14",
+"Sample ID":"O-T1-17",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T1-17.mzML"}
+},
+{
+"Subject ID":"O14",
+"Sample ID":"O-T2-17",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T2-17.mzML"}
+},
+{
+"Subject ID":"O15",
+"Sample ID":"O-T0-18",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T0-18.mzML"}
+},
+{
+"Subject ID":"O15",
+"Sample ID":"O-T1-18",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T1-18.mzML"}
+},
+{
+"Subject ID":"O15",
+"Sample ID":"O-T2-18",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"O-T2-18.mzML"}
+},
+{
+"Subject ID":"O16",
+"Sample ID":"O-T0-20",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T0-20.mzML"}
+},
+{
+"Subject ID":"O16",
+"Sample ID":"O-T1-20",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T1-20.mzML"}
+},
+{
+"Subject ID":"O16",
+"Sample ID":"O-T2-20",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T2-20.mzML"}
+},
+{
+"Subject ID":"O17",
+"Sample ID":"O-T0-22",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T0-22.mzML"}
+},
+{
+"Subject ID":"O17",
+"Sample ID":"O-T1-22",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T1-22.mzML"}
+},
+{
+"Subject ID":"O17",
+"Sample ID":"O-T2-22",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T2-22.mzML"}
+},
+{
+"Subject ID":"O18",
+"Sample ID":"O-T0-23",
+"Factors":{"Time":"T0","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T0-23.mzML"}
+},
+{
+"Subject ID":"O18",
+"Sample ID":"O-T1-23",
+"Factors":{"Time":"T1","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T1-23.mzML"}
+},
+{
+"Subject ID":"O18",
+"Sample ID":"O-T2-23",
+"Factors":{"Time":"T2","Treatment":"Omalizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"O-T2-23.mzML"}
+},
+{
+"Subject ID":"Me1",
+"Sample ID":"Me-T0-01",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T0-01.mzML"}
+},
+{
+"Subject ID":"Me1",
+"Sample ID":"Me-T1-01",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T1-01.mzML"}
+},
+{
+"Subject ID":"Me1",
+"Sample ID":"Me-T2-01",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T2-01.mzML"}
+},
+{
+"Subject ID":"Me2",
+"Sample ID":"Me-T0-03",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T0-03.mzML"}
+},
+{
+"Subject ID":"Me2",
+"Sample ID":"Me-T1-03",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T1-03.mzML"}
+},
+{
+"Subject ID":"Me2",
+"Sample ID":"Me-T2-03",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T2-03.mzML"}
+},
+{
+"Subject ID":"Me3",
+"Sample ID":"Me-T0-04",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-04.mzML"}
+},
+{
+"Subject ID":"Me3",
+"Sample ID":"Me-T1-04",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-04.mzML"}
+},
+{
+"Subject ID":"Me3",
+"Sample ID":"Me-T2-04",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-04.mzML"}
+},
+{
+"Subject ID":"Me4",
+"Sample ID":"Me-T0-05",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-05.mzML"}
+},
+{
+"Subject ID":"Me4",
+"Sample ID":"Me-T1-05",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-05.mzML"}
+},
+{
+"Subject ID":"Me4",
+"Sample ID":"Me-T2-05",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-05.mzML"}
+},
+{
+"Subject ID":"Me5",
+"Sample ID":"Me-T0-06",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-06.mzML"}
+},
+{
+"Subject ID":"Me5",
+"Sample ID":"Me-T1-06",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-06.mzML"}
+},
+{
+"Subject ID":"Me5",
+"Sample ID":"Me-T2-06",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-06.mzML"}
+},
+{
+"Subject ID":"Me6",
+"Sample ID":"Me-T0-07",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T0-07.mzML"}
+},
+{
+"Subject ID":"Me6",
+"Sample ID":"Me-T1-07",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T1-07.mzML"}
+},
+{
+"Subject ID":"Me6",
+"Sample ID":"Me-T2-07",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T2-07.mzML"}
+},
+{
+"Subject ID":"Me7",
+"Sample ID":"Me-T0-08",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-08.mzML"}
+},
+{
+"Subject ID":"Me7",
+"Sample ID":"Me-T1-08",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-08.mzML"}
+},
+{
+"Subject ID":"Me7",
+"Sample ID":"Me-T2-08",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-08.mzML"}
+},
+{
+"Subject ID":"Me8",
+"Sample ID":"Me-T0-10",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T0-10.mzML"}
+},
+{
+"Subject ID":"Me8",
+"Sample ID":"Me-T1-10",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T1-10.mzML"}
+},
+{
+"Subject ID":"Me8",
+"Sample ID":"Me-T2-10",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T2-10.mzML"}
+},
+{
+"Subject ID":"Me9",
+"Sample ID":"Me-T0-11",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T0-11.mzML"}
+},
+{
+"Subject ID":"Me9",
+"Sample ID":"Me-T1-11",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T1-11.mzML"}
+},
+{
+"Subject ID":"Me9",
+"Sample ID":"Me-T2-11",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T2-11.mzML"}
+},
+{
+"Subject ID":"Me10",
+"Sample ID":"Me-T0-12",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-12.mzML"}
+},
+{
+"Subject ID":"Me10",
+"Sample ID":"Me-T1-12",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-12.mzML"}
+},
+{
+"Subject ID":"Me10",
+"Sample ID":"Me-T2-12",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-12.mzML"}
+},
+{
+"Subject ID":"Me11",
+"Sample ID":"Me-T0-16",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T0-16.mzML"}
+},
+{
+"Subject ID":"Me11",
+"Sample ID":"Me-T1-16",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T1-16.mzML"}
+},
+{
+"Subject ID":"Me11",
+"Sample ID":"Me-T2-16",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T2-16.mzML"}
+},
+{
+"Subject ID":"Me12",
+"Sample ID":"Me-T0-17",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-17.mzML"}
+},
+{
+"Subject ID":"Me12",
+"Sample ID":"Me-T1-17",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-17.mzML"}
+},
+{
+"Subject ID":"Me12",
+"Sample ID":"Me-T2-17",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-17.mzML"}
+},
+{
+"Subject ID":"Me13",
+"Sample ID":"Me-T0-18",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-18.mzML"}
+},
+{
+"Subject ID":"Me13",
+"Sample ID":"Me-T1-18",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-18.mzML"}
+},
+{
+"Subject ID":"Me13",
+"Sample ID":"Me-T2-18",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-18.mzML"}
+},
+{
+"Subject ID":"Me14",
+"Sample ID":"Me-T0-19",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-19.mzML"}
+},
+{
+"Subject ID":"Me14",
+"Sample ID":"Me-T1-19",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-19.mzML"}
+},
+{
+"Subject ID":"Me14",
+"Sample ID":"Me-T2-19",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-19.mzML"}
+},
+{
+"Subject ID":"Me15",
+"Sample ID":"Me-T0-20",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-20.mzML"}
+},
+{
+"Subject ID":"Me15",
+"Sample ID":"Me-T1-20",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-20.mzML"}
+},
+{
+"Subject ID":"Me15",
+"Sample ID":"Me-T2-20",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-20.mzML"}
+},
+{
+"Subject ID":"Me16",
+"Sample ID":"Me-T0-21",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-21.mzML"}
+},
+{
+"Subject ID":"Me16",
+"Sample ID":"Me-T1-21",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-21.mzML"}
+},
+{
+"Subject ID":"Me16",
+"Sample ID":"Me-T2-21",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-21.mzML"}
+},
+{
+"Subject ID":"Me17",
+"Sample ID":"Me-T0-22",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T0-22.mzML"}
+},
+{
+"Subject ID":"Me17",
+"Sample ID":"Me-T1-22",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T1-22.mzML"}
+},
+{
+"Subject ID":"Me17",
+"Sample ID":"Me-T2-22",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T2-22.mzML"}
+},
+{
+"Subject ID":"Me18",
+"Sample ID":"Me-T0-23",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T0-23.mzML"}
+},
+{
+"Subject ID":"Me18",
+"Sample ID":"Me-T1-23",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T1-23.mzML"}
+},
+{
+"Subject ID":"Me18",
+"Sample ID":"Me-T2-23",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T2-23.mzML"}
+},
+{
+"Subject ID":"Me19",
+"Sample ID":"Me-T0-25",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-25.mzML"}
+},
+{
+"Subject ID":"Me19",
+"Sample ID":"Me-T1-25",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-25.mzML"}
+},
+{
+"Subject ID":"Me19",
+"Sample ID":"Me-T2-25",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-25.mzML"}
+},
+{
+"Subject ID":"Me20",
+"Sample ID":"Me-T0-26",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-26.mzML"}
+},
+{
+"Subject ID":"Me20",
+"Sample ID":"Me-T1-26",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-26.mzML"}
+},
+{
+"Subject ID":"Me20",
+"Sample ID":"Me-T2-26",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-26.mzML"}
+},
+{
+"Subject ID":"Me21",
+"Sample ID":"Me-T0-27",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-27.mzML"}
+},
+{
+"Subject ID":"Me21",
+"Sample ID":"Me-T1-27",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-27.mzML"}
+},
+{
+"Subject ID":"Me21",
+"Sample ID":"Me-T2-27",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-27.mzML"}
+},
+{
+"Subject ID":"Me22",
+"Sample ID":"Me-T0-29",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-29.mzML"}
+},
+{
+"Subject ID":"Me22",
+"Sample ID":"Me-T1-29",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-29.mzML"}
+},
+{
+"Subject ID":"Me22",
+"Sample ID":"Me-T2-29",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-29.mzML"}
+},
+{
+"Subject ID":"Me23",
+"Sample ID":"Me-T0-30",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-30.mzML"}
+},
+{
+"Subject ID":"Me23",
+"Sample ID":"Me-T1-30",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-30.mzML"}
+},
+{
+"Subject ID":"Me23",
+"Sample ID":"Me-T2-30",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-30.mzML"}
+},
+{
+"Subject ID":"Me24",
+"Sample ID":"Me-T0-31",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-31.mzML"}
+},
+{
+"Subject ID":"Me24",
+"Sample ID":"Me-T1-31",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-31.mzML"}
+},
+{
+"Subject ID":"Me24",
+"Sample ID":"Me-T2-31",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-31.mzML"}
+},
+{
+"Subject ID":"Me25",
+"Sample ID":"Me-T0-32",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-32.mzML"}
+},
+{
+"Subject ID":"Me25",
+"Sample ID":"Me-T1-32",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-32.mzML"}
+},
+{
+"Subject ID":"Me25",
+"Sample ID":"Me-T2-32",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-32.mzML"}
+},
+{
+"Subject ID":"Me26",
+"Sample ID":"Me-T0-33",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-33.mzML"}
+},
+{
+"Subject ID":"Me26",
+"Sample ID":"Me-T1-33",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-33.mzML"}
+},
+{
+"Subject ID":"Me26",
+"Sample ID":"Me-T2-33",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-33.mzML"}
+},
+{
+"Subject ID":"Me27",
+"Sample ID":"Me-T0-34",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-34.mzML"}
+},
+{
+"Subject ID":"Me27",
+"Sample ID":"Me-T1-34",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-34.mzML"}
+},
+{
+"Subject ID":"Me27",
+"Sample ID":"Me-T2-34",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-34.mzML"}
+},
+{
+"Subject ID":"Me28",
+"Sample ID":"Me-T0-35",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-35.mzML"}
+},
+{
+"Subject ID":"Me28",
+"Sample ID":"Me-T1-35",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-35.mzML"}
+},
+{
+"Subject ID":"Me28",
+"Sample ID":"Me-T2-35",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-35.mzML"}
+},
+{
+"Subject ID":"Me29",
+"Sample ID":"Me-T0-37",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T0-37.mzML"}
+},
+{
+"Subject ID":"Me29",
+"Sample ID":"Me-T1-37",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T1-37.mzML"}
+},
+{
+"Subject ID":"Me29",
+"Sample ID":"Me-T2-37",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T2-37.mzML"}
+},
+{
+"Subject ID":"Me30",
+"Sample ID":"Me-T0-38",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-38.mzML"}
+},
+{
+"Subject ID":"Me30",
+"Sample ID":"Me-T1-38",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-38.mzML"}
+},
+{
+"Subject ID":"Me30",
+"Sample ID":"Me-T2-38",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-38.mzML"}
+},
+{
+"Subject ID":"Me31",
+"Sample ID":"Me-T0-39",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T0-39.mzML"}
+},
+{
+"Subject ID":"Me31",
+"Sample ID":"Me-T1-39",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T1-39.mzML"}
+},
+{
+"Subject ID":"Me31",
+"Sample ID":"Me-T2-39",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T2-39.mzML"}
+},
+{
+"Subject ID":"Me32",
+"Sample ID":"Me-T0-40",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-40.mzML"}
+},
+{
+"Subject ID":"Me32",
+"Sample ID":"Me-T1-40",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-40.mzML"}
+},
+{
+"Subject ID":"Me32",
+"Sample ID":"Me-T2-40",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-40.mzML"}
+},
+{
+"Subject ID":"Me33",
+"Sample ID":"Me-T0-41",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-41.mzML"}
+},
+{
+"Subject ID":"Me33",
+"Sample ID":"Me-T1-41",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-41.mzML"}
+},
+{
+"Subject ID":"Me33",
+"Sample ID":"Me-T2-41",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-41.mzML"}
+},
+{
+"Subject ID":"Me34",
+"Sample ID":"Me-T0-42",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T0-42.mzML"}
+},
+{
+"Subject ID":"Me34",
+"Sample ID":"Me-T1-42",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T1-42.mzML"}
+},
+{
+"Subject ID":"Me34",
+"Sample ID":"Me-T2-42",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T2-42.mzML"}
+},
+{
+"Subject ID":"Me35",
+"Sample ID":"Me-T0-43",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T0-43.mzML"}
+},
+{
+"Subject ID":"Me35",
+"Sample ID":"Me-T1-43",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T1-43.mzML"}
+},
+{
+"Subject ID":"Me35",
+"Sample ID":"Me-T2-43",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"M","RAW_FILE_NAME":"Me-T2-43.mzML"}
+},
+{
+"Subject ID":"Me36",
+"Sample ID":"Me-T0-45",
+"Factors":{"Time":"T0","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T0-45.mzML"}
+},
+{
+"Subject ID":"Me36",
+"Sample ID":"Me-T1-45",
+"Factors":{"Time":"T1","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T1-45.mzML"}
+},
+{
+"Subject ID":"Me36",
+"Sample ID":"Me-T2-45",
+"Factors":{"Time":"T2","Treatment":"Mepolizumab"},
+"Additional sample data":{"Gender":"F","RAW_FILE_NAME":"Me-T2-45.mzML"}
+}
+],
+"COLLECTION":{"COLLECTION_SUMMARY":"Whole blood from the three hospital-scheduled visits was incubated with a clotting agent in Vacutainer SST II tubes. Samples were placed at room temperature for 30 min and then centrifuged at 2000 x g for 10 min for serum recovery. Serum samples were stored at -80ºC until further metabolomic analyses.","SAMPLE_TYPE":"Blood (serum)","STORAGE_CONDITIONS":"-80℃"},
+
+"TREATMENT":{"TREATMENT_SUMMARY":"Patients were prescribed add-on biological treatments following the GINA guidelines. Mepolizumab was used in patients with &gt;300 eosinophils/µL (without corticosteroids treatment) or &gt;100 eosinophils/µL (with corticosteroids). Meanwhile, Omalizumab was chosen in uncontrolled severe allergic asthmatics with serum IgE levels between 30 and 1500 IU/mL and body weight within the dosing range."},
+
+"SAMPLEPREP":{"SAMPLEPREP_SUMMARY":"For sample preparation, 50 µL of serum was mixed with 150 µL of cold (−20 °C) methanol: ethanol mix (MeOH:EtOH) (1:1). Then, serum samples were vortex-mixed for 1 min, placed on ice for 15 min and centrifuged at 16000× g for 20 min at 4 °C. Subsequently, 70 µL of the supernatant was transferred into an LC vial and mixed with 50 µL of ISTD mix, (with a final concentration of 0.2 µg/mL for HILIC and 0.3 µg/mL for re-versed-phase method) and 440 µL of the initial conditions of the mobile phases for the HILIC method. For blank preparation, 50 µL of water was used and the same steps as described above were followed.","EXTRACT_STORAGE":"-20℃"},
+
+"CHROMATOGRAPHY":{"CHROMATOGRAPHY_SUMMARY":"To detect metabolites with medium polarity (arachidonic acid, bilirubin, lactic acid, lauric acid, LPC 14:0, LPC 16:0, LPC 17:0, LPC 17:1, LPC 18:0, LPC 18:1, LPC 18:1 d7, LPC 19:0, LPC 20:0, LPE 18:0, LPI 20:4, oleic acid, palmitic acid d31, palmitoleic acid, sphingosine, sphingosine d7, and S1P). For metabolite separation, a gradient elution on a Supelco Ascentis Express reversed-phase (150 mm × 2.1 mm × 2.7 μm) column maintained at 60 °C was used. The mobile phases consisted of (A) water, and (B) ACN, both with 0.1% acetic acid, obtaining a final pH of 3.3 in the aqueous phase. The flow rate was 0.6 mL/min. The gradient started with 20% of B for 2 min, then increased up to 100% until 10 min and maintained for 5 min, then returned to initial conditions until 20 min.","CHROMATOGRAPHY_TYPE":"Reversed phase","INSTRUMENT_NAME":"Agilent 1260 Infinity II","COLUMN_NAME":"Merck Supelco Ascentis Express C8 (150 x 2.1mm, 2.7um, 90Å)","SOLVENT_A":"100% water; 0.1% acetic acid","SOLVENT_B":"100% acetonitrile; 0.1% acetic acid","FLOW_GRADIENT":"The gradient started with 20% of B for 2 min, then increased up to 100% until 10 min and maintained for 5 min, then returned to initial conditions until 20 min.","FLOW_RATE":"0.6mL/min","COLUMN_TEMPERATURE":"60ºC"},
+
+"ANALYSIS":{"ANALYSIS_TYPE":"MS"},
+
+"MS":{"INSTRUMENT_NAME":"Agilent 6470 QQQ","INSTRUMENT_TYPE":"Triple quadrupole","MS_TYPE":"ESI","ION_MODE":"UNSPECIFIED","MS_COMMENTS":"The MS was done with polarity switching with the following conditions: 3500 V of capillary voltage in positive ESI mode and 3000V in negative ESI mode, a nebulizer gas flow rate of 10.0 L/min, a source temperature of 250 °C; and a source pressure of 45 psi. Chromatogram visualization and peak areas were obtained using MassHunter Workstation B.05.00 and MassHunter QQQ Quantitative Analysis B.08.00, respectively."},
+
+"MS_METABOLITE_DATA":{
+"Units":"Areas",
+
+"Data":[{"Metabolite":"Sphingosine","O-T0-01":"1093045375","O-T1-01":"2075275375","O-T2-01":"1028375","O-T0-02":"208375","O-T1-02":"107375","O-T2-02":"61598375","O-T0-03":"61375","O-T1-03":"202375","O-T2-03":"182375","O-T0-04":"210375","O-T1-04":"150375","O-T2-04":"249375","O-T0-05":"296375","O-T1-05":"257375","O-T2-05":"234375","O-T0-06":"146375","O-T1-06":"138375","O-T2-06":"132375","O-T0-08":"643375","O-T1-08":"585375","O-T2-08":"269375","O-T0-09":"236375","O-T1-09":"385375","O-T2-09":"406375","O-T0-10":"64375","O-T1-10":"290375","O-T2-10":"108375","O-T0-12":"111509375","O-T1-12":"235398375","O-T2-12":"479978375","O-T0-13":"261375","O-T1-13":"167375","O-T2-13":"158375","O-T0-14":"-11625","O-T1-14":"42375","O-T2-14":"290375","O-T0-16":"249375","O-T1-16":"298375","O-T2-16":"124375","O-T0-17":"955375","O-T1-17":"359375","O-T2-17":"375375","O-T0-18":"317375","O-T1-18":"208375","O-T2-18":"65697375","O-T0-20":"534375","O-T1-20":"698375","O-T2-20":"162375","O-T0-22":"531375","O-T1-22":"399375","O-T2-22":"61375","O-T0-23":"119375","O-T1-23":"140375","O-T2-23":"141375","Me-T0-01":"187375","Me-T1-01":"303375","Me-T2-01":"247375","Me-T0-03":"122738375","Me-T1-03":"262065375","Me-T2-03":"539620375","Me-T0-04":"392375","Me-T1-04":"256375","Me-T2-04":"387375","Me-T0-05":"179375","Me-T1-05":"152375","Me-T2-05":"73375","Me-T0-06":"518375","Me-T1-06":"16375","Me-T2-06":"184375","Me-T0-07":"116395375","Me-T1-07":"245415375","Me-T2-07":"509571375","Me-T0-08":"345375","Me-T1-08":"277375","Me-T2-08":"146375","Me-T0-10":"270375","Me-T1-10":"294375","Me-T2-10":"113375","Me-T0-11":"688375","Me-T1-11":"-13625","Me-T2-11":"279375","Me-T0-12":"153375","Me-T1-12":"335375","Me-T2-12":"45375","Me-T0-16":"107375","Me-T1-16":"41375","Me-T2-16":"58645375","Me-T0-17":"153375","Me-T1-17":"487375","Me-T2-17":"88375","Me-T0-18":"365375","Me-T1-18":"155375","Me-T2-18":"451375","Me-T0-19":"160375","Me-T1-19":"131375","Me-T2-19":"2098375","Me-T0-20":"1811636375","Me-T1-20":"978375","Me-T2-20":"416375","Me-T0-21":"32375","Me-T1-21":"56375","Me-T2-21":"90375","Me-T0-22":"12375","Me-T1-22":"79375","Me-T2-22":"107375","Me-T0-23":"24375","Me-T1-23":"61375","Me-T2-23":"312375","Me-T0-25":"203375","Me-T1-25":"608375","Me-T2-25":"103375","Me-T0-26":"386375","Me-T1-26":"210375","Me-T2-26":"1094375","Me-T0-27":"198375","Me-T1-27":"66375","Me-T2-27":"26375","Me-T0-29":"219757375","Me-T1-29":"442947375","Me-T2-29":"945964375","Me-T0-30":"600375","Me-T1-30":"52375","Me-T2-30":"1361375","Me-T0-31":"196375","Me-T1-31":"147375","Me-T2-31":"206375","Me-T0-32":"121375","Me-T1-32":"671375","Me-T2-32":"262375","Me-T0-33":"64375","Me-T1-33":"155375","Me-T2-33":"-84625","Me-T0-34":"51375","Me-T1-34":"74375","Me-T2-34":"164375","Me-T0-35":"231375","Me-T1-35":"266375","Me-T2-35":"212375","Me-T0-37":"158375","Me-T1-37":"153375","Me-T2-37":"44375","Me-T0-38":"466375","Me-T1-38":"3375","Me-T2-38":"79375","Me-T0-39":"200375","Me-T1-39":"89375","Me-T2-39":"212375","Me-T0-40":"1029005375","Me-T1-40":"1974525375","Me-T2-40":"1051375","Me-T0-41":"-276625","Me-T1-41":"113375","Me-T2-41":"159375","Me-T0-42":"177375","Me-T1-42":"128375","Me-T2-42":"173375","Me-T0-43":"322375","Me-T1-43":"72375","Me-T2-43":"607375","Me-T0-45":"152375","Me-T1-45":"35375","Me-T2-45":"86375"},{"Metabolite":"Sphingosine-1-Phosphate","O-T0-01":"3327375","O-T1-01":"5523375","O-T2-01":"1469375","O-T0-02":"1549375","O-T1-02":"869375","O-T2-02":"893375","O-T0-03":"3622375","O-T1-03":"3071375","O-T2-03":"3290375","O-T0-04":"1891375","O-T1-04":"1417375","O-T2-04":"1386375","O-T0-05":"2384375","O-T1-05":"2751375","O-T2-05":"2614375","O-T0-06":"1600375","O-T1-06":"2876375","O-T2-06":"3177375","O-T0-08":"1372375","O-T1-08":"1811375","O-T2-08":"1775375","O-T0-09":"2636375","O-T1-09":"2832375","O-T2-09":"3486375","O-T0-10":"1996375","O-T1-10":"1644375","O-T2-10":"2350375","O-T0-12":"1016375","O-T1-12":"1338375","O-T2-12":"1579375","O-T0-13":"832375","O-T1-13":"1669375","O-T2-13":"1654375","O-T0-14":"1549375","O-T1-14":"1239375","O-T2-14":"2432375","O-T0-16":"1518375","O-T1-16":"1312375","O-T2-16":"1776375","O-T0-17":"2582375","O-T1-17":"1302375","O-T2-17":"1134375","O-T0-18":"4374375","O-T1-18":"886375","O-T2-18":"974375","O-T0-20":"3169375","O-T1-20":"2552375","O-T2-20":"2789375","O-T0-22":"2092375","O-T1-22":"2941375","O-T2-22":"2126375","O-T0-23":"2186375","O-T1-23":"2055375","O-T2-23":"1746375","Me-T0-01":"1644375","Me-T1-01":"1524375","Me-T2-01":"1363375","Me-T0-03":"1195375","Me-T1-03":"1341375","Me-T2-03":"1716375","Me-T0-04":"3621375","Me-T1-04":"2840375","Me-T2-04":"4047375","Me-T0-05":"2602375","Me-T1-05":"2262375","Me-T2-05":"2453375","Me-T0-06":"2565375","Me-T1-06":"1199375","Me-T2-06":"1774375","Me-T0-07":"1149375","Me-T1-07":"741375","Me-T2-07":"2024375","Me-T0-08":"3480375","Me-T1-08":"2831375","Me-T2-08":"1750375","Me-T0-10":"3288375","Me-T1-10":"1836375","Me-T2-10":"1567375","Me-T0-11":"3406375","Me-T1-11":"1218375","Me-T2-11":"1585375","Me-T0-12":"3987375","Me-T1-12":"4215375","Me-T2-12":"1754375","Me-T0-16":"1936375","Me-T1-16":"819375","Me-T2-16":"1057375","Me-T0-17":"1417375","Me-T1-17":"2523375","Me-T2-17":"1411375","Me-T0-18":"3555375","Me-T1-18":"3730375","Me-T2-18":"2787375","Me-T0-19":"3034375","Me-T1-19":"1427375","Me-T2-19":"4806375","Me-T0-20":"5332375","Me-T1-20":"1507375","Me-T2-20":"2612375","Me-T0-21":"1337375","Me-T1-21":"1844375","Me-T2-21":"2174375","Me-T0-22":"2506375","Me-T1-22":"1313375","Me-T2-22":"2794375","Me-T0-23":"2109375","Me-T1-23":"1864375","Me-T2-23":"3026375","Me-T0-25":"1709375","Me-T1-25":"2464375","Me-T2-25":"1786375","Me-T0-26":"2820375","Me-T1-26":"3275375","Me-T2-26":"4601375","Me-T0-27":"1182375","Me-T1-27":"638375","Me-T2-27":"2028375","Me-T0-29":"1226375","Me-T1-29":"1661375","Me-T2-29":"3095375","Me-T0-30":"3682375","Me-T1-30":"1742375","Me-T2-30":"3511375","Me-T0-31":"3369375","Me-T1-31":"3014375","Me-T2-31":"3458375","Me-T0-32":"2209375","Me-T1-32":"3650375","Me-T2-32":"2914375","Me-T0-33":"2507375","Me-T1-33":"2170375","Me-T2-33":"1469375","Me-T0-34":"2508375","Me-T1-34":"2457375","Me-T2-34":"3215375","Me-T0-35":"1586375","Me-T1-35":"1440375","Me-T2-35":"802375","Me-T0-37":"2779375","Me-T1-37":"3237375","Me-T2-37":"1763375","Me-T0-38":"3063375","Me-T1-38":"2539375","Me-T2-38":"3587375","Me-T0-39":"1611375","Me-T1-39":"1453375","Me-T2-39":"2214375","Me-T0-40":"3030375","Me-T1-40":"5422375","Me-T2-40":"1860375","Me-T0-41":"-19625","Me-T1-41":"1692375","Me-T2-41":"1823375","Me-T0-42":"2585375","Me-T1-42":"1909375","Me-T2-42":"1834375","Me-T0-43":"2212375","Me-T1-43":"2383375","Me-T2-43":"3041375","Me-T0-45":"1946375","Me-T1-45":"1785375","Me-T2-45":"1705375"},{"Metabolite":"LPC 14:0","O-T0-01":"56587625","O-T1-01":"101901625","O-T2-01":"17399625","O-T0-02":"21732625","O-T1-02":"10794625","O-T2-02":"13639625","O-T0-03":"21743625","O-T1-03":"23862625","O-T2-03":"25561625","O-T0-04":"13430625","O-T1-04":"13519625","O-T2-04":"13906625","O-T0-05":"19603625","O-T1-05":"13784625","O-T2-05":"15480625","O-T0-06":"27968625","O-T1-06":"24849625","O-T2-06":"7842625","O-T0-08":"9486625","O-T1-08":"14108625","O-T2-08":"24931625","O-T0-09":"14230625","O-T1-09":"14100625","O-T2-09":"35053625","O-T0-10":"18786625","O-T1-10":"19167625","O-T2-10":"24487625","O-T0-12":"14812625","O-T1-12":"19537625","O-T2-12":"29066625","O-T0-13":"11411625","O-T1-13":"17028625","O-T2-13":"9623625","O-T0-14":"25466625","O-T1-14":"19481625","O-T2-14":"23994625","O-T0-16":"36655625","O-T1-16":"8383625","O-T2-16":"10058625","O-T0-17":"20809625","O-T1-17":"15736625","O-T2-17":"16130625","O-T0-18":"15804625","O-T1-18":"11711625","O-T2-18":"14118625","O-T0-20":"19777625","O-T1-20":"8463625","O-T2-20":"11515625","O-T0-22":"7677625","O-T1-22":"6851625","O-T2-22":"24441625","O-T0-23":"27900625","O-T1-23":"22131625","O-T2-23":"19127625","Me-T0-01":"28460625","Me-T1-01":"15887625","Me-T2-01":"24267625","Me-T0-03":"16298625","Me-T1-03":"21837625","Me-T2-03":"32554625","Me-T0-04":"21103625","Me-T1-04":"4043625","Me-T2-04":"19857625","Me-T0-05":"13222625","Me-T1-05":"12871625","Me-T2-05":"39811625","Me-T0-06":"28569625","Me-T1-06":"15711625","Me-T2-06":"24102625","Me-T0-07":"15347625","Me-T1-07":"20638625","Me-T2-07":"30876625","Me-T0-08":"24613625","Me-T1-08":"20462625","Me-T2-08":"12062625","Me-T0-10":"19634625","Me-T1-10":"16694625","Me-T2-10":"24759625","Me-T0-11":"10804625","Me-T1-11":"13321625","Me-T2-11":"9028625","Me-T0-12":"19753625","Me-T1-12":"34347625","Me-T2-12":"17062625","Me-T0-16":"29961625","Me-T1-16":"10473625","Me-T2-16":"12927625","Me-T0-17":"10043625","Me-T1-17":"9408625","Me-T2-17":"12799625","Me-T0-18":"10221625","Me-T1-18":"24225625","Me-T2-18":"16144625","Me-T0-19":"4417625","Me-T1-19":"7730625","Me-T2-19":"19593625","Me-T0-20":"87437625","Me-T1-20":"15638625","Me-T2-20":"18860625","Me-T0-21":"15176625","Me-T1-21":"13422625","Me-T2-21":"15588625","Me-T0-22":"18481625","Me-T1-22":"9003625","Me-T2-22":"9871625","Me-T0-23":"8586625","Me-T1-23":"7821625","Me-T2-23":"5516625","Me-T0-25":"10429625","Me-T1-25":"20204625","Me-T2-25":"10198625","Me-T0-26":"22425625","Me-T1-26":"33006625","Me-T2-26":"24665625","Me-T0-27":"7602625","Me-T1-27":"7020625","Me-T2-27":"22355625","Me-T0-29":"16830625","Me-T1-29":"25726625","Me-T2-29":"47152625","Me-T0-30":"14084625","Me-T1-30":"11874625","Me-T2-30":"27825625","Me-T0-31":"14465625","Me-T1-31":"18934625","Me-T2-31":"16607625","Me-T0-32":"11239625","Me-T1-32":"6825625","Me-T2-32":"15720625","Me-T0-33":"20749625","Me-T1-33":"20457625","Me-T2-33":"4662625","Me-T0-34":"12019625","Me-T1-34":"16817625","Me-T2-34":"7151625","Me-T0-35":"14832625","Me-T1-35":"14545625","Me-T2-35":"8977625","Me-T0-37":"19567625","Me-T1-37":"17187625","Me-T2-37":"8826625","Me-T0-38":"22537625","Me-T1-38":"17615625","Me-T2-38":"19738625","Me-T0-39":"22420625","Me-T1-39":"6666625","Me-T2-39":"14523625","Me-T0-40":"52250625","Me-T1-40":"95998625","Me-T2-40":"16835625","Me-T0-41":"-62375","Me-T1-41":"13720625","Me-T2-41":"13537625","Me-T0-42":"17522625","Me-T1-42":"15163625","Me-T2-42":"11604625","Me-T0-43":"29808625","Me-T1-43":"18411625","Me-T2-43":"23437625","Me-T0-45":"18566625","Me-T1-45":"20417625","Me-T2-45":"23857625"},{"Metabolite":"LPC 16:0","O-T0-01":"325380525","O-T1-01":"530671225","O-T2-01":"104800025","O-T0-02":"106259125","O-T1-02":"68489425","O-T2-02":"83816325","O-T0-03":"113666725","O-T1-03":"98916725","O-T2-03":"143093725","O-T0-04":"85811625","O-T1-04":"86426925","O-T2-04":"86883325","O-T0-05":"133484225","O-T1-05":"82777925","O-T2-05":"100318125","O-T0-06":"119336425","O-T1-06":"116468125","O-T2-06":"84187925","O-T0-08":"67868725","O-T1-08":"101793425","O-T2-08":"120601825","O-T0-09":"113871025","O-T1-09":"116271825","O-T2-09":"146152225","O-T0-10":"105112125","O-T1-10":"106870725","O-T2-10":"123478925","O-T0-12":"91047925","O-T1-12":"118474525","O-T2-12":"178306125","O-T0-13":"76885725","O-T1-13":"92418725","O-T2-13":"80268325","O-T0-14":"84837025","O-T1-14":"97948425","O-T2-14":"112110925","O-T0-16":"134742625","O-T1-16":"156550225","O-T2-16":"86933625","O-T0-17":"101966625","O-T1-17":"87185225","O-T2-17":"88829625","O-T0-18":"134719225","O-T1-18":"72126025","O-T2-18":"89638625","O-T0-20":"116162025","O-T1-20":"103201025","O-T2-20":"68206425","O-T0-22":"91177125","O-T1-22":"90600025","O-T2-22":"95415625","O-T0-23":"126862625","O-T1-23":"103143125","O-T2-23":"129374125","Me-T0-01":"114431525","Me-T1-01":"94737025","Me-T2-01":"116815525","Me-T0-03":"99993625","Me-T1-03":"133503525","Me-T2-03":"198385825","Me-T0-04":"131901125","Me-T1-04":"88569225","Me-T2-04":"149855025","Me-T0-05":"74815225","Me-T1-05":"71342825","Me-T2-05":"150093125","Me-T0-06":"155790425","Me-T1-06":"96313225","Me-T2-06":"116470325","Me-T0-07":"94422625","Me-T1-07":"124759725","Me-T2-07":"186864325","Me-T0-08":"138432725","Me-T1-08":"129526225","Me-T2-08":"135259225","Me-T0-10":"111022925","Me-T1-10":"156645325","Me-T2-10":"132304725","Me-T0-11":"79736325","Me-T1-11":"79528025","Me-T2-11":"81335525","Me-T0-12":"124364525","Me-T1-12":"148517125","Me-T2-12":"128241025","Me-T0-16":"149090925","Me-T1-16":"65561625","Me-T2-16":"79458625","Me-T0-17":"65782225","Me-T1-17":"87297525","Me-T2-17":"93784525","Me-T0-18":"103492225","Me-T1-18":"150141325","Me-T2-18":"97079325","Me-T0-19":"55862825","Me-T1-19":"58211625","Me-T2-19":"123893125","Me-T0-20":"492244325","Me-T1-20":"93284725","Me-T2-20":"101595025","Me-T0-21":"128827425","Me-T1-21":"109915025","Me-T2-21":"139157825","Me-T0-22":"109014725","Me-T1-22":"94776625","Me-T2-22":"84208225","Me-T0-23":"86342325","Me-T1-23":"84816125","Me-T2-23":"69813125","Me-T0-25":"79064725","Me-T1-25":"86457025","Me-T2-25":"75654125","Me-T0-26":"99975925","Me-T1-26":"119027625","Me-T2-26":"131356425","Me-T0-27":"77253825","Me-T1-27":"75067025","Me-T2-27":"102534725","Me-T0-29":"109001625","Me-T1-29":"163453925","Me-T2-29":"287372725","Me-T0-30":"120133225","Me-T1-30":"92232725","Me-T2-30":"128800125","Me-T0-31":"88305625","Me-T1-31":"98491525","Me-T2-31":"86652125","Me-T0-32":"81807325","Me-T1-32":"73720925","Me-T2-32":"86924425","Me-T0-33":"161032425","Me-T1-33":"124568925","Me-T2-33":"77975925","Me-T0-34":"84481125","Me-T1-34":"118458925","Me-T2-34":"86710325","Me-T0-35":"89110025","Me-T1-35":"88842825","Me-T2-35":"58291425","Me-T0-37":"88603225","Me-T1-37":"84626925","Me-T2-37":"71734925","Me-T0-38":"121325825","Me-T1-38":"100894025","Me-T2-38":"98404725","Me-T0-39":"85478425","Me-T1-39":"65315225","Me-T2-39":"101907325","Me-T0-40":"310591425","Me-T1-40":"516358825","Me-T2-40":"101381125","Me-T0-41":"-217775","Me-T1-41":"84930425","Me-T2-41":"85760425","Me-T0-42":"126195725","Me-T1-42":"108757625","Me-T2-42":"64965125","Me-T0-43":"132892925","Me-T1-43":"78405425","Me-T2-43":"119827825","Me-T0-45":"102819525","Me-T1-45":"78401525","Me-T2-45":"107629325"},{"Metabolite":"LPC 17:0","O-T0-01":"473585","O-T1-01":"802325","O-T2-01":"139695","O-T0-02":"174595","O-T1-02":"93865","O-T2-02":"121015","O-T0-03":"145985","O-T1-03":"89815","O-T2-03":"197285","O-T0-04":"112325","O-T1-04":"114925","O-T2-04":"114375","O-T0-05":"212975","O-T1-05":"140845","O-T2-05":"154905","O-T0-06":"165305","O-T1-06":"168335","O-T2-06":"132295","O-T0-08":"94375","O-T1-08":"127115","O-T2-08":"165765","O-T0-09":"138745","O-T1-09":"109315","O-T2-09":"232565","O-T0-10":"87635","O-T1-10":"106405","O-T2-10":"173585","O-T0-12":"126205","O-T1-12":"157235","O-T2-12":"241385","O-T0-13":"126085","O-T1-13":"126515","O-T2-13":"112135","O-T0-14":"124195","O-T1-14":"131785","O-T2-14":"160575","O-T0-16":"162645","O-T1-16":"264595","O-T2-16":"120065","O-T0-17":"112505","O-T1-17":"104025","O-T2-17":"93415","O-T0-18":"155905","O-T1-18":"100245","O-T2-18":"118285","O-T0-20":"132485","O-T1-20":"82925","O-T2-20":"109685","O-T0-22":"98965","O-T1-22":"86295","O-T2-22":"122595","O-T0-23":"194865","O-T1-23":"139945","O-T2-23":"154515","Me-T0-01":"134195","Me-T1-01":"108575","Me-T2-01":"127235","Me-T0-03":"139505","Me-T1-03":"189145","Me-T2-03":"274325","Me-T0-04":"150805","Me-T1-04":"84995","Me-T2-04":"179995","Me-T0-05":"110865","Me-T1-05":"123335","Me-T2-05":"264605","Me-T0-06":"112005","Me-T1-06":"71175","Me-T2-06":"86435","Me-T0-07":"130755","Me-T1-07":"175815","Me-T2-07":"259565","Me-T0-08":"195895","Me-T1-08":"217375","Me-T2-08":"294565","Me-T0-10":"144365","Me-T1-10":"261325","Me-T2-10":"244795","Me-T0-11":"151005","Me-T1-11":"137405","Me-T2-11":"149505","Me-T0-12":"208125","Me-T1-12":"233165","Me-T2-12":"201735","Me-T0-16":"277035","Me-T1-16":"86485","Me-T2-16":"114335","Me-T0-17":"103805","Me-T1-17":"78285","Me-T2-17":"100005","Me-T0-18":"146715","Me-T1-18":"217085","Me-T2-18":"123445","Me-T0-19":"67775","Me-T1-19":"98955","Me-T2-19":"100155","Me-T0-20":"745525","Me-T1-20":"128155","Me-T2-20":"134755","Me-T0-21":"191535","Me-T1-21":"135925","Me-T2-21":"204965","Me-T0-22":"152305","Me-T1-22":"133925","Me-T2-22":"122935","Me-T0-23":"91495","Me-T1-23":"109445","Me-T2-23":"83235","Me-T0-25":"83785","Me-T1-25":"122855","Me-T2-25":"101605","Me-T0-26":"132825","Me-T1-26":"238285","Me-T2-26":"146155","Me-T0-27":"81835","Me-T1-27":"88315","Me-T2-27":"100225","Me-T0-29":"159325","Me-T1-29":"244035","Me-T2-29":"424755","Me-T0-30":"176595","Me-T1-30":"115405","Me-T2-30":"134695","Me-T0-31":"104125","Me-T1-31":"115535","Me-T2-31":"75925","Me-T0-32":"99945","Me-T1-32":"82935","Me-T2-32":"109675","Me-T0-33":"210985","Me-T1-33":"197925","Me-T2-33":"88425","Me-T0-34":"99945","Me-T1-34":"122875","Me-T2-34":"95765","Me-T0-35":"110235","Me-T1-35":"121525","Me-T2-35":"93965","Me-T0-37":"90935","Me-T1-37":"90235","Me-T2-37":"80495","Me-T0-38":"279195","Me-T1-38":"158815","Me-T2-38":"98805","Me-T0-39":"129995","Me-T1-39":"70435","Me-T2-39":"149865","Me-T0-40":"443535","Me-T1-40":"798865","Me-T2-40":"140345","Me-T0-41":"-915","Me-T1-41":"111575","Me-T2-41":"111405","Me-T0-42":"188835","Me-T1-42":"133705","Me-T2-42":"81455","Me-T0-43":"171235","Me-T1-43":"146255","Me-T2-43":"174515","Me-T0-45":"119245","Me-T1-45":"143805","Me-T2-45":"194355"},{"Metabolite":"LPC 17:1","O-T0-01":"9018","O-T1-01":"15784","O-T2-01":"2710","O-T0-02":"2671","O-T1-02":"1870","O-T2-02":"2186","O-T0-03":"2638","O-T1-03":"2783","O-T2-03":"3242","O-T0-04":"2236","O-T1-04":"2448","O-T2-04":"2254","O-T0-05":"3549","O-T1-05":"2398","O-T2-05":"2973","O-T0-06":"3080","O-T1-06":"3183","O-T2-06":"1666","O-T0-08":"2482","O-T1-08":"2681","O-T2-08":"2547","O-T0-09":"2433","O-T1-09":"2057","O-T2-09":"5822","O-T0-10":"2301","O-T1-10":"2555","O-T2-10":"4110","O-T0-12":"2396","O-T1-12":"3264","O-T2-12":"4864","O-T0-13":"2298","O-T1-13":"2411","O-T2-13":"2145","O-T0-14":"2621","O-T1-14":"2730","O-T2-14":"3252","O-T0-16":"3506","O-T1-16":"3680","O-T2-16":"2279","O-T0-17":"2233","O-T1-17":"1841","O-T2-17":"1587","O-T0-18":"3620","O-T1-18":"1875","O-T2-18":"2571","O-T0-20":"3111","O-T1-20":"1652","O-T2-20":"2662","O-T0-22":"1293","O-T1-22":"1031","O-T2-22":"2558","O-T0-23":"4459","O-T1-23":"3643","O-T2-23":"2566","Me-T0-01":"3521","Me-T1-01":"3076","Me-T2-01":"3336","Me-T0-03":"2707","Me-T1-03":"3656","Me-T2-03":"5483","Me-T0-04":"3128","Me-T1-04":"1629","Me-T2-04":"3909","Me-T0-05":"2570","Me-T1-05":"2850","Me-T2-05":"4349","Me-T0-06":"3398","Me-T1-06":"1547","Me-T2-06":"2255","Me-T0-07":"2515","Me-T1-07":"3193","Me-T2-07":"5015","Me-T0-08":"3333","Me-T1-08":"4084","Me-T2-08":"2892","Me-T0-10":"2871","Me-T1-10":"4666","Me-T2-10":"4855","Me-T0-11":"2565","Me-T1-11":"2487","Me-T2-11":"2426","Me-T0-12":"4009","Me-T1-12":"5169","Me-T2-12":"3215","Me-T0-16":"4943","Me-T1-16":"1553","Me-T2-16":"2213","Me-T0-17":"1836","Me-T1-17":"1447","Me-T2-17":"2028","Me-T0-18":"2522","Me-T1-18":"3780","Me-T2-18":"2452","Me-T0-19":"1869","Me-T1-19":"1552","Me-T2-19":"2140","Me-T0-20":"14244","Me-T1-20":"2467","Me-T2-20":"1729","Me-T0-21":"3664","Me-T1-21":"2864","Me-T2-21":"4120","Me-T0-22":"3017","Me-T1-22":"2667","Me-T2-22":"2357","Me-T0-23":"1471","Me-T1-23":"1435","Me-T2-23":"1149","Me-T0-25":"1801","Me-T1-25":"2743","Me-T2-25":"1842","Me-T0-26":"3049","Me-T1-26":"5126","Me-T2-26":"2561","Me-T0-27":"1568","Me-T1-27":"1692","Me-T2-27":"2886","Me-T0-29":"2840","Me-T1-29":"4274","Me-T2-29":"7888","Me-T0-30":"2936","Me-T1-30":"2446","Me-T2-30":"2569","Me-T0-31":"1909","Me-T1-31":"2475","Me-T2-31":"1674","Me-T0-32":"2187","Me-T1-32":"1690","Me-T2-32":"2031","Me-T0-33":"3347","Me-T1-33":"4322","Me-T2-33":"1341","Me-T0-34":"2088","Me-T1-34":"2635","Me-T2-34":"1794","Me-T0-35":"2273","Me-T1-35":"2417","Me-T2-35":"1426","Me-T0-37":"1611","Me-T1-37":"1449","Me-T2-37":"1653","Me-T0-38":"5291","Me-T1-38":"3094","Me-T2-38":"2544","Me-T0-39":"2732","Me-T1-39":"1319","Me-T2-39":"2617","Me-T0-40":"8705","Me-T1-40":"15564","Me-T2-40":"2783","Me-T0-41":"0","Me-T1-41":"2062","Me-T2-41":"2407","Me-T0-42":"2388","Me-T1-42":"2387","Me-T2-42":"1392","Me-T0-43":"3475","Me-T1-43":"2164","Me-T2-43":"3448","Me-T0-45":"1979","Me-T1-45":"2891","Me-T2-45":"3837"},{"Metabolite":"LPC 18:0","O-T0-01":"967088875","O-T1-01":"1743532875","O-T2-01":"268820875","O-T0-02":"326680875","O-T1-02":"195564875","O-T2-02":"228136875","O-T0-03":"283458875","O-T1-03":"246380875","O-T2-03":"351169875","O-T0-04":"218355875","O-T1-04":"216508875","O-T2-04":"222663875","O-T0-05":"406638875","O-T1-05":"244949875","O-T2-05":"295473875","O-T0-06":"289167875","O-T1-06":"289744875","O-T2-06":"233043875","O-T0-08":"211724875","O-T1-08":"249295875","O-T2-08":"422895875","O-T0-09":"363441875","O-T1-09":"338955875","O-T2-09":"457073875","O-T0-10":"322898875","O-T1-10":"345691875","O-T2-10":"337341875","O-T0-12":"248754875","O-T1-12":"327038875","O-T2-12":"511105875","O-T0-13":"205147875","O-T1-13":"246222875","O-T2-13":"238807875","O-T0-14":"177182875","O-T1-14":"290435875","O-T2-14":"318184875","O-T0-16":"341659875","O-T1-16":"554874875","O-T2-16":"279806875","O-T0-17":"294009875","O-T1-17":"220125875","O-T2-17":"265720875","O-T0-18":"472376875","O-T1-18":"190605875","O-T2-18":"252796875","O-T0-20":"331951875","O-T1-20":"297926875","O-T2-20":"172999875","O-T0-22":"329245875","O-T1-22":"338634875","O-T2-22":"213040875","O-T0-23":"362690875","O-T1-23":"306775875","O-T2-23":"363982875","Me-T0-01":"240762875","Me-T1-01":"266894875","Me-T2-01":"267687875","Me-T0-03":"261248875","Me-T1-03":"367747875","Me-T2-03":"521625875","Me-T0-04":"415436875","Me-T1-04":"307557875","Me-T2-04":"446048875","Me-T0-05":"203213875","Me-T1-05":"188144875","Me-T2-05":"437891875","Me-T0-06":"476650875","Me-T1-06":"270453875","Me-T2-06":"315568875","Me-T0-07":"271490875","Me-T1-07":"351845875","Me-T2-07":"520646875","Me-T0-08":"397870875","Me-T1-08":"403632875","Me-T2-08":"433623875","Me-T0-10":"332443875","Me-T1-10":"468806875","Me-T2-10":"405362875","Me-T0-11":"247145875","Me-T1-11":"230327875","Me-T2-11":"216510875","Me-T0-12":"437891875","Me-T1-12":"464161875","Me-T2-12":"339957875","Me-T0-16":"475274875","Me-T1-16":"181879875","Me-T2-16":"217532875","Me-T0-17":"145596875","Me-T1-17":"236110875","Me-T2-17":"282809875","Me-T0-18":"261222875","Me-T1-18":"478482875","Me-T2-18":"296959875","Me-T0-19":"192539875","Me-T1-19":"239040875","Me-T2-19":"296312875","Me-T0-20":"1621333875","Me-T1-20":"251378875","Me-T2-20":"258829875","Me-T0-21":"324466875","Me-T1-21":"230151875","Me-T2-21":"356209875","Me-T0-22":"304438875","Me-T1-22":"244330875","Me-T2-22":"219824875","Me-T0-23":"161872875","Me-T1-23":"210263875","Me-T2-23":"156250875","Me-T0-25":"248250875","Me-T1-25":"185799875","Me-T2-25":"152939875","Me-T0-26":"273706875","Me-T1-26":"335099875","Me-T2-26":"334546875","Me-T0-27":"188762875","Me-T1-27":"179023875","Me-T2-27":"243292875","Me-T0-29":"309475875","Me-T1-29":"488160875","Me-T2-29":"898751875","Me-T0-30":"372678875","Me-T1-30":"307140875","Me-T2-30":"399436875","Me-T0-31":"242039875","Me-T1-31":"275776875","Me-T2-31":"288641875","Me-T0-32":"254720875","Me-T1-32":"269262875","Me-T2-32":"272123875","Me-T0-33":"410346875","Me-T1-33":"317557875","Me-T2-33":"176501875","Me-T0-34":"259504875","Me-T1-34":"311502875","Me-T2-34":"212750875","Me-T0-35":"242787875","Me-T1-35":"243597875","Me-T2-35":"169505875","Me-T0-37":"215274875","Me-T1-37":"233396875","Me-T2-37":"228605875","Me-T0-38":"345893875","Me-T1-38":"302042875","Me-T2-38":"275100875","Me-T0-39":"187644875","Me-T1-39":"187129875","Me-T2-39":"292602875","Me-T0-40":"922335875","Me-T1-40":"1681077875","Me-T2-40":"263886875","Me-T0-41":"-1179125","Me-T1-41":"201488875","Me-T2-41":"219098875","Me-T0-42":"361832875","Me-T1-42":"327207875","Me-T2-42":"191885875","Me-T0-43":"367821875","Me-T1-43":"189634875","Me-T2-43":"343724875","Me-T0-45":"322658875","Me-T1-45":"204594875","Me-T2-45":"276001875"},{"Metabolite":"LPC 18:1","O-T0-01":"812775","O-T1-01":"1418445","O-T2-01":"201272","O-T0-02":"194907","O-T1-02":"132513","O-T2-02":"169194","O-T0-03":"190186","O-T1-03":"144500","O-T2-03":"225804","O-T0-04":"162796","O-T1-04":"162507","O-T2-04":"163359","O-T0-05":"336023","O-T1-05":"169254","O-T2-05":"253894","O-T0-06":"183085","O-T1-06":"153598","O-T2-06":"143556","O-T0-08":"150841","O-T1-08":"241127","O-T2-08":"203679","O-T0-09":"189895","O-T1-09":"164522","O-T2-09":"342585","O-T0-10":"218605","O-T1-10":"245980","O-T2-10":"296827","O-T0-12":"189009","O-T1-12":"257398","O-T2-12":"416813","O-T0-13":"131295","O-T1-13":"221153","O-T2-13":"255195","O-T0-14":"135547","O-T1-14":"224980","O-T2-14":"264035","O-T0-16":"251648","O-T1-16":"259579","O-T2-16":"157612","O-T0-17":"146450","O-T1-17":"121718","O-T2-17":"113783","O-T0-18":"271000","O-T1-18":"133732","O-T2-18":"183739","O-T0-20":"219708","O-T1-20":"171706","O-T2-20":"198084","O-T0-22":"239895","O-T1-22":"183567","O-T2-22":"156864","O-T0-23":"247980","O-T1-23":"257117","O-T2-23":"244055","Me-T0-01":"322616","Me-T1-01":"247809","Me-T2-01":"254407","Me-T0-03":"208682","Me-T1-03":"291469","Me-T2-03":"458799","Me-T0-04":"308422","Me-T1-04":"250275","Me-T2-04":"372484","Me-T0-05":"233781","Me-T1-05":"230770","Me-T2-05":"304842","Me-T0-06":"322079","Me-T1-06":"138275","Me-T2-06":"184042","Me-T0-07":"200077","Me-T1-07":"275304","Me-T2-07":"435911","Me-T0-08":"223569","Me-T1-08":"261380","Me-T2-08":"242331","Me-T0-10":"219680","Me-T1-10":"328883","Me-T2-10":"282406","Me-T0-11":"171278","Me-T1-11":"192767","Me-T2-11":"218655","Me-T0-12":"325817","Me-T1-12":"402854","Me-T2-12":"224417","Me-T0-16":"350135","Me-T1-16":"124957","Me-T2-16":"161018","Me-T0-17":"140239","Me-T1-17":"131371","Me-T2-17":"170141","Me-T0-18":"219144","Me-T1-18":"295044","Me-T2-18":"165871","Me-T0-19":"116704","Me-T1-19":"109361","Me-T2-19":"139561","Me-T0-20":"1268951","Me-T1-20":"183449","Me-T2-20":"112648","Me-T0-21":"203197","Me-T1-21":"228389","Me-T2-21":"388624","Me-T0-22":"224158","Me-T1-22":"207099","Me-T2-22":"166110","Me-T0-23":"128842","Me-T1-23":"130243","Me-T2-23":"102754","Me-T0-25":"145175","Me-T1-25":"186727","Me-T2-25":"150804","Me-T0-26":"230855","Me-T1-26":"306556","Me-T2-26":"290258","Me-T0-27":"165449","Me-T1-27":"214853","Me-T2-27":"181011","Me-T0-29":"237744","Me-T1-29":"371681","Me-T2-29":"696610","Me-T0-30":"285029","Me-T1-30":"261047","Me-T2-30":"228515","Me-T0-31":"162449","Me-T1-31":"175025","Me-T2-31":"159827","Me-T0-32":"142469","Me-T1-32":"117606","Me-T2-32":"151804","Me-T0-33":"277487","Me-T1-33":"237868","Me-T2-33":"119232","Me-T0-34":"158445","Me-T1-34":"253721","Me-T2-34":"181730","Me-T0-35":"172620","Me-T1-35":"173218","Me-T2-35":"111879","Me-T0-37":"119990","Me-T1-37":"100382","Me-T2-37":"138970","Me-T0-38":"267077","Me-T1-38":"287545","Me-T2-38":"184820","Me-T0-39":"153369","Me-T1-39":"148590","Me-T2-39":"230780","Me-T0-40":"767029","Me-T1-40":"1378696","Me-T2-40":"197573","Me-T0-41":"0","Me-T1-41":"159407","Me-T2-41":"158806","Me-T0-42":"211434","Me-T1-42":"177223","Me-T2-42":"96246","Me-T0-43":"202715","Me-T1-43":"134669","Me-T2-43":"194443","Me-T0-45":"141623","Me-T1-45":"171063","Me-T2-45":"222112"},{"Metabolite":"LPC 19:0","O-T0-01":"3089125","O-T1-01":"5535125","O-T2-01":"656125","O-T0-02":"62125","O-T1-02":"637125","O-T2-02":"654125","O-T0-03":"741125","O-T1-03":"728125","O-T2-03":"789125","O-T0-04":"79125","O-T1-04":"-6875","O-T2-04":"-15875","O-T0-05":"37125","O-T1-05":"50125","O-T2-05":"55125","O-T0-06":"-14875","O-T1-06":"27125","O-T2-06":"75125","O-T0-08":"-4875","O-T1-08":"60125","O-T2-08":"65125","O-T0-09":"21125","O-T1-09":"52125","O-T2-09":"72125","O-T0-10":"17125","O-T1-10":"15125","O-T2-10":"8125","O-T0-12":"762125","O-T1-12":"1011125","O-T2-12":"1659125","O-T0-13":"47125","O-T1-13":"-12875","O-T2-13":"-4875","O-T0-14":"54125","O-T1-14":"31125","O-T2-14":"110125","O-T0-16":"77125","O-T1-16":"-4875","O-T2-16":"55125","O-T0-17":"33125","O-T1-17":"-5875","O-T2-17":"521125","O-T0-18":"695125","O-T1-18":"540125","O-T2-18":"756125","O-T0-20":"-4875","O-T1-20":"0125","O-T2-20":"-4875","O-T0-22":"50125","O-T1-22":"22125","O-T2-22":"29125","O-T0-23":"7125","O-T1-23":"-6875","O-T2-23":"7125","Me-T0-01":"-10875","Me-T1-01":"-13875","Me-T2-01":"37125","Me-T0-03":"585125","Me-T1-03":"1135125","Me-T2-03":"1552125","Me-T0-04":"-16875","Me-T1-04":"39125","Me-T2-04":"90125","Me-T0-05":"28125","Me-T1-05":"29125","Me-T2-05":"114125","Me-T0-06":"23125","Me-T1-06":"5125","Me-T2-06":"11125","Me-T0-07":"734125","Me-T1-07":"951125","Me-T2-07":"1564125","Me-T0-08":"26125","Me-T1-08":"80125","Me-T2-08":"-9875","Me-T0-10":"64125","Me-T1-10":"78125","Me-T2-10":"38125","Me-T0-11":"6125","Me-T1-11":"34125","Me-T2-11":"1125","Me-T0-12":"52125","Me-T1-12":"-6875","Me-T2-12":"68125","Me-T0-16":"70125","Me-T1-16":"801125","Me-T2-16":"730125","Me-T0-17":"12125","Me-T1-17":"-1875","Me-T2-17":"15125","Me-T0-18":"1125","Me-T1-18":"39125","Me-T2-18":"67125","Me-T0-19":"-5875","Me-T1-19":"85125","Me-T2-19":"24125","Me-T0-20":"5981125","Me-T1-20":"685125","Me-T2-20":"-4875","Me-T0-21":"1039125","Me-T1-21":"769125","Me-T2-21":"1122125","Me-T0-22":"24125","Me-T1-22":"73125","Me-T2-22":"16125","Me-T0-23":"37125","Me-T1-23":"21125","Me-T2-23":"-8875","Me-T0-25":"-2875","Me-T1-25":"22125","Me-T2-25":"63125","Me-T0-26":"-1875","Me-T1-26":"21125","Me-T2-26":"25125","Me-T0-27":"9125","Me-T1-27":"-17875","Me-T2-27":"56125","Me-T0-29":"1084125","Me-T1-29":"1810125","Me-T2-29":"3290125","Me-T0-30":"64125","Me-T1-30":"113125","Me-T2-30":"9125","Me-T0-31":"73125","Me-T1-31":"5125","Me-T2-31":"-3875","Me-T0-32":"7125","Me-T1-32":"40125","Me-T2-32":"72125","Me-T0-33":"9125","Me-T1-33":"36125","Me-T2-33":"138125","Me-T0-34":"42125","Me-T1-34":"-2875","Me-T2-34":"112125","Me-T0-35":"-15875","Me-T1-35":"52125","Me-T2-35":"540125","Me-T0-37":"5125","Me-T1-37":"13125","Me-T2-37":"38125","Me-T0-38":"35125","Me-T1-38":"-10875","Me-T2-38":"25125","Me-T0-39":"41125","Me-T1-39":"1125","Me-T2-39":"51125","Me-T0-40":"2967125","Me-T1-40":"6433125","Me-T2-40":"843125","Me-T0-41":"-19875","Me-T1-41":"415125","Me-T2-41":"360125","Me-T0-42":"47125","Me-T1-42":"21125","Me-T2-42":"-17875","Me-T0-43":"14125","Me-T1-43":"-10875","Me-T2-43":"51125","Me-T0-45":"522125","Me-T1-45":"699125","Me-T2-45":"854125"},{"Metabolite":"LPE 18:0","O-T0-01":"19343","O-T1-01":"30901","O-T2-01":"5538","O-T0-02":"6060","O-T1-02":"4462","O-T2-02":"5375","O-T0-03":"6160","O-T1-03":"5221","O-T2-03":"7283","O-T0-04":"5092","O-T1-04":"5238","O-T2-04":"5256","O-T0-05":"8534","O-T1-05":"5077","O-T2-05":"5610","O-T0-06":"7525","O-T1-06":"7247","O-T2-06":"4910","O-T0-08":"4881","O-T1-08":"6369","O-T2-08":"8559","O-T0-09":"5497","O-T1-09":"5074","O-T2-09":"10513","O-T0-10":"9571","O-T1-10":"9953","O-T2-10":"9021","O-T0-12":"5324","O-T1-12":"7426","O-T2-12":"10266","O-T0-13":"4978","O-T1-13":"6004","O-T2-13":"5312","O-T0-14":"6883","O-T1-14":"6035","O-T2-14":"6724","O-T0-16":"9372","O-T1-16":"13254","O-T2-16":"6209","O-T0-17":"5950","O-T1-17":"5531","O-T2-17":"5404","O-T0-18":"9250","O-T1-18":"4650","O-T2-18":"5670","O-T0-20":"5105","O-T1-20":"4177","O-T2-20":"4783","O-T0-22":"3405","O-T1-22":"5002","O-T2-22":"6019","O-T0-23":"8116","O-T1-23":"7097","O-T2-23":"8588","Me-T0-01":"7612","Me-T1-01":"6558","Me-T2-01":"8167","Me-T0-03":"6189","Me-T1-03":"8492","Me-T2-03":"11491","Me-T0-04":"8928","Me-T1-04":"6251","Me-T2-04":"7479","Me-T0-05":"6358","Me-T1-05":"5588","Me-T2-05":"11577","Me-T0-06":"9600","Me-T1-06":"6143","Me-T2-06":"6300","Me-T0-07":"5873","Me-T1-07":"7306","Me-T2-07":"11434","Me-T0-08":"7949","Me-T1-08":"7284","Me-T2-08":"9716","Me-T0-10":"6506","Me-T1-10":"9440","Me-T2-10":"7991","Me-T0-11":"4981","Me-T1-11":"4885","Me-T2-11":"4959","Me-T0-12":"9925","Me-T1-12":"9618","Me-T2-12":"6898","Me-T0-16":"8328","Me-T1-16":"3941","Me-T2-16":"4979","Me-T0-17":"4348","Me-T1-17":"6537","Me-T2-17":"6289","Me-T0-18":"5515","Me-T1-18":"7645","Me-T2-18":"4463","Me-T0-19":"2432","Me-T1-19":"2704","Me-T2-19":"8958","Me-T0-20":"27382","Me-T1-20":"5154","Me-T2-20":"8119","Me-T0-21":"6614","Me-T1-21":"6604","Me-T2-21":"8475","Me-T0-22":"7840","Me-T1-22":"5211","Me-T2-22":"4464","Me-T0-23":"5036","Me-T1-23":"5196","Me-T2-23":"2862","Me-T0-25":"5772","Me-T1-25":"5267","Me-T2-25":"4522","Me-T0-26":"7240","Me-T1-26":"8358","Me-T2-26":"7872","Me-T0-27":"4524","Me-T1-27":"5104","Me-T2-27":"9427","Me-T0-29":"6682","Me-T1-29":"9326","Me-T2-29":"16767","Me-T0-30":"5467","Me-T1-30":"4329","Me-T2-30":"7317","Me-T0-31":"5687","Me-T1-31":"7666","Me-T2-31":"4812","Me-T0-32":"4608","Me-T1-32":"3888","Me-T2-32":"4510","Me-T0-33":"7701","Me-T1-33":"5589","Me-T2-33":"4860","Me-T0-34":"6145","Me-T1-34":"7828","Me-T2-34":"5143","Me-T0-35":"5051","Me-T1-35":"5250","Me-T2-35":"3570","Me-T0-37":"3837","Me-T1-37":"3437","Me-T2-37":"5124","Me-T0-38":"6672","Me-T1-38":"5071","Me-T2-38":"7085","Me-T0-39":"4117","Me-T1-39":"3790","Me-T2-39":"6299","Me-T0-40":"17625","Me-T1-40":"28953","Me-T2-40":"5449","Me-T0-41":"-7","Me-T1-41":"4965","Me-T2-41":"5588","Me-T0-42":"8133","Me-T1-42":"7822","Me-T2-42":"2764","Me-T0-43":"10729","Me-T1-43":"4844","Me-T2-43":"8128","Me-T0-45":"5625","Me-T1-45":"5421","Me-T2-45":"7537"},{"Metabolite":"LPI 20:4","O-T0-01":"625","O-T1-01":"1012","O-T2-01":"163","O-T0-02":"224","O-T1-02":"112","O-T2-02":"102","O-T0-03":"163","O-T1-03":"225","O-T2-03":"252","O-T0-04":"346","O-T1-04":"236","O-T2-04":"271","O-T0-05":"253","O-T1-05":"183","O-T2-05":"183","O-T0-06":"211","O-T1-06":"347","O-T2-06":"122","O-T0-08":"98","O-T1-08":"158","O-T2-08":"260","O-T0-09":"258","O-T1-09":"313","O-T2-09":"306","O-T0-10":"142","O-T1-10":"176","O-T2-10":"181","O-T0-12":"184","O-T1-12":"241","O-T2-12":"358","O-T0-13":"120","O-T1-13":"167","O-T2-13":"66","O-T0-14":"292","O-T1-14":"234","O-T2-14":"214","O-T0-16":"266","O-T1-16":"98","O-T2-16":"159","O-T0-17":"163","O-T1-17":"160","O-T2-17":"176","O-T0-18":"322","O-T1-18":"137","O-T2-18":"166","O-T0-20":"216","O-T1-20":"183","O-T2-20":"266","O-T0-22":"260","O-T1-22":"203","O-T2-22":"214","O-T0-23":"298","O-T1-23":"291","O-T2-23":"275","Me-T0-01":"371","Me-T1-01":"330","Me-T2-01":"356","Me-T0-03":"128","Me-T1-03":"215","Me-T2-03":"248","Me-T0-04":"292","Me-T1-04":"261","Me-T2-04":"227","Me-T0-05":"302","Me-T1-05":"173","Me-T2-05":"89","Me-T0-06":"213","Me-T1-06":"109","Me-T2-06":"235","Me-T0-07":"142","Me-T1-07":"179","Me-T2-07":"361","Me-T0-08":"250","Me-T1-08":"267","Me-T2-08":"170","Me-T0-10":"242","Me-T1-10":"170","Me-T2-10":"76","Me-T0-11":"216","Me-T1-11":"144","Me-T2-11":"152","Me-T0-12":"228","Me-T1-12":"197","Me-T2-12":"260","Me-T0-16":"152","Me-T1-16":"134","Me-T2-16":"154","Me-T0-17":"125","Me-T1-17":"156","Me-T2-17":"177","Me-T0-18":"138","Me-T1-18":"287","Me-T2-18":"223","Me-T0-19":"225","Me-T1-19":"264","Me-T2-19":"241","Me-T0-20":"1523","Me-T1-20":"214","Me-T2-20":"391","Me-T0-21":"193","Me-T1-21":"135","Me-T2-21":"243","Me-T0-22":"110","Me-T1-22":"147","Me-T2-22":"175","Me-T0-23":"152","Me-T1-23":"217","Me-T2-23":"285","Me-T0-25":"92","Me-T1-25":"172","Me-T2-25":"149","Me-T0-26":"269","Me-T1-26":"183","Me-T2-26":"225","Me-T0-27":"163","Me-T1-27":"135","Me-T2-27":"149","Me-T0-29":"368","Me-T1-29":"528","Me-T2-29":"894","Me-T0-30":"244","Me-T1-30":"235","Me-T2-30":"254","Me-T0-31":"245","Me-T1-31":"150","Me-T2-31":"163","Me-T0-32":"286","Me-T1-32":"267","Me-T2-32":"295","Me-T0-33":"173","Me-T1-33":"194","Me-T2-33":"180","Me-T0-34":"293","Me-T1-34":"301","Me-T2-34":"274","Me-T0-35":"241","Me-T1-35":"273","Me-T2-35":"227","Me-T0-37":"270","Me-T1-37":"288","Me-T2-37":"215","Me-T0-38":"90","Me-T1-38":"149","Me-T2-38":"252","Me-T0-39":"184","Me-T1-39":"159","Me-T2-39":"131","Me-T0-40":"643","Me-T1-40":"1151","Me-T2-40":"155","Me-T0-41":"0","Me-T1-41":"369","Me-T2-41":"425","Me-T0-42":"265","Me-T1-42":"227","Me-T2-42":"322","Me-T0-43":"394","Me-T1-43":"595","Me-T2-43":"157","Me-T0-45":"134","Me-T1-45":"106","Me-T2-45":"83"},{"Metabolite":"Palmitoleic acid","O-T0-01":"4755525","O-T1-01":"7665425","O-T2-01":"2472125","O-T0-02":"580925","O-T1-02":"1434925","O-T2-02":"1687925","O-T0-03":"1135225","O-T1-03":"3320025","O-T2-03":"1433925","O-T0-04":"1814925","O-T1-04":"1861225","O-T2-04":"1869825","O-T0-05":"674325","O-T1-05":"2545825","O-T2-05":"1212325","O-T0-06":"328525","O-T1-06":"520025","O-T2-06":"4861525","O-T0-08":"5677125","O-T1-08":"820525","O-T2-08":"5492125","O-T0-09":"1883025","O-T1-09":"928825","O-T2-09":"1227725","O-T0-10":"987025","O-T1-10":"915725","O-T2-10":"414125","O-T0-12":"1684825","O-T1-12":"2133625","O-T2-12":"2761825","O-T0-13":"1284025","O-T1-13":"2897825","O-T2-13":"4851825","O-T0-14":"369125","O-T1-14":"376225","O-T2-14":"401925","O-T0-16":"496925","O-T1-16":"1096925","O-T2-16":"1010925","O-T0-17":"1596625","O-T1-17":"6534425","O-T2-17":"5155625","O-T0-18":"4247325","O-T1-18":"1451525","O-T2-18":"1674625","O-T0-20":"2282025","O-T1-20":"409125","O-T2-20":"909725","O-T0-22":"1075225","O-T1-22":"564825","O-T2-22":"3938925","O-T0-23":"623225","O-T1-23":"2419625","O-T2-23":"9041525","Me-T0-01":"1182325","Me-T1-01":"1358525","Me-T2-01":"437725","Me-T0-03":"1796325","Me-T1-03":"2358425","Me-T2-03":"3097825","Me-T0-04":"610025","Me-T1-04":"2007625","Me-T2-04":"2280325","Me-T0-05":"883625","Me-T1-05":"1119725","Me-T2-05":"290625","Me-T0-06":"2713025","Me-T1-06":"2680325","Me-T2-06":"2441125","Me-T0-07":"1713625","Me-T1-07":"2309025","Me-T2-07":"2901425","Me-T0-08":"1695925","Me-T1-08":"2487125","Me-T2-08":"1303125","Me-T0-10":"1014625","Me-T1-10":"2039525","Me-T2-10":"482825","Me-T0-11":"977125","Me-T1-11":"3142225","Me-T2-11":"7747625","Me-T0-12":"457725","Me-T1-12":"1128825","Me-T2-12":"4299925","Me-T0-16":"1004525","Me-T1-16":"1352725","Me-T2-16":"1551825","Me-T0-17":"2872125","Me-T1-17":"2685125","Me-T2-17":"875125","Me-T0-18":"201725","Me-T1-18":"1292125","Me-T2-18":"1006925","Me-T0-19":"4448725","Me-T1-19":"1467025","Me-T2-19":"1430125","Me-T0-20":"7104125","Me-T1-20":"2209025","Me-T2-20":"4752325","Me-T0-21":"1695625","Me-T1-21":"1182125","Me-T2-21":"843925","Me-T0-22":"545025","Me-T1-22":"590625","Me-T2-22":"868625","Me-T0-23":"2857925","Me-T1-23":"2966125","Me-T2-23":"5508925","Me-T0-25":"2333125","Me-T1-25":"1693425","Me-T2-25":"1594325","Me-T0-26":"1596525","Me-T1-26":"803925","Me-T2-26":"1227425","Me-T0-27":"188025","Me-T1-27":"215825","Me-T2-27":"1289025","Me-T0-29":"2028825","Me-T1-29":"2607225","Me-T2-29":"4214325","Me-T0-30":"2084925","Me-T1-30":"1621525","Me-T2-30":"996925","Me-T0-31":"1093025","Me-T1-31":"402525","Me-T2-31":"3067125","Me-T0-32":"583925","Me-T1-32":"9938425","Me-T2-32":"1624525","Me-T0-33":"255025","Me-T1-33":"589025","Me-T2-33":"1213225","Me-T0-34":"5083625","Me-T1-34":"1392425","Me-T2-34":"7124425","Me-T0-35":"2006625","Me-T1-35":"2094925","Me-T2-35":"1169325","Me-T0-37":"293625","Me-T1-37":"2109625","Me-T2-37":"6045125","Me-T0-38":"950625","Me-T1-38":"1464825","Me-T2-38":"1011425","Me-T0-39":"5910225","Me-T1-39":"1162825","Me-T2-39":"661625","Me-T0-40":"4435125","Me-T1-40":"7336225","Me-T2-40":"2387425","Me-T0-41":"-202375","Me-T1-41":"1737825","Me-T2-41":"1767725","Me-T0-42":"2357425","Me-T1-42":"429825","Me-T2-42":"5073625","Me-T0-43":"2962125","Me-T1-43":"1404325","Me-T2-43":"390625","Me-T0-45":"563925","Me-T1-45":"1559925","Me-T2-45":"1745525"},{"Metabolite":"Lauric acid","O-T0-01":"7822625","O-T1-01":"14154625","O-T2-01":"1038625","O-T0-02":"808625","O-T1-02":"2155625","O-T2-02":"1573625","O-T0-03":"1216625","O-T1-03":"1069625","O-T2-03":"185625","O-T0-04":"599625","O-T1-04":"598625","O-T2-04":"557625","O-T0-05":"561625","O-T1-05":"1365625","O-T2-05":"363625","O-T0-06":"127625","O-T1-06":"827625","O-T2-06":"3819625","O-T0-08":"2070625","O-T1-08":"667625","O-T2-08":"1896625","O-T0-09":"2279625","O-T1-09":"449625","O-T2-09":"542625","O-T0-10":"356625","O-T1-10":"628625","O-T2-10":"524625","O-T0-12":"1986625","O-T1-12":"2447625","O-T2-12":"3925625","O-T0-13":"378625","O-T1-13":"2461625","O-T2-13":"2255625","O-T0-14":"470625","O-T1-14":"241625","O-T2-14":"463625","O-T0-16":"617625","O-T1-16":"327625","O-T2-16":"895625","O-T0-17":"1359625","O-T1-17":"2507625","O-T2-17":"2131625","O-T0-18":"372625","O-T1-18":"1384625","O-T2-18":"1693625","O-T0-20":"483625","O-T1-20":"299625","O-T2-20":"759625","O-T0-22":"548625","O-T1-22":"342625","O-T2-22":"2658625","O-T0-23":"242625","O-T1-23":"717625","O-T2-23":"2786625","Me-T0-01":"491625","Me-T1-01":"376625","Me-T2-01":"358625","Me-T0-03":"2074625","Me-T1-03":"2918625","Me-T2-03":"4818625","Me-T0-04":"1322625","Me-T1-04":"708625","Me-T2-04":"2435625","Me-T0-05":"842625","Me-T1-05":"2277625","Me-T2-05":"997625","Me-T0-06":"1660625","Me-T1-06":"953625","Me-T2-06":"1404625","Me-T0-07":"2136625","Me-T1-07":"3071625","Me-T2-07":"4039625","Me-T0-08":"655625","Me-T1-08":"793625","Me-T2-08":"11522625","Me-T0-10":"1465625","Me-T1-10":"1826625","Me-T2-10":"375625","Me-T0-11":"672625","Me-T1-11":"999625","Me-T2-11":"1592625","Me-T0-12":"251625","Me-T1-12":"420625","Me-T2-12":"1302625","Me-T0-16":"239625","Me-T1-16":"996625","Me-T2-16":"1463625","Me-T0-17":"1794625","Me-T1-17":"534625","Me-T2-17":"351625","Me-T0-18":"247625","Me-T1-18":"1212625","Me-T2-18":"903625","Me-T0-19":"516625","Me-T1-19":"71625","Me-T2-19":"415625","Me-T0-20":"13288625","Me-T1-20":"611625","Me-T2-20":"1239625","Me-T0-21":"296625","Me-T1-21":"1689625","Me-T2-21":"965625","Me-T0-22":"522625","Me-T1-22":"49625","Me-T2-22":"361625","Me-T0-23":"971625","Me-T1-23":"773625","Me-T2-23":"1566625","Me-T0-25":"747625","Me-T1-25":"5616625","Me-T2-25":"479625","Me-T0-26":"1312625","Me-T1-26":"991625","Me-T2-26":"1300625","Me-T0-27":"532625","Me-T1-27":"-22375","Me-T2-27":"149625","Me-T0-29":"2174625","Me-T1-29":"3624625","Me-T2-29":"7240625","Me-T0-30":"1270625","Me-T1-30":"587625","Me-T2-30":"5246625","Me-T0-31":"659625","Me-T1-31":"485625","Me-T2-31":"1709625","Me-T0-32":"246625","Me-T1-32":"797625","Me-T2-32":"1086625","Me-T0-33":"37625","Me-T1-33":"1186625","Me-T2-33":"1524625","Me-T0-34":"2665625","Me-T1-34":"560625","Me-T2-34":"1301625","Me-T0-35":"564625","Me-T1-35":"615625","Me-T2-35":"859625","Me-T0-37":"520625","Me-T1-37":"540625","Me-T2-37":"794625","Me-T0-38":"1465625","Me-T1-38":"988625","Me-T2-38":"513625","Me-T0-39":"3472625","Me-T1-39":"277625","Me-T2-39":"271625","Me-T0-40":"7345625","Me-T1-40":"12937625","Me-T2-40":"827625","Me-T0-41":"-633375","Me-T1-41":"400625","Me-T2-41":"407625","Me-T0-42":"1486625","Me-T1-42":"540625","Me-T2-42":"1387625","Me-T0-43":"880625","Me-T1-43":"291625","Me-T2-43":"610625","Me-T0-45":"907625","Me-T1-45":"1287625","Me-T2-45":"1266625"},{"Metabolite":"Arachidonic acid","O-T0-01":"52233875","O-T1-01":"82395875","O-T2-01":"20771875","O-T0-02":"17842875","O-T1-02":"15606875","O-T2-02":"17792875","O-T0-03":"22194875","O-T1-03":"28170875","O-T2-03":"22925875","O-T0-04":"15731875","O-T1-04":"16016875","O-T2-04":"15967875","O-T0-05":"11796875","O-T1-05":"28638875","O-T2-05":"28616875","O-T0-06":"20213875","O-T1-06":"21611875","O-T2-06":"31604875","O-T0-08":"31888875","O-T1-08":"15122875","O-T2-08":"33226875","O-T0-09":"24346875","O-T1-09":"32454875","O-T2-09":"31227875","O-T0-10":"13709875","O-T1-10":"10746875","O-T2-10":"24012875","O-T0-12":"18356875","O-T1-12":"22490875","O-T2-12":"31739875","O-T0-13":"12826875","O-T1-13":"20990875","O-T2-13":"16643875","O-T0-14":"23753875","O-T1-14":"17918875","O-T2-14":"17408875","O-T0-16":"11057875","O-T1-16":"18707875","O-T2-16":"16520875","O-T0-17":"40903875","O-T1-17":"34729875","O-T2-17":"28482875","O-T0-18":"48993875","O-T1-18":"15900875","O-T2-18":"18485875","O-T0-20":"21736875","O-T1-20":"18782875","O-T2-20":"23403875","O-T0-22":"19920875","O-T1-22":"18926875","O-T2-22":"23590875","O-T0-23":"17620875","O-T1-23":"17502875","O-T2-23":"34837875","Me-T0-01":"16986875","Me-T1-01":"18067875","Me-T2-01":"14263875","Me-T0-03":"20197875","Me-T1-03":"25473875","Me-T2-03":"34022875","Me-T0-04":"40396875","Me-T1-04":"25063875","Me-T2-04":"41047875","Me-T0-05":"20608875","Me-T1-05":"23596875","Me-T2-05":"17096875","Me-T0-06":"36284875","Me-T1-06":"21393875","Me-T2-06":"21298875","Me-T0-07":"19250875","Me-T1-07":"24196875","Me-T2-07":"31937875","Me-T0-08":"23810875","Me-T1-08":"23673875","Me-T2-08":"23626875","Me-T0-10":"24387875","Me-T1-10":"35735875","Me-T2-10":"12368875","Me-T0-11":"27263875","Me-T1-11":"15135875","Me-T2-11":"27576875","Me-T0-12":"19715875","Me-T1-12":"19607875","Me-T2-12":"33567875","Me-T0-16":"18222875","Me-T1-16":"14701875","Me-T2-16":"17119875","Me-T0-17":"20472875","Me-T1-17":"31983875","Me-T2-17":"21035875","Me-T0-18":"25699875","Me-T1-18":"33211875","Me-T2-18":"25955875","Me-T0-19":"24486875","Me-T1-19":"21904875","Me-T2-19":"45069875","Me-T0-20":"79374875","Me-T1-20":"18898875","Me-T2-20":"37807875","Me-T0-21":"20873875","Me-T1-21":"32639875","Me-T2-21":"36729875","Me-T0-22":"29304875","Me-T1-22":"18112875","Me-T2-22":"36447875","Me-T0-23":"34822875","Me-T1-23":"22993875","Me-T2-23":"33759875","Me-T0-25":"23479875","Me-T1-25":"36678875","Me-T2-25":"17132875","Me-T0-26":"18582875","Me-T1-26":"10808875","Me-T2-26":"45079875","Me-T0-27":"10505875","Me-T1-27":"13435875","Me-T2-27":"16243875","Me-T0-29":"20935875","Me-T1-29":"29580875","Me-T2-29":"47714875","Me-T0-30":"27885875","Me-T1-30":"14496875","Me-T2-30":"29343875","Me-T0-31":"12785875","Me-T1-31":"13434875","Me-T2-31":"24243875","Me-T0-32":"21698875","Me-T1-32":"39155875","Me-T2-32":"23563875","Me-T0-33":"19974875","Me-T1-33":"24197875","Me-T2-33":"22501875","Me-T0-34":"35308875","Me-T1-34":"21223875","Me-T2-34":"51728875","Me-T0-35":"17313875","Me-T1-35":"17939875","Me-T2-35":"12183875","Me-T0-37":"13395875","Me-T1-37":"20656875","Me-T2-37":"38608875","Me-T0-38":"25008875","Me-T1-38":"13977875","Me-T2-38":"14154875","Me-T0-39":"40543875","Me-T1-39":"16253875","Me-T2-39":"24258875","Me-T0-40":"50256875","Me-T1-40":"82825875","Me-T2-40":"20247875","Me-T0-41":"316875","Me-T1-41":"15530875","Me-T2-41":"15490875","Me-T0-42":"39668875","Me-T1-42":"18037875","Me-T2-42":"34473875","Me-T0-43":"25025875","Me-T1-43":"17784875","Me-T2-43":"38153875","Me-T0-45":"19898875","Me-T1-45":"19545875","Me-T2-45":"17221875"},{"Metabolite":"Oleic acid","O-T0-01":"596837125","O-T1-01":"860125125","O-T2-01":"268164125","O-T0-02":"170457125","O-T1-02":"185831125","O-T2-02":"216172125","O-T0-03":"243657125","O-T1-03":"409130125","O-T2-03":"226790125","O-T0-04":"263741125","O-T1-04":"267316125","O-T2-04":"258360125","O-T0-05":"127968125","O-T1-05":"322280125","O-T2-05":"151820125","O-T0-06":"81094125","O-T1-06":"91933125","O-T2-06":"510518125","O-T0-08":"499938125","O-T1-08":"92297125","O-T2-08":"587227125","O-T0-09":"298489125","O-T1-09":"155849125","O-T2-09":"137612125","O-T0-10":"142753125","O-T1-10":"161258125","O-T2-10":"67965125","O-T0-12":"233937125","O-T1-12":"292225125","O-T2-12":"384079125","O-T0-13":"225419125","O-T1-13":"366595125","O-T2-13":"456443125","O-T0-14":"78514125","O-T1-14":"111627125","O-T2-14":"87415125","O-T0-16":"81133125","O-T1-16":"214328125","O-T2-16":"232697125","O-T0-17":"230764125","O-T1-17":"496120125","O-T2-17":"474003125","O-T0-18":"392521125","O-T1-18":"180012125","O-T2-18":"217952125","O-T0-20":"250207125","O-T1-20":"132493125","O-T2-20":"182567125","O-T0-22":"257213125","O-T1-22":"196020125","O-T2-22":"423897125","O-T0-23":"87636125","O-T1-23":"331430125","O-T2-23":"635544125","Me-T0-01":"219314125","Me-T1-01":"276385125","Me-T2-01":"71114125","Me-T0-03":"233908125","Me-T1-03":"300489125","Me-T2-03":"395398125","Me-T0-04":"162598125","Me-T1-04":"435032125","Me-T2-04":"406886125","Me-T0-05":"199228125","Me-T1-05":"187058125","Me-T2-05":"61124125","Me-T0-06":"292049125","Me-T1-06":"300584125","Me-T2-06":"276051125","Me-T0-07":"238457125","Me-T1-07":"293873125","Me-T2-07":"397780125","Me-T0-08":"236934125","Me-T1-08":"370265125","Me-T2-08":"391407125","Me-T0-10":"286073125","Me-T1-10":"217018125","Me-T2-10":"63614125","Me-T0-11":"166707125","Me-T1-11":"271800125","Me-T2-11":"493992125","Me-T0-12":"115159125","Me-T1-12":"182586125","Me-T2-12":"513153125","Me-T0-16":"133719125","Me-T1-16":"182703125","Me-T2-16":"213328125","Me-T0-17":"374717125","Me-T1-17":"206962125","Me-T2-17":"116195125","Me-T0-18":"58299125","Me-T1-18":"359370125","Me-T2-18":"213180125","Me-T0-19":"421957125","Me-T1-19":"154711125","Me-T2-19":"84424125","Me-T0-20":"930705125","Me-T1-20":"272893125","Me-T2-20":"582679125","Me-T0-21":"241420125","Me-T1-21":"228085125","Me-T2-21":"251239125","Me-T0-22":"121289125","Me-T1-22":"157091125","Me-T2-22":"150390125","Me-T0-23":"449999125","Me-T1-23":"394160125","Me-T2-23":"580940125","Me-T0-25":"275852125","Me-T1-25":"300116125","Me-T2-25":"279107125","Me-T0-26":"259474125","Me-T1-26":"121484125","Me-T2-26":"158516125","Me-T0-27":"61575125","Me-T1-27":"119244125","Me-T2-27":"176967125","Me-T0-29":"297850125","Me-T1-29":"401507125","Me-T2-29":"616400125","Me-T0-30":"317834125","Me-T1-30":"320861125","Me-T2-30":"190267125","Me-T0-31":"154967125","Me-T1-31":"84214125","Me-T2-31":"274561125","Me-T0-32":"139046125","Me-T1-32":"573497125","Me-T2-32":"235170125","Me-T0-33":"67736125","Me-T1-33":"183714125","Me-T2-33":"294510125","Me-T0-34":"484729125","Me-T1-34":"209664125","Me-T2-34":"696052125","Me-T0-35":"272711125","Me-T1-35":"272620125","Me-T2-35":"178408125","Me-T0-37":"68475125","Me-T1-37":"248137125","Me-T2-37":"572003125","Me-T0-38":"172454125","Me-T1-38":"290305125","Me-T2-38":"152486125","Me-T0-39":"673383125","Me-T1-39":"189248125","Me-T2-39":"137208125","Me-T0-40":"590181125","Me-T1-40":"871576125","Me-T2-40":"266173125","Me-T0-41":"-11429875","Me-T1-41":"252353125","Me-T2-41":"254206125","Me-T0-42":"384131125","Me-T1-42":"166237125","Me-T2-42":"433147125","Me-T0-43":"413237125","Me-T1-43":"255254125","Me-T2-43":"79355125","Me-T0-45":"122252125","Me-T1-45":"257026125","Me-T2-45":"184982125"},{"Metabolite":"Bilirubin","O-T0-01":"975","O-T1-01":"1122","O-T2-01":"283","O-T0-02":"272","O-T1-02":"282","O-T2-02":"395","O-T0-03":"802","O-T1-03":"987","O-T2-03":"967","O-T0-04":"1095","O-T1-04":"703","O-T2-04":"659","O-T0-05":"455","O-T1-05":"654","O-T2-05":"859","O-T0-06":"402","O-T1-06":"1050","O-T2-06":"166","O-T0-08":"670","O-T1-08":"569","O-T2-08":"172","O-T0-09":"418","O-T1-09":"733","O-T2-09":"366","O-T0-10":"624","O-T1-10":"708","O-T2-10":"638","O-T0-12":"382","O-T1-12":"394","O-T2-12":"582","O-T0-13":"210","O-T1-13":"591","O-T2-13":"351","O-T0-14":"344","O-T1-14":"1339","O-T2-14":"1048","O-T0-16":"505","O-T1-16":"256","O-T2-16":"379","O-T0-17":"242","O-T1-17":"1195","O-T2-17":"747","O-T0-18":"367","O-T1-18":"263","O-T2-18":"332","O-T0-20":"405","O-T1-20":"722","O-T2-20":"538","O-T0-22":"813","O-T1-22":"936","O-T2-22":"450","O-T0-23":"825","O-T1-23":"834","O-T2-23":"141","Me-T0-01":"454","Me-T1-01":"394","Me-T2-01":"426","Me-T0-03":"322","Me-T1-03":"429","Me-T2-03":"576","Me-T0-04":"452","Me-T1-04":"567","Me-T2-04":"611","Me-T0-05":"409","Me-T1-05":"826","Me-T2-05":"1423","Me-T0-06":"121","Me-T1-06":"919","Me-T2-06":"366","Me-T0-07":"257","Me-T1-07":"400","Me-T2-07":"555","Me-T0-08":"2560","Me-T1-08":"1867","Me-T2-08":"222","Me-T0-10":"534","Me-T1-10":"276","Me-T2-10":"668","Me-T0-11":"703","Me-T1-11":"323","Me-T2-11":"621","Me-T0-12":"173","Me-T1-12":"322","Me-T2-12":"814","Me-T0-16":"736","Me-T1-16":"365","Me-T2-16":"327","Me-T0-17":"206","Me-T1-17":"190","Me-T2-17":"675","Me-T0-18":"1041","Me-T1-18":"321","Me-T2-18":"894","Me-T0-19":"366","Me-T1-19":"367","Me-T2-19":"227","Me-T0-20":"1698","Me-T1-20":"416","Me-T2-20":"234","Me-T0-21":"2395","Me-T1-21":"2647","Me-T2-21":"2151","Me-T0-22":"1228","Me-T1-22":"1559","Me-T2-22":"1751","Me-T0-23":"400","Me-T1-23":"513","Me-T2-23":"1426","Me-T0-25":"180","Me-T1-25":"172","Me-T2-25":"739","Me-T0-26":"356","Me-T1-26":"473","Me-T2-26":"600","Me-T0-27":"964","Me-T1-27":"498","Me-T2-27":"548","Me-T0-29":"739","Me-T1-29":"787","Me-T2-29":"1328","Me-T0-30":"1343","Me-T1-30":"357","Me-T2-30":"465","Me-T0-31":"378","Me-T1-31":"289","Me-T2-31":"239","Me-T0-32":"1190","Me-T1-32":"351","Me-T2-32":"993","Me-T0-33":"1102","Me-T1-33":"557","Me-T2-33":"153","Me-T0-34":"627","Me-T1-34":"787","Me-T2-34":"428","Me-T0-35":"536","Me-T1-35":"577","Me-T2-35":"510","Me-T0-37":"1704","Me-T1-37":"1587","Me-T2-37":"830","Me-T0-38":"478","Me-T1-38":"491","Me-T2-38":"351","Me-T0-39":"355","Me-T1-39":"1313","Me-T2-39":"1369","Me-T0-40":"772","Me-T1-40":"1251","Me-T2-40":"230","Me-T0-41":"0","Me-T1-41":"1421","Me-T2-41":"1145","Me-T0-42":"537","Me-T1-42":"485","Me-T2-42":"931","Me-T0-43":"534","Me-T1-43":"1026","Me-T2-43":"690","Me-T0-45":"241","Me-T1-45":"455","Me-T2-45":"601"},{"Metabolite":"Oleamide","O-T0-01":"3201125","O-T1-01":"7884125","O-T2-01":"-1040875","O-T0-02":"-927875","O-T1-02":"-920875","O-T2-02":"-626875","O-T0-03":"-897875","O-T1-03":"-1022875","O-T2-03":"-1121875","O-T0-04":"-148875","O-T1-04":"-259875","O-T2-04":"-63875","O-T0-05":"-853875","O-T1-05":"-1088875","O-T2-05":"-1128875","O-T0-06":"-1094875","O-T1-06":"-739875","O-T2-06":"-965875","O-T0-08":"-574875","O-T1-08":"-1061875","O-T2-08":"-810875","O-T0-09":"-938875","O-T1-09":"-799875","O-T2-09":"-847875","O-T0-10":"-1092875","O-T1-10":"-907875","O-T2-10":"-843875","O-T0-12":"-1014875","O-T1-12":"-271875","O-T2-12":"1041125","O-T0-13":"-894875","O-T1-13":"-1121875","O-T2-13":"-944875","O-T0-14":"-556875","O-T1-14":"-741875","O-T2-14":"-779875","O-T0-16":"-820875","O-T1-16":"-835875","O-T2-16":"-985875","O-T0-17":"-1088875","O-T1-17":"-1058875","O-T2-17":"-739875","O-T0-18":"-1060875","O-T1-18":"-775875","O-T2-18":"-465875","O-T0-20":"-890875","O-T1-20":"-1116875","O-T2-20":"-1076875","O-T0-22":"-879875","O-T1-22":"-913875","O-T2-22":"-1132875","O-T0-23":"-785875","O-T1-23":"-828875","O-T2-23":"-1229875","Me-T0-01":"-1020875","Me-T1-01":"-1012875","Me-T2-01":"-1116875","Me-T0-03":"-809875","Me-T1-03":"-216875","Me-T2-03":"949125","Me-T0-04":"-1073875","Me-T1-04":"-933875","Me-T2-04":"-839875","Me-T0-05":"-970875","Me-T1-05":"-1036875","Me-T2-05":"-1078875","Me-T0-06":"-912875","Me-T1-06":"-974875","Me-T2-06":"-1101875","Me-T0-07":"-781875","Me-T1-07":"-93875","Me-T2-07":"943125","Me-T0-08":"-703875","Me-T1-08":"-655875","Me-T2-08":"-948875","Me-T0-10":"-980875","Me-T1-10":"-1434875","Me-T2-10":"-1224875","Me-T0-11":"-1027875","Me-T1-11":"-976875","Me-T2-11":"-1031875","Me-T0-12":"-920875","Me-T1-12":"-1156875","Me-T2-12":"-1027875","Me-T0-16":"-1064875","Me-T1-16":"-1241875","Me-T2-16":"-727875","Me-T0-17":"-1035875","Me-T1-17":"-1023875","Me-T2-17":"-1199875","Me-T0-18":"-1040875","Me-T1-18":"-1131875","Me-T2-18":"-964875","Me-T0-19":"-876875","Me-T1-19":"-1050875","Me-T2-19":"-1134875","Me-T0-20":"8876125","Me-T1-20":"-602875","Me-T2-20":"-832875","Me-T0-21":"-1191875","Me-T1-21":"-606875","Me-T2-21":"-866875","Me-T0-22":"-980875","Me-T1-22":"-994875","Me-T2-22":"-1346875","Me-T0-23":"-1026875","Me-T1-23":"-790875","Me-T2-23":"-1204875","Me-T0-25":"-1092875","Me-T1-25":"-976875","Me-T2-25":"-1249875","Me-T0-26":"-908875","Me-T1-26":"-857875","Me-T2-26":"-1112875","Me-T0-27":"-945875","Me-T1-27":"-876875","Me-T2-27":"-1141875","Me-T0-29":"308125","Me-T1-29":"2027125","Me-T2-29":"3940125","Me-T0-30":"-887875","Me-T1-30":"-1057875","Me-T2-30":"-690875","Me-T0-31":"-834875","Me-T1-31":"-1199875","Me-T2-31":"-1092875","Me-T0-32":"-784875","Me-T1-32":"-354875","Me-T2-32":"-1127875","Me-T0-33":"-1172875","Me-T1-33":"-1006875","Me-T2-33":"-811875","Me-T0-34":"-913875","Me-T1-34":"-937875","Me-T2-34":"-1157875","Me-T0-35":"-568875","Me-T1-35":"-669875","Me-T2-35":"-720875","Me-T0-37":"-708875","Me-T1-37":"-955875","Me-T2-37":"-1126875","Me-T0-38":"-887875","Me-T1-38":"-861875","Me-T2-38":"-941875","Me-T0-39":"-1062875","Me-T1-39":"-1149875","Me-T2-39":"-922875","Me-T0-40":"3425125","Me-T1-40":"7311125","Me-T2-40":"-894875","Me-T0-41":"-200875","Me-T1-41":"-103875","Me-T2-41":"-69875","Me-T0-42":"-978875","Me-T1-42":"-999875","Me-T2-42":"-942875","Me-T0-43":"-806875","Me-T1-43":"-740875","Me-T2-43":"-637875","Me-T0-45":"-906875","Me-T1-45":"-969875","Me-T2-45":"-930875"},{"Metabolite":"Lactic acid","O-T0-01":"144296375","O-T1-01":"196952375","O-T2-01":"22648375","O-T0-02":"44890375","O-T1-02":"72902375","O-T2-02":"76969375","O-T0-03":"41084375","O-T1-03":"35616375","O-T2-03":"40265375","O-T0-04":"29458375","O-T1-04":"28658375","O-T2-04":"28394375","O-T0-05":"56917375","O-T1-05":"38359375","O-T2-05":"41062375","O-T0-06":"84666375","O-T1-06":"86757375","O-T2-06":"29824375","O-T0-08":"55423375","O-T1-08":"55639375","O-T2-08":"25985375","O-T0-09":"57454375","O-T1-09":"61854375","O-T2-09":"56122375","O-T0-10":"50211375","O-T1-10":"68792375","O-T2-10":"59164375","O-T0-12":"75588375","O-T1-12":"83536375","O-T2-12":"102666375","O-T0-13":"105883375","O-T1-13":"42164375","O-T2-13":"36635375","O-T0-14":"29018375","O-T1-14":"22656375","O-T2-14":"49464375","O-T0-16":"56053375","O-T1-16":"96568375","O-T2-16":"48681375","O-T0-17":"62190375","O-T1-17":"67933375","O-T2-17":"51446375","O-T0-18":"40614375","O-T1-18":"78088375","O-T2-18":"84438375","O-T0-20":"31957375","O-T1-20":"49394375","O-T2-20":"42285375","O-T0-22":"24356375","O-T1-22":"42045375","O-T2-22":"39817375","O-T0-23":"35758375","O-T1-23":"40553375","O-T2-23":"28035375","Me-T0-01":"52576375","Me-T1-01":"64938375","Me-T2-01":"117413375","Me-T0-03":"87036375","Me-T1-03":"98383375","Me-T2-03":"118628375","Me-T0-04":"33485375","Me-T1-04":"18664375","Me-T2-04":"36151375","Me-T0-05":"51494375","Me-T1-05":"47133375","Me-T2-05":"40895375","Me-T0-06":"73680375","Me-T1-06":"54017375","Me-T2-06":"70243375","Me-T0-07":"81164375","Me-T1-07":"90505375","Me-T2-07":"108428375","Me-T0-08":"64419375","Me-T1-08":"69079375","Me-T2-08":"24742375","Me-T0-10":"78296375","Me-T1-10":"51962375","Me-T2-10":"35276375","Me-T0-11":"48331375","Me-T1-11":"29393375","Me-T2-11":"52449375","Me-T0-12":"64187375","Me-T1-12":"61054375","Me-T2-12":"31648375","Me-T0-16":"86751375","Me-T1-16":"67908375","Me-T2-16":"71785375","Me-T0-17":"38260375","Me-T1-17":"36257375","Me-T2-17":"22533375","Me-T0-18":"59957375","Me-T1-18":"71551375","Me-T2-18":"69056375","Me-T0-19":"34269375","Me-T1-19":"41822375","Me-T2-19":"68418375","Me-T0-20":"175842375","Me-T1-20":"26099375","Me-T2-20":"85978375","Me-T0-21":"21806375","Me-T1-21":"57917375","Me-T2-21":"54790375","Me-T0-22":"34094375","Me-T1-22":"24260375","Me-T2-22":"31428375","Me-T0-23":"28722375","Me-T1-23":"26737375","Me-T2-23":"62364375","Me-T0-25":"41894375","Me-T1-25":"69816375","Me-T2-25":"52048375","Me-T0-26":"45735375","Me-T1-26":"41710375","Me-T2-26":"48145375","Me-T0-27":"31450375","Me-T1-27":"72309375","Me-T2-27":"75623375","Me-T0-29":"89430375","Me-T1-29":"105153375","Me-T2-29":"132268375","Me-T0-30":"41380375","Me-T1-30":"30450375","Me-T2-30":"73156375","Me-T0-31":"55827375","Me-T1-31":"40797375","Me-T2-31":"32782375","Me-T0-32":"74721375","Me-T1-32":"39843375","Me-T2-32":"70333375","Me-T0-33":"41953375","Me-T1-33":"49337375","Me-T2-33":"28316375","Me-T0-34":"43978375","Me-T1-34":"64237375","Me-T2-34":"48848375","Me-T0-35":"29324375","Me-T1-35":"29559375","Me-T2-35":"77036375","Me-T0-37":"47164375","Me-T1-37":"57656375","Me-T2-37":"24271375","Me-T0-38":"32132375","Me-T1-38":"47902375","Me-T2-38":"47280375","Me-T0-39":"71072375","Me-T1-39":"63036375","Me-T2-39":"52206375","Me-T0-40":"134591375","Me-T1-40":"184301375","Me-T2-40":"22604375","Me-T0-41":"-232625","Me-T1-41":"26796375","Me-T2-41":"28802375","Me-T0-42":"28749375","Me-T1-42":"36802375","Me-T2-42":"25287375","Me-T0-43":"66292375","Me-T1-43":"52621375","Me-T2-43":"51336375","Me-T0-45":"59422375","Me-T1-45":"33408375","Me-T2-45":"30757375"},{"Metabolite":"Pyruvic acid","O-T0-01":"1472","O-T1-01":"2369","O-T2-01":"716","O-T0-02":"511","O-T1-02":"597","O-T2-02":"676","O-T0-03":"700","O-T1-03":"549","O-T2-03":"572","O-T0-04":"1631","O-T1-04":"1590","O-T2-04":"1543","O-T0-05":"981","O-T1-05":"569","O-T2-05":"612","O-T0-06":"1778","O-T1-06":"1973","O-T2-06":"759","O-T0-08":"683","O-T1-08":"633","O-T2-08":"518","O-T0-09":"743","O-T1-09":"607","O-T2-09":"1276","O-T0-10":"1162","O-T1-10":"1059","O-T2-10":"942","O-T0-12":"723","O-T1-12":"795","O-T2-12":"1003","O-T0-13":"1353","O-T1-13":"453","O-T2-13":"522","O-T0-14":"673","O-T1-14":"645","O-T2-14":"898","O-T0-16":"918","O-T1-16":"1580","O-T2-16":"1044","O-T0-17":"511","O-T1-17":"1146","O-T2-17":"974","O-T0-18":"827","O-T1-18":"662","O-T2-18":"650","O-T0-20":"1215","O-T1-20":"1273","O-T2-20":"1096","O-T0-22":"440","O-T1-22":"881","O-T2-22":"951","O-T0-23":"778","O-T1-23":"1259","O-T2-23":"636","Me-T0-01":"1296","Me-T1-01":"1200","Me-T2-01":"1861","Me-T0-03":"672","Me-T1-03":"803","Me-T2-03":"1019","Me-T0-04":"616","Me-T1-04":"451","Me-T2-04":"673","Me-T0-05":"1209","Me-T1-05":"1206","Me-T2-05":"695","Me-T0-06":"491","Me-T1-06":"1662","Me-T2-06":"1195","Me-T0-07":"733","Me-T1-07":"792","Me-T2-07":"1013","Me-T0-08":"924","Me-T1-08":"925","Me-T2-08":"632","Me-T0-10":"1704","Me-T1-10":"356","Me-T2-10":"863","Me-T0-11":"598","Me-T1-11":"558","Me-T2-11":"679","Me-T0-12":"926","Me-T1-12":"759","Me-T2-12":"646","Me-T0-16":"1417","Me-T1-16":"648","Me-T2-16":"669","Me-T0-17":"566","Me-T1-17":"265","Me-T2-17":"297","Me-T0-18":"969","Me-T1-18":"1341","Me-T2-18":"1451","Me-T0-19":"504","Me-T1-19":"906","Me-T2-19":"411","Me-T0-20":"3292","Me-T1-20":"1113","Me-T2-20":"2012","Me-T0-21":"524","Me-T1-21":"1007","Me-T2-21":"1051","Me-T0-22":"509","Me-T1-22":"454","Me-T2-22":"411","Me-T0-23":"755","Me-T1-23":"620","Me-T2-23":"981","Me-T0-25":"438","Me-T1-25":"433","Me-T2-25":"1222","Me-T0-26":"933","Me-T1-26":"1310","Me-T2-26":"570","Me-T0-27":"715","Me-T1-27":"828","Me-T2-27":"1236","Me-T0-29":"1169","Me-T1-29":"1484","Me-T2-29":"2097","Me-T0-30":"903","Me-T1-30":"497","Me-T2-30":"1007","Me-T0-31":"1538","Me-T1-31":"1038","Me-T2-31":"892","Me-T0-32":"1661","Me-T1-32":"658","Me-T2-32":"1024","Me-T0-33":"979","Me-T1-33":"1076","Me-T2-33":"724","Me-T0-34":"757","Me-T1-34":"1323","Me-T2-34":"952","Me-T0-35":"1409","Me-T1-35":"1383","Me-T2-35":"1026","Me-T0-37":"1623","Me-T1-37":"804","Me-T2-37":"691","Me-T0-38":"720","Me-T1-38":"896","Me-T2-38":"1325","Me-T0-39":"1438","Me-T1-39":"637","Me-T2-39":"828","Me-T0-40":"1483","Me-T1-40":"2452","Me-T2-40":"731","Me-T0-41":"0","Me-T1-41":"1727","Me-T2-41":"1662","Me-T0-42":"515","Me-T1-42":"1198","Me-T2-42":"638","Me-T0-43":"2700","Me-T1-43":"1573","Me-T2-43":"399","Me-T0-45":"848","Me-T1-45":"476","Me-T2-45":"560"},{"Metabolite":"Sphingosine d7","O-T0-01":"947074","O-T1-01":"988434","O-T2-01":"1015364","O-T0-02":"936819","O-T1-02":"905407","O-T2-02":"950256","O-T0-03":"961481","O-T1-03":"1020198","O-T2-03":"971623","O-T0-04":"800113","O-T1-04":"795881","O-T2-04":"791000","O-T0-05":"913838","O-T1-05":"916830","O-T2-05":"866244","O-T0-06":"905149","O-T1-06":"918133","O-T2-06":"892010","O-T0-08":"938320","O-T1-08":"906270","O-T2-08":"916063","O-T0-09":"891600","O-T1-09":"885090","O-T2-09":"884487","O-T0-10":"962788","O-T1-10":"982468","O-T2-10":"1001038","O-T0-12":"948519","O-T1-12":"883380","O-T2-12":"916385","O-T0-13":"959080","O-T1-13":"924153","O-T2-13":"973027","O-T0-14":"833473","O-T1-14":"816027","O-T2-14":"843302","O-T0-16":"1199799","O-T1-16":"945502","O-T2-16":"952152","O-T0-17":"917754","O-T1-17":"970024","O-T2-17":"949447","O-T0-18":"949391","O-T1-18":"953398","O-T2-18":"903466","O-T0-20":"906309","O-T1-20":"916952","O-T2-20":"842021","O-T0-22":"886675","O-T1-22":"915519","O-T2-22":"942389","O-T0-23":"877455","O-T1-23":"854765","O-T2-23":"872882","Me-T0-01":"950052","Me-T1-01":"955743","Me-T2-01":"962796","Me-T0-03":"936346","Me-T1-03":"958972","Me-T2-03":"913631","Me-T0-04":"962281","Me-T1-04":"952964","Me-T2-04":"930748","Me-T0-05":"943825","Me-T1-05":"955100","Me-T2-05":"930817","Me-T0-06":"902403","Me-T1-06":"909961","Me-T2-06":"915137","Me-T0-07":"982559","Me-T1-07":"977769","Me-T2-07":"970155","Me-T0-08":"849269","Me-T1-08":"891862","Me-T2-08":"878319","Me-T0-10":"919851","Me-T1-10":"889515","Me-T2-10":"900934","Me-T0-11":"913161","Me-T1-11":"1007672","Me-T2-11":"989609","Me-T0-12":"839624","Me-T1-12":"835782","Me-T2-12":"833692","Me-T0-16":"894156","Me-T1-16":"936848","Me-T2-16":"880536","Me-T0-17":"917843","Me-T1-17":"906355","Me-T2-17":"895566","Me-T0-18":"896161","Me-T1-18":"887545","Me-T2-18":"942804","Me-T0-19":"945967","Me-T1-19":"925674","Me-T2-19":"901315","Me-T0-20":"820291","Me-T1-20":"823435","Me-T2-20":"820595","Me-T0-21":"947339","Me-T1-21":"948226","Me-T2-21":"955861","Me-T0-22":"916080","Me-T1-22":"912582","Me-T2-22":"912984","Me-T0-23":"826592","Me-T1-23":"818985","Me-T2-23":"827136","Me-T0-25":"898639","Me-T1-25":"935287","Me-T2-25":"913800","Me-T0-26":"934635","Me-T1-26":"991288","Me-T2-26":"925752","Me-T0-27":"963461","Me-T1-27":"978551","Me-T2-27":"984916","Me-T0-29":"823955","Me-T1-29":"807827","Me-T2-29":"829738","Me-T0-30":"877585","Me-T1-30":"961594","Me-T2-30":"889125","Me-T0-31":"928561","Me-T1-31":"954724","Me-T2-31":"965443","Me-T0-32":"870027","Me-T1-32":"937431","Me-T2-32":"923214","Me-T0-33":"840092","Me-T1-33":"852014","Me-T2-33":"841196","Me-T0-34":"886364","Me-T1-34":"846743","Me-T2-34":"857238","Me-T0-35":"800669","Me-T1-35":"804845","Me-T2-35":"805892","Me-T0-37":"832764","Me-T1-37":"830050","Me-T2-37":"839692","Me-T0-38":"907227","Me-T1-38":"942124","Me-T2-38":"960911","Me-T0-39":"925373","Me-T1-39":"922718","Me-T2-39":"876726","Me-T0-40":"900430","Me-T1-40":"921075","Me-T2-40":"914816","Me-T0-41":"787868","Me-T1-41":"780078","Me-T2-41":"808223","Me-T0-42":"836186","Me-T1-42":"838045","Me-T2-42":"822331","Me-T0-43":"820750","Me-T1-43":"828611","Me-T2-43":"824834","Me-T0-45":"943716","Me-T1-45":"948199","Me-T2-45":"918679"},{"Metabolite":"LPC 18:1 d7","O-T0-01":"180894","O-T1-01":"191120","O-T2-01":"195740","O-T0-02":"179140","O-T1-02":"178781","O-T2-02":"179438","O-T0-03":"172214","O-T1-03":"185373","O-T2-03":"177292","O-T0-04":"156321","O-T1-04":"158121","O-T2-04":"147885","O-T0-05":"180792","O-T1-05":"177171","O-T2-05":"167647","O-T0-06":"178252","O-T1-06":"177344","O-T2-06":"174119","O-T0-08":"170042","O-T1-08":"169794","O-T2-08":"167079","O-T0-09":"170703","O-T1-09":"170224","O-T2-09":"171427","O-T0-10":"188006","O-T1-10":"187081","O-T2-10":"190748","O-T0-12":"182934","O-T1-12":"173831","O-T2-12":"176425","O-T0-13":"180753","O-T1-13":"174288","O-T2-13":"179008","O-T0-14":"164148","O-T1-14":"160892","O-T2-14":"161471","O-T0-16":"227681","O-T1-16":"178099","O-T2-16":"174149","O-T0-17":"171359","O-T1-17":"181489","O-T2-17":"173632","O-T0-18":"171309","O-T1-18":"179825","O-T2-18":"156956","O-T0-20":"177691","O-T1-20":"176990","O-T2-20":"162124","O-T0-22":"174669","O-T1-22":"176139","O-T2-22":"182703","O-T0-23":"176592","O-T1-23":"168682","O-T2-23":"170722","Me-T0-01":"186552","Me-T1-01":"184214","Me-T2-01":"188164","Me-T0-03":"177080","Me-T1-03":"174846","Me-T2-03":"166732","Me-T0-04":"189487","Me-T1-04":"186147","Me-T2-04":"186305","Me-T0-05":"184703","Me-T1-05":"188201","Me-T2-05":"183328","Me-T0-06":"161278","Me-T1-06":"168840","Me-T2-06":"171927","Me-T0-07":"192251","Me-T1-07":"197332","Me-T2-07":"188058","Me-T0-08":"171968","Me-T1-08":"175484","Me-T2-08":"175107","Me-T0-10":"176846","Me-T1-10":"170350","Me-T2-10":"172722","Me-T0-11":"170808","Me-T1-11":"185269","Me-T2-11":"186653","Me-T0-12":"166148","Me-T1-12":"168065","Me-T2-12":"160402","Me-T0-16":"173019","Me-T1-16":"180539","Me-T2-16":"168772","Me-T0-17":"168530","Me-T1-17":"167155","Me-T2-17":"165186","Me-T0-18":"172332","Me-T1-18":"169972","Me-T2-18":"180446","Me-T0-19":"187767","Me-T1-19":"186463","Me-T2-19":"177225","Me-T0-20":"163057","Me-T1-20":"162407","Me-T2-20":"158180","Me-T0-21":"173895","Me-T1-21":"175345","Me-T2-21":"173214","Me-T0-22":"176980","Me-T1-22":"173779","Me-T2-22":"179143","Me-T0-23":"160706","Me-T1-23":"162777","Me-T2-23":"160253","Me-T0-25":"166247","Me-T1-25":"172880","Me-T2-25":"170256","Me-T0-26":"171628","Me-T1-26":"191090","Me-T2-26":"181477","Me-T0-27":"189384","Me-T1-27":"191220","Me-T2-27":"186688","Me-T0-29":"160284","Me-T1-29":"156157","Me-T2-29":"164588","Me-T0-30":"170801","Me-T1-30":"194523","Me-T2-30":"175428","Me-T0-31":"179126","Me-T1-31":"186439","Me-T2-31":"188861","Me-T0-32":"172958","Me-T1-32":"184143","Me-T2-32":"183322","Me-T0-33":"164107","Me-T1-33":"164478","Me-T2-33":"164571","Me-T0-34":"173965","Me-T1-34":"170845","Me-T2-34":"166869","Me-T0-35":"160111","Me-T1-35":"156581","Me-T2-35":"159751","Me-T0-37":"163391","Me-T1-37":"165488","Me-T2-37":"160775","Me-T0-38":"177970","Me-T1-38":"179644","Me-T2-38":"193129","Me-T0-39":"168258","Me-T1-39":"169400","Me-T2-39":"165731","Me-T0-40":"173112","Me-T1-40":"176720","Me-T2-40":"185492","Me-T0-41":"151561","Me-T1-41":"148741","Me-T2-41":"155942","Me-T0-42":"166227","Me-T1-42":"157849","Me-T2-42":"161982","Me-T0-43":"157271","Me-T1-43":"160530","Me-T2-43":"155634","Me-T0-45":"171776","Me-T1-45":"173840","Me-T2-45":"172715"},{"Metabolite":"Palmitic acid d31","O-T0-01":"30951","O-T1-01":"30575","O-T2-01":"32235","O-T0-02":"31278","O-T1-02":"30739","O-T2-02":"31670","O-T0-03":"34885","O-T1-03":"36772","O-T2-03":"34115","O-T0-04":"30646","O-T1-04":"31354","O-T2-04":"29790","O-T0-05":"30278","O-T1-05":"30915","O-T2-05":"28210","O-T0-06":"31673","O-T1-06":"31436","O-T2-06":"28974","O-T0-08":"35418","O-T1-08":"32169","O-T2-08":"33954","O-T0-09":"31146","O-T1-09":"28058","O-T2-09":"29339","O-T0-10":"31798","O-T1-10":"33526","O-T2-10":"31653","O-T0-12":"30715","O-T1-12":"29869","O-T2-12":"30965","O-T0-13":"35221","O-T1-13":"34030","O-T2-13":"34359","O-T0-14":"30652","O-T1-14":"28599","O-T2-14":"29696","O-T0-16":"43044","O-T1-16":"35620","O-T2-16":"33341","O-T0-17":"33990","O-T1-17":"35223","O-T2-17":"35767","O-T0-18":"33749","O-T1-18":"34894","O-T2-18":"32266","O-T0-20":"30252","O-T1-20":"31482","O-T2-20":"29021","O-T0-22":"30149","O-T1-22":"30834","O-T2-22":"31294","O-T0-23":"30144","O-T1-23":"28848","O-T2-23":"29652","Me-T0-01":"30333","Me-T1-01":"32475","Me-T2-01":"30797","Me-T0-03":"33463","Me-T1-03":"35929","Me-T2-03":"31640","Me-T0-04":"33053","Me-T1-04":"32899","Me-T2-04":"31946","Me-T0-05":"33321","Me-T1-05":"33712","Me-T2-05":"32188","Me-T0-06":"33013","Me-T1-06":"35006","Me-T2-06":"33620","Me-T0-07":"31750","Me-T1-07":"32310","Me-T2-07":"30786","Me-T0-08":"31837","Me-T1-08":"31890","Me-T2-08":"31022","Me-T0-10":"30591","Me-T1-10":"29771","Me-T2-10":"30547","Me-T0-11":"33486","Me-T1-11":"38068","Me-T2-11":"36934","Me-T0-12":"30248","Me-T1-12":"30453","Me-T2-12":"29737","Me-T0-16":"29401","Me-T1-16":"32028","Me-T2-16":"29216","Me-T0-17":"33904","Me-T1-17":"33433","Me-T2-17":"33091","Me-T0-18":"30639","Me-T1-18":"30596","Me-T2-18":"31348","Me-T0-19":"32811","Me-T1-19":"31435","Me-T2-19":"30587","Me-T0-20":"30231","Me-T1-20":"31562","Me-T2-20":"30725","Me-T0-21":"35475","Me-T1-21":"36446","Me-T2-21":"34907","Me-T0-22":"31212","Me-T1-22":"31554","Me-T2-22":"31377","Me-T0-23":"29970","Me-T1-23":"30004","Me-T2-23":"29733","Me-T0-25":"34036","Me-T1-25":"34129","Me-T2-25":"33616","Me-T0-26":"31320","Me-T1-26":"33112","Me-T2-26":"31738","Me-T0-27":"32359","Me-T1-27":"32525","Me-T2-27":"32720","Me-T0-29":"30536","Me-T1-29":"31514","Me-T2-29":"31203","Me-T0-30":"30324","Me-T1-30":"33440","Me-T2-30":"30941","Me-T0-31":"30545","Me-T1-31":"33122","Me-T2-31":"33841","Me-T0-32":"30457","Me-T1-32":"32427","Me-T2-32":"32719","Me-T0-33":"30478","Me-T1-33":"31625","Me-T2-33":"30290","Me-T0-34":"30797","Me-T1-34":"30812","Me-T2-34":"30587","Me-T0-35":"31011","Me-T1-35":"31261","Me-T2-35":"31128","Me-T0-37":"30671","Me-T1-37":"29839","Me-T2-37":"31338","Me-T0-38":"29781","Me-T1-38":"32437","Me-T2-38":"32073","Me-T0-39":"32929","Me-T1-39":"34739","Me-T2-39":"32582","Me-T0-40":"29564","Me-T1-40":"31487","Me-T2-40":"30590","Me-T0-41":"28357","Me-T1-41":"28261","Me-T2-41":"29709","Me-T0-42":"31122","Me-T1-42":"30394","Me-T2-42":"29399","Me-T0-43":"30986","Me-T1-43":"29952","Me-T2-43":"29594","Me-T0-45":"34953","Me-T1-45":"36000","Me-T2-45":"34056"}],
+
+"Metabolites":[{"Metabolite":"Sphingosine","PubChem ID":"5280335"},{"Metabolite":"Sphingosine-1-Phosphate","PubChem ID":"5283560"},{"Metabolite":"LPC 14:0","PubChem ID":"460604"},{"Metabolite":"LPC 16:0","PubChem ID":"460602"},{"Metabolite":"LPC 17:0","PubChem ID":"24779463"},{"Metabolite":"LPC 17:1","PubChem ID":"42607442"},{"Metabolite":"LPC 18:0","PubChem ID":"497299"},{"Metabolite":"LPC 18:1","PubChem ID":"24779492/24779493/24779494/24779465"},{"Metabolite":"LPC 19:0","PubChem ID":"24779472"},{"Metabolite":"LPE 18:0","PubChem ID":"53480667"},{"Metabolite":"LPI 20:4","PubChem ID":"138124432"},{"Metabolite":"Palmitoleic acid","PubChem ID":"445638"},{"Metabolite":"Lauric acid","PubChem ID":"3893"},{"Metabolite":"Arachidonic acid","PubChem ID":"444899"},{"Metabolite":"Oleic acid","PubChem ID":"445639"},{"Metabolite":"Bilirubin","PubChem ID":"5280352"},{"Metabolite":"Oleamide","PubChem ID":"5283387"},{"Metabolite":"Lactic acid","PubChem ID":"612"},{"Metabolite":"Pyruvic acid","PubChem ID":"1060"},{"Metabolite":"Sphingosine d7","PubChem ID":"129856538  "},{"Metabolite":"LPC 18:1 d7","PubChem ID":"164484290"},{"Metabolite":"Palmitic acid d31","PubChem ID":"16212358"}]
+}
+
+}
