@@ -1,0 +1,65 @@
+function R = procrustes_rot(T1o,T2o,F1,F2)
+%% procrustes_rot (set orthogonal procrustes analysis)
+% T1o, T2o are the expected values for PCA scores according to
+% some experimental factor matrices, F1 an F2 following analysis by a
+% General Linear Model (GLM). In the balanced case, for classical ANOVA
+% analysis these matrices are the mean values. They do not contain the
+% projected error matrices, as would be typical for ASCA+ type analyses.
+% 
+% The number of rows for T1o, F1 do not necessary need to equal the number
+% of rows for T2o, F2. This function scrapes for unique rows within a
+% numerical tolerance. 
+%
+% R = procrustes_rot(T1o, T2o, F1, F2)
+%
+% Inputs:
+% T1o - N1 x R Matrix of expected values in Principal Component Space for X1, F1.
+% T2o - N2 x R Matrix of expected values in Principal Component Space for X2, F2.
+% F1  - N1 x M Factor matrix for X1
+% F2  - N2 x M Factor matrix for X2
+%
+% Outputs:
+% R   - R x R Orthogonal Procrustes rotation matrix 
+%
+% The algorithm works by finding the set of unique rows, with the rank
+% presumed to be equivalent between datasets according to an identical
+% experimental design.
+%
+% coded by: Michael Sorochan Armstrong (mdarmstr@ugr.es)
+%           Jose Camacho Paez (josecamacho@ugr.es)
+%
+% last modification: /Oct/2025
+%
+% Copyright (C) 2025  University of Granada, Granada
+% Copyright (C) 2025  Jose Camacho Paez, Michael Sorochan Armstrong
+%
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+[T1u, ord1, ~] = uniquetol(T1o, 'ByRows', true, 'PreserveRange', true);
+[T2u, ord2, ~] = uniquetol(T2o, 'ByRows', true, 'PreserveRange', true);
+
+lvls1 = F1(ord1, 1);
+lvls2 = F2(ord2, 1);
+
+[~, perm_idx] = ismember(lvls1, lvls2);
+n = numel(lvls1);
+P = eye(n);
+P = P(perm_idx, :);
+T2u = P * T2u;
+
+M = T1u' * T2u;
+[Up, ~, Vp] = svd(M);
+R = Up * Vp';  % Rotation matrix
+
+end
