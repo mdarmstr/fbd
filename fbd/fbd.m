@@ -42,7 +42,7 @@ function [p,T1oe,T1r,T2oe] = fbd(parglmoA, parglmoB, F1, F2, fctrs, n_perms)
 
 X1 = parglmoA.data;
 %X2 = parglmoB.data;
-
+ 
 X1ne = parglmoA.residuals;
 X2ne = parglmoB.residuals;
 
@@ -58,8 +58,8 @@ D1 = parglmoA.D(:,parglmoA.factors{fctrs(1)}.Dvars);
 [~, ~, V2] = svds(X2n, rank(X2n));
 
 % VARIMAX rotation
-[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-6);
-V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-6);
+[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-12);
+V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-12);
 
 T1o = X1n * V1;
 T2o = X2n * V2;
@@ -85,10 +85,9 @@ for ii = 1:n_perms
     Bperm = pD1*Xperm;
     X1perm = D1*Bperm;
     [~,~,Vpm] = svds(X1perm,rank(X1perm));
-
     Tpm = X1perm * Vpm * T;
-    R = procrustes_rotation(Tpm,T2o,F1,F2);
-    [~, err] = closestSignedPermutation(R);
+    R = procrustes_rot(Tpm,T2o,F1,F2);
+    [~, err] = nnspm(R);
     Fp(ii) = err;
 end
 

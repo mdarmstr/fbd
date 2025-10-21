@@ -1,60 +1,51 @@
 % Add the MEDA toolbox to the path (ensure MEDA toolbox is installed)
 addpath(genpath('../MEDA'));
+levels = {[1, 2, 3, 4], [1, 2, 3]};
+vars = 300;
+reps = 15;
+rng('shuffle');  
 
-% Generate design matrix F using createDesign (external function)
-F = createDesign({[1, 2, 3], [1, 2, 3]}, 'Replicates', 10);
-%writematrix(F, ['F', num2str(dataset_number), '.csv']);
+F = createDesign(levels, 'Replicates', reps);
+X = zeros(size(F,1), vars);
 
-% Initialize data matrix X - 70 variables
-X = zeros(size(F, 1), 70);
-
-% Create level means
+% Prepare random effect levels
 fi = cell(1, length(levels{1}));
 fj = cell(1, length(levels{2}));
-for i = 1:length(levels{1})
-    fi{i} = randn(1, vars);
+for ii = 1:length(levels{1})
+    fi{ii} = randn(1, vars);
 end
-for j = 1:length(levels{2})
-    fj{j} = randn(1, vars);
+for jj = 1:length(levels{2})
+    fj{jj} = randn(1, vars);
 end
 
-% Populate X with simulated data using simuleMV (external function)
-for i = 1:length(levels{1})
-    for j = 1:length(levels{2})
-        idx = find(F(:, 1) == levels{1}(i) & F(:, 2) == levels{2}(j));
-        X(idx, :) = simuleMV(reps, vars, 'LevelCorr', 7) + repmat(fi{i} + fj{j}, reps, 1);
+% Generate data, incorporate "fi" and "fj" offsets
+for ii = 1:length(levels{1})
+    for jj = 1:length(levels{2})
+        idx = (F(:,1) == levels{1}(ii)) & (F(:,2) == levels{2}(jj));
+        X(idx,:) = simuleMV(sum(idx), vars, 'LevelCorr', 8) + ...
+            repmat(fi{ii} + fj{jj}, sum(idx), 1);
     end
 end
 
-% Shuffle data to ensure representation between two block diagonally
-% sampled matrices
+% Shuffle row order
 rp = randperm(size(X,1));
 X = X(rp,:);
 F = F(rp,:);
 
-% Manual block diagonal sampling, equivalent experimental rows
-A1 = ones(50,30);
-A2 = 2.*ones(40,40);
+% Split data into X1, X2
+[X1, X2] = smpl_blkdiag(X, 0.4, 'rows');
+F1 = F(1:size(X1,1), :);
+F2 = F(size(X1,1)+1:end, :);
 
-msk = blkdiag(A1,A2);
+% Fit parglm
+[~, parglmo1] = parglm(X1, F1, 'Preprocessing', 2);
+[~, parglmo2] = parglm(X2, F2, 'Preprocessing', 2);
 
-[r1,c1] = find(msk == 1);
+% Run fbd
+[p_Pos, ~, ~, ~] = fbd(parglmo1, parglmo2, F1, F2, 1, 2000);
 
-row_range1 = min(r1):max(r1);
-col_range1 = min(c1):max(c1);
-
-X1 = X(row_range1,col_range1);
-F1 = F(row_range1,:);
-
-[r1,c1] = find(msk == 2);
-
-row_range2 = min(r1):max(r1);
-col_range2 = min(c1):max(c1);
-
-X2 = X(row_range2,col_range2);
-F2 = F(row_range2,:);
-
-
+disp(p_Pos)
+disp('hello')
 
 % % Calculate projections
 % % For dataset 1 (T1) and dataset 2 (T2) before rotation:
