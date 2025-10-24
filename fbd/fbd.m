@@ -1,4 +1,4 @@
-function [p,T1oe,T1r,T2oe] = fbd(parglmoA, parglmoB, F1, F2, fctrs, n_perms)
+function [p,T1oe,T1r,T2oe,R] = fbd(parglmoA, parglmoB, F1, F2, fctrs, n_perms)
 
 %% Fusion by Design (FBD)
 %

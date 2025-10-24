@@ -16,7 +16,6 @@ classdef fbd_class < handle
         T1oe          = []
         T1r           = []
         T2oe          = []
-        R             = []
     end
 
     methods
@@ -78,7 +77,7 @@ classdef fbd_class < handle
 
         function test_congruence(obj)
 
-            [obj.congp,obj.T1oe,obj.T1r,obj.T2oe,obj.R] = fbd(obj.mdl1,obj.mdl2,obj.F1,obj.F2,...
+            [obj.congp,obj.T1oe,obj.T1r,obj.T2oe] = fbd(obj.mdl1,obj.mdl2,obj.F1,obj.F2,...
                 obj.params.Factors,obj.params.NumPerm);
             
         end
@@ -94,36 +93,9 @@ classdef fbd_class < handle
             if any(cellfun(@(x) numel(x) > 1,obj.params.Factors)) %check for interactions
                 is_term = cellfun(@(x) numel(x) > 1, obj.params.Factors);
                 is_intr = cellfun(@(x) isscalar(x), obj.params.Factors);
-                X1r = zeros(size(obj.mdl1.factors{1}.matrix));
-                X2r = zeros(size(obj.mdl2.factors{1}.matrix));
-
+                X1r = zeros(size(obj.params.mdl1.factors{1}.matrix)));
                 for ii = 1:length(is_term)
-                    X1r = X1r + obj.mdl1.factors{ii}.matrix;
-                    X2r = X2r + obj.mdl2.factors{ii}.matrix;
-                end
-
-                for ii = 1:length(is_intr)
-                    X1r = X1r + obj.mdl1.interactions{ii}.matrix;
-                    X2r = X2r + obj.mdl2.interactions{ii}.matrix;
-                end
-
-            else 
-                is_term = cellfun(@(x) numel(x) > 1, obj.params.Factors);
-                X1r = zeros(size(obj.mdl1.factors{1}.matrix));
-                X2r = zeros(size(obj.mdl2.factors{1}.matrix));
-
-                for ii = 1:length(is_term)
-                    X1r = X1r + obj.mdl1.factors{ii}.matrix;
-                    X2r = X2r + obj.mdl2.factors{ii}.matrix;                    
-                end
-
-            end
-            
-            [~,~,V1] = svds(X1r,rank(X1r));
-            [~,~,V2] = svds(X2r,rank(X2r));
-
-            X1X2e = (X1r + obj.mdl1.residuals) * V1 * obj.R * V2';
-            X1X2n = X1r * V1 * obj.R * V2';
+                    X1
 
 
                 
