@@ -12,8 +12,8 @@ F2 = D583(:,2);
 [tbl1, parglmo1] = parglm(X1, F1, 'Preprocessing', 2);
 [tbl2, parglmo2] = parglm(X2, F2, 'Preprocessing', 2);
 
-table2latex(tbl1,'X580.tex')
-table2latex(tbl2,'X583.tex')
+%table2latex(tbl1,'X580.tex')
+%table2latex(tbl2,'X583.tex')
 
 % Run fbd
 [p_rel,T1oe,T1r,T2oe] = fbd(parglmo1, parglmo2, F1, F2, 1, 1000);

@@ -5,10 +5,10 @@ addpath(genpath('../MEDA'));
 red = rgb2hsv([202, 45, 48] ./ 255);
 tel = rgb2hsv([0, 140, 186] ./ 255);
 blk = [52, 53, 54] ./ 255;
-col_mat_table = hsv2rgb(interpolateColors(red, tel, 100));
+%col_mat_table = hsv2rgb(interpolateColors(red, tel, 100));
 
 % Generate and plot datasets
-[X1,X1e,D1,F1] = create_plots_for_datasets(1, 10, 70, {[1, 2, 3], [1, 2, 3]}, col_mat_table);
+[X1,X1e,D1,F1] = create_plots_for_datasets(1, 10, 70, {[1, 2, 3], [1, 2, 3]}) %col_mat_table);
 
 rp = randperm(size(X1,1));
 

@@ -1,7 +1,7 @@
 % Add the MEDA toolbox to the path (ensure MEDA toolbox is installed)
 addpath(genpath('../MEDA'));
-levels = {[1, 2, 3, 4], [1, 2, 3]};
-vars = 300;
+levels = {[1, 2, 3, 4,5], [1, 2, 3]};
+vars = 400;
 reps = 15;
 rng('shuffle');  
 
@@ -33,19 +33,37 @@ X = X(rp,:);
 F = F(rp,:);
 
 % Split data into X1, X2
-[X1, X2] = smpl_blkdiag(X, 0.4, 'rows');
+[X1, X2] = smpl_blkdiag(X, 0.4, 'both');
 F1 = F(1:size(X1,1), :);
 F2 = F(size(X1,1)+1:end, :);
 
 % Fit parglm
-[~, parglmo1] = parglm(X1, F1, 'Preprocessing', 2);
-[~, parglmo2] = parglm(X2, F2, 'Preprocessing', 2);
+[~, parglmo1] = parglm(X1, F1, 'Preprocessing', 1);
+[~, parglmo2] = parglm(X2, F2, 'Preprocessing', 1);
 
 % Run fbd
-[p_Pos, ~, ~, ~] = fbd(parglmo1, parglmo2, F1, F2, 1, 2000);
+%[p_Pos, ~, ~, ~] = fbd(parglmo1, parglmo2, F1, F2, 1, 2000);
 
-disp(p_Pos)
-disp('hello')
+params = struct(...
+    'Preprocessing',2,...
+    'NumPerm',1000,...
+    'Factors',{{1}});
+
+
+mdl = fbd(X1,F1,X2,F2,params);
+mdl.test_factors()
+mdl.test_power()
+mdl.test_congruence()
+mdl.pred_X1X2()
+
+disp(mdl)
+disp('e')
+
+
+
+%disp(p_Pos)
+%disp('hello')
+%% 
 
 % % Calculate projections
 % % For dataset 1 (T1) and dataset 2 (T2) before rotation:

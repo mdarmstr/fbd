@@ -12,7 +12,7 @@ clear; close all; clc;
 N = 250;                 % Number of simulations
 reps = 10;
 vars = 300;
-levels = {[1, 2, 3], [1, 2, 3]};
+levels = {[1, 2, 3, 4], [1, 2, 3]};
 rng('shuffle');         % Shuffle RNG seed for each run
 
 % Arrays to store p-values
@@ -38,7 +38,7 @@ for i = 1:N
     F = F(rp,:);
 
     % Split data into X1, X2
-    [X1, X2] = blockDiagonalSampling(X, 0.6, 'both');
+    [X1, X2] = blockDiagonalSampling(X, 0.4, 'rows');
     F1 = F(1:size(X1,1), :);
     F2 = F(size(X1,1)+1:end, :);
 
@@ -207,19 +207,23 @@ D2 = parglmoB.D(:,parglmoB.factors{fctrs(1)}.Dvars);
 
 % Scores calculation
 
-[~, ~, V1] = svds(X1n, rank(X1n));
-[~, ~, V2] = svds(X2n, rank(X2n));
+[U1n, S1n, V1] = svds(X1n, rank(X1n));
+[U2n, S2n, V2] = svds(X2n, rank(X2n));
 
-for j = 1:rank(X1n)
-    s = sum(sign( V1(:,j)' * (X1n)'));  % inner‐product of column j vs all rows
-    if s < 0
-        V1(:,j) = -V1(:,j);
-        % correspondingly, for your scores: T1o(:,j) = -T1o(:,j);
-    end
-end
+%[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-12);
+%V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-12);
 
 T1o = X1n * V1;
 T2o = X2n * V2;
+
+% %Varimax rotation on the scores
+% T1o = U1n * S1n;
+% T1o = varimax(T1o,false);
+% T2o = U2n * S2n;
+% T2o = varimax(T2o,false);
+
+%T1o = T1o ./vecnorm(T1o);
+%T2o = T2o ./vecnorm(T2o);
 
 %Calculate diasmetic statistic
 [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2);
@@ -229,27 +233,61 @@ T1oe = ((X1n + X1ne) * V1);    % T1 with noise (before rotation)
 T1r = T1oe * R;         % T1 after rotation
 T2oe = (X2n + X2ne) * V2;        % T2 after noise (no rotation)
 
+%T1oe = T1oe./vecnorm(T1oe);
+
+%Fd = norm(R - P,'fro')^2;
+
+%--- 1. Pooled column covariance (variables × variables) ---
 Sobs  = 0.5 * (Er.'*Er + Ep.'*Ep) / (size(Er,1)-1);
-lam   = 1e-3 * trace(Sobs)/size(Sobs,1);
-Siobs = inv(Sobs + lam*eye(size(Sobs)));
+%lam   = 1e-6 * trace(Sobs)/size(Sobs,1);
+%Siobs = inv(Sobs + lam*eye(size(Sobs)));
+Siobs = pinv(Sobs);
 Lobs  = chol(Siobs,'lower');
 
+
+%Fd = trace(R'*P) / (norm(R,'fro')*norm(P,'fro'));
+
+%Fd = norm((Er+Ep),'fro')^2;
+
+%Fd = 1 - norm(Er - Ep,"fro") / (norm(Er,"fro") + norm(Ep,"fro"));
+
+%Fd = trace(Er'*Ep) / sqrt(trace(Er'*Ep)*trace(Er'*Ep));
+%Fd = norm((Er+Ep),'fro')^2;% / norm(Er,"fro")^2;
+
 Fd = norm(T1u*(P - R)*Lobs)^2;
+
+%Fd = norm(R-P,'fro')^2;
 
 Fp = zeros([1,n_perms]);
 
 for ii = 1:n_perms
-    Xperm = X1n(randperm(size(X1n,1)), :);
+    Xperm = X1n(randperm(size(X1n,1)), :);%reshape(X1n(randperm(numel(X1))), size(X1));%;    
+    
+    %pD1 =  pinv(D1);
+    %Bperm = pD1*Xperm;
+    %X1perm = D1*Bperm;
+    %X1pe   = Xperm - X1perm;
+    %[~,~,Vpm] = svds(X1perm,rank(X1perm));
     Tpm = (Xperm) * V1;
+    %Tpme = (X1perm + X1pe) * Vpm * T;
     [Rp,Pp,T1up,Erp,Epp] = diasmetic_rotations(Tpm,T2o,F1,F2);
+    %T1up = T1up./vecnorm(T1up);
+     % 
     S   = 0.5 * (Erp.'*Erp + Epp.'*Epp) / (size(Erp,1)-1);
-    lam = 1e-3 * trace(S)/size(S,1);
-    Si  = inv(S + lam*eye(size(S)));
+    %lam = 1e-6 * trace(S)/size(S,1);
+    %Si  = inv(S + lam*eye(size(S)));
+    Si = pinv(S);
     L   = chol(Si,'lower');
+    
     Fp(ii) = norm(T1up*(Pp - Rp)*L)^2; 
+    %Fp(ii) = trace(Erp'*Epp) / sqrt(trace(Er'*Er)*trace(Epp'*Epp));
+    %Fp(ii) = norm((Erp+Epp),'fro')^2; %/ norm(Erp,"fro")^2;
+    %Fp(ii) = 1 - norm(Erp - Epp,"fro") / (norm(Erp,"fro") + norm(Epp,"fro"))
+    %Fp(ii) = norm(Rp-Pp,'fro')^2;
 end
 
-p = (sum(Fp >= Fd) + 1) / (n_perms + 1);
+p = (sum(Fp > Fd) + 1) / (n_perms + 1);
+%p = Fd;
 
 end
 

@@ -7,7 +7,7 @@ set(groot,'defaultAxesTickLabelInterpreter','latex'); % tick labels
 
 figure('Units','inches','Position',[1 1 7 6]);  % larger figure size
 hold on;
-alpha = linspace(0,1,2000);
+alpha = linspace(0,1,200);
 
 R_alt  = arrayfun(@(a) mean(pVals_Positive  <= a), alpha);
 R_nul  = arrayfun(@(a) mean(pVals_Negative  <= a), alpha);

@@ -12,7 +12,7 @@ clear; close all; clc;
 N = 250;                 % Number of simulations
 reps = 10;
 vars = 300;
-levels = {[1, 2, 3], [1, 2, 3]};
+levels = {[1, 2, 3, 4], [1, 2, 3]};
 rng('shuffle');         % Shuffle RNG seed for each run
 
 % Arrays to store p-values
@@ -38,7 +38,7 @@ for i = 1:N
     F = F(rp,:);
 
     % Split data into X1, X2
-    [X1, X2] = blockDiagonalSampling(X, 0.6, 'both');
+    [X1, X2] = blockDiagonalSampling(X, 0.4, 'rows');
     F1 = F(1:size(X1,1), :);
     F2 = F(size(X1,1)+1:end, :);
 
@@ -207,19 +207,23 @@ D2 = parglmoB.D(:,parglmoB.factors{fctrs(1)}.Dvars);
 
 % Scores calculation
 
-[~, ~, V1] = svds(X1n, rank(X1n));
-[~, ~, V2] = svds(X2n, rank(X2n));
+[U1n, S1n, V1] = svds(X1n, rank(X1n));
+[U2n, S2n, V2] = svds(X2n, rank(X2n));
 
-for j = 1:rank(X1n)
-    s = sum(sign( V1(:,j)' * (X1n)'));  % inner‐product of column j vs all rows
-    if s < 0
-        V1(:,j) = -V1(:,j);
-        % correspondingly, for your scores: T1o(:,j) = -T1o(:,j);
-    end
-end
+[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-12);
+V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-12);
 
 T1o = X1n * V1;
 T2o = X2n * V2;
+
+% %Varimax rotation on the scores
+% T1o = U1n * S1n;
+% T1o = varimax(T1o,false);
+% T2o = U2n * S2n;
+% T2o = varimax(T2o,false);
+
+%T1o = T1o ./vecnorm(T1o);
+%T2o = T2o ./vecnorm(T2o);
 
 %Calculate diasmetic statistic
 [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2);
@@ -228,6 +232,7 @@ T2o = X2n * V2;
 T1oe = ((X1n + X1ne) * V1);    % T1 with noise (before rotation)
 T1r = T1oe * R;         % T1 after rotation
 T2oe = (X2n + X2ne) * V2;        % T2 after noise (no rotation)
+
 
 Sobs  = 0.5 * (Er.'*Er + Ep.'*Ep) / (size(Er,1)-1);
 lam   = 1e-3 * trace(Sobs)/size(Sobs,1);
@@ -250,6 +255,7 @@ for ii = 1:n_perms
 end
 
 p = (sum(Fp >= Fd) + 1) / (n_perms + 1);
+%p = Fd;
 
 end
 

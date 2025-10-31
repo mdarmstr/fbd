@@ -16,6 +16,9 @@ classdef fbd_class < handle
         T1oe          = []
         T1r           = []
         T2oe          = []
+        R             = []
+        X1X2e         = []
+        X1X2n         = []
     end
 
     methods
@@ -44,7 +47,7 @@ classdef fbd_class < handle
                 obj.params = struct( ...
                     'Preprocessing', 1, ...
                     'NumPerm',       1000, ...
-                    'Factors',       {1,2,[1,2]}...
+                    'Factors',       {{1,2,[1,2]}}...
                 );
                 disp('Initialized with default parameters.');
             else
@@ -58,18 +61,39 @@ classdef fbd_class < handle
         end
 
         function test_factors(obj)
+            
+            %test for interactions
+            %note that subsetting linear factors is not possible at the
+            %modelling stage - trim F1, F2 to proceed.
+            intr = cellfun(@(x) numel(x) > 1,obj.params.Factors);
 
-            [obj.tbl1,obj.mdl1] = parglm(obj.X1,obj.F1,...
-                'Model', obj.params.Factors,...
+            if any(intr)
+                disp('Testing linear factors, interactions')
+                intr_list = obj.params.Factors(intr);
+                [obj.tbl1,obj.mdl1] = parglm(obj.X1,obj.F1,...
+                'Model', intr_list,...
                 'Preprocessing',obj.params.Preprocessing,...
                 'Permutations', obj.params.NumPerm ...
                 );
 
             [obj.tbl2,obj.mdl2] = parglm(obj.X2, obj.F2,...
-                'Model', obj.params.Factors,...
+                'Model', intr_list,...
                 'Preprocessing', obj.params.Preprocessing,...
                 'Permutations', obj.params.NumPerm ...
                 );
+            else
+                disp('Testing linear factors only')
+                [obj.tbl1,obj.mdl1] = parglm(obj.X1,obj.F1,...
+                'Model', 'linear',...
+                'Preprocessing',obj.params.Preprocessing,...
+                'Permutations', obj.params.NumPerm ...
+                );                
+            [obj.tbl2,obj.mdl2] = parglm(obj.X2, obj.F2,...
+                'Model', 'linear',...
+                'Preprocessing', obj.params.Preprocessing,...
+                'Permutations', obj.params.NumPerm ...
+                );
+            end
 
             disp(obj.tbl1)
             disp(obj.tbl2)
@@ -77,7 +101,7 @@ classdef fbd_class < handle
 
         function test_congruence(obj)
 
-            [obj.congp,obj.T1oe,obj.T1r,obj.T2oe] = fbd(obj.mdl1,obj.mdl2,obj.F1,obj.F2,...
+            [obj.congp,obj.T1oe,obj.T1r,obj.T2oe,obj.R] = fbd(obj.mdl1,obj.mdl2,obj.F1,obj.F2,...
                 obj.params.Factors,obj.params.NumPerm);
             
         end
@@ -90,17 +114,41 @@ classdef fbd_class < handle
         function pred_X1X2(obj)
             %(X_1n + E_1)P_1O_1>2P_2^T
             %Check for interactions - sum model accordingly.
+            
+
             if any(cellfun(@(x) numel(x) > 1,obj.params.Factors)) %check for interactions
-                is_term = cellfun(@(x) numel(x) > 1, obj.params.Factors);
-                is_intr = cellfun(@(x) isscalar(x), obj.params.Factors);
-                X1r = zeros(size(obj.params.mdl1.factors{1}.matrix)));
+                is_intr = cellfun(@(x) numel(x) > 1, obj.params.Factors);
+                is_term = cellfun(@(x) isscalar(x), obj.params.Factors);
+                X1r = zeros(size(obj.mdl1.factors{1}.matrix));
+                X2r = zeros(size(obj.mdl2.factors{1}.matrix));
+
                 for ii = 1:length(is_term)
-                    X1
+                    X1r = X1r + obj.mdl1.factors{ii}.matrix;
+                    X2r = X2r + obj.mdl2.factors{ii}.matrix;
+                end
 
+                for ii = 1:length(is_intr)
+                    X1r = X1r + obj.mdl1.interactions{ii}.matrix;
+                    X2r = X2r + obj.mdl2.interactions{ii}.matrix;
+                end
 
-                
+            else 
+                is_term = cellfun(@(x) numel(x) > 1, obj.params.Factors);
+                X1r = zeros(size(obj.mdl1.factors{1}.matrix));
+                X2r = zeros(size(obj.mdl2.factors{1}.matrix));
 
-                      
+                for ii = 1:length(is_term)
+                    X1r = X1r + obj.mdl1.factors{ii}.matrix;
+                    X2r = X2r + obj.mdl2.factors{ii}.matrix;                    
+                end
+
+            end
+            
+            [~,~,V1] = svds(X1r,rank(X1r));
+            [~,~,V2] = svds(X2r,rank(X2r));
+
+            obj.X1X2e = (X1r + obj.mdl1.residuals) * V1 * obj.R * V2';
+            obj.X1X2n = X1r * V1 * obj.R * V2';
 
         end
  
