@@ -9,10 +9,10 @@
 clear; close all; clc;
 
 %% Parameters
-N = 250;                 % Number of simulations
+N = 100;                 % Number of simulations
 reps = 10;
 vars = 300;
-levels = {[1, 2, 3, 4], [1, 2, 3]};
+levels = {[1, 2, 3,4,5,6],[1,2,3]};
 rng('shuffle');         % Shuffle RNG seed for each run
 
 % Arrays to store p-values
@@ -38,7 +38,7 @@ for i = 1:N
     F = F(rp,:);
 
     % Split data into X1, X2
-    [X1, X2] = blockDiagonalSampling(X, 0.4, 'rows');
+    [X1, X2] = blockDiagonalSampling(X, 0.4, 'both');
     F1 = F(1:size(X1,1), :);
     F2 = F(size(X1,1)+1:end, :);
 
@@ -57,7 +57,7 @@ for i = 1:N
     [p_Pos, ~, ~, ~] = fbd(parglmo1, parglmo2, F1, F2, 1, 1000);
 
     pVals_Positive(i) = p_Pos;
-    fprintf('Postive simulation %d complete\n',i)
+    fprintf('Postive  simulation %d complete\n',i)
 
     % ------------------ NEGATIVE CASE ------------------
     reps = 4;
@@ -85,7 +85,6 @@ for i = 1:N
     X2_neg = X;  % entire dataset for negative
     F2_neg = F;
 
-    % For example, we can keep X1, F1 from above to test a "no-change" scenario:
     [~, parglmo1_neg] = parglm(X1_neg, F1_neg, 'Preprocessing', 1);
     [~, parglmo2_neg] = parglm(X2_neg, F2_neg, 'Preprocessing', 1);
 
@@ -194,7 +193,7 @@ end
 function [p,T1oe,T1r,T2oe] = fbd(parglmoA, parglmoB, F1, F2, fctrs, n_perms)
 
 X1 = parglmoA.data;
-X2 = parglmoB.data;
+%X2 = parglmoB.data;
 
 X1ne = parglmoA.residuals;
 X2ne = parglmoB.residuals;
@@ -203,66 +202,101 @@ X1n = parglmoA.factors{fctrs(1)}.matrix;
 X2n = parglmoB.factors{fctrs(1)}.matrix;
 
 D1 = parglmoA.D(:,parglmoA.factors{fctrs(1)}.Dvars);
-D2 = parglmoB.D(:,parglmoB.factors{fctrs(1)}.Dvars);
+%D2 = parglmoB.D(:,parglmoB.factors{fctrs(1)}.Dvars);
 
 % Scores calculation
+[~, ~, V1] = svds(X1n, rank(X1n));
+[~, ~, V2] = svds(X2n, rank(X2n));
 
-[U1n, S1n, V1] = svds(X1n, rank(X1n));
-[U2n, S2n, V2] = svds(X2n, rank(X2n));
-
-[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-12);
-V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-12);
+% Data pre-treatment no longer appears to be necessary.
+%[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-6);
+%V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-6);
 
 T1o = X1n * V1;
 T2o = X2n * V2;
 
-% %Varimax rotation on the scores
-% T1o = U1n * S1n;
-% T1o = varimax(T1o,false);
-% T2o = U2n * S2n;
-% T2o = varimax(T2o,false);
-
-%T1o = T1o ./vecnorm(T1o);
-%T2o = T2o ./vecnorm(T2o);
-
 %Calculate diasmetic statistic
 [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2);
+
+%W = X1n*pinv(X1); %previous idea for permutation test.
 
 % Incorporate noise and apply the rotation
 T1oe = ((X1n + X1ne) * V1);    % T1 with noise (before rotation)
 T1r = T1oe * R;         % T1 after rotation
 T2oe = (X2n + X2ne) * V2;        % T2 after noise (no rotation)
 
+Sobs  = (Er.'*Er + Ep.'*Ep) / (size(Er,1) *2);
 
-Sobs  = 0.5 * (Er.'*Er + Ep.'*Ep) / (size(Er,1)-1);
-lam   = 1e-3 * trace(Sobs)/size(Sobs,1);
-Siobs = inv(Sobs + lam*eye(size(Sobs)));
+Siobs = pinv(Sobs);
 Lobs  = chol(Siobs,'lower');
 
-Fd = norm(T1u*(P - R)*Lobs)^2;
+Bhat = (D1'*D1)\(D1'*X1);
+Xhat = D1*Bhat;
+E    = X1 - Xhat;
+
+Fd = 0.5*norm(T1u*(R - P)*Lobs,'fro')^2;
+
+%Fd = KL_divergence(Er,Ep);
 
 Fp = zeros([1,n_perms]);
 
 for ii = 1:n_perms
-    Xperm = X1n(randperm(size(X1n,1)), :);
-    Tpm = (Xperm) * V1;
-    [Rp,Pp,T1up,Erp,Epp] = diasmetic_rotations(Tpm,T2o,F1,F2);
-    S   = 0.5 * (Erp.'*Erp + Epp.'*Epp) / (size(Erp,1)-1);
-    lam = 1e-3 * trace(S)/size(S,1);
-    Si  = inv(S + lam*eye(size(S)));
-    L   = chol(Si,'lower');
-    Fp(ii) = norm(T1up*(Pp - Rp)*L)^2; 
+    perms = randperm(size(E,1));
+    Eperm = E(perms,:);
+    Xperm = Xhat + Eperm;
+
+    pD1 =  pinv(D1'*D1)*D1';
+    Bperm = pD1*Xperm;
+    X1perm = D1*Bperm;
+    [~,~,Vpm] = svds(X1perm,rank(X1n));
+        
+    Tpm = (X1perm) * Vpm;
+    [Rp,Pp,T1up,~,~] = diasmetic_rotations(Tpm,T2o,F1,F2);
+ 
+    Fp(ii) = 0.5*norm(T1up*(Rp - Pp)*Lobs,'fro')^2;
 end
 
-p = (sum(Fp >= Fd) + 1) / (n_perms + 1);
+p = (sum(Fp <= Fd) + 1) / (n_perms + 1);
 %p = Fd;
 
+% ascao1 = asca(parglmoA);
+% ascao2 = asca(parglmoB);
+% 
+% scatter(ascao1.factors{1}.scores(:,1),ascao1.factors{1}.scores(:,2),[],F1(:,1))
+% hold on;
+% scatter(ascao2.factors{1}.scores(:,1),ascao2.factors{1}.scores(:,2),[],F2(:,1))
+% hold off;
+
+
+
+%scores(ascao1.factors{1}.scores,'ObsClass',F1(:,1),'Title','ASCA1')
+%scores(ascao2.factors{1}.scores,'ObsClass',F2(:,1),'Title','ASCA2')
+
+end
+
+function F_KL = KL_divergence(Erp, Epp)
+    n  = size(Erp,1);
+    Sp = (Erp.'*Erp)/n;
+    Sq = (Epp.'*Epp)/n;
+
+    m   = size(Sp,1);
+    lam = 1e-6 * trace(Sp+Sq)/m;
+    Sp  = Sp + lam*eye(m);
+    Sq  = Sq + lam*eye(m);
+
+    % Cholesky logdets
+    Cp = chol(Sp,'lower'); Cq = chol(Sq,'lower');
+    logdetSp = 2*sum(log(diag(Cp)));
+    logdetSq = 2*sum(log(diag(Cq)));
+
+    tr_SqinvSp = trace(Sq \ Sp);
+    F_KL = 0.5*(tr_SqinvSp - (logdetSp - logdetSq) - m);
 end
 
 function [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2)
 
-[T1u, ord1, ~] = uniquetol(T1o, 'ByRows', true, 'PreserveRange', true);
-[T2u, ord2, ~] = uniquetol(T2o, 'ByRows', true, 'PreserveRange', true);
+[T1u, ord1, ~] = uniquetol(T1o,1e-8, 'ByRows', true, 'PreserveRange', true);
+[T2u, ord2, ~] = uniquetol(T2o,1e-8, 'ByRows', true, 'PreserveRange', true);
 
 lvls1 = F1(ord1, 1);
 lvls2 = F2(ord2, 1);
@@ -308,117 +342,3 @@ Ep = T1u*P - T2u;
 end
 
 
-
-function [F,parglmo1,parglmo2] = return_parglmo_positive(dataset_number, reps, vars, levels, col_mat_table)
-
-
-F = create_design(levels, 'Replicates', reps);
-X = zeros(size(F,1),vars);
-
-for i = 1:length(levels{1})
-    X(find(F(:,1) == levels{1}(i)),:) = simuleMV(length(find(F(:,1) == levels{1}(i))),vars,8) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(i))),1);
-end
-
-% Create a block diagonal mask to split the data into two groups
-A1 = ones(50,30);
-A2 = 2.*ones(40,40);
-msk = blkdiag(A1,A2);
-
-% Group 1 (msk == 1)
-[r1, c1] = find(msk == 1);
-row_range1 = min(r1):max(r1);
-col_range1 = min(c1):max(c1);
-X1s = X1(row_range1, col_range1);
-X1es = X1e(row_range1, col_range1);
-F1s = F1(row_range1, :);
-
-% Group 2 (msk == 2)
-[r1, c1] = find(msk == 2);
-row_range2 = min(r1):max(r1);
-col_range2 = min(c1):max(c1);
-X2s = X1(row_range2, col_range2);
-X2es = X1e(row_range2, col_range2);
-F2s = F1(row_range2, :);
-
-end
-
-function [Xn, Xe, D, F, parglmo] = create_plots_for_datasets(dataset_number, reps, vars, levels, col_mat_table)
-    % Create design matrix F (assumes create_design is provided in MEDA toolbox)
-    F = create_design(levels, 'Replicates', reps);
-    writematrix(F, ['F', num2str(dataset_number), '.csv']);
-    
-    % Initialize data matrix X
-    X = zeros(size(F, 1), vars);
-    % Create level means
-    fi = cell(1, length(levels{1}));
-    fj = cell(1, length(levels{2}));
-    for i = 1:length(levels{1})
-        fi{i} = randn(1, vars);
-    end
-    for j = 1:length(levels{2})
-        fj{j} = randn(1, vars);
-    end
-    % Populate X with simulated data using simuleMV (assumed to be part of MEDA)
-    for i = 1:length(levels{1})
-        for j = 1:length(levels{2})
-            idx = find(F(:, 1) == levels{1}(i) & F(:, 2) == levels{2}(j));
-            X(idx, :) = simuleMV(reps, vars, 'LevelCorr', 8) + repmat(fi{i} + fj{j}, reps, 1);
-        end
-    end
-    
-    % Run parglm analysis (assumed to be part of MEDA)
-    [~, parglmo] = parglm(X, F, 'Preprocessing', 1);
-    
-    % Aggregate the factors (using only the first factor)
-    Xn = zeros(size(X, 1), size(X, 2));
-    for ii = 1:1
-        Xn = Xn + parglmo.factors{ii}.matrix;
-    end
-    Xe = parglmo.Xnan;
-    D = parglmo.D;
-    
-    % Write matrices to CSV files
-    writematrix(Xn, ['X', num2str(dataset_number), '.csv']);
-    writematrix(parglmo.D, ['D', num2str(dataset_number), '.csv']);
-    writematrix(parglmo.Xnan, ['X', num2str(dataset_number), 'e.csv']);
-    
-    % Plot matrices (these functions save images and then close the figure)
-    plot_matrix(Xn, col_mat_table, ' ', ' ', ['X', num2str(dataset_number)]);
-    plot_matrix(parglmo.D, col_mat_table, ' ', ' ', ['D', num2str(dataset_number)]);
-    plot_matrix(parglmo.Xnan, col_mat_table, ' ', ' ', ['X', num2str(dataset_number), 'e']);
-    plot_matrix(parglmo.B, col_mat_table, ' ', ' ', ['B', num2str(dataset_number)]);
-end
-
-function plot_matrix(mat, col_map, is_y, is_x, filename)
-    % Normalize matrix for imagesc display
-    imagesc(mat ./ max(abs(mat), [], 'all'));
-    colormap(col_map);
-    [numRows, numCols] = size(mat);
-    
-    % Calculate figure size (using a fixed dpi)
-    dpi = 15;
-    figWidthInches = numCols / dpi;
-    figHeightInches = numRows / dpi;
-    set(gcf, 'Units', 'inches', 'Position', [1, 1, figWidthInches, figHeightInches]);
-    
-    % Set labels and formatting
-    xlabel(is_x, 'FontSize', 14, 'FontWeight', 'bold', 'Color', 'k');
-    ylabel(is_y, 'FontSize', 14, 'FontWeight', 'bold', 'Color', 'k');
-    set(gca, 'XTick', []); set(gca, 'YTick', []);
-    set(gca, 'XAxisLocation', 'top'); set(gca, 'box', 'off');
-    
-    % Ensure output directory exists
-    if ~exist('figures', 'dir')
-        mkdir('figures');
-    end
-    exportgraphics(gcf, fullfile('figures', [filename, '.png']), 'BackgroundColor', 'none');
-    close(gcf);
-end
-
-function interpolatedColors = interpolateColors(color1, color2, numPoints)
-    t = linspace(0, 1, numPoints);
-    interpolatedColors = zeros(length(t), 3);
-    for i = 1:length(t)
-        interpolatedColors(i, :) = t(i) * color2 + (1 - t(i)) * color1;
-    end
-end
