@@ -244,7 +244,9 @@ Lobs  = chol(Siobs,'lower');
 %(det(pinv((pinv(Er'*Er) + pinv(Ep'*Ep)))))^(N/2)*
 
 %Fd = (det(2*pi*pinv(pinv(Er'*Er) + pinv(Ep'*Ep))))^(-1/2)*norm(T1u*(P - R)*Lobs,'fro')^2;
-Fd = norm(T1u*(P - R)*Lobs,'fro') / sqrt(norm(Er,'fro') + norm(Ep,'fro')); %/ norm(V1'*E'*E*V1,'fro')^2;
+%Fd = norm(T1u*(P - R)*Lobs,'fro')^2; %/ norm(V1'*E'*E*V1,'fro')^2;
+
+Fd = norm(((R*Lobs)'*(P*Lobs)),'fro')^2;
 
 Fp = zeros([1,n_perms]);
 
@@ -262,12 +264,12 @@ for ii = 1:n_perms
         
     Tpm = (X1perm) * Vpm;
     [Rp,Pp,T1up,Erp,Epp] = diasmetic_rotations(Tpm,T2o,F1,F2);
-    S  = (Erp'*Erp + Epp'*Epp) / (N * 2);
-    Si = pinv(S);
-    L  = chol(Si,'lower');
-    %Fp(ii) = (det(2*pi*pinv((pinv(Erp'*Erp) + pinv(Epp'*Epp)))))^(-1/2)*norm(T1up*(Pp - Rp)*L,'fro')^2;
+    Sobs  = (Erp'*Erp + Epp'*Epp) / (N * 2);
+    Siobs = pinv(Sobs);
+    L  = chol(Siobs,'lower');
 
-    Fp(ii) = norm(T1up*(Pp - Rp)*Lobs,'fro') / sqrt(norm(Erp,'fro') + norm(Epp,'fro')); %/ norm(T1u*(P - R)*L,'fro')^2; %/ norm(Vpm'*Es'*Es*Vpm,'fro')^2;
+    Fp(ii) = norm(((Rp*L)'*(Pp*L)),'fro')^2;
+
 end
 
 p = (sum(Fp <= Fd) + 1) / (n_perms + 1);
@@ -356,10 +358,6 @@ for k = 1:size(assignment, 1)
 end
 
 Ep = T1u*P - T2u;
-
-%D = diag(sign(diag(T1u'*T2u)));
-
-%T1u = T1u*D;
 
 %T1u = T1u ./vecnorm(T1u);
 
