@@ -1,39 +1,34 @@
-%% SCRIPT: Repeated Positive & Negative Case Analysis
-%  This script replicates the Positive and Negative case generation 
-%  N times, collects the probability (p-value) for each run, and
-%  plots the distribution of these p-values for each case.
-
-% Ensure you have all the required functions in your path, including:
-%  create_design, simuleMV, blockDiagonalSampling, parglm, fbd, etc.
-
 clear; close all; clc;
 
 %% Parameters
 N = 100;           
-reps = 10;
-vars = 300;
-levels = {[1, 2, 3, 4, 5, 6],[1,2,3]};
-rng('shuffle');
 
 % Arrays to store p-values
 pVals_Positive = zeros(N, 1);
 pVals_Negative = zeros(N, 1);
 
+reps = 10;
+vars = 300;
+levels = {[1, 2, 3],[1, 2, 3]};
+rng("default");
+
+
 %% Loop through N simulations
 for i = 1:N
-    
+    %rng('shuffle');
     % ------------------ POSITIVE CASE ------------------
 
     % Prepare random effect levels
-    F = createDesign(levels,'Replicates',reps);
+    F = createDesign(levels, 'Replicates', reps);
+    
+    X = zeros(size(F,1), vars);
 
-    X = zeros(size(F,1),vars);
+    % Prepare random effect levels
     for ii = 1:length(levels{1})
         %X(find(F(:,1) == levels{1}(ii)),:) = simuleMV(length(find(F(:,1) == levels{1}(ii))),vars,'LevelCorr',8) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
         X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
     end
-
-    % Shuffle row order, ensure approximately equal distribution of classes
+    % Shuffle row order
     rp = randperm(size(X,1));
     X = X(rp,:);
     F = F(rp,:);
@@ -71,7 +66,6 @@ for i = 1:N
         %X(find(F(:,1) == levels{1}(ii)),:) = simuleMV(length(find(F(:,1) == levels{1}(ii))),vars,'LevelCorr',8) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
         X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
     end
-
     X1_neg = X;
     F1_neg = F;
 
@@ -81,10 +75,9 @@ for i = 1:N
     F = createDesign(levels, 'Replicates', reps);
     X = zeros(size(F,1),vars);
     for ii = 1:length(levels{1})
-%        X(find(F(:,1) == levels{1}(ii)),:) = simuleMV(length(find(F(:,1) == levels{1}(ii))),vars,'LevelCorr',8) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+        %X(find(F(:,1) == levels{1}(ii)),:) = simuleMV(length(find(F(:,1) == levels{1}(ii))),vars,'LevelCorr',8) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
         X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
     end
-
     X2_neg = X;  % entire dataset for negative
     F2_neg = F;
 
@@ -103,6 +96,7 @@ for i = 1:N
     fprintf('Negative simulation %d complete\n',i)
 
 end
+
 
 %% ------------------ Plot results ------------------
 figure('Name','Distribution of p-values across simulations','Color','w');
@@ -197,7 +191,6 @@ end
 
 
 function [p,T1oe,T1r,T2oe] = fbd(parglmoA, parglmoB, F1, F2, fctrs, n_perms)
-% PROTOTYPE PERMUTATION TEST CURRENTLY WORKING OKAY AS OF NOV 2025
 
 X1 = parglmoA.data;
 %X2 = parglmoB.data;
@@ -211,82 +204,70 @@ X2n = parglmoB.factors{fctrs(1)}.matrix;
 D1 = parglmoA.D(:,parglmoA.factors{fctrs(1)}.Dvars);
 %D2 = parglmoB.D(:,parglmoB.factors{fctrs(1)}.Dvars);
 
-% Scores calculation
-[~, ~, V1] = svds(X1n, rank(X1n));
-[~, ~, V2] = svds(X2n, rank(X2n));
-
-% Data pre-treatment no longer appears to be necessary.
-%[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-6);
-%V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-6);
-
-T1o = X1n * V1;
-T2o = X2n * V2;
-
-%Calculate diasmetic statistic
-[R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2);
-
-%W = X1n*pinv(X1); %previous idea for permutation test.
-
-Bhat = pinv(D1)*X1;
-Xhat = D1*Bhat;
-E    = X1 - Xhat;
 
 
-% Incorporate noise and apply the rotation
-T1oe = ((X1n + X1ne) * V1);    % T1 with noise (before rotation)
-T1r = T1oe * R;         % T1 after rotation
-T2oe = (X2n + X2ne) * V2;        % T2 after noise (no rotation)
+%[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-12);
+%V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-12);
 
-N = size(Er,2);
+
+[R,P,T1u,T2u,Er,Ep,V] = diasmetic_rotations(X1n, X2n, F1,F2,false);
+N = size(T1u,1);
+
 Sobs  = (Er'*Er + Ep'*Ep) / (N * 2);
-
 Siobs = pinv(Sobs);
 Lobs  = chol(Siobs,'lower');
 
 
-%(det(pinv((pinv(Er'*Er) + pinv(Ep'*Ep)))))^(N/2)*
+[Q,~] = qr(T2u,'econ');
 
-%Fd = (det(2*pi*pinv(pinv(Er'*Er) + pinv(Ep'*Ep))))^(-1/2)*norm(T1u*(P - R)*Lobs,'fro')^2;
-%Fd = norm(T1u*(P - R)*Lobs,'fro')^2; %/ norm(V1'*E'*E*V1,'fro')^2;
+J = Q*Q';
 
-Fd = norm(((R*Lobs)'*(P*Lobs)),'fro')^2;
+[Qp,~] = qr(T1u*(P)*Lobs,'econ'); [Qr,~] = qr(T2u,'econ');
+
+
+Fd = norm(R - P,'fro');
 
 Fp = zeros([1,n_perms]);
 
+Tpp = zeros(size(T1u,1),size(T1u,2),n_perms);
+
 for ii = 1:n_perms
-    perms = randperm(size(E,1));
-    Eperm = E(perms,:);
-    %Xperm = X1(perms,:);
-    Xperm = Xhat + Eperm;
+    perms = randperm(size(X1,1));
+    %Eperm = X1ne(perms,:);
+    Xperm = X1(perms,:);
+    %Xperm = X1n + Eperm;
 
     pD1 =  pinv(D1'*D1)*D1';
     Bperm = pD1*Xperm;
     X1perm = D1*Bperm;
-    %Es = Xperm - X1perm;
-    [~,~,Vpm] = svds(X1perm,rank(X1n));
-        
-    Tpm = (X1perm) * Vpm;
-    [Rp,Pp,T1up,Erp,Epp] = diasmetic_rotations(Tpm,T2o,F1,F2);
-    Sobs  = (Erp'*Erp + Epp'*Epp) / (N * 2);
-    Siobs = pinv(Sobs);
-    L  = chol(Siobs,'lower');
+    %[~,~,V] = svds(X1perm,2);
+    Tpu = X1perm*V;
+    [Rp,Pp,Tpu,T2u,Erp,Epp,~] = diasmetic_rotations(Tpu, X2n, F1, F2, true);
+    Tpp(:,:,ii) = Tpu;
 
-    Fp(ii) = norm(((Rp*L)'*(Pp*L)),'fro')^2;
 
+    S  = (Erp'*Erp + Epp'*Epp) / (N * 2);
+    Si = pinv(S);
+    L  = chol(Si,'lower');
+
+    [Qpp,~] = qr(Tpu*(Rp - eye(2))*L,'econ'); [Qrp,~] = qr(T2u,'econ');
+
+    Fp(ii) = norm(Rp - Pp,'fro');
+    
 end
 
-p = (sum(Fp <= Fd) + 1) / (n_perms + 1);
+p = (sum(Fp >= Fd)+1) / (n_perms + 1); 
+T1oe = []; T1r = []; T2oe = [];
+%save_matrix_gif(Tpp,'animate.gif',0.25)
 
-%Td  = (Fd - mean(Fp)) / std(Fp);
-%Tp  = (Fp - mean(Fp)) / std(Fp);
-% 
-%p = (sum(abs(Td) <= abs(Tp)) + 1) / (n_perms + 1);
-%mu  = mean(Fp);
-%sig = std(Fp);
-%z_obs  = (Fd - mu) / sig;
-%z_perm = (Fp - mu) / sig;
-%p = mean(abs(z_perm) >= abs(z_obs));
+
 %p = Fd;
+
+% mu  = mean(Fp);
+% sig = std(Fp);
+% z_obs  = (Fd - mu) / sig;
+% z_perm = (Fp - mu) / sig;
+% p = mean(abs(z_perm) >= abs(z_obs));
 
 
 % ascao1 = asca(parglmoA);
@@ -302,39 +283,48 @@ p = (sum(Fp <= Fd) + 1) / (n_perms + 1);
 
 end
 
-function F_KL = KL_divergence(Erp, Epp)
-    n  = size(Erp,1);
-    Sp = (Erp.'*Erp)/n;
-    Sq = (Epp.'*Epp)/n;
+function [R,P,T1u,T2u, Er,Ep,V1] = diasmetic_rotations(X1n,X2n,F1,F2,perm)
 
-    m   = size(Sp,1); %Regularization used here - not really important.
-    lam = 1e-6*trace(Sp+Sq)/m;
-    Sp  = Sp+lam*eye(m);
-    Sq  = Sq+lam*eye(m);
+if perm == false
+    %Calculate common subspace with respect to X_2
+    [X1u, ord1, ~] = uniquetol(X1n, 1e-4, 'ByRows', true, 'PreserveRange', true);
+    [X2u, ord2, ~] = uniquetol(X2n, 1e-4, 'ByRows', true, 'PreserveRange', true);
 
-    % Cholesky logdets - for probability calculations.
-    Cp = chol(Sp,'lower'); Cq = chol(Sq,'lower');
-    logdetSp = 2*sum(log(diag(Cp)));
-    logdetSq = 2*sum(log(diag(Cq)));
+    [U,~,~] = svds(X2u,rank(X2n)); %COMMON SUBSPACE
 
-    tr_SqinvSp = trace(Sq*pinv(Sp)); 
-    F_KL = 0.5*(tr_SqinvSp-(logdetSp-logdetSq)-m);
+    [V1,~,~] = svd(X1u'*U,'econ');
+    [V1,~] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-12);
+    %C = X1u'*U
+    %V1 = U'*X1u;
+    V2 = U'*X2u;
+
+    %V1 = V1' ./vecnorm(V1');
+    V2 = V2' ./vecnorm(V2');
+
+    T1u = X1u*V1;
+    T2u = X2u*V2;
+else
+    %Calculate error statistics based on scores
+    [T1u, ord1, ~] = uniquetol(X1n, 1e-4, 'ByRows', true, 'PreserveRange', true);
+    [X2u, ord2, ~] = uniquetol(X2n, 1e-4, 'ByRows', true, 'PreserveRange', true);
+    [~,~,V2] = svds(X2u,rank(X2n));
+    %V2 = U'*X2u;
+    %V2 = V2' ./vecnorm(V2');
+    T2u = X2u*V2;
+    V1 = [];
 end
-
-function [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2)
-
-[T1u, ord1, ~] = uniquetol(T1o,1e-8, 'ByRows', true, 'PreserveRange', true);
-[T2u, ord2, ~] = uniquetol(T2o,1e-8, 'ByRows', true, 'PreserveRange', true);
 
 lvls1 = F1(ord1, 1);
 lvls2 = F2(ord2, 1);
 
-%Orient levels according to T1u - should it be opposite?
 [~, perm_idx] = ismember(lvls1, lvls2);
 n = numel(lvls1);
 P = eye(n);
 P = P(perm_idx, :);
 T2u = P * T2u;
+
+% T1u = T1u ./vecnorm(T1u);
+% T2u = T2u ./vecnorm(T2u);
 
 M = T1u' * T2u;
 [Up, ~, Vp] = svd(M);
@@ -366,8 +356,47 @@ end
 
 Ep = T1u*P - T2u;
 
-%T1u = T1u ./vecnorm(T1u);
-
 end
 
+function save_matrix_gif(P, filename, frameDelay)
+%SCATTER_TENSOR_GIF  Animate scatter(P(:,1,k), P(:,2,k)) and save as GIF.
+%
+%   P is [nPoints x 2 x nFrames]
+%   scatter_tensor_gif(P, "out.gif", 0.05)
 
+    if nargin < 3
+        frameDelay = 0.1;
+    end
+
+    [~, ~, nFrames] = size(P);
+
+    % Precompute axis limits
+    allX = P(:,1,:);
+    allY = P(:,2,:);
+    xlimVals = [min(allX(:)), max(allX(:))];
+    ylimVals = [min(allY(:)), max(allY(:))];
+
+    figure('Color','w');
+    h = scatter(P(:,1,1), P(:,2,1), 36, 'filled');
+    axis equal;
+    xlim(xlimVals);
+    ylim(ylimVals);
+    axis off;
+
+    drawnow;
+    frame = getframe(gcf);
+    [imind, cm] = rgb2ind(frame2im(frame), 256);
+    imwrite(imind, cm, filename, 'gif', ...
+        'Loopcount', inf, 'DelayTime', frameDelay);
+
+    for k = 2:nFrames
+        set(h, 'XData', P(:,1,k), ...
+               'YData', P(:,2,k));
+
+        drawnow;
+        frame = getframe(gcf);
+        [imind, cm] = rgb2ind(frame2im(frame), 256);
+        imwrite(imind, cm, filename, 'gif', ...
+            'WriteMode', 'append', 'DelayTime', frameDelay);
+    end
+end

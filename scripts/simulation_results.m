@@ -1,19 +1,7 @@
-%% SCRIPT: Repeated Positive & Negative Case Analysis
-%  This script replicates the Positive and Negative case generation 
-%  N times, collects the probability (p-value) for each run, and
-%  plots the distribution of these p-values for each case.
-
-% Ensure you have all the required functions in your path, including:
-%  create_design, simuleMV, blockDiagonalSampling, parglm, fbd, etc.
-
 clear; close all; clc;
 
 %% Parameters
 N = 100;           
-reps = 10;
-vars = 300;
-levels = {[1, 2, 3,4,5,6],[1,2,3]};
-rng('shuffle');
 
 % Arrays to store p-values
 pVals_Positive = zeros(N, 1);
@@ -21,7 +9,12 @@ pVals_Negative = zeros(N, 1);
 
 %% Loop through N simulations
 for i = 1:N
-    
+
+    reps = 10;
+    vars = 300;
+    levels = {[1, 2, 3,4,5,6],[1,2,3]};
+    rng('shuffle');
+
     % ------------------ POSITIVE CASE ------------------
 
     % Prepare random effect levels
@@ -29,7 +22,8 @@ for i = 1:N
 
     X = zeros(size(F,1),vars);
     for ii = 1:length(levels{1})
-        X(find(F(:,1) == levels{1}(ii)),:) = simuleMV(length(find(F(:,1) == levels{1}(ii))),vars,'LevelCorr',8) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+        %X(find(F(:,1) == levels{1}(ii)),:) = simuleMV(length(find(F(:,1) == levels{1}(ii))),vars,'LevelCorr',8) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+        X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
     end
 
     % Shuffle row order, ensure approximately equal distribution of classes
@@ -67,11 +61,15 @@ for i = 1:N
 
     X = zeros(size(F,1),vars);
     for ii = 1:length(levels{1})
-        X(find(F(:,1) == levels{1}(ii)),:) = simuleMV(length(find(F(:,1) == levels{1}(ii))),vars,'LevelCorr',8) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+        %X(find(F(:,1) == levels{1}(ii)),:) = simuleMV(length(find(F(:,1) == levels{1}(ii))),vars,'LevelCorr',8) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+        X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
     end
 
     X1_neg = X;
     F1_neg = F;
+
+    % X1_neg = X1;
+    % F1_neg = F1;
 
     reps = 6;
     vars = 180;
@@ -79,7 +77,8 @@ for i = 1:N
     F = createDesign(levels, 'Replicates', reps);
     X = zeros(size(F,1),vars);
     for ii = 1:length(levels{1})
-        X(find(F(:,1) == levels{1}(ii)),:) = simuleMV(length(find(F(:,1) == levels{1}(ii))),vars,'LevelCorr',8) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+        %X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+        X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
     end
 
     X2_neg = X;  % entire dataset for negative
@@ -100,6 +99,7 @@ for i = 1:N
     fprintf('Negative simulation %d complete\n',i)
 
 end
+
 
 %% ------------------ Plot results ------------------
 figure('Name','Distribution of p-values across simulations','Color','w');
@@ -213,8 +213,8 @@ D1 = parglmoA.D(:,parglmoA.factors{fctrs(1)}.Dvars);
 [~, ~, V2] = svds(X2n, rank(X2n));
 
 % Data pre-treatment no longer appears to be necessary.
-%[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-6);
-%V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-6);
+[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-6);
+V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-6);
 
 T1o = X1n * V1;
 T2o = X2n * V2;
@@ -234,17 +234,26 @@ T1oe = ((X1n + X1ne) * V1);    % T1 with noise (before rotation)
 T1r = T1oe * R;         % T1 after rotation
 T2oe = (X2n + X2ne) * V2;        % T2 after noise (no rotation)
 
-N = size(Er,2);
-Sobs  = (Er'*Er + Ep'*Ep) / (N * 2);
+N = size(T1u,2);
 
+%Sobs = (V1'*E'*E*V1)/N;
+Sobs  = (Er'*Er + Ep'*Ep) / (N * 2);
 Siobs = pinv(Sobs);
 Lobs  = chol(Siobs,'lower');
 
+%(2*pi)^(-N/2)*det(pinv(pinv((Er'*Er)/N) + pinv((Ep'*Ep)/N)))^(-0.5)
 
-%(det(pinv((pinv(Er'*Er) + pinv(Ep'*Ep)))))^(N/2)*
+%Fd = (det(2*pi*pinv((pinv((Er'*Er)/N) + pinv((Ep'*Ep)/N)))))^(N/2)*norm(T1u*(P - R)*Lobs,'fro')^2;
+Fd = norm(T1u*(P - R)*Lobs)^2;
 
-%Fd = (det(2*pi*pinv(pinv(Er'*Er) + pinv(Ep'*Ep))))^(-1/2)*norm(T1u*(P - R)*Lobs,'fro')^2;
-Fd = norm(T1u*(P - R)*Lobs,'fro') / sqrt(norm(Er,'fro') + norm(Ep,'fro')); %/ norm(V1'*E'*E*V1,'fro')^2;
+%Fd = (2*pi)^(-N/2)*det(pinv(pinv((Er'*Er)/N) + pinv((Ep'*Ep)/N)))^(-0.5)*norm((Er-Ep)*Lobs,'fro');
+
+%Fd = norm(Er,'fro')^2 + norm(Ep,'fro')^2;
+
+%Fd = norm(T1u*(P - R)*Lobs,'fro')^2;% / sqrt(norm(Er,'fro') * norm(Ep,'fro')); %/ norm(V1'*E'*E*V1,'fro')^2;
+%Fd = norm(P - R, 'fro')^2;
+%Fd = (norm(Ep,'fro')^2 - norm(Er,'fro')^2) / norm(Er,'fro')^2;% / (norm(Ep,'fro')^2 + norm(Er,'fro')^2);
+%Fd = (norm(Ep,'fro')^2 - norm(Er,'fro')^2) / (norm(Ep,'fro') + norm(Er,'fro'));
 
 Fp = zeros([1,n_perms]);
 
@@ -260,17 +269,31 @@ for ii = 1:n_perms
     %Es = Xperm - X1perm;
     [~,~,Vpm] = svds(X1perm,rank(X1n));
         
-    Tpm = (X1perm) * Vpm;
+    Tpm = (X1perm) * Vpm *T;
     [Rp,Pp,T1up,Erp,Epp] = diasmetic_rotations(Tpm,T2o,F1,F2);
     S  = (Erp'*Erp + Epp'*Epp) / (N * 2);
+    %S = (Vpm'*Eperm'*Eperm*Vpm)/N; 
     Si = pinv(S);
     L  = chol(Si,'lower');
-    %Fp(ii) = (det(2*pi*pinv((pinv(Erp'*Erp) + pinv(Epp'*Epp)))))^(-1/2)*norm(T1up*(Pp - Rp)*L,'fro')^2;
+    %Fp(ii) = (2*pi)^(-N/2)*det(pinv(pinv((Erp'*Erp)/N) + pinv((Epp'*Epp)/N)))^(-0.5)*norm((Erp-Epp)*L,'fro');
+    %Fp(ii) = (det(2*pi*pinv((pinv((Erp'*Erp)/N) + pinv((Epp'*Epp)/N)))))^(N/2)*norm(T1up*(Pp - Rp)*L,'fro')^2;
+    %Fp(ii) = norm(T1up*(Pp - Rp)*L,'fro')^2;
+    %Fp(ii) = (norm(Epp,'fro')^2 - norm(Erp,'fro')^2) / norm(Erp,'fro')^2;% / (norm(Epp,'fro')^2 + norm(Erp,'fro')^2);
+    %Fp(ii) = (norm(Epp,'fro')^2 - norm(Erp,'fro')^2) / (norm(Erp,'fro') + norm(Epp,'fro'));
+    %Fp(ii) = norm(Erp,'fro')^2 + norm(Epp,'fro')^2;
 
-    Fp(ii) = norm(T1up*(Pp - Rp)*Lobs,'fro') / sqrt(norm(Erp,'fro') + norm(Epp,'fro')); %/ norm(T1u*(P - R)*L,'fro')^2; %/ norm(Vpm'*Es'*Es*Vpm,'fro')^2;
+    %Fp(ii) = (norm(Epp,'fro')^2 - norm(Erp,'fro')^2) / norm(Erp,'fro')^2;
+    Fp(ii) = norm(T1up*(Pp - Rp)*Lobs)^2; %/ sqrt(norm(Er,'fro') * norm(Ep,'fro')); %/ norm(T1u*(P - R)*L,'fro')^2; %/ norm(Vpm'*Es'*Es*Vpm,'fro')^2;
 end
 
-p = (sum(Fp <= Fd) + 1) / (n_perms + 1);
+p = (sum(Fd >= Fp)+1) / (n_perms + 1); 
+%p = Fd;
+% 
+Td  = (Fd - mean(Fp)) / std(Fp);
+Tp  = (Fp - mean(Fp)) / std(Fp);
+% 
+p = (sum(abs(Tp) >= abs(Td)) + 1) / (n_perms + 1);
+
 
 %mu  = mean(Fp);
 %sig = std(Fp);

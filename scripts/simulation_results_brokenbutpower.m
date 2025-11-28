@@ -1,39 +1,47 @@
-%% SCRIPT: Repeated Positive & Negative Case Analysis
-%  This script replicates the Positive and Negative case generation 
-%  N times, collects the probability (p-value) for each run, and
-%  plots the distribution of these p-values for each case.
-
-% Ensure you have all the required functions in your path, including:
-%  create_design, simuleMV, blockDiagonalSampling, parglm, fbd, etc.
-
 clear; close all; clc;
 
 %% Parameters
 N = 100;           
-reps = 10;
-vars = 300;
-levels = {[1, 2, 3, 4, 5, 6],[1,2,3]};
-rng('shuffle');
 
 % Arrays to store p-values
 pVals_Positive = zeros(N, 1);
 pVals_Negative = zeros(N, 1);
 
+reps = 10;
+vars = 300;
+levels = {[1, 2, 3, 4],[1, 2, 3]};
+rng('default');
+
+
 %% Loop through N simulations
 for i = 1:N
-    
-    % ------------------ POSITIVE CASE ------------------
+ % ------------------ POSITIVE CASE ------------------
+    F = createDesign(levels, 'Replicates', reps);
+    X = zeros(size(F,1), vars);
 
     % Prepare random effect levels
-    F = createDesign(levels,'Replicates',reps);
-
-    X = zeros(size(F,1),vars);
+    fi = cell(1, length(levels{1}));
+    fj = cell(1, length(levels{2}));
     for ii = 1:length(levels{1})
-        %X(find(F(:,1) == levels{1}(ii)),:) = simuleMV(length(find(F(:,1) == levels{1}(ii))),vars,'LevelCorr',8) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
-        X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+        fi{ii} = randn(1, vars);
+    end
+    for jj = 1:length(levels{2})
+        fj{jj} = randn(1, vars);
     end
 
-    % Shuffle row order, ensure approximately equal distribution of classes
+    % Generate data, incorporate "fi" and "fj" offsets
+    for ii = 1:length(levels{1})
+        for jj = 1:length(levels{2})
+            % idx = (F(:,1) == levels{1}(ii)) & (F(:,2) == levels{2}(jj));
+            % X(idx,:) = simuleMV(sum(idx), vars, 'LevelCorr', 8) + ...
+            %     repmat(fi{ii} + fj{jj}, sum(idx), 1);
+            idx = (F(:,1) == levels{1}(ii)) & (F(:,2) == levels{2}(jj));
+            X(idx,:) = randn(sum(idx), vars) + ...
+                repmat(fi{ii} + fj{jj}, sum(idx), 1);
+        end
+    end
+
+    % Shuffle row order
     rp = randperm(size(X,1));
     X = X(rp,:);
     F = F(rp,:);
@@ -47,62 +55,88 @@ for i = 1:N
     [~, parglmo1] = parglm(X1, F1, 'Preprocessing', 1);
     [~, parglmo2] = parglm(X2, F2, 'Preprocessing', 1);
 
-    % ascao1 = asca(parglmo1);
-    % ascao2 = asca(parglmo2);
-    % 
-    % scores(ascao1.factors{1},'ObsClass',F1(:,1),'Title','ASCA1')
-    % scores(ascao2.factors{1},'ObsClass',F2(:,1),'Title','ASCA2')
-
-
     % Run fbd
     [p_Pos, ~, ~, ~] = fbd(parglmo1, parglmo2, F1, F2, 1, 1000);
 
     pVals_Positive(i) = p_Pos;
-    fprintf('Postive  simulation %d complete\n',i)
+    fprintf('Postive simulation %d complete\n',i)
 
     % ------------------ NEGATIVE CASE ------------------
-    reps = 4;
-    vars = 120;
+    % Regenerate data for negative scenario
+    reps1 = floor(0.4*reps);
+    vars1 = floor(0.4*vars);
 
-    F = createDesign(levels,'Replicates',reps);
+    F = createDesign(levels, 'Replicates', reps1);
+    X = zeros(size(F,1), vars1);
 
-    X = zeros(size(F,1),vars);
+    % Prepare random effect levels again
+    fi = cell(1, length(levels{1}));
+    fj = cell(1, length(levels{2}));
     for ii = 1:length(levels{1})
-        %X(find(F(:,1) == levels{1}(ii)),:) = simuleMV(length(find(F(:,1) == levels{1}(ii))),vars,'LevelCorr',8) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
-        X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+        fi{ii} = randn(1, vars1);
+    end
+    for jj = 1:length(levels{2})
+        fj{jj} = randn(1, vars1);
     end
 
-    X1_neg = X;
+    for ii = 1:length(levels{1})
+        for jj = 1:length(levels{2})
+            % idx = (F(:,1) == levels{1}(ii)) & (F(:,2) == levels{2}(jj));
+            % X(idx,:) = simuleMV(sum(idx), vars1, 'LevelCorr', 8) + ...
+            %     repmat(fi{ii} + fj{jj}, sum(idx), 1);
+            idx = (F(:,1) == levels{1}(ii)) & (F(:,2) == levels{2}(jj));
+            X(idx,:) = randn(sum(idx), vars1) + ...
+                repmat(fi{ii} + fj{jj}, sum(idx), 1);
+        end
+    end
+    
+    X1_neg = X;  % entire dataset for negative
     F1_neg = F;
 
-    reps = 6;
-    vars = 180;
+    reps2 = floor(0.6*reps);
+    vars2 = floor(0.6*vars);
 
-    F = createDesign(levels, 'Replicates', reps);
-    X = zeros(size(F,1),vars);
+    F = createDesign(levels, 'Replicates', reps2);
+    X = zeros(size(F,1), vars2);
+
+    % Prepare random effect levels again
+    fi = cell(1, length(levels{1}));
+    fj = cell(1, length(levels{2}));
     for ii = 1:length(levels{1})
-%        X(find(F(:,1) == levels{1}(ii)),:) = simuleMV(length(find(F(:,1) == levels{1}(ii))),vars,'LevelCorr',8) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
-        X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+        fi{ii} = randn(1, vars2);
+    end
+    for jj = 1:length(levels{2})
+        fj{jj} = randn(1, vars2);
     end
 
+    for ii = 1:length(levels{1})
+        for jj = 1:length(levels{2})
+            % idx = (F(:,1) == levels{1}(ii)) & (F(:,2) == levels{2}(jj));
+            % X(idx,:) = simuleMV(sum(idx), vars2, 'LevelCorr', 8) + ...
+            %     repmat(fi{ii} + fj{jj}, sum(idx), 1);
+            idx = (F(:,1) == levels{1}(ii)) & (F(:,2) == levels{2}(jj));
+            X(idx,:) = randn(sum(idx), vars2) + ...
+                repmat(fi{ii} + fj{jj}, sum(idx), 1);
+        end
+    end
+    
     X2_neg = X;  % entire dataset for negative
     F2_neg = F;
-
+    
+    % Reuse the same X1, F1 from above as the "first dataset" 
+    % (for demonstration) or you can regenerate X1, F1 if desired.
+    
+    % For example, we can keep X1, F1 from above to test a "no-change" scenario:
     [~, parglmo1_neg] = parglm(X1_neg, F1_neg, 'Preprocessing', 1);
     [~, parglmo2_neg] = parglm(X2_neg, F2_neg, 'Preprocessing', 1);
 
-    % ascao1 = asca(parglmo1_neg);
-    % ascao2 = asca(parglmo2_neg);
-    % 
-    % scores(ascao1.factors{1},'ObsClass',ascao1.design(:,1),'Title','ASCA1')
-    % scores(ascao2.factors{1},'ObsClass',ascao2.design(:,1),'Title','ASCA1')
-
-    [p_Neg, ~, ~, ~] = fbd(parglmo1_neg, parglmo2_neg, F1_neg, F2_neg, 1, 1000);
+    [p_Neg, ~, ~, ~] = fbd(parglmo1_neg, parglmo2_neg, F1, F2_neg, 1, 1000);
 
     pVals_Negative(i) = p_Neg;
     fprintf('Negative simulation %d complete\n',i)
 
 end
+
 
 %% ------------------ Plot results ------------------
 figure('Name','Distribution of p-values across simulations','Color','w');
@@ -216,8 +250,8 @@ D1 = parglmoA.D(:,parglmoA.factors{fctrs(1)}.Dvars);
 [~, ~, V2] = svds(X2n, rank(X2n));
 
 % Data pre-treatment no longer appears to be necessary.
-%[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-6);
-%V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-6);
+[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-12);
+V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-12);
 
 T1o = X1n * V1;
 T2o = X2n * V2;
@@ -237,27 +271,36 @@ T1oe = ((X1n + X1ne) * V1);    % T1 with noise (before rotation)
 T1r = T1oe * R;         % T1 after rotation
 T2oe = (X2n + X2ne) * V2;        % T2 after noise (no rotation)
 
-N = size(Er,2);
-Sobs  = (Er'*Er + Ep'*Ep) / (N * 2);
+N = size(T1u,1);
 
+%Sobs = (V1'*E'*E*V1)/N;
+Sobs  = (Er'*Er + Ep'*Ep) / (N * 2);
 Siobs = pinv(Sobs);
 Lobs  = chol(Siobs,'lower');
 
+%(2*pi)^(-N/2)*det(pinv(pinv((Er'*Er)/N) + pinv((Ep'*Ep)/N)))^(-0.5)
 
-%(det(pinv((pinv(Er'*Er) + pinv(Ep'*Ep)))))^(N/2)*
+%Fd = (det(2*pi*pinv((pinv((Er'*Er)/N) + pinv((Ep'*Ep)/N)))))^(N/2)*norm(T1u*(P - R)*Lobs,'fro')^2;
+%Fd = norm(P - R,'fro')^2 / norm(R,'fro')^2;
 
-%Fd = (det(2*pi*pinv(pinv(Er'*Er) + pinv(Ep'*Ep))))^(-1/2)*norm(T1u*(P - R)*Lobs,'fro')^2;
-%Fd = norm(T1u*(P - R)*Lobs,'fro')^2; %/ norm(V1'*E'*E*V1,'fro')^2;
+%Fd = (2*pi)^(-N/2)*det(pinv(pinv((Er'*Er)/N) + pinv((Ep'*Ep)/N)))^(-0.5)*norm((Er-Ep)*Lobs,'fro');
 
-Fd = norm(((R*Lobs)'*(P*Lobs)),'fro')^2;
+%Fd = norm(Er,'fro')^2 + norm(Ep,'fro')^2;
+%%%%det(2*pi*pinv(pinv((Erp'*Erp)/N) + pinv((Epp'*Epp)/N)))^(-(N-1)/2)
+
+Fd = norm(T1u*(P - R)*Lobs,'fro')^2;% / sqrt(norm(Er,'fro') * norm(Ep,'fro')); %/ norm(V1'*E'*E*V1,'fro')^2;
+%Fd = norm(P - R,'fro')^2;
+%Fd = norm(P - R, 'fro')^2;
+%Fd = (norm(Ep,'fro')^2 - norm(Er,'fro')^2) / norm(Er,'fro')^2;% / (norm(Ep,'fro')^2 + norm(Er,'fro')^2);
+%Fd = (norm(Ep,'fro')^2 - norm(Er,'fro')^2) / (norm(Ep,'fro') + norm(Er,'fro'));
 
 Fp = zeros([1,n_perms]);
 
 for ii = 1:n_perms
     perms = randperm(size(E,1));
-    Eperm = E(perms,:);
-    %Xperm = X1(perms,:);
-    Xperm = Xhat + Eperm;
+    %Eperm = E(perms,:);
+    Xperm = X1(perms,:);
+    %Xperm = Xhat + Eperm;
 
     pD1 =  pinv(D1'*D1)*D1';
     Bperm = pD1*Xperm;
@@ -265,22 +308,33 @@ for ii = 1:n_perms
     %Es = Xperm - X1perm;
     [~,~,Vpm] = svds(X1perm,rank(X1n));
         
-    Tpm = (X1perm) * Vpm;
+    Tpm = (X1perm) * Vpm * T;
     [Rp,Pp,T1up,Erp,Epp] = diasmetic_rotations(Tpm,T2o,F1,F2);
-    Sobs  = (Erp'*Erp + Epp'*Epp) / (N * 2);
-    Siobs = pinv(Sobs);
-    L  = chol(Siobs,'lower');
+    S  = (Erp'*Erp + Epp'*Epp) / (N * 2);
+    %S = (Vpm'*Eperm'*Eperm*Vpm)/N; 
+    Si = pinv(S);
+    L  = chol(Si,'lower');
+    %Fp(ii) = (2*pi)^(-N/2)*det(pinv(pinv((Erp'*Erp)/N) + pinv((Epp'*Epp)/N)))^(-0.5)*norm((Erp-Epp)*L,'fro');
+    %Fp(ii) = (det(2*pi*pinv((pinv((Erp'*Erp)/N) + pinv((Epp'*Epp)/N)))))^(N/2)*norm(T1up*(Pp - Rp)*L,'fro')^2;
+    Fp(ii) = norm(T1up*(Pp - Rp)*L,'fro')^2;
+    %Fp(ii) = norm(Pp-Rp,'fro')^2;
+    %Fp(ii) = (norm(Epp,'fro')^2 - norm(Erp,'fro')^2) / norm(Erp,'fro')^2;% / (norm(Epp,'fro')^2 + norm(Erp,'fro')^2);
+    %% 
+    %Fp(ii) = (norm(Epp,'fro')^2 - norm(Erp,'fro')^2) / (norm(Erp,'fro') + norm(Epp,'fro'));
+    %Fp(ii) = norm(Erp,'fro')^2 + norm(Epp,'fro')^2;
 
-    Fp(ii) = norm(((Rp*L)'*(Pp*L)),'fro')^2;
-
+    %Fp(ii) = (norm(Epp,'fro')^2 - norm(Erp,'fro')^2) / (norm(Erp,'fro') + norm(Epp,'fro'));
+    %Fp(ii) = norm(Pp - Rp,'fro')^2 / norm(Rp,'fro')^2; %/ sqrt(norm(Er,'fro') * norm(Ep,'fro')); %/ norm(T1u*(P - R)*L,'fro')^2; %/ norm(Vpm'*Es'*Es*Vpm,'fro')^2;
 end
 
-p = (sum(Fp <= Fd) + 1) / (n_perms + 1);
+p = (sum(Fp <= Fd)+1) / (n_perms + 1); 
 
-%Td  = (Fd - mean(Fp)) / std(Fp);
-%Tp  = (Fp - mean(Fp)) / std(Fp);
-% 
-%p = (sum(abs(Td) <= abs(Tp)) + 1) / (n_perms + 1);
+% Td  = (Fd - mean(Fp)) / std(Fp);
+% Tp  = (Fp - mean(Fp)) / std(Fp);
+% % 
+% p = (sum(abs(Td) <= abs(Tp)) + 1) / (n_perms + 1);
+
+
 %mu  = mean(Fp);
 %sig = std(Fp);
 %z_obs  = (Fd - mu) / sig;
@@ -365,6 +419,10 @@ for k = 1:size(assignment, 1)
 end
 
 Ep = T1u*P - T2u;
+
+%D = diag(sign(diag(T1u'*T2u)));
+
+%T1u = T1u*D;
 
 %T1u = T1u ./vecnorm(T1u);
 

@@ -1,27 +1,22 @@
-%% SCRIPT: Repeated Positive & Negative Case Analysis
-%  This script replicates the Positive and Negative case generation 
-%  N times, collects the probability (p-value) for each run, and
-%  plots the distribution of these p-values for each case.
-
-% Ensure you have all the required functions in your path, including:
-%  create_design, simuleMV, blockDiagonalSampling, parglm, fbd, etc.
-
 clear; close all; clc;
 
 %% Parameters
-N = 100;           
-reps = 10;
-vars = 300;
-levels = {[1, 2, 3, 4, 5, 6],[1,2,3]};
-rng('shuffle');
+N = 50;           
 
 % Arrays to store p-values
 pVals_Positive = zeros(N, 1);
 pVals_Negative = zeros(N, 1);
 
+reps = 10;
+vars = 300;
+levels = {[1, 2, 3],[1,2,3]};
+rng('shuffle');
+
+
 %% Loop through N simulations
 for i = 1:N
-    
+
+
     % ------------------ POSITIVE CASE ------------------
 
     % Prepare random effect levels
@@ -75,13 +70,16 @@ for i = 1:N
     X1_neg = X;
     F1_neg = F;
 
+    % X1_neg = X1;
+    % F1_neg = F1;
+
     reps = 6;
     vars = 180;
 
     F = createDesign(levels, 'Replicates', reps);
     X = zeros(size(F,1),vars);
     for ii = 1:length(levels{1})
-%        X(find(F(:,1) == levels{1}(ii)),:) = simuleMV(length(find(F(:,1) == levels{1}(ii))),vars,'LevelCorr',8) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+        %X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
         X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
     end
 
@@ -103,6 +101,7 @@ for i = 1:N
     fprintf('Negative simulation %d complete\n',i)
 
 end
+
 
 %% ------------------ Plot results ------------------
 figure('Name','Distribution of p-values across simulations','Color','w');
@@ -216,48 +215,40 @@ D1 = parglmoA.D(:,parglmoA.factors{fctrs(1)}.Dvars);
 [~, ~, V2] = svds(X2n, rank(X2n));
 
 % Data pre-treatment no longer appears to be necessary.
-%[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-6);
-%V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-6);
+[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-6);
+V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-6);
 
 T1o = X1n * V1;
 T2o = X2n * V2;
 
 %Calculate diasmetic statistic
-[R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2);
-
-%W = X1n*pinv(X1); %previous idea for permutation test.
+[R,P,T1u,T2u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2);
 
 Bhat = pinv(D1)*X1;
 Xhat = D1*Bhat;
 E    = X1 - Xhat;
-
+N = size(T1u,2);
 
 % Incorporate noise and apply the rotation
 T1oe = ((X1n + X1ne) * V1);    % T1 with noise (before rotation)
 T1r = T1oe * R;         % T1 after rotation
 T2oe = (X2n + X2ne) * V2;        % T2 after noise (no rotation)
 
-N = size(Er,2);
-Sobs  = (Er'*Er + Ep'*Ep) / (N * 2);
 
-Siobs = pinv(Sobs);
-Lobs  = chol(Siobs,'lower');
+%[U,~,V] = svd(T1u'*T2u,"econ");
+[U,~,V] = svd(T1u'*T2u,"econ");
 
+Fd = norm(T1u*U - T2u*V);
+%Fd = norm(P - R,'fro')^2 / norm(R,'fro');
+%Fd = Er'*Ep;
 
-%(det(pinv((pinv(Er'*Er) + pinv(Ep'*Ep)))))^(N/2)*
-
-%Fd = (det(2*pi*pinv(pinv(Er'*Er) + pinv(Ep'*Ep))))^(-1/2)*norm(T1u*(P - R)*Lobs,'fro')^2;
-%Fd = norm(T1u*(P - R)*Lobs,'fro')^2; %/ norm(V1'*E'*E*V1,'fro')^2;
-
-Fd = norm(((R*Lobs)'*(P*Lobs)),'fro')^2;
-
-Fp = zeros([1,n_perms]);
+Fp = zeros(n_perms,1);
 
 for ii = 1:n_perms
-    perms = randperm(size(E,1));
-    Eperm = E(perms,:);
-    %Xperm = X1(perms,:);
-    Xperm = Xhat + Eperm;
+    perms = randperm(size(X1,1));
+    %Eperm = E(perms,:);
+    Xperm = X1(perms,:);
+    %Xperm = Xhat + Eperm;
 
     pD1 =  pinv(D1'*D1)*D1';
     Bperm = pD1*Xperm;
@@ -265,40 +256,22 @@ for ii = 1:n_perms
     %Es = Xperm - X1perm;
     [~,~,Vpm] = svds(X1perm,rank(X1n));
         
-    Tpm = (X1perm) * Vpm;
-    [Rp,Pp,T1up,Erp,Epp] = diasmetic_rotations(Tpm,T2o,F1,F2);
-    Sobs  = (Erp'*Erp + Epp'*Epp) / (N * 2);
-    Siobs = pinv(Sobs);
-    L  = chol(Siobs,'lower');
+    Tpm = X1perm * Vpm * T;
 
-    Fp(ii) = norm(((Rp*L)'*(Pp*L)),'fro')^2;
-
+    [Rp,Pp,T1up,T2up,Erp,Epp] = diasmetic_rotations(Tpm,T2o,F1,F2);
+    [U,~,V] = svd(T1up'*T2u,"econ");
+ 
+    Fp(ii) = norm(T1up*U - T2u*V);
+    %Fp(ii) = trace(Fd - Erp'*Epp);
 end
 
-p = (sum(Fp <= Fd) + 1) / (n_perms + 1);
+p = (sum(Fp <= Fd)+1) / (n_perms + 1); 
 
-%Td  = (Fd - mean(Fp)) / std(Fp);
-%Tp  = (Fp - mean(Fp)) / std(Fp);
+% Tp = (Fp - mean(Fp) / std(Fp));
+% Td = (Fd - mean(Fp) / std(Fp));
 % 
-%p = (sum(abs(Td) <= abs(Tp)) + 1) / (n_perms + 1);
-%mu  = mean(Fp);
-%sig = std(Fp);
-%z_obs  = (Fd - mu) / sig;
-%z_perm = (Fp - mu) / sig;
-%p = mean(abs(z_perm) >= abs(z_obs));
-%p = Fd;
+% p = (sum(abs(Td) <= abs(Tp)) + 1) / (n_perms + 1);
 
-
-% ascao1 = asca(parglmoA);
-% ascao2 = asca(parglmoB);
-% 
-% scatter(ascao1.factors{1}.scores(:,1),ascao1.factors{1}.scores(:,2),[],F1(:,1))
-% hold on;
-% scatter(ascao2.factors{1}.scores(:,1),ascao2.factors{1}.scores(:,2),[],F2(:,1))
-% hold off;
-
-%scores(ascao1.factors{1}.scores,'ObsClass',F1(:,1),'Title','ASCA1')
-%scores(ascao2.factors{1}.scores,'ObsClass',F2(:,1),'Title','ASCA2')
 
 end
 
@@ -321,7 +294,10 @@ function F_KL = KL_divergence(Erp, Epp)
     F_KL = 0.5*(tr_SqinvSp-(logdetSp-logdetSq)-m);
 end
 
-function [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2)
+function [R,P,T1u,T2u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2)
+
+T1o = T1o ./vecnorm(T1o);
+T2o = T2o ./vecnorm(T2o);
 
 [T1u, ord1, ~] = uniquetol(T1o,1e-8, 'ByRows', true, 'PreserveRange', true);
 [T2u, ord2, ~] = uniquetol(T2o,1e-8, 'ByRows', true, 'PreserveRange', true);
@@ -329,7 +305,7 @@ function [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2)
 lvls1 = F1(ord1, 1);
 lvls2 = F2(ord2, 1);
 
-%Orient levels according to T1u - should it be opposite?
+% %Orient levels according to T1u - should it be opposite?
 [~, perm_idx] = ismember(lvls1, lvls2);
 n = numel(lvls1);
 P = eye(n);
@@ -366,7 +342,12 @@ end
 
 Ep = T1u*P - T2u;
 
-%T1u = T1u ./vecnorm(T1u);
+%D = diag(sign(diag(T1u'*T2u)));
+
+%T1u = T1u*D;
+T1u = T1u ./vecnorm(T1u);
+T2u = T2u ./vecnorm(T2u);
+
 
 end
 
