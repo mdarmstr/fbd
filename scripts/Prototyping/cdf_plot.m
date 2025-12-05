@@ -1,5 +1,4 @@
-%CDF_plot
-close all;
+function cdf_plot(pVals_Positive, pVals_Negative,mtitle)
 
 set(groot,'defaultTextInterpreter','latex');        % text objects
 set(groot,'defaultLegendInterpreter','latex');      % legend
@@ -16,9 +15,9 @@ plot(alpha, R_nul, 'LineWidth', 3, 'Color', [0 0 1 0.5]);
 plot(alpha, R_alt, 'LineWidth', 3, 'Color', [1 0 0 0.5]);
 
 xlabel('Significance cutoff $\alpha$');
-ylabel('Proportion rejected');
+ylabel('Power');
 legend('$p$ = $\alpha$','Null (Uniform)', 'Alternative', 'Location', 'southeast');
-title('Empirical cumulative distributions of \textit{p}-values');
+title(sprintf('Empirical CDFs %s',mtitle));
 
 axis equal 
 grid on;
@@ -51,4 +50,7 @@ lgd = legend;
 lgd.FontSize = 14;
 lgd.Box = 'off';
 
-exportgraphics(gcf,'rejection_curve.pdf','ContentType','vector');
+drawnow;
+end
+
+%exportgraphics(gcf,'rejection_curve.pdf','ContentType','vector');
