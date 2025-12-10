@@ -2,7 +2,7 @@
 close all;
 reps_pos = 150;
 vars_pos = 100;
-levels = {[1,2,3,4,5]};
+levels = {[1,2,3]};
 nse = 1;
 N = 1000; % Define the number of iterations for the main loop
 err_pos = zeros(1,N);
@@ -11,188 +11,157 @@ err_neg = zeros(1,N);
 for n = 1:N
     close all;
 
-% Prepare random effect levels
-F = createDesign(levels,'Replicates',reps_pos);
+    reps   = reps_pos;
+    vars   = vars_pos;
 
-X = zeros(size(F,1),vars_pos);
-reps   = reps_pos;
-vars   = vars_pos;
-klev   = length(levels{1});
+    F = createDesign(levels, 'Replicates', reps);
+    X = zeros(size(F,1),vars);
+    for ii = 1:length(levels{1})
+        X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + nse.*repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+    end
 
-signal_strength = 5;   % between-level signal
-noise_strength  = 1;   % within-level noise
+    % Shuffle row order
+    rp = randperm(size(X,1));
+    X = X(rp,:);
+    F = F(rp,:);
 
-% One strong direction in variable space
-v = randn(1, vars);
-v = v / norm(v);       % unit vector
+    % Split data into X1, X2
+    [X1, X2] = blockDiagonalSampling(X, 0.4, 'both');
+    F1 = F(1:size(X1,1), :);
+    F2 = F(size(X1,1)+1:end, :);
 
-for ii = 1:klev
-    idx = (F(:,1) == levels{1}(ii));
-    n_i = sum(idx);
+    [F1s,idx1] = sort(F1);
+    [F2s,idx2] = sort(F2);
 
-    % Scalar score for this level (e.g. -1, 0, +1 or spaced)
-    score_i = (ii - (klev+1)/2);  % e.g. -1, 0, +1 for 3 levels
+    X1 = X1(idx1,:);
+    X2 = X2(idx2,:);
 
-    % Mean for this level lies along v
-    mu_i = signal_strength * score_i * v;
+    Z1 = ortho_code(F1s);
+    Z2 = ortho_code(F2s);
 
-    % Data: strong mean + small isotropic noise
-    X(idx,:) = ...
-        repmat(mu_i, n_i, 1) + ...
-        noise_strength * randn(n_i, vars);
-end
+    B1hat = pinv(Z1)*X1;
+    X1n = Z1*B1hat;
+    E1 = X1 - X1n;
 
-% Shuffle row order
-rp = randperm(size(X,1));
-X = X(rp,:);
-F = F(rp,:);
+    B2hat = pinv(Z2)*X2;
+    X2n = Z2*B2hat;
+    E2 = X2 - X2n;
 
-% Split data into X1, X2
-[X1, X2] = blockDiagonalSampling(X, 0.4, 'both');
-F1 = F(1:size(X1,1), :);
-F2 = F(size(X1,1)+1:end, :);
+    % Scores calculation
+    [U1,S1,V1] = svds(X1n,rank(X1n));
+    [U2,S2,V2] = svds(X2n,rank(X2n));
 
-[F1s,idx1] = sort(F1);
-[F2s,idx2] = sort(F2);
+    T1 = U1*S1; T2 = U2*S2;
 
-X1 = X1(idx1,:);
-X2 = X2(idx2,:);
+    M1 = U1'*Z1; M2 = U2'*Z2;
 
-X1 = X1 - mean(X1);
-X2 = X2 - mean(X2);
+    [u,~,v] = svd(M1,"econ"); Dl1 = u*v';
+    [u,~,v] = svd(M2,"econ"); Dl2 = u*v';
 
-Z1 = ortho_code(F1s);
-Z2 = ortho_code(F2s);
+    T1d = T1*Dl1; T2d = T2*Dl2;
 
-B1hat = pinv(Z1)*X1;
-X1n = Z1*B1hat;
-E1 = X1 - X1n;
+    [T1u, ~, ~] = uniquetol(T1d, 1e-4, 'ByRows', true, 'PreserveRange', true);
+    [T2u, ~, ~] = uniquetol(T2d, 1e-4, 'ByRows', true, 'PreserveRange', true);
 
-B2hat = pinv(Z2)*X2;
-X2n = Z2*B2hat;
-E2 = X2 - X2n; 
+    [R,P,T1u,Er,Ep] = diasmetic_rotations(T1u,T2u,F1s,F2s);
 
-% Scores calculation
-%[U2,S2,V2] = svds(X2n,rank(X2n)); 
-%[U1,S1,V1] = svds(X1n,rank(X1n));
+    Sobs  = (Er'*Er + Ep'*Ep) / (N);
+    Siobs = pinv(Sobs);
+    Lobs  = chol(Siobs,'lower');
 
-[U2,~] = ica(X2n,rank(X2n)); 
-[U1,~] = ica(X1n,rank(X1n));
+    err_pos(n) = norm(T1u*(P - R)*Lobs,'fro')^2;
+    % figure(1)
+    % hold on;
+    % title('positive')
+    % scatter(scrs1(:,1),scrs1(:,2),[],F1s,'filled');
+    % scatter(scrs2(:,1),scrs2(:,2),[],F2s);
+    % hold off;
+    % disp('Positive')
+    % disp(norm(Ep));
 
-% R1 = Z1'*U1;
-% R2 = Z2'*U2;
-% 
-% T1o = Z1*R1*S1;
-% T2o = Z2*R2*S2;
+    %------------NEGATIVE CASE--------------%
+    reps = floor(0.4*reps_pos);
+    vars = floor(0.4*vars_pos);
 
-[T1u, ~, ~] = uniquetol(U1, 1e-4, 'ByRows', true, 'PreserveRange', true);
-[T2u, ~, ~] = uniquetol(U2, 1e-4, 'ByRows', true, 'PreserveRange', true);
+    F = createDesign(levels,'Replicates',reps);
 
-%T1u = U2*S2*pinv(S1)*U1'*X1u*V1;
-%T1u = X1u*V1; 
-%T2u = X2u*V2;
+    X = zeros(size(F,1),vars);
+    for ii = 1:length(levels{1})
+        X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + nse.*repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+    end
 
+    X1_neg = X;
+    F1_neg = F;
 
-[R,P,T1u,Er,Ep] = diasmetic_rotations(T1u,T2u,F1s,F2s);
+    reps = floor(0.6*reps_pos);
+    vars = floor(0.6*vars_pos);
 
-scrs1 = (X1n+E1)*V1*P;
-scrs2 = (X2n+E2)*V2;
+    F = createDesign(levels, 'Replicates', reps);
+    X = zeros(size(F,1),vars);
+    for ii = 1:length(levels{1})
+        X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + nse.*repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+    end
 
-err_pos(n) = norm(Ep,'fro');
-% figure(1)
-% hold on;
-% title('positive')
-% scatter(scrs1(:,1),scrs1(:,2),[],F1s,'filled');
-% scatter(scrs2(:,1),scrs2(:,2),[],F2s);
-% hold off;
-% disp('Positive')
-% disp(norm(Ep));
+    X2_neg = X;  % entire dataset for negative
+    F2_neg = F;
 
-%------------NEGATIVE CASE--------------%
-reps = floor(0.4*reps_pos);
-vars = floor(0.4*vars_pos);
+    [F1s,idx1] = sort(F1_neg);
+    [F2s,idx2] = sort(F2_neg);
 
-F = createDesign(levels,'Replicates',reps);
+    X1 = X1_neg(idx1,:);
+    X2 = X2_neg(idx2,:);
 
-X = zeros(size(F,1),vars);
-for ii = 1:length(levels{1})
-    X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + nse.*repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
-end
+    Z1 = ortho_code(F1s);
+    Z2 = ortho_code(F2s);
 
-X1_neg = X;
-F1_neg = F;
+    B1hat = pinv(Z1)*X1;
+    X1n = Z1*B1hat;
+    E1 = X1 - X1n;
 
-reps = floor(0.6*reps_pos);
-vars = floor(0.6*vars_pos);
+    B2hat = pinv(Z2)*X2;
+    X2n = Z2*B2hat;
+    E2 = X2 - X2n;
 
-F = createDesign(levels, 'Replicates', reps);
-X = zeros(size(F,1),vars);
-for ii = 1:length(levels{1})
-    X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) + nse.*repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
-end
+    [U1,S1,V1] = svds(X1n,rank(X1n));
+    [U2,S2,V2] = svds(X2n,rank(X2n));
 
-X2_neg = X;  % entire dataset for negative
-F2_neg = F;
+    T1 = U1*S1; T2 = U2*S2;
 
-[F1s,idx1] = sort(F1_neg);
-[F2s,idx2] = sort(F2_neg);
+    M1 = U1'*Z1; M2 = U2'*Z2;
 
-X1 = X1_neg(idx1,:);
-X2 = X2_neg(idx2,:);
+    [u,~,v] = svd(M1,"econ"); Dl1 = u*v';
+    [u,~,v] = svd(M2,"econ"); Dl2 = u*v';
 
-X1 = X1 - mean(X1);
-X2 = X2 - mean(X2);
+    T1d = T1*Dl1; T2d = T2*Dl2;
 
-Z1 = ortho_code(F1s);
-Z2 = ortho_code(F2s);
+    [T1u, ~, ~] = uniquetol(T1d, 1e-4, 'ByRows', true, 'PreserveRange', true);
+    [T2u, ~, ~] = uniquetol(T2d, 1e-4, 'ByRows', true, 'PreserveRange', true);
 
-B1hat = pinv(Z1)*X1;
-X1n = Z1*B1hat;
-E1 = X1 - X1n;
+    [R,P,T1u,Er,Ep] = diasmetic_rotations(T1u,T2u,F1s,F2s);
 
-B2hat = pinv(Z2)*X2;
-X2n = Z2*B2hat;
-E2 = X2 - X2n; 
+    Sobs  = (Er'*Er + Ep'*Ep) / (N);
+    Siobs = pinv(Sobs);
+    Lobs  = chol(Siobs,'lower');
 
-% Scores calculation
-[U2,~] = ica(X2n,rank(X2n)); 
-[U1,~] = ica(X1n,rank(X1n));
+    err_neg(n) = norm(T1u*(P - R)*Lobs,'fro')^2;
 
-% R1 = Z1'*U1;
-% R2 = Z2'*U2;
-% 
-% T1o = Z1*R1*S1;
-% T2o = Z2*R2*S2;
-
-[T1u, ~, ~] = uniquetol(U1, 1e-4, 'ByRows', true, 'PreserveRange', true);
-[T2u, ~, ~] = uniquetol(U2, 1e-4, 'ByRows', true, 'PreserveRange', true);
-
-[R,P,T1u,Er,Ep] = diasmetic_rotations(T1u,T2u,F1s,F2s);
-
-err_neg(n) = norm(Ep,'fro');
-
-scrs1 = (X1n+E1)*V1*P;
-scrs2 = (X2n+E2)*V2;
-% figure(2);
-% hold on;
-% title('negative')
-% scatter(scrs1(:,1),scrs1(:,2),[],F1s,'filled');
-% scatter(scrs2(:,1),scrs2(:,2),[],F2s);
-% hold off;
-% disp('Negative')
-% disp(norm(Ep));
+    % scrs1 = (X1n+E1)*V1*P;
+    % scrs2 = (X2n+E2)*V2;
+    % figure(2);
+    % hold on;
+    % title('negative')
+    % scatter(scrs1(:,1),scrs1(:,2),[],F1s,'filled');
+    % scatter(scrs2(:,1),scrs2(:,2),[],F2s);
+    % hold off;
+    % disp('Negative')
+    % disp(norm(Ep));
 
 end
 
-figure('Name','Distribution of p-values across simulations','Color','w');
-hold on; box on;
+plot(log10(err_pos)); hold on; %blue should be lower
+plot(log10(err_neg)); hold off;
 
-plot(err_pos);
-plot(err_neg);
-[h,p,ci,stats] = ttest2(err_pos, err_neg)
-
-
-
+[h,p,~,~] = ttest(err_neg,err_pos)
 
 function [block1, block2] = blockDiagonalSampling(X, p, mode)
 % blockDiagonalSampling Subsets a block diagonal sampling from a matrix.
@@ -359,6 +328,6 @@ function Z2 = ortho_code(F2)
 
 H2 = dummyvar(categorical(F2));
 n_levels = sum(H2,1); %redundant - fix l8r
-Z2 = H2 ./ sqrt(n_levels);
+Z2 = H2 ./ (n_levels);
 
 end
