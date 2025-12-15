@@ -1,4 +1,4 @@
-function randn_gra(N,levels,nse)
+function randn_sign(N,levels,nse)
 %% TODO
 % Drop levels, fewer replicates
 % NEVER simulate what's going on in the residuals
@@ -18,12 +18,11 @@ rng('default');
 for i = 1:N
     
     % ------------------ POSITIVE CASE ------------------
-    reps_pos = 20;
+    reps_pos = 40;
     vars_pos = 300;
 
     % Prepare random effect levels
     F = createDesign(levels,'Replicates',reps_pos);
-
     X = zeros(size(F,1),vars_pos);
     for ii = 1:length(levels{1})
         X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars_pos) + nse.*repmat(randn(1,vars_pos),length(find(F(:,1) == levels{1}(ii))),1);
@@ -38,6 +37,11 @@ for i = 1:N
     [X1, X2] = blockDiagonalSampling(X, 0.4, 'both');
     F1 = F(1:size(X1,1), :);
     F2 = F(size(X1,1)+1:end, :);
+    %X1 = X1 / sqrt(size(X1,2));
+    %X2 = X2 / sqrt(size(X2,2));
+
+    %disp(size(X1))
+    %disp(size(X2))
 
     % Fit parglm
     [~, parglmo1] = parglm(X1, F1, 'Preprocessing', 1);
@@ -54,11 +58,11 @@ for i = 1:N
     [p_Pos, ~, ~, ~] = fbd(parglmo1, parglmo2, F1, F2, 1, 1000);
 
     pVals_Positive(i) = p_Pos;
-    fprintf('Postive simulation %d complete\n',i)
+    fprintf('Postive  simulation %d complete\n',i)
 
     % ------------------ NEGATIVE CASE ------------------
     reps = floor(0.4*reps_pos);
-    vars = floor(0.6*vars_pos);
+    vars = floor(0.4*vars_pos);
 
     F = createDesign(levels,'Replicates',reps);
 
@@ -69,7 +73,8 @@ for i = 1:N
 
     X1_neg = X;
     F1_neg = F;
-
+    
+    %disp(sqrt(size(X1_neg,2)))
     reps = floor(0.6*reps_pos);
     vars = floor(0.6*vars_pos);
 
@@ -82,6 +87,11 @@ for i = 1:N
     X2_neg = X;  % entire dataset for negative
     F2_neg = F;
 
+    %X1_neg = X1_neg / sqrt(size(X1_neg,2));
+    %X2_neg = X2_neg / sqrt(size(X2_neg,2));
+
+    %disp(size(X1_neg))
+    %disp(size(X2_neg))
     % For example, we can keep X1, F1 from above to test a "no-change" scenario:
     [~, parglmo1_neg] = parglm(X1_neg, F1_neg, 'Preprocessing', 1);
     [~, parglmo2_neg] = parglm(X2_neg, F2_neg, 'Preprocessing', 1);
@@ -96,6 +106,7 @@ for i = 1:N
 
     pVals_Negative(i) = p_Neg;
     fprintf('Negative simulation %d complete\n',i)
+    disp(p_Neg)
 
 end
 
@@ -118,9 +129,9 @@ legend({'Positive','Negative'});
 box on;
 hold off;
 
-figure(2)
-cdf_plot(pVals_Positive,pVals_Negative, 'Matrix Distance');
-snapnow;
+% figure(2)
+% cdf_plot(pVals_Positive,pVals_Negative, 'Matrix Distance');
+% snapnow;
 
 
 end
@@ -197,16 +208,38 @@ function [p,T1oe,T1r,T2oe] = fbd(parglmoA, parglmoB, F1, F2, fctrs, n_perms)
 % PROTOTYPE PERMUTATION TEST CURRENTLY WORKING OKAY AS OF NOV 2025
 
 X1 = parglmoA.data;
-%X2 = parglmoB.data;
+%X1 = X1./norm(X1,'fro');
 
-X1ne = parglmoA.residuals;
-X2ne = parglmoB.residuals;
+X2 = parglmoB.data;
+%X2 = X2./norm(X2,'fro');
 
-X1n = parglmoA.factors{fctrs(1)}.matrix;
-X2n = parglmoB.factors{fctrs(1)}.matrix;
+% Different coding - 1
+F1 = parglmoA.design;
+F2 = parglmoB.design;
 
-D1 = parglmoA.D(:,parglmoA.factors{fctrs(1)}.Dvars);
-%D2 = parglmoB.D(:,parglmoB.factors{fctrs(1)}.Dvars);
+[F1,idx] = sort(F1,"ascend");
+X1 = X1(idx,:);
+
+[F2,idx] = sort(F2,"ascend");
+X2 = X2(idx,:);
+
+H1 = dummyvar(categorical(F1));
+n_levels = sum(H1,1);
+Z1 = H1 ./ sqrt(n_levels);
+Z1 = parglmoA.D(:,2:end);
+
+H2 = dummyvar(categorical(F2));
+n_levels = sum(H2,1); %redundant - fix l8r
+Z2 = H2 ./ sqrt(n_levels);
+Z2 = parglmoB.D(:,2:end);
+
+B1hat = pinv(Z1)*X1;
+X1n = Z1*B1hat;
+E1 = X1 - X1n;
+
+B2hat = pinv(Z2)*X2;
+X2n = Z2*B2hat;
+E2 = X2 - X2n; 
 
 % Scores calculation
 [~, ~, V1] = svds(X1n, rank(X1n));
@@ -222,46 +255,46 @@ T2o = X2n * V2;
 %Calculate diasmetic statistic
 [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2);
 
-%W = X1n*pinv(X1); %previous idea for permutation test.
-
-Bhat = pinv(D1)*X1;
-Xhat = D1*Bhat;
-E    = X1 - Xhat;
-
 % Incorporate noise and apply the rotation
-T1oe = ((X1n + X1ne) * V1);    % T1 with noise (before rotation)
+T1oe = ((X1n + E1) * V1);    % T1 with noise (before rotation)
 T1r = T1oe * R;         % T1 after rotation
-T2oe = (X2n + X2ne) * V2;        % T2 after noise (no rotation)
+T2oe = (X2n + E2) * V2;        % T2 after noise (no rotation)
 
 N = size(T1u,1);
 
-[T2u, ~, ~] = uniquetol(T2o,1e-8, 'ByRows', true, 'PreserveRange', true);
+Sobs  = (Er'*Er + Ep'*Ep) / (N);
+Siobs = pinv(Sobs);
+Lobs  = chol(Siobs,'lower');
 
-Fd = trace(Er*(Er'*Ep)*Ep') / (norm(Er*Er','fro')*norm(Ep*Ep','fro'));
-
+Fd = (2*pi * det(pinv(pinv((Er'*Er)/N) + pinv((Ep'*Ep)/N))))^(-size(Er,2)/2)*norm(T1u*(P - R)*Lobs,'fro')^2;
 Fp = zeros([1,n_perms]);
 
 for ii = 1:n_perms
-    perms = randperm(size(E,1));
-    Eperm = E(perms,:);
+    perms = randperm(size(E1,1));
+    %Eperm = E1(perms,:);
     %M = sign(rand(size(Eperm)) - 0.5);
     %Eperm = Eperm.*M;
-    %Xperm = X1(perms,:);
-    Xperm = Xhat + Eperm;
+    Xperm = X1(perms,:);
+    %Xperm = X1n + Eperm;
 
-    pD1 =  pinv(D1'*D1)*D1';
+    pD1 =  pinv(Z1);
     Bperm = pD1*Xperm;
-    X1perm = D1*Bperm;
-    %Es = Xperm - X1perm;
+    X1perm = Z1*Bperm;
     [~,~,Vpm] = svds(X1perm,rank(X1n));
         
     Tpm = (X1perm) * Vpm;
     [Rp,Pp,T1up,Erp,Epp] = diasmetic_rotations(Tpm,T2o,F1,F2);
+    S  = (Erp'*Erp + Epp'*Epp) / (N);
+    Si = pinv(S);
+    L  = chol(Si,'lower');
 
-    Fp(ii) = trace(Erp*(Erp'*Epp)*Epp') / (norm(Epp*Epp','fro')*norm(Erp*Erp','fro'));
+    Fp(ii) = (2*pi * det(pinv(pinv((Erp'*Erp)/N) + pinv((Epp'*Epp)/N))))^(-size(Erp,2)/2)*norm(T1up*(Pp - Rp)*L,'fro')^2;
 end
 
 p = (sum(Fp <= Fd)+1) / (n_perms + 1); 
+T1oe=[];
+T1r =[];
+T2oe = [];
 %p = Fd;
 
 % Td  = (Fd - mean(Fp)) / std(Fp);
@@ -271,6 +304,39 @@ p = (sum(Fp <= Fd)+1) / (n_perms + 1);
 
 end
 
+% function [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2)
+% 
+% [T1u, ord1, ~] = uniquetol(T1o,1e-6, 'ByRows', true, 'PreserveRange', true);
+% [T2u, ord2, ~] = uniquetol(T2o,1e-6, 'ByRows', true, 'PreserveRange', true);
+% 
+% lvls1 = F1(ord1, 1);
+% lvls2 = F2(ord2, 1);
+% 
+% %Orient levels according to T1u - should it be opposite?
+% [~, perm_idx] = ismember(lvls1, lvls2);
+% n = numel(lvls1);
+% P = eye(n);
+% P = P(perm_idx, :);
+% T2ua = P * T2u;
+% 
+% M = T1u' * T2ua;
+% [Up, ~, Vp] = svd(M);
+% R = Up * Vp';  % Rotation matrix
+% Er = T1u * R - T2ua;
+% 
+% s = sign(diag(T1u' * T2ua));
+% s(s==0) = 1;           % guard against zeros
+% P = diag(s);
+% 
+% Ep = T1u*P - T2ua;
+% 
+% %D = diag(sign(diag(T1u'*T2u)));
+% 
+% %T1u = T1u*D;
+% 
+% %T1u = T1u ./vecnorm(T1u);
+% 
+% end
 
 function [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2)
 
@@ -281,16 +347,16 @@ lvls1 = F1(ord1, 1);
 lvls2 = F2(ord2, 1);
 
 %Orient levels according to T1u - should it be opposite?
-[~, perm_idx] = ismember(lvls1, lvls2);
-n = numel(lvls1);
-P = eye(n);
-P = P(perm_idx, :);
-T2ua = P * T2u;
+% [~, perm_idx] = ismember(lvls1, lvls2);
+% n = numel(lvls1);
+% P = eye(n);
+% P = P(perm_idx, :);
+% T2ua = P * T2u;
 
-M = T1u' * T2ua;
+M = T1u' * T2u;
 [Up, ~, Vp] = svd(M);
 R = Up * Vp';  % Rotation matrix
-Er = T1u * R - T2ua;
+Er = T1u * R - T2u;
 
 n = size(R, 1);
 
@@ -315,7 +381,7 @@ for k = 1:size(assignment, 1)
     end
 end
 
-Ep = T1u*P - T2ua;
+Ep = T1u*P - T2u;
 
 %D = diag(sign(diag(T1u'*T2u)));
 
@@ -324,4 +390,3 @@ Ep = T1u*P - T2ua;
 %T1u = T1u ./vecnorm(T1u);
 
 end
-

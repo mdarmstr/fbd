@@ -33,7 +33,7 @@ def extract_dataset(json_file):
 
     # Expand "Factors" into separate columns
     factors_df = meta_data["Factors"].apply(pd.Series)
-    for col in ["Genotype", "Treatment", "Sample source"]:
+    for col in ["Sample type"]:
         if col in factors_df.columns:
             factors_df[col] = pd.factorize(factors_df[col])[0]
 

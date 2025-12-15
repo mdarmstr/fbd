@@ -1,20 +1,20 @@
 Sample ID,Sample source,Sample type
-iRBC1_GC-QTOF-MS,0,infected RBC
-iRBC2_GC-QTOF-MS,0,infected RBC
-iRBC3_GC-QTOF-MS,0,infected RBC
-iRBC4_GC-QTOF-MS,0,infected RBC
-iRBC5_GC-QTOF-MS,0,infected RBC
-uRBC1_GC-QTOF-MS,0,uninfected RBC
-uRBC2_GC-QTOF-MS,0,uninfected RBC
-uRBC3_GC-QTOF-MS,0,uninfected RBC
-uRBC4_GC-QTOF-MS,0,uninfected RBC
-uRBC5_GC-QTOF-MS,0,uninfected RBC
-iS1_GC-QTOF-MS,0,supernatant from infected RBC
-iS2_GC-QTOF-MS,0,supernatant from infected RBC
-iS3_GC-QTOF-MS,0,supernatant from infected RBC
-iS4_GC-QTOF-MS,0,supernatant from infected RBC
-iS5_GC-QTOF-MS,0,supernatant from infected RBC
-uS2_GC-QTOF-MS,0,supernatant from uninfected RBC
-uS3_GC-QTOF-MS,0,supernatant from uninfected RBC
-uS4_GC-QTOF-MS,0,supernatant from uninfected RBC
-uS5_GC-QTOF-MS,0,supernatant from uninfected RBC
+iRBC1_GC-QTOF-MS,erythrocyte culture,0
+iRBC2_GC-QTOF-MS,erythrocyte culture,0
+iRBC3_GC-QTOF-MS,erythrocyte culture,0
+iRBC4_GC-QTOF-MS,erythrocyte culture,0
+iRBC5_GC-QTOF-MS,erythrocyte culture,0
+uRBC1_GC-QTOF-MS,erythrocyte culture,1
+uRBC2_GC-QTOF-MS,erythrocyte culture,1
+uRBC3_GC-QTOF-MS,erythrocyte culture,1
+uRBC4_GC-QTOF-MS,erythrocyte culture,1
+uRBC5_GC-QTOF-MS,erythrocyte culture,1
+iS1_GC-QTOF-MS,erythrocyte culture,2
+iS2_GC-QTOF-MS,erythrocyte culture,2
+iS3_GC-QTOF-MS,erythrocyte culture,2
+iS4_GC-QTOF-MS,erythrocyte culture,2
+iS5_GC-QTOF-MS,erythrocyte culture,2
+uS2_GC-QTOF-MS,erythrocyte culture,3
+uS3_GC-QTOF-MS,erythrocyte culture,3
+uS4_GC-QTOF-MS,erythrocyte culture,3
+uS5_GC-QTOF-MS,erythrocyte culture,3

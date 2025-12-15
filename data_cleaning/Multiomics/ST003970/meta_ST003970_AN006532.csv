@@ -1,21 +1,21 @@
 Sample ID,Sample source,Sample type
-iRBC1_CE-TOF-MS,0,infected RBC
-iRBC2_CE-TOF-MS,0,infected RBC
-iRBC3_CE-TOF-MS,0,infected RBC
-iRBC4_CE-TOF-MS,0,infected RBC
-iRBC5_CE-TOF-MS,0,infected RBC
-uRBC1_CE-TOF-MS,0,uninfected RBC
-uRBC2_CE-TOF-MS,0,uninfected RBC
-uRBC3_CE-TOF-MS,0,uninfected RBC
-uRBC4_CE-TOF-MS,0,uninfected RBC
-uRBC5_CE-TOF-MS,0,uninfected RBC
-iS1_CE-TOF-MS,0,supernatant from infected RBC
-iS2_CE-TOF-MS,0,supernatant from infected RBC
-iS3_CE-TOF-MS,0,supernatant from infected RBC
-iS4_CE-TOF-MS,0,supernatant from infected RBC
-iS5_CE-TOF-MS,0,supernatant from infected RBC
-uS1_CE-TOF-MS,0,supernatant from uninfected RBC
-uS2_CE-TOF-MS,0,supernatant from uninfected RBC
-uS3_CE-TOF-MS,0,supernatant from uninfected RBC
-uS4_CE-TOF-MS,0,supernatant from uninfected RBC
-uS5_CE-TOF-MS,0,supernatant from uninfected RBC
+iRBC1_CE-TOF-MS,erythrocyte culture,0
+iRBC2_CE-TOF-MS,erythrocyte culture,0
+iRBC3_CE-TOF-MS,erythrocyte culture,0
+iRBC4_CE-TOF-MS,erythrocyte culture,0
+iRBC5_CE-TOF-MS,erythrocyte culture,0
+uRBC1_CE-TOF-MS,erythrocyte culture,1
+uRBC2_CE-TOF-MS,erythrocyte culture,1
+uRBC3_CE-TOF-MS,erythrocyte culture,1
+uRBC4_CE-TOF-MS,erythrocyte culture,1
+uRBC5_CE-TOF-MS,erythrocyte culture,1
+iS1_CE-TOF-MS,erythrocyte culture,2
+iS2_CE-TOF-MS,erythrocyte culture,2
+iS3_CE-TOF-MS,erythrocyte culture,2
+iS4_CE-TOF-MS,erythrocyte culture,2
+iS5_CE-TOF-MS,erythrocyte culture,2
+uS1_CE-TOF-MS,erythrocyte culture,3
+uS2_CE-TOF-MS,erythrocyte culture,3
+uS3_CE-TOF-MS,erythrocyte culture,3
+uS4_CE-TOF-MS,erythrocyte culture,3
+uS5_CE-TOF-MS,erythrocyte culture,3
