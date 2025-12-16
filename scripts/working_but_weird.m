@@ -254,7 +254,7 @@ E2 = X2 - X2n;
 %[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-12);
 %V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-12);
 
-T1o = X1n * V1 ;
+T1o = U2*U1'*X1n * V1 ;
 T2o = X2n * V2 ;
 
 %Calculate diasmetic statistic
@@ -292,14 +292,13 @@ for ii = 1:n_perms
     % M1 = Upm'*Z1;
     % [u,~,v] = svd(M1,"econ"); Dl1 = u*v';
 
-    Tpm = X1perm * V1;
-    [T1u, ord1, ~] = uniquetol(T1o,1e-6, 'ByRows', true, 'PreserveRange', true);
-
+    Tpm = U2*U1'*X1perm * V1;
+    [Rp,Pp,T1up,Erp,Epp] = diasmetic_rotations(Tpm,T2o,F1,F2);
     S  = (Erp'*Erp + Epp'*Epp) / (N);
     Si = pinv(S);
     L  = chol(Si,'lower');
 
-    Fp(ii) = (2*pi * det(pinv(pinv((Er'*Er)/N) + pinv((Ep'*Ep)/N))))^(-size(Er,2)/2)*norm(Tpm*(P - R)*L,'fro')^2;
+    Fp(ii) = (2*pi * det(pinv(pinv((Erp'*Erp)/N) + pinv((Epp'*Epp)/N))))^(-size(Erp,2)/2)*norm(T1up*(Pp - Rp)*L,'fro')^2;
     %Fp(ii) = norm(T1up*(Pp - Rp)*L,'fro')^2;
 
 end

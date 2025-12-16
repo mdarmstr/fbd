@@ -328,6 +328,6 @@ function Z2 = ortho_code(F2)
 
 H2 = dummyvar(categorical(F2));
 n_levels = sum(H2,1); %redundant - fix l8r
-Z2 = H2 ./ (n_levels);
+Z2 = H2 ./ sqrt(n_levels);
 
 end

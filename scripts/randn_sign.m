@@ -44,8 +44,8 @@ for i = 1:N
     %disp(size(X2))
 
     % Fit parglm
-    [~, parglmo1] = parglm(X1, F1, 'Preprocessing', 1);
-    [~, parglmo2] = parglm(X2, F2, 'Preprocessing', 1);
+    [~, parglmo1] = parglm(X1 - mean(X1), F1, 'Preprocessing', 0);
+    [~, parglmo2] = parglm(X2 - mean(X2), F2, 'Preprocessing', 0);
 
     % ascao1 = asca(parglmo1);
     % ascao2 = asca(parglmo2);
@@ -93,8 +93,8 @@ for i = 1:N
     %disp(size(X1_neg))
     %disp(size(X2_neg))
     % For example, we can keep X1, F1 from above to test a "no-change" scenario:
-    [~, parglmo1_neg] = parglm(X1_neg, F1_neg, 'Preprocessing', 1);
-    [~, parglmo2_neg] = parglm(X2_neg, F2_neg, 'Preprocessing', 1);
+    [~, parglmo1_neg] = parglm(X1_neg - mean(X1_neg), F1_neg, 'Preprocessing', 0);
+    [~, parglmo2_neg] = parglm(X2_neg - mean(X2_neg), F2_neg, 'Preprocessing', 0);
 
     % ascao1 = asca(parglmo1_neg);
     % ascao2 = asca(parglmo2_neg);
@@ -106,7 +106,6 @@ for i = 1:N
 
     pVals_Negative(i) = p_Neg;
     fprintf('Negative simulation %d complete\n',i)
-    disp(p_Neg)
 
 end
 
@@ -205,13 +204,14 @@ end
 
 
 function [p,T1oe,T1r,T2oe] = fbd(parglmoA, parglmoB, F1, F2, fctrs, n_perms)
-% PROTOTYPE PERMUTATION TEST CURRENTLY WORKING OKAY AS OF NOV 2025
 
 X1 = parglmoA.data;
 %X1 = X1./norm(X1,'fro');
+%X1 = X1 / sqrt(size(X1,2));
 
 X2 = parglmoB.data;
 %X2 = X2./norm(X2,'fro');
+%X2 = X2 / sqrt(size(X2,2));
 
 % Different coding - 1
 F1 = parglmoA.design;
@@ -219,19 +219,19 @@ F2 = parglmoB.design;
 
 [F1,idx] = sort(F1,"ascend");
 X1 = X1(idx,:);
+Z1 = parglmoA.D(idx,:);
 
 [F2,idx] = sort(F2,"ascend");
 X2 = X2(idx,:);
+Z2 = parglmoB.D(idx,:);
 
-H1 = dummyvar(categorical(F1));
-n_levels = sum(H1,1);
-Z1 = H1 ./ sqrt(n_levels);
-Z1 = parglmoA.D(:,2:end);
+% H1 = dummyvar(categorical(F1));
+% n_levels = sum(H1,1);
+% Z1 = H1 ./ sqrt(n_levels);
 
-H2 = dummyvar(categorical(F2));
-n_levels = sum(H2,1); %redundant - fix l8r
-Z2 = H2 ./ sqrt(n_levels);
-Z2 = parglmoB.D(:,2:end);
+% H2 = dummyvar(categorical(F2));
+% n_levels = sum(H2,1); %redundant - fix l8r
+% Z2 = H2 ./ sqrt(n_levels);
 
 B1hat = pinv(Z1)*X1;
 X1n = Z1*B1hat;
@@ -242,15 +242,20 @@ X2n = Z2*B2hat;
 E2 = X2 - X2n; 
 
 % Scores calculation
-[~, ~, V1] = svds(X1n, rank(X1n));
-[~, ~, V2] = svds(X2n, rank(X2n));
+[U1, ~, V1] = svds(X1n, rank(X1n));
+[U2, ~, V2] = svds(X2n, rank(X2n));
+
+% M1 = U1'*Z1; M2 = U2'*Z2;
+% 
+% [u,~,v] = svd(M1,"econ"); Dl1 = u*v';
+% [u,~,v] = svd(M2,"econ"); Dl2 = u*v';
 
 % Data pre-treatment no longer appears to be necessary.
 %[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-12);
 %V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-12);
 
-T1o = X1n * V1;
-T2o = X2n * V2;
+T1o = X1n * V1 ;
+T2o = X2n * V2 ;
 
 %Calculate diasmetic statistic
 [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2);
@@ -266,41 +271,52 @@ Sobs  = (Er'*Er + Ep'*Ep) / (N);
 Siobs = pinv(Sobs);
 Lobs  = chol(Siobs,'lower');
 
-Fd = (2*pi * det(pinv(pinv((Er'*Er)/N) + pinv((Ep'*Ep)/N))))^(-size(Er,2)/2)*norm(T1u*(P - R)*Lobs,'fro')^2;
+%Fd = (2*pi * det(pinv(pinv((Er'*Er)/N) + pinv((Ep'*Ep)/N))))^(-size(Er,2)/2)*norm(T1u*(P - R)*Lobs,'fro')^2;
+[T2u, ord1, ~] = uniquetol(T2o,1e-6, 'ByRows', true, 'PreserveRange', true);
+
+Fd = norm(T1u*(P - R)*Lobs,'fro')^2;
 Fp = zeros([1,n_perms]);
 
 for ii = 1:n_perms
     perms = randperm(size(E1,1));
-    %Eperm = E1(perms,:);
+    Eperm = E1(perms,:);
     %M = sign(rand(size(Eperm)) - 0.5);
     %Eperm = Eperm.*M;
-    Xperm = X1(perms,:);
-    %Xperm = X1n + Eperm;
+    %Xperm = X1(perms,:);
+    Xperm = X1n + Eperm;
 
     pD1 =  pinv(Z1);
     Bperm = pD1*Xperm;
     X1perm = Z1*Bperm;
-    [~,~,Vpm] = svds(X1perm,rank(X1n));
-        
-    Tpm = (X1perm) * Vpm;
-    [Rp,Pp,T1up,Erp,Epp] = diasmetic_rotations(Tpm,T2o,F1,F2);
+    
+    %[Upm,~,Vpm] = svds(X1perm,rank(X1n));
+    % 
+    % M1 = Upm'*Z1;
+    % [u,~,v] = svd(M1,"econ"); Dl1 = u*v';
+
+    Tpm = X1perm * V1;
+    [Tpu, ord1, ~] = uniquetol(Tpm,1e-6, 'ByRows', true, 'PreserveRange', true);
+    Erp = Tpu*R - T2u;
+    Epp = Tpu*P - T2u;
     S  = (Erp'*Erp + Epp'*Epp) / (N);
     Si = pinv(S);
     L  = chol(Si,'lower');
 
-    Fp(ii) = (2*pi * det(pinv(pinv((Erp'*Erp)/N) + pinv((Epp'*Epp)/N))))^(-size(Erp,2)/2)*norm(T1up*(Pp - Rp)*L,'fro')^2;
+    %Fp(ii) = (2*pi * det(pinv(pinv((Er'*Er)/N) + pinv((Ep'*Ep)/N))))^(-size(Er,2)/2)*norm(Tpu*(P - R)*Lobs,'fro')^2;
+    Fp(ii) = norm(Tpu*(P - R)*Lobs,'fro')^2;
+
 end
 
-p = (sum(Fp <= Fd)+1) / (n_perms + 1); 
+%p = (sum(Fp <= Fd)+1) / (n_perms + 1); 
 T1oe=[];
 T1r =[];
 T2oe = [];
 %p = Fd;
 
-% Td  = (Fd - mean(Fp)) / std(Fp);
-% Tp  = (Fp - mean(Fp)) / std(Fp);
-% 
-% p = (sum(abs(Td) <= abs(Tp)) + 1) / (n_perms + 1);
+Td  = (Fd - mean(Fp)) / std(Fp);
+Tp  = (Fp - mean(Fp)) / std(Fp);
+
+p = (sum(abs(Td) >= abs(Tp)) + 1) / (n_perms + 1);
 
 end
 
@@ -341,22 +357,22 @@ end
 function [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2)
 
 [T1u, ord1, ~] = uniquetol(T1o,1e-6, 'ByRows', true, 'PreserveRange', true);
-[T2u, ord2, ~] = uniquetol(T2o,1e-6, 'ByRows', true, 'PreserveRange', true);
+[T2ua, ord2, ~] = uniquetol(T2o,1e-6, 'ByRows', true, 'PreserveRange', true);
 
-lvls1 = F1(ord1, 1);
-lvls2 = F2(ord2, 1);
-
-%Orient levels according to T1u - should it be opposite?
+% lvls1 = F1(ord1, 1);
+% lvls2 = F2(ord2, 1);
+% 
+% %Orient levels according to T1u - should it be opposite?
 % [~, perm_idx] = ismember(lvls1, lvls2);
 % n = numel(lvls1);
 % P = eye(n);
 % P = P(perm_idx, :);
 % T2ua = P * T2u;
 
-M = T1u' * T2u;
+M = T1u' * T2ua;
 [Up, ~, Vp] = svd(M);
 R = Up * Vp';  % Rotation matrix
-Er = T1u * R - T2u;
+Er = T1u * R - T2ua;
 
 n = size(R, 1);
 
@@ -381,7 +397,7 @@ for k = 1:size(assignment, 1)
     end
 end
 
-Ep = T1u*P - T2u;
+Ep = T1u*P - T2ua;
 
 %D = diag(sign(diag(T1u'*T2u)));
 
