@@ -1,4 +1,4 @@
-function randn_sign(N,levels,nse)
+function fbd_demo(N,levels,nse)
 %% TODO
 % Drop levels, fewer replicates
 % NEVER simulate what's going on in the residuals
@@ -137,6 +137,85 @@ end
 
 %% ------------------ Helper Functions ------------------
 
+function [X1, X2, F1, F2, sz] = simul_data(mode, levels, reps_pos, vars_pos, nse, splitFrac, splitMode)
+%SIMUL_DATA  Simulate data for FBD experiments (positive/negative cases).
+%
+%   [X1,X2,F1,F2,sz] = simul_data('pos', levels, reps_pos, vars_pos, nse, 0.4, 'both');
+%   [X1,X2,F1,F2,sz] = simul_data('neg', levels, reps_pos, vars_pos, nse, 0.4, 'both');
+
+    if nargin < 7 || isempty(splitMode), splitMode = 'both'; end
+    if nargin < 6 || isempty(splitFrac), splitFrac = 0.4; end
+
+    mode = lower(string(mode));
+    if mode == "positive", mode = "pos"; end
+    if mode == "negative", mode = "neg"; end
+
+    switch mode
+        case "pos"
+            % ---- simulate one big matrix, shuffle, then blockDiagonalSampling ----
+            [X, F] = local_sim_one(levels, reps_pos, vars_pos, nse);
+
+            % Shuffle row order (exactly as in your code)
+            rp = randperm(size(X,1));
+            X = X(rp,:);
+            F = F(rp,:);
+
+            % Split data into X1, X2
+            [X1, X2] = blockDiagonalSampling(X, splitFrac, splitMode);
+            F1 = F(1:size(X1,1), :);
+            F2 = F(size(X1,1)+1:end, :);
+
+            sz = struct();
+            sz.mode = 'pos';
+            sz.X_full = size(X);
+            sz.F_full = size(F);
+            sz.X1 = size(X1);  sz.X2 = size(X2);
+            sz.F1 = size(F1);  sz.F2 = size(F2);
+
+        case "neg"
+            % ---- simulate X1 and X2 independently (exactly like your code path) ----
+            reps1 = floor(splitFrac * reps_pos);
+            vars1 = floor(splitFrac * vars_pos);
+
+            [X1, F1] = local_sim_one(levels, reps1, vars1, nse);
+
+            reps2 = floor((1 - splitFrac) * reps_pos);
+            vars2 = floor((1 - splitFrac) * vars_pos);
+
+            [X2, F2] = local_sim_one(levels, reps2, vars2, nse);
+
+            sz = struct();
+            sz.mode = 'neg';
+            sz.X1 = size(X1);  sz.X2 = size(X2);
+            sz.F1 = size(F1);  sz.F2 = size(F2);
+            sz.reps1 = reps1;  sz.vars1 = vars1;
+            sz.reps2 = reps2;  sz.vars2 = vars2;
+
+        otherwise
+            error('simul_data:badMode', 'mode must be ''pos'' or ''neg''.');
+    end
+end
+
+% ----------------------- local helper -----------------------
+function [X, F] = local_sim_one(levels, reps, vars, nse)
+% EXACTLY matches the simulation block in your script:
+%
+%   F = createDesign(levels,'Replicates',reps);
+%   X = zeros(size(F,1),vars);
+%   for ii = 1:length(levels{1})
+%       X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) ...
+%           + nse.*repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+%   end
+
+    F = createDesign(levels,'Replicates',reps);
+    X = zeros(size(F,1),vars);
+    for ii = 1:length(levels{1})
+        X(find(F(:,1) == levels{1}(ii)),:) = randn(length(find(F(:,1) == levels{1}(ii))),vars) ...
+            + nse.*repmat(randn(1,vars),length(find(F(:,1) == levels{1}(ii))),1);
+    end
+end
+
+
 function [block1, block2] = blockDiagonalSampling(X, p, mode)
 % blockDiagonalSampling Subsets a block diagonal sampling from a matrix.
 % REFACTORED AUG 2025 - 'rows' no longer corresponds to an intermediate calculation
@@ -206,14 +285,9 @@ end
 function [p,T1oe,T1r,T2oe] = fbd(parglmoA, parglmoB, F1, F2, fctrs, n_perms)
 
 X1 = parglmoA.data;
-%X1 = X1./norm(X1,'fro');
-%X1 = X1 / sqrt(size(X1,2));
 
 X2 = parglmoB.data;
-%X2 = X2./norm(X2,'fro');
-%X2 = X2 / sqrt(size(X2,2));
 
-% Different coding - 1
 F1 = parglmoA.design;
 F2 = parglmoB.design;
 
@@ -225,14 +299,6 @@ Z1 = parglmoA.D(idx,:);
 X2 = X2(idx,:);
 Z2 = parglmoB.D(idx,:);
 
-% H1 = dummyvar(categorical(F1));
-% n_levels = sum(H1,1);
-% Z1 = H1 ./ sqrt(n_levels);
-
-% H2 = dummyvar(categorical(F2));
-% n_levels = sum(H2,1); %redundant - fix l8r
-% Z2 = H2 ./ sqrt(n_levels);
-
 B1hat = pinv(Z1)*X1;
 X1n = Z1*B1hat;
 E1 = X1 - X1n;
@@ -242,17 +308,8 @@ X2n = Z2*B2hat;
 E2 = X2 - X2n; 
 
 % Scores calculation
-[U1, ~, V1] = svds(X1n, rank(X1n));
-[U2, ~, V2] = svds(X2n, rank(X2n));
-
-% M1 = U1'*Z1; M2 = U2'*Z2;
-% 
-% [u,~,v] = svd(M1,"econ"); Dl1 = u*v';
-% [u,~,v] = svd(M2,"econ"); Dl2 = u*v';
-
-% Data pre-treatment no longer appears to be necessary.
-%[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-12);
-%V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-12);
+[~, ~, V1] = svds(X1n, rank(X1n));
+[~, ~, V2] = svds(X2n, rank(X2n));
 
 T1o = X1n * V1 ;
 T2o = X2n * V2 ;
@@ -271,47 +328,26 @@ Sobs  = (Er'*Er + Ep'*Ep) / (N);
 Siobs = pinv(Sobs);
 Lobs  = chol(Siobs,'lower');
 
-%Fd = (2*pi * det(pinv(pinv((Er'*Er)/N) + pinv((Ep'*Ep)/N))))^(-size(Er,2)/2)*norm(T1u*(P - R)*Lobs,'fro')^2;
-[T2u, ord1, ~] = uniquetol(T2o,1e-6, 'ByRows', true, 'PreserveRange', true);
-
 Fd = norm(T1u*(P - R)*Lobs,'fro')^2;
 Fp = zeros([1,n_perms]);
 
 for ii = 1:n_perms
     perms = randperm(size(E1,1));
     Eperm = E1(perms,:);
-    %M = sign(rand(size(Eperm)) - 0.5);
-    %Eperm = Eperm.*M;
-    %Xperm = X1(perms,:);
     Xperm = X1n + Eperm;
 
     pD1 =  pinv(Z1);
     Bperm = pD1*Xperm;
     X1perm = Z1*Bperm;
     
-    %[Upm,~,Vpm] = svds(X1perm,rank(X1n));
-    % 
-    % M1 = Upm'*Z1;
-    % [u,~,v] = svd(M1,"econ"); Dl1 = u*v';
-
     Tpm = X1perm * V1;
-    [Tpu, ord1, ~] = uniquetol(Tpm,1e-6, 'ByRows', true, 'PreserveRange', true);
-    Erp = Tpu*R - T2u;
-    Epp = Tpu*P - T2u;
-    S  = (Erp'*Erp + Epp'*Epp) / (N);
-    Si = pinv(S);
-    L  = chol(Si,'lower');
+    [Tpu, ~, ~] = uniquetol(Tpm,1e-6, 'ByRows', true, 'PreserveRange', true);
 
-    %Fp(ii) = (2*pi * det(pinv(pinv((Er'*Er)/N) + pinv((Ep'*Ep)/N))))^(-size(Er,2)/2)*norm(Tpu*(P - R)*Lobs,'fro')^2;
     Fp(ii) = norm(Tpu*(P - R)*Lobs,'fro')^2;
 
 end
 
-%p = (sum(Fp <= Fd)+1) / (n_perms + 1); 
-T1oe=[];
-T1r =[];
-T2oe = [];
-%p = Fd;
+%Studentization of the test statistic
 
 Td  = (Fd - mean(Fp)) / std(Fp);
 Tp  = (Fp - mean(Fp)) / std(Fp);
@@ -320,54 +356,21 @@ p = (sum(abs(Td) >= abs(Tp)) + 1) / (n_perms + 1);
 
 end
 
-% function [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2)
-% 
-% [T1u, ord1, ~] = uniquetol(T1o,1e-6, 'ByRows', true, 'PreserveRange', true);
-% [T2u, ord2, ~] = uniquetol(T2o,1e-6, 'ByRows', true, 'PreserveRange', true);
-% 
-% lvls1 = F1(ord1, 1);
-% lvls2 = F2(ord2, 1);
-% 
-% %Orient levels according to T1u - should it be opposite?
-% [~, perm_idx] = ismember(lvls1, lvls2);
-% n = numel(lvls1);
-% P = eye(n);
-% P = P(perm_idx, :);
-% T2ua = P * T2u;
-% 
-% M = T1u' * T2ua;
-% [Up, ~, Vp] = svd(M);
-% R = Up * Vp';  % Rotation matrix
-% Er = T1u * R - T2ua;
-% 
-% s = sign(diag(T1u' * T2ua));
-% s(s==0) = 1;           % guard against zeros
-% P = diag(s);
-% 
-% Ep = T1u*P - T2ua;
-% 
-% %D = diag(sign(diag(T1u'*T2u)));
-% 
-% %T1u = T1u*D;
-% 
-% %T1u = T1u ./vecnorm(T1u);
-% 
-% end
 
 function [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2)
 
 [T1u, ord1, ~] = uniquetol(T1o,1e-6, 'ByRows', true, 'PreserveRange', true);
-[T2ua, ord2, ~] = uniquetol(T2o,1e-6, 'ByRows', true, 'PreserveRange', true);
+[T2u, ord2, ~] = uniquetol(T2o,1e-6, 'ByRows', true, 'PreserveRange', true);
 
-% lvls1 = F1(ord1, 1);
-% lvls2 = F2(ord2, 1);
-% 
-% %Orient levels according to T1u - should it be opposite?
-% [~, perm_idx] = ismember(lvls1, lvls2);
-% n = numel(lvls1);
-% P = eye(n);
-% P = P(perm_idx, :);
-% T2ua = P * T2u;
+lvls1 = F1(ord1, 1);
+lvls2 = F2(ord2, 1);
+
+%Orient levels according to T1u - should it be opposite?
+[~, perm_idx] = ismember(lvls1, lvls2);
+n = numel(lvls1);
+P = eye(n);
+P = P(perm_idx, :);
+T2ua = P * T2u;
 
 M = T1u' * T2ua;
 [Up, ~, Vp] = svd(M);
