@@ -1,4 +1,4 @@
-function [P, froerror] = nnspm(R)
+function [R, P, T1u, Er, Ep] = diasrot(T1o, T2o, F1, F2)
 %% nnspm (Next Nearest Permutation Matrix)
 % computes the closest signed permutation matrix
 % to a given rotation matrix R, allowing for reflections (i.e., entries of -1).
@@ -38,14 +38,32 @@ function [P, froerror] = nnspm(R)
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+[T1u, ord1, ~] = uniquetol(T1o,1e-6, 'ByRows', true, 'PreserveRange', true);
+[T2u, ord2, ~] = uniquetol(T2o,1e-6, 'ByRows', true, 'PreserveRange', true);
+
+lvls1 = F1(ord1, 1);
+lvls2 = F2(ord2, 1);
+
+%Orient levels according to T1u
+[~, perm_idx] = ismember(lvls1, lvls2);
+n = numel(lvls1);
+P = eye(n);
+P = P(perm_idx, :);
+T2ua = P * T2u;
+
+M = T1u' * T2ua;
+[Up, ~, Vp] = svd(M);
+R = Up * Vp';  % Rotation matrix
+Er = T1u * R - T2ua;
+
 n = size(R, 1);
 
 % Form the cost matrix as the negative absolute value of R
 costMat = -abs(R);
 
 % Solve the assignment problem using matchpairs (Hungarian algorithm)
-% The second argument (1e12) ensures a complete assignment.
-assignment = matchpairs(costMat, 1e12);
+% The second argument (-Inf) ensures a complete assignment.
+assignment = matchpairs(costMat, 1e6);
 
 % Initialize the signed permutation matrix P
 P = zeros(n);
@@ -61,6 +79,5 @@ for k = 1:size(assignment, 1)
     end
 end
 
-% Calculate the normalized Frobenius norm of the difference
-froerror = norm(R - P, 'fro')^2; %/ norm(R,'fro')^2;
+Ep = T1u*P - T2ua;
 end

@@ -294,8 +294,6 @@ end
 
 function [p,T1oe,T1r,T2oe,Td,Tp] = fbd(parglmoA, parglmoB, n_perms)
 
-
-
 X1 = parglmoA.data;
 X2 = parglmoB.data;
 

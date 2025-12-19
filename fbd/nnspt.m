@@ -1,6 +1,13 @@
-function [p,T1oe,T1r,T2oe,R] = nnspt(parglmoA, parglmoB, F1, F2, fctrs, n_perms)
+function [p,T1oe,T1r,T2oe,R] = nnspt(parglmoA, parglmoB, n_perms)
 
-%% Fusion by Design (FBD)
+%% Next Nearest Signed Permutation Test
+% Tests whether the scores in parglmoA are independently distributed with 
+% respect to paglmoB up to sign and permutational ambiguities. Utilizes a
+% two-sided test via the chi^2_1 distribution.
+%
+% **IMPORTANT NOTE: Test all factors for evidence of significance across
+% parglmoA and parglmoB. Reinitialize with only the factors of interest in
+% F1, F2 **
 %
 % INPUTS
 % parglmoA - output of parglm.m in MEDA toolbox for X1, F1
@@ -16,14 +23,15 @@ function [p,T1oe,T1r,T2oe,R] = nnspt(parglmoA, parglmoB, F1, F2, fctrs, n_perms)
 % T2oe     - Original PCA scores for X2 + E2, with respect to fctrs
 %
 % Software preparation:  Install MEDA-Toolbox following readme file;
+% Install Statistics and Machine Learning Toolbox for MATLAB
 %
 % coded by: Michael Sorochan Armstrong (mdarmstr@ugr.es)
 %           Jose Camacho Paez (josecamacho@ugr.es)
 %
-% last modification: /Oct/2025
+% last modification: DEC 2025
 %
 % Copyright (C) 2025  University of Granada, Granada
-% Copyright (C) 2025  Jose Camacho Paez, Michael Sorochan Armstrong
+% Copyright (C) 2025  Michael Sorochan Armstrong, Jose Camacho Paez
 %
 % This program is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -40,105 +48,84 @@ function [p,T1oe,T1r,T2oe,R] = nnspt(parglmoA, parglmoB, F1, F2, fctrs, n_perms)
 %
 % MEDA dependencies: parglmo
 
+% Extract data
 X1 = parglmoA.data;
-%X2 = parglmoB.data;
- 
-X1ne = parglmoA.residuals;
-X2ne = parglmoB.residuals;
+X2 = parglmoB.data;
 
-% identify interacting terms, linear terms
-% note the order must be [1,2], and not [2,1]. See parglm for details
-intr_logical = cellfun(@(x) numel(x)>1, fctrs);
-iidx = zeros(1,sum(intr_logical));
-intr = fctrs(intr_logical);
-iidx_count = 1;
+F1 = parglmoA.design;
+F2 = parglmoB.design;
 
-if ~isempty(intr_logical) && any(intr_logical)
-    for ii = 1:sum(intr_logical)
-        lint = parglmoA.interactions{ii}.factors;
-        if isequal(intr{ii},lint)
-            iidx(ii) = iidx_count;
-        end
-        iidx_count = iidx_count + 1;
-    end
-end
+% Ensure design matrices are sorted in the correct order
+[F1,idx] = sort(F1,"ascend");
+X1 = X1(idx,:);
+Z1 = parglmoA.D(idx,:);
 
-fctr_logical = cellfun(@(x) isscalar(x), fctrs);
-fidx = zeros(1,sum(fctr_logical));
-fctr = fctrs(fctr_logical);
-fidx_count = 1;
+[F2,idx] = sort(F2,"ascend");
+X2 = X2(idx,:);
+Z2 = parglmoB.D(idx,:);
 
-if ~isempty(fctr_logical) && any(fctr_logical)
-    for ii = 1:sum(fctr_logical)
-        fint = parglmoA.factors{ii}.factors;
-        if isequal(fctr{ii},fint)
-            fidx(ii) = fidx_count;
-        end
-        fidx_count = fidx_count + 1;
-    end
-end
+% Predicted coefficients
+B1hat = pinv(Z1)*X1;
+X1n = Z1*B1hat;
+E1 = X1 - X1n;
 
-D1  = [];
-X1n = zeros(size(parglmoA.data,1),size(parglmoA.data,2));
-X2n = zeros(size(parglmoB.data,1),size(parglmoB.data,2));
+B2hat = pinv(Z2)*X2;
+X2n = Z2*B2hat;
+E2 = X2 - X2n; 
 
-for ii = 1:length(iidx)
-    X1n = X1n + parglmoA.interactions{iidx(ii)}.matrix; 
-    X2n = X2n + parglmoB.interactions{iidx(ii)}.matrix;
-    D1 = [D1,parglmoA.D(:,parglmoA.interactions{iidx(ii)}.DVars)]; %#ok<AGROW>
-end
-
-for ii = 1:length(fidx)
-    X1n = X1n + parglmoA.factors{fidx(ii)}.matrix;
-    X2n = X2n + parglmoB.factors{fidx(ii)}.matrix;
-    D1 = [D1,parglmoA.D(:,parglmoA.factors{fidx(ii)}.Dvars)]; %#ok<AGROW>
-end
-
-%X1n = parglmoA.factors{fctrs(1)}.matrix;
-%X2n = parglmoB.factors{fctrs(1)}.matrix;
-
-%D1 = parglmoA.D(:,parglmoA.factors{fctrs(1)}.Dvars);
-%D2 = parglmoB.D(:,parglmoB.factors{fctrs(1)}.Dvars);
-
-% Scores calculation
-
+% Nominal score calculation
 [~, ~, V1] = svds(X1n, rank(X1n));
 [~, ~, V2] = svds(X2n, rank(X2n));
 
-% VARIMAX rotation
-[V1,T] = rotatefactors(V1,'Method','varimax','maxit',5000,'reltol',1e-12);
-V2 = rotatefactors(V2,'Method','varimax','maxit',5000,'reltol',1e-12);
+T1o = X1n * V1 ;
+T2o = X2n * V2 ;
 
-T1o = X1n * V1;
-T2o = X2n * V2;
-
-% Procrustes rotation as a separate script
-R = procrustes_rot(T1o,T2o,F1,F2);
+% Calculate diasmetic statistic
+[R,P,T1u,Er,Ep] = diasrot(T1o,T2o,F1,F2);
 
 % Incorporate noise and apply the rotation
-T1oe = ((X1n + X1ne) * V1);    % T1 with noise (before rotation)
-T1r = T1oe * R;                % T1 after rotation
-T2oe = (X2n + X2ne) * V2;      % T2 after noise (no rotation)
+T1oe = ((X1n + E1) * V1);    % T1 with noise (before rotation)
+T1r = T1oe * R;              % T1 after rotation
+T2oe = (X2n + E2) * V2;      % T2 after noise (no rotation)
 
-%Calculate next nearest signed permutation statistic
-[~,Fd] = nnspm(R);
+N = size(T1u,1);
 
-%Permutation test
+Sobs  = (Er'*Er + Ep'*Ep) / (N);
+Siobs = pinv(Sobs);
+Lobs  = chol(Siobs,'lower');
+
+Fd = norm(T1u*(P - R)*Lobs,'fro')^2;
 Fp = zeros([1,n_perms]);
 
 for ii = 1:n_perms
-    perms = randperm(size(X1,1)); % permuted data (permute whole data matrix)
-    Xperm = X1(perms, :);
-    pD1 =  pinv(D1'*D1)*D1';
+    % TIII permutation
+    perms = randperm(size(E1,1));
+    Eperm = E1(perms,:);
+    Xperm = X1n + Eperm;
+
+    % Recalculate GLM
+    pD1 =  pinv(Z1);
     Bperm = pD1*Xperm;
-    X1perm = D1*Bperm;
-    [~,~,Vpm] = svds(X1perm,rank(X1perm));
-    Tpm = X1perm * Vpm * T;
-    R = procrustes_rot(Tpm,T2o,F1,F2);
-    [~, err] = nnspm(R);
-    Fp(ii) = err;
+    X1perm = Z1*Bperm;
+    
+    % Calculate unique, permuted scores
+    Tpm = X1perm * V1;
+    [Tpu, ~, ~] = uniquetol(Tpm,1e-6, 'ByRows', true, 'PreserveRange', true);
+
+    % Permutational test statistic
+    Fp(ii) = norm(Tpu*(P - R)*Lobs,'fro')^2;
+
 end
 
-p = (sum(Fp < Fd) + 1) / (n_perms + 1);
+% chi2 test statistic
+chid = (Fd - mean(Fp)) / std(Fp);
+chid = chid^2;
+
+% Permutational chi2 test distribution
+chip = (Fp - mean(Fp)) / std(Fp);
+chip = chip.^2; 
+
+% Probability of rejecting the null hypothesis
+p = (sum(chid >= chip) + 1) / (n_perms + 1);
 
 end
