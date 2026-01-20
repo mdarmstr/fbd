@@ -1,13 +1,14 @@
 % DEMONSTRATION OF FBD  
-close all;
+close all; clear all;
 % Arrays to store p-values
+N = 100;
+
 pVals_Positive = zeros(N, 1);
 pVals_Negative = zeros(N, 1);
-levels = {[1, 2, 3]};
+levels = {[1, 2, 3, 4, 5, 6, 7]};
 nse = 1;
-reps_pos = 40;
-vars_pos = 300;
-N = 1000;
+reps_pos = 20;
+vars_pos = 1200;
 
 rng('shuffle');
 plot_idx = randi(N);
@@ -324,7 +325,7 @@ T1o = X1n * V1 ;
 T2o = X2n * V2 ;
 
 %Calculate diasmetic statistic
-[R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2);
+[R,P,T1u,Er,Ep,Vo] = diasmetic_rotations(T1o,T2o,F1,F2);
 
 % Incorporate noise and apply the rotation
 T1oe = ((X1n + E1) * V1);    % T1 with noise (before rotation)
@@ -338,6 +339,7 @@ Siobs = pinv(Sobs);
 Lobs  = chol(Siobs,'lower');
 
 Fd = norm(T1u*(P - R)*Lobs,'fro')^2;
+%Fd = norm(pinv(T1u*(R-P)*Lobs),'fro')^2;
 Fp = zeros([1,n_perms]);
 
 for ii = 1:n_perms
@@ -351,9 +353,10 @@ for ii = 1:n_perms
     
     Tpm = X1perm * V1;
     [Tpu, ~, ~] = uniquetol(Tpm,1e-6, 'ByRows', true, 'PreserveRange', true);
+    Tpu = Tpu * Vo;
 
     Fp(ii) = norm(Tpu*(P - R)*Lobs,'fro')^2;
-
+    %Fp(ii) = norm(pinv(Tpu*(R-P)*Lobs),'fro')^2;
 end
 
 %Studentization of the test statistic
@@ -363,14 +366,22 @@ Td = Td^2;
 Tp = (Fp - mean(Fp)) / std(Fp);
 Tp = Tp.^2; 
 p = (sum(Td >= Tp) + 1) / (n_perms + 1);
+%p = (sum(Fp >= Fd) + 1) / (n_perms + 1); 
+
 
 end
 
 
-function [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2)
+function [R,P,T1u,Er,Ep,Vo] = diasmetic_rotations(T1o,T2o,F1,F2)
 
 [T1u, ord1, ~] = uniquetol(T1o,1e-6, 'ByRows', true, 'PreserveRange', true);
 [T2u, ord2, ~] = uniquetol(T2o,1e-6, 'ByRows', true, 'PreserveRange', true);
+
+[U1,S1,Vo] = svds(T1u,size(T1o,2)); %re-orthogonalize. 
+[U2,S2,~] = svds(T2u,size(T1o,2));
+
+T1u = U1*S1;
+T2u = U2*S2;
 
 lvls1 = F1(ord1, 1);
 lvls2 = F2(ord2, 1);
