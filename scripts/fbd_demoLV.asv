@@ -5,10 +5,10 @@ N = 100;
 
 pVals_Positive = zeros(N, 1);
 pVals_Negative = zeros(N, 1);
-levels = {[1, 2, 3, 4, 5, 6, 7]};
+levels = {[1, 2, 3, 4, 5]};
 nse = 1;
-reps_pos = 20;
-vars_pos = 1200;
+reps_pos = 40;
+vars_pos = 300;
 
 rng('shuffle');
 plot_idx = randi(N);
@@ -325,7 +325,9 @@ T1o = X1n * V1 ;
 T2o = X2n * V2 ;
 
 %Calculate diasmetic statistic
-[R,P,T1u,Er,Ep,Vo] = diasmetic_rotations(T1o,T2o,F1,F2);
+[R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2);
+[T2u, ~, ~] = uniquetol(T2o,1e-6, 'ByRows', true, 'PreserveRange', true);
+
 
 % Incorporate noise and apply the rotation
 T1oe = ((X1n + E1) * V1);    % T1 with noise (before rotation)
@@ -338,25 +340,32 @@ Sobs  = (Er'*Er + Ep'*Ep) / (N);
 Siobs = pinv(Sobs);
 Lobs  = chol(Siobs,'lower');
 
-Fd = norm(T1u*(P - R)*Lobs,'fro')^2;
-%Fd = norm(pinv(T1u*(R-P)*Lobs),'fro')^2;
-Fp = zeros([1,n_perms]);
+t11 = chol(pinv(cov(T1u*R)),"lower");
+t22 = chol(pinv(cov(T2u)),"lower");
+t12 = (N^-1)*(R'*T1u'*T2u);
+
+Fd = norm(t11*t12*t22,'fro')^2;
+
+Fp = zeros(1,n_perms);
 
 for ii = 1:n_perms
     perms = randperm(size(E1,1));
-    Eperm = E1(perms,:);
-    Xperm = X1n + Eperm;
+    %Eperm = E1(perms,:);
+    Xperm = X1n + E1(perms,:);
 
     pD1 =  pinv(Z1);
     Bperm = pD1*Xperm;
     X1perm = Z1*Bperm;
+    %[~,~,V] = svds(X2perm,rank(X2perm));
     
-    Tpm = X1perm * V1;
+    Tpm = X2perm * V2;
     [Tpu, ~, ~] = uniquetol(Tpm,1e-6, 'ByRows', true, 'PreserveRange', true);
-    Tpu = Tpu * Vo;
 
-    Fp(ii) = norm(Tpu*(P - R)*Lobs,'fro')^2;
-    %Fp(ii) = norm(pinv(Tpu*(R-P)*Lobs),'fro')^2;
+    t22 = chol(pinv(cov(Tpu)),"lower");
+    t12 = (N^-1)*(R'*T1u'*Tpu);
+    Fp(ii) = norm(t11*t12*t22,'fro')^2;
+
+%Fp(ii) = norm(pinv(Tpu*(R-P)*Lobs),'fro')^2;
 end
 
 %Studentization of the test statistic
@@ -365,23 +374,17 @@ Td = (Fd - mean(Fp)) / std(Fp);
 Td = Td^2;
 Tp = (Fp - mean(Fp)) / std(Fp);
 Tp = Tp.^2; 
-p = (sum(Td >= Tp) + 1) / (n_perms + 1);
-%p = (sum(Fp >= Fd) + 1) / (n_perms + 1); 
+%p = (sum(Td >= Tp) + 1) / (n_perms + 1);
+p = (sum(Fp >= Fd) + 1) / (n_perms + 1); 
 
 
 end
 
 
-function [R,P,T1u,Er,Ep,Vo] = diasmetic_rotations(T1o,T2o,F1,F2)
+function [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2)
 
 [T1u, ord1, ~] = uniquetol(T1o,1e-6, 'ByRows', true, 'PreserveRange', true);
 [T2u, ord2, ~] = uniquetol(T2o,1e-6, 'ByRows', true, 'PreserveRange', true);
-
-[U1,S1,Vo] = svds(T1u,size(T1o,2)); %re-orthogonalize. 
-[U2,S2,~] = svds(T2u,size(T1o,2));
-
-T1u = U1*S1;
-T2u = U2*S2;
 
 lvls1 = F1(ord1, 1);
 lvls2 = F2(ord2, 1);

@@ -275,7 +275,6 @@ N = size(T1u,1);
 
 [T2u, ~, ~] = uniquetol(T2o,1e-8, 'ByRows', true, 'PreserveRange', true);
 
-
 [Qt,~] = qr(T2u,'econ');
 J = Qt*Qt';
 

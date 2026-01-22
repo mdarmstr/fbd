@@ -5,7 +5,7 @@ N = 100;
 
 pVals_Positive = zeros(N, 1);
 pVals_Negative = zeros(N, 1);
-levels = {[1, 2, 3, 4, 5, 6, 7]};
+levels = {[1, 2, 3, 4]};
 nse = 1;
 reps_pos = 20;
 vars_pos = 1200;
@@ -327,19 +327,22 @@ T2o = X2n * V2 ;
 %Calculate diasmetic statistic
 [R,P,T1u,Er,Ep,Vo] = diasmetic_rotations(T1o,T2o,F1,F2);
 
+Eo = T1u*(P-R);
+
 % Incorporate noise and apply the rotation
 T1oe = ((X1n + E1) * V1);    % T1 with noise (before rotation)
 T1r = T1oe * R;         % T1 after rotation
 T2oe = (X2n + E2) * V2;        % T2 after noise (no rotation)
 
 N = size(T1u,1);
+M = size(X1,2);
 
 Sobs  = (Er'*Er + Ep'*Ep) / (N);
 Siobs = pinv(Sobs);
 Lobs  = chol(Siobs,'lower');
 
-Fd = norm(T1u*(P - R)*Lobs,'fro')^2;
-%Fd = norm(pinv(T1u*(R-P)*Lobs),'fro')^2;
+Fd = norm(T1u*(eye(N-1) - P + R),'fro')^2;
+
 Fp = zeros([1,n_perms]);
 
 for ii = 1:n_perms
@@ -354,9 +357,14 @@ for ii = 1:n_perms
     Tpm = X1perm * V1;
     [Tpu, ~, ~] = uniquetol(Tpm,1e-6, 'ByRows', true, 'PreserveRange', true);
     Tpu = Tpu * Vo;
+    Fp(ii) = norm(Tpu*(eye(N-1) - P + R),'fro')^2;
 
-    Fp(ii) = norm(Tpu*(P - R)*Lobs,'fro')^2;
-    %Fp(ii) = norm(pinv(Tpu*(R-P)*Lobs),'fro')^2;
+    %[~,~, Qp] = svd(Tpu);
+    %Fp(ii) = norm((eye(N-1) - pinv(Tpu*R)*Tpu*P)*Lobs,'fro')^2;
+    %Fp(ii) = norm(Xperm*(eye(M) - pinv(X1perm)*Xperm)*V1*(P-R)*Lobs,'fro')^2;
+    %Fp(ii) = norm(Tpu*(P-R)*Lobs*(eye(N-1) - Qp*Qp'),'fro')^2;
+    %Fp(ii) = norm(Tpu*(P - R)*Lobs,'fro')^2;
+    %Fp(ii) = norm((eye(N-1) - Tpu'*Tpu)*(P-R)*Lobs ,'fro')^2;
 end
 
 %Studentization of the test statistic
@@ -365,9 +373,8 @@ Td = (Fd - mean(Fp)) / std(Fp);
 Td = Td^2;
 Tp = (Fp - mean(Fp)) / std(Fp);
 Tp = Tp.^2; 
-p = (sum(Td >= Tp) + 1) / (n_perms + 1);
-%p = (sum(Fp >= Fd) + 1) / (n_perms + 1); 
-
+%p = (sum(Td >= Tp) + 1) / (n_perms + 1);
+p = (sum(Fp >= Fd) + 1) / (n_perms + 1); 
 
 end
 

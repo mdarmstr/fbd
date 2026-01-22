@@ -1,14 +1,14 @@
 % DEMONSTRATION OF FBD  
 close all; clear all;
 % Arrays to store p-values
-N = 100;
+levels = {[1, 2, 3,4,5,6]};
+nse = 1;
+reps_pos = 40;
+vars_pos = 300;
+N = 50;
 
 pVals_Positive = zeros(N, 1);
 pVals_Negative = zeros(N, 1);
-levels = {[1, 2, 3, 4, 5, 6, 7]};
-nse = 1;
-reps_pos = 20;
-vars_pos = 1200;
 
 rng('shuffle');
 plot_idx = randi(N);
@@ -22,7 +22,7 @@ for i = 1:N
 [~, parglmo1] = parglm(X1 - mean(X1), F1, 'Preprocessing', 0); %Force the coding matrix to ignore column of ones.
 [~, parglmo2] = parglm(X2 - mean(X2), F2, 'Preprocessing', 0);
 
-[p_Pos, ~, ~, ~, Fd_pos,Fp_pos] = fbd(parglmo1, parglmo2, 2000);
+[p_Pos, ~, ~, ~, Fd_pos,Fp_pos] = fbd(parglmo1, parglmo2, 1000);
 
 % Negative
 [X1_neg, X2_neg, F1_neg, F2_neg, szNeg] = simul_data('neg', levels, reps_pos, vars_pos, nse, 0.4, 'both');
@@ -30,7 +30,7 @@ for i = 1:N
 [~, parglmo1_neg] = parglm(X1_neg - mean(X1_neg), F1_neg, 'Preprocessing', 0);
 [~, parglmo2_neg] = parglm(X2_neg - mean(X2_neg), F2_neg, 'Preprocessing', 0);
 
-[p_Neg, ~, ~, ~, Fd_neg,Fp_neg] = fbd(parglmo1_neg, parglmo2_neg, 2000);
+[p_Neg, ~, ~, ~, Fd_neg,Fp_neg] = fbd(parglmo1_neg, parglmo2_neg, 1000);
 
 %disp(szPos); disp(szNeg);
 
@@ -86,7 +86,7 @@ plot(alpha, R_alt, 'LineWidth', 3, 'Color', [1 0 0 0.5]);
 
 xlabel('Significance cutoff $\alpha$');
 ylabel('Power');
-legend('$p$ = $\alpha$','Alternative', 'Null', 'Location', 'southeast');
+legend('$p$ = $\alpha$','Null', 'Altr', 'Location', 'southeast');
 title('Empirical CDF Plot')
 
 axis equal 
@@ -313,75 +313,92 @@ B1hat = pinv(Z1)*X1;
 X1n = Z1*B1hat;
 E1 = X1 - X1n;
 
+[~, ~, V1] = svds(X1n, rank(X1n));
+T1ae = zeros(rank(X1n)+1,rank(X1n));
+
+for ii = 1:5
+    perms = randperm(size(E1,1));
+    Eperm = E1(perms,:);
+    X1perm = X1n + Eperm;
+    X1he = Z1*pinv(Z1)*X1perm;
+    T1he = X1he*V1;
+    [T1ue, ~, ~] = uniquetol(T1he,1e-6, 'ByRows', true, 'PreserveRange', true);
+    T1ae = T1ae + T1ue;
+end
+
+T1ae = T1ae.*(1/5);
+
 B2hat = pinv(Z2)*X2;
 X2n = Z2*B2hat;
 E2 = X2 - X2n; 
 
-% Scores calculation
-[~, ~, V1] = svds(X1n, rank(X1n));
 [~, ~, V2] = svds(X2n, rank(X2n));
 
-T1o = X1n * V1 ;
-T2o = X2n * V2 ;
+T1n = X1n * V1 ;
+T2n = X2n * V2 ;
 
-%Calculate diasmetic statistic
-[R,P,T1u,Er,Ep,Vo] = diasmetic_rotations(T1o,T2o,F1,F2);
+[T1nu, ~, ~] = uniquetol(T1n,1e-6, 'ByRows', true, 'PreserveRange', true);
+[T2nu, ~, ~] = uniquetol(T2n,1e-6, 'ByRows', true, 'PreserveRange', true);
+
+T1su = T1ae - T1nu;
+%T2su = T2ae - T2nu;
+
+[R,P,T1u,Er,Ep] = diasmetic_rotations(T1n,T2n,F1,F2);
+
+N = size(T1su,1);
+S1il = chol(pinv(cov(T1su*R)),'lower');
+S2il = chol(pinv(cov(T2nu)),'lower');
+S12l = (N^(-1))*(T1su*R)'*T2nu;
+
+Fd = norm(S1il*S12l*S2il','fro')^2;
 
 % Incorporate noise and apply the rotation
-T1oe = ((X1n + E1) * V1);    % T1 with noise (before rotation)
-T1r = T1oe * R;         % T1 after rotation
-T2oe = (X2n + E2) * V2;        % T2 after noise (no rotation)
+% T1oe = ((X1n + E1) * V1);    % T1 with noise (before rotation)
+% T1r = T1oe * R;         % T1 after rotation
+% T2oe = (X2n + E2) * V2;        % T2 after noise (no rotation)
 
-N = size(T1u,1);
-
-Sobs  = (Er'*Er + Ep'*Ep) / (N);
-Siobs = pinv(Sobs);
-Lobs  = chol(Siobs,'lower');
-
-Fd = norm(T1u*(P - R)*Lobs,'fro')^2;
-%Fd = norm(pinv(T1u*(R-P)*Lobs),'fro')^2;
-Fp = zeros([1,n_perms]);
+Fp = zeros(1,n_perms);
 
 for ii = 1:n_perms
+    %rename later
     perms = randperm(size(E1,1));
-    Eperm = E1(perms,:);
-    Xperm = X1n + Eperm;
+    X1 = X1(perms,:);
+    B1hat = pinv(Z1)*X1;
+    X1n = Z1*B1hat;
+    E1 = X1 - X1n;
 
-    pD1 =  pinv(Z1);
-    Bperm = pD1*Xperm;
-    X1perm = Z1*Bperm;
+    [~, ~, V1] = svds(X1n, rank(X1n));
+    T1n = X1n*V1;
+    [T1nu, ~, ~] = uniquetol(T1n,1e-6, 'ByRows', true, 'PreserveRange', true);
+
+    T1ae = zeros(rank(X1n)+1,rank(X1n));
+    for jj = 1:5
+        perms = randperm(size(E1,1));
+        Eperm = E1(perms,:);
+        X1perm = X1n + Eperm;
+        X1he = Z1*pinv(Z1)*X1perm;
+        T1he = X1he*V1;
+        [T1ue, ~, ~] = uniquetol(T1he,1e-6, 'ByRows', true, 'PreserveRange', true);
+        T1ae = T1ae + T1ue;
+    end
     
-    Tpm = X1perm * V1;
-    [Tpu, ~, ~] = uniquetol(Tpm,1e-6, 'ByRows', true, 'PreserveRange', true);
-    Tpu = Tpu * Vo;
-
-    Fp(ii) = norm(Tpu*(P - R)*Lobs,'fro')^2;
-    %Fp(ii) = norm(pinv(Tpu*(R-P)*Lobs),'fro')^2;
+    T1pe = T1ae.*(1/5) - T1nu;
+    
+    S1pl = chol(pinv(cov(T1pe*R)),'lower');
+    S12p = (N^(-1))*(T1pe*R)'*T2nu;
+    Fp(ii) = norm(S1pl*S12p*S2il','fro')^2;
 end
+Td = Fd; Tp = Fp;T1oe = []; T1r = []; T2oe = [];
 
-%Studentization of the test statistic
-
-Td = (Fd - mean(Fp)) / std(Fp);
-Td = Td^2;
-Tp = (Fp - mean(Fp)) / std(Fp);
-Tp = Tp.^2; 
-p = (sum(Td >= Tp) + 1) / (n_perms + 1);
-%p = (sum(Fp >= Fd) + 1) / (n_perms + 1); 
-
+p = (sum(Fp >= Fd) + 1) / (n_perms + 1); 
 
 end
 
 
-function [R,P,T1u,Er,Ep,Vo] = diasmetic_rotations(T1o,T2o,F1,F2)
+function [R,P,T1u,Er,Ep] = diasmetic_rotations(T1o,T2o,F1,F2)
 
 [T1u, ord1, ~] = uniquetol(T1o,1e-6, 'ByRows', true, 'PreserveRange', true);
 [T2u, ord2, ~] = uniquetol(T2o,1e-6, 'ByRows', true, 'PreserveRange', true);
-
-[U1,S1,Vo] = svds(T1u,size(T1o,2)); %re-orthogonalize. 
-[U2,S2,~] = svds(T2u,size(T1o,2));
-
-T1u = U1*S1;
-T2u = U2*S2;
 
 lvls1 = F1(ord1, 1);
 lvls2 = F2(ord2, 1);
