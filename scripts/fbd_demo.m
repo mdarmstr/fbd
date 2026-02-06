@@ -5,10 +5,10 @@ N = 100;
 
 pVals_Positive = zeros(N, 1);
 pVals_Negative = zeros(N, 1);
-levels = {[1, 2, 3, 4, 5, 6, 7]};
+levels = {[1, 2, 3]};
 nse = 1;
 reps_pos = 20;
-vars_pos = 1200;
+vars_pos = 300;
 
 rng('shuffle');
 plot_idx = randi(N);

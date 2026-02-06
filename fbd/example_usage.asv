@@ -28,17 +28,11 @@ mdl.pred_X1X2()
 X = parglmo12.factors{1}.matrix;
 Xh = mdl.X1X2n;
 
-% X22 = parglmo2.factors{1}.matrix;
-% 
-% [~,~,Vh] = svds(Xh,4);
-% [~,~,V2] = svds(X22,4);
-
-
 %X = X./norm(X);
 %Xh = Xh./norm(Xh);
 
 %recon(ii) = rv_coefficient(X,Xh);
-recon(ii) = norm(X - Xh,'fro')^2 / norm(X,'fro')^2;
+recon(ii) = norm(X - Xh),'fro')^2 / norm(X,'fro')^2;
 
 if ii == 1
 figure;

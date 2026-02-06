@@ -142,7 +142,8 @@ classdef fbd < handle
             % S12 = diag(svd(S12))^(0.5);
             % % 
             
-            X12h = U1 * obj.R *S2 * obj.R' * V2';
+            X12h = U1 * obj.R *S2 * V2';
+            X22 = 
             obj.X1X2n = X12h;
 
             % Store meta-data

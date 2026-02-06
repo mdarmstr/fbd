@@ -1,4 +1,4 @@
-function [block1, block2] = smpl_blkdiag(X, p, mode)
+function [block1, block2,off12,off21] = smpl_blkdiag(X, p, mode)
 %% smpl_blkdiag (Block Diagonal Sampling)
 % Subsets a block diagonal sampling from a matrix.
 % [block1, block2] = smpl_blkdiag(X, p, mode) extracts two
@@ -49,35 +49,49 @@ function [block1, block2] = smpl_blkdiag(X, p, mode)
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-
 if nargin < 3
-    mode = 'both'; % Default mode if not provided.
+    mode = 'both';
 end
 
 [m, n] = size(X);
 
 switch lower(mode)
+
     case 'rows'
-        % Determine number of rows for block 1
         r1 = round(m * p);
-        block1 = X(1:r1, :);        % Top rows (all columns)
-        block2 = X(r1+1:end, :);      % Remaining rows (all columns)
+
+        block1 = X(1:r1, :);
+        block2 = X(r1+1:end, :);
+
+        % No meaningful off-diagonal blocks
+        off12 = [];
+        off21 = [];
 
     case 'cols'
-        % Determine number of columns for block 1
         c1 = round(n * p);
-        block1 = X(:, 1:c1);        % Left columns (all rows)
-        block2 = X(:, c1+1:end);      % Remaining columns (all rows)
+
+        block1 = X(:, 1:c1);
+        block2 = X(:, c1+1:end);
+
+        % No meaningful off-diagonal blocks
+        off12 = [];
+        off21 = [];
 
     case 'both'
-        % Determine both rows and columns for block 1
         r1 = round(m * p);
         c1 = round(n * p);
-        block1 = X(1:r1, 1:c1);      % Top left block
-        block2 = X(r1+1:end, c1+1:end); % Bottom right block
+
+        % Main diagonal blocks
+        block1 = X(1:r1, 1:c1);
+        block2 = X(r1+1:end, c1+1:end);
+
+        % Off-diagonal blocks
+        off12  = X(1:r1, c1+1:end);     % Top-right
+        off21  = X(r1+1:end, 1:c1);     % Bottom-left
 
     otherwise
         error('Unknown mode. Please use ''rows'', ''cols'', or ''both''.');
 end
 end
+
+
