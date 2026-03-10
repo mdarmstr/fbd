@@ -9,8 +9,8 @@ rng('shuffle');
 
 recon = zeros(1,100);
 for ii = 1:100
-F = createDesign(levels, 'Replicates', reps);
-X = zeros(size(F,1), vars);
+% F = createDesign(levels, 'Replicates', reps);
+% X = zeros(size(F,1), vars);
 
 % Prepare random effect levels
 [X11, X22, X12, X21, F1, F2, szPos] = simul_data('pos', levels, reps_pos, vars_pos, nse, 0.4, 'both');
@@ -57,9 +57,9 @@ ax3 = subplot(3,1,3);
 imagesc(X - Xh)
 colorbar
 title('diff')
-
-clims = [min([X1X2n(:); X12n(:)]), max([X1X2n(:); X12n(:)])];
-set([ax1 ax2 ax3], 'CLim', clims)
+% 
+% clims = [min([X1X2n(:); X12n(:)]), max([X1X2n(:); X12n(:)])];
+% set([ax1 ax2 ax3], 'CLim', clims)
 end
 
 end
@@ -69,125 +69,125 @@ disp('e')
 %disp(p_Pos)
 %disp('hello')
 %% 
-
-% % Calculate projections
-% % For dataset 1 (T1) and dataset 2 (T2) before rotation:
-% [U1,S1,V1] = svds(X1s, rank(X1s));
-% [U2,S2,V2] = svds(X2s, rank(X2s));
 % 
-% T1_orig = U1 * S1;  % T1 before rotation (from X1)
-% T2_orig = U2 * S2;  % T2 before rotation (from X2)
+% % % Calculate projections
+% % % For dataset 1 (T1) and dataset 2 (T2) before rotation:
+% % [U1,S1,V1] = svds(X1s, rank(X1s));
+% % [U2,S2,V2] = svds(X2s, rank(X2s));
+% % 
+% % T1_orig = U1 * S1;  % T1 before rotation (from X1)
+% % T2_orig = U2 * S2;  % T2 before rotation (from X2)
+% % 
+% % % Remove duplicate rows if desired
+% % [T1u,ord1,~] = uniquetol(T1_orig, 'ByRows', true,'PreserveRange',true);
+% % [T2u,ord2,~] = uniquetol(T2_orig, 'ByRows', true,'PreserveRange',true);
+% % 
+% % lvls1 = F1s(ord1,1);
+% % lvls2 = F2s(ord2,1);
+% % 
+% % [~, perm_idx] = ismember(lvls1, lvls2);
+% % % perm_idx = [2; 3; 1]  => means: row 1 of lvls1 is at row 2 of lvls2, etc.
+% % 
+% % % Step 2: Build permutation matrix
+% % n = numel(lvls1);
+% % P = eye(n);
+% % P = P(perm_idx, :);   % permute the identity matrix
+% % 
+% % T2u = P*T2u;
+% % 
+% % % Compute the inner product between the unique rows and find the rotation
+% % M = T1u' * T2u;
+% % [U_tmp, ~, V_tmp] = svd(M);
+% % R = U_tmp * V_tmp';  % Optimal rotation from Procrustes
+% % 
+% % % For "after rotation" we incorporate noise and then rotate T1
+% % T1_noisy = ((X1s + X1es) * V1);  % T1 with noise (before rotation)
+% % T1_rot = T1_noisy * R;          % T1 after applying the optimal rotation
+% % 
+% % T2_noisy = (X2s + X2es) * V2;      % T2 after adding noise (no rotation is applied)
+% % 
+% % % Extract the first two dimensions for plotting
+% % T1_orig_data = T1_orig(:, 1:2);
+% % T2_orig_data = T2_orig(:, 1:2);
+% % 
+% % T1_rot_data = T1_rot(:, 1:2);
+% % T2_noisy_data = T2_noisy(:, 1:2);
 % 
-% % Remove duplicate rows if desired
-% [T1u,ord1,~] = uniquetol(T1_orig, 'ByRows', true,'PreserveRange',true);
-% [T2u,ord2,~] = uniquetol(T2_orig, 'ByRows', true,'PreserveRange',true);
+% %% === Prepare Class Labels and Colors ===
 % 
-% lvls1 = F1s(ord1,1);
-% lvls2 = F2s(ord2,1);
+% % Assuming F1 and F2 contain the class labels in their first column:
+% ObsClass1 = F1(row_range1,1);
+% ObsClass2 = F1(row_range2,1);
 % 
-% [~, perm_idx] = ismember(lvls1, lvls2);
-% % perm_idx = [2; 3; 1]  => means: row 1 of lvls1 is at row 2 of lvls2, etc.
+% % Use the union of classes from both datasets to ensure consistency
+% classes = unique([ObsClass1; ObsClass2]);
+% colors = lines(length(classes));  % Use distinct colors
 % 
-% % Step 2: Build permutation matrix
-% n = numel(lvls1);
-% P = eye(n);
-% P = P(perm_idx, :);   % permute the identity matrix
+% %% === Create Figure with Subplots ===
 % 
-% T2u = P*T2u;
+% figure;
 % 
-% % Compute the inner product between the unique rows and find the rotation
-% M = T1u' * T2u;
-% [U_tmp, ~, V_tmp] = svd(M);
-% R = U_tmp * V_tmp';  % Optimal rotation from Procrustes
+% % --- Subplot 1: Before Rotation ---
+% subplot(1,2,1);
+% hold on;
+% title('Before Rotation - Positive');
+% xlabel('Component 1');
+% ylabel('Component 2');
 % 
-% % For "after rotation" we incorporate noise and then rotate T1
-% T1_noisy = ((X1s + X1es) * V1);  % T1 with noise (before rotation)
-% T1_rot = T1_noisy * R;          % T1 after applying the optimal rotation
+% % Plot T1_orig (filled markers) by class
+% for i = 1:length(classes)
+%     idx = ObsClass1 == classes(i);
+%     scatter(T1_noisy(idx,1), T1_noisy(idx,2), 50, colors(i,:), 'o', 'filled');
+% end
 % 
-% T2_noisy = (X2s + X2es) * V2;      % T2 after adding noise (no rotation is applied)
+% % Plot T2_orig (hollow markers) by class
+% for i = 1:length(classes)
+%     idx = ObsClass2 == classes(i);
+%     scatter(T2_noisy(idx,1), T2_noisy(idx,2), 50, colors(i,:), 'o');
+% end
 % 
-% % Extract the first two dimensions for plotting
-% T1_orig_data = T1_orig(:, 1:2);
-% T2_orig_data = T2_orig(:, 1:2);
+% legend(arrayfun(@(c) ['Level ' num2str(c)], classes, 'UniformOutput', false), 'Location', 'best');
+% hold off;
 % 
-% T1_rot_data = T1_rot(:, 1:2);
-% T2_noisy_data = T2_noisy(:, 1:2);
-
-%% === Prepare Class Labels and Colors ===
-
-% Assuming F1 and F2 contain the class labels in their first column:
-ObsClass1 = F1(row_range1,1);
-ObsClass2 = F1(row_range2,1);
-
-% Use the union of classes from both datasets to ensure consistency
-classes = unique([ObsClass1; ObsClass2]);
-colors = lines(length(classes));  % Use distinct colors
-
-%% === Create Figure with Subplots ===
-
-figure;
-
-% --- Subplot 1: Before Rotation ---
-subplot(1,2,1);
-hold on;
-title('Before Rotation - Positive');
-xlabel('Component 1');
-ylabel('Component 2');
-
-% Plot T1_orig (filled markers) by class
-for i = 1:length(classes)
-    idx = ObsClass1 == classes(i);
-    scatter(T1_noisy(idx,1), T1_noisy(idx,2), 50, colors(i,:), 'o', 'filled');
-end
-
-% Plot T2_orig (hollow markers) by class
-for i = 1:length(classes)
-    idx = ObsClass2 == classes(i);
-    scatter(T2_noisy(idx,1), T2_noisy(idx,2), 50, colors(i,:), 'o');
-end
-
-legend(arrayfun(@(c) ['Level ' num2str(c)], classes, 'UniformOutput', false), 'Location', 'best');
-hold off;
-
-% --- Subplot 2: After Rotation ---
-subplot(1,2,2);
-hold on;
-title('After Rotation - Positive');
-xlabel('Component 1');
-ylabel('Component 2');
-
-% Plot rotated T1 (filled markers) by class (using ObsClass1)
-for i = 1:length(classes)
-    idx = ObsClass1 == classes(i);
-    scatter(T1_rot_data(idx,1), T1_rot_data(idx,2), 50, colors(i,:), 'o', 'filled');
-end
-
-% Plot noisy T2 (hollow markers) by class (using ObsClass2)
-for i = 1:length(classes)
-    idx = ObsClass2 == classes(i);
-    scatter(T2_noisy_data(idx,1), T2_noisy_data(idx,2), 50, colors(i,:), 'o');
-end
-
-legend(arrayfun(@(c) ['Level ' num2str(c)], classes, 'UniformOutput', false), 'Location', 'best');
-hold off;
-
-%% --- Formatting both subplots ---
-for ax = findall(gcf,'Type','axes')'
-    set(ax, 'FontName', 'Arial', ...
-            'FontSize', 14, ...
-            'LineWidth', 1, ...
-            'Box', 'off');
-    ax.XLabel.FontSize = 15;
-    ax.YLabel.FontSize = 15;
-    ax.Title.FontSize  = 15;
-end
-
-% Legend formatting
-lgd = findall(gcf,'Type','Legend');
-set(lgd, 'FontSize', 12, 'Box', 'off');
-
-% Save as cropped, vector PDF
-exportgraphics(gcf,'rotation_subplots.pdf','ContentType','vector');
+% % --- Subplot 2: After Rotation ---
+% subplot(1,2,2);
+% hold on;
+% title('After Rotation - Positive');
+% xlabel('Component 1');
+% ylabel('Component 2');
+% 
+% % Plot rotated T1 (filled markers) by class (using ObsClass1)
+% for i = 1:length(classes)
+%     idx = ObsClass1 == classes(i);
+%     scatter(T1_rot_data(idx,1), T1_rot_data(idx,2), 50, colors(i,:), 'o', 'filled');
+% end
+% 
+% % Plot noisy T2 (hollow markers) by class (using ObsClass2)
+% for i = 1:length(classes)
+%     idx = ObsClass2 == classes(i);
+%     scatter(T2_noisy_data(idx,1), T2_noisy_data(idx,2), 50, colors(i,:), 'o');
+% end
+% 
+% legend(arrayfun(@(c) ['Level ' num2str(c)], classes, 'UniformOutput', false), 'Location', 'best');
+% hold off;
+% 
+% %% --- Formatting both subplots ---
+% for ax = findall(gcf,'Type','axes')'
+%     set(ax, 'FontName', 'Arial', ...
+%             'FontSize', 14, ...
+%             'LineWidth', 1, ...
+%             'Box', 'off');
+%     ax.XLabel.FontSize = 15;
+%     ax.YLabel.FontSize = 15;
+%     ax.Title.FontSize  = 15;
+% end
+% 
+% % Legend formatting
+% lgd = findall(gcf,'Type','Legend');
+% set(lgd, 'FontSize', 12, 'Box', 'off');
+% 
+% % Save as cropped, vector PDF
+% exportgraphics(gcf,'rotation_subplots.pdf','ContentType','vector');
 
 %% Helper Functions
 

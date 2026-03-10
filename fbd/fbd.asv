@@ -112,25 +112,26 @@ classdef fbd < handle
             F1 = obj.mdl1.design;
             F2 = obj.mdl2.design;
 
-            %[F1,idx1] = sort(F1,"ascend");
-            %X1 = X1(idx1,:);
-            Z1 = obj.mdl1.D;%(idx1,:);
+            [F1_sorted,idx1] = sort(F1,"ascend");
+            X1_sorted = X1(idx1,:);
+            Z1_sorted = obj.mdl1.D(idx1,:);
             %obj.sort_idx1 = idx1;
 
-            %[F2,idx2] = sort(F2,"ascend");
-            %X2 = X2(idx2,:);
-            Z2 = obj.mdl2.D;%(idx2,:);
+            [F2_sorted,idx2] = sort(F2,"ascend");
+            X2_sorted = X2(idx2,:);
+            Z2_sorted = obj.mdl2.D(idx2,:);
             %obj.sort_idx2 = idx2;
             
-            B1hat = pinv(Z1)*X1;
-            X1n = Z1*B1hat;
+            B1hat = pinv(Z1_sorted)*X1_sorted;
+            X1n = Z1_sorted*B1hat;
             %E1 = X1 - X1n;
 
-            B2hat = pinv(Z2)*X2;
-            X2n = Z2*B2hat;
+            B2hat = pinv(Z2_sorted)*X2_sorted;
+            X2n = Z2_sorted*B2hat;
 
-            [U1,S1,V1] = svds(X1n,rank(X1n));
-            [U2,S2,V2] = svds(X2n,rank(X2n));
+            [~,~,V1] = svds(X1n,rank(X1n));
+            [~,~,V2] = svds(X2n,rank(X2n));
+
 
             % T1 = U1*S1;
             % T2 = U2*S2;
@@ -142,9 +143,17 @@ classdef fbd < handle
             % S12 = diag(svd(S12))^(0.5);
             % % 
             
-            X12h = U1 * obj.R *S2 * V2';
-            X22 = 
-            obj.X1X2n = X12h;
+            %X12h = U1 * obj.R *S2 * obj.R' * V2';
+            X12h_sorted = X1n*V1*obj.R*V2';
+
+            inv_idx1 = zeros(size(idx1));
+            inv_idx1(idx1) = 1:numel(idx1);
+            X12h = X12h_sorted(inv_idx1,:);
+
+
+            %obj.X1X2n = X12h;
+
+            % hello
 
             % Store meta-data
             obj.F1_sorted = F1;
