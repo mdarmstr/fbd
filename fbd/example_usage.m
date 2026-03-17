@@ -68,18 +68,21 @@ clims = [min([Xh(:); X(:)]), max([Xh(:); X(:)])];
 set([ax1 ax2 ax3], 'CLim', clims)
 
 figure(2);
-%PCA nominal;
-
-[U,S,~] = svds(X,2);
-T1 = U*S;
-
-%PCA predicted;
-hold on;
-[U,S,~] = svds(Xh,2);
-T2 = U*S;
-
-gscatter(T1(:,1),T1(:,2),F1,[],'o');
-gscatter(T2(:,1),T2(:,2),F1)
+[U,S,~] = svds([X;Xh],2);
+T = U*S;
+gscatter(T(:,1),T(:,2),repmat(F1,[2,1]))
+% %PCA nominal;
+% 
+% [U,S,~] = svds(X,2);
+% T1 = U*S;
+% 
+% %PCA predicted;
+% hold on;
+% [U,S,~] = svds(Xh,2);
+% T2 = U*S;
+% 
+% gscatter(T1(:,1),T1(:,2),F1,[],'o');
+% gscatter(T2(:,1),T2(:,2),F1)
 
 
 % 
