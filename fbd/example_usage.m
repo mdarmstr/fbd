@@ -1,6 +1,6 @@
 % Add the MEDA toolbox to the path (ensure MEDA toolbox is installed)
 addpath(genpath('../MEDA'));
-levels = {[1, 2, 3,4,5]};
+levels = {[1, 2, 3]};
 vars_pos = 400;
 reps_pos = 50;
 nse = 1;
@@ -26,7 +26,13 @@ mdl.pred_X1X2()
 [~,parglmo12] = parglm(X12 - mean(X12),F1,'Preprocessing',0);
 
 X = parglmo12.factors{1}.matrix;
+%X = X12 - mean(X12);
 Xh = mdl.X1X2n;
+
+disp('hello')
+
+%X = X12;
+%Xh = mdl.X1X2e + mean(X22); % how to predict the mean, if we're comparing mean-centered data?
 
 % X22 = parglmo2.factors{1}.matrix;
 % 
@@ -41,7 +47,7 @@ Xh = mdl.X1X2n;
 recon(ii) = norm(X - Xh,'fro')^2 / norm(X,'fro')^2;
 
 if ii == 1
-figure;
+figure(1);
 
 ax1 = subplot(3,1,1);
 imagesc(X)
@@ -57,15 +63,36 @@ ax3 = subplot(3,1,3);
 imagesc(X - Xh)
 colorbar
 title('diff')
+
+clims = [min([Xh(:); X(:)]), max([Xh(:); X(:)])];
+set([ax1 ax2 ax3], 'CLim', clims)
+
+figure(2);
+%PCA nominal;
+
+[U,S,~] = svds(X,2);
+T1 = U*S;
+
+%PCA predicted;
+hold on;
+[U,S,~] = svds(Xh,2);
+T2 = U*S;
+
+gscatter(T1(:,1),T1(:,2),F1,[],'o');
+gscatter(T2(:,1),T2(:,2),F1)
+
+
 % 
-% clims = [min([X1X2n(:); X12n(:)]), max([X1X2n(:); X12n(:)])];
-% set([ax1 ax2 ax3], 'CLim', clims)
-end
 
 end
 
+end
+disp(mean(recon))
+disp(std(recon))
 
-disp('e')
+%mean_accuracy = (1-mean(recon))*100
+%mean_stdev = std(recon)*100
+
 %disp(p_Pos)
 %disp('hello')
 %% 

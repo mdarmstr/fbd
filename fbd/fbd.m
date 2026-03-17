@@ -63,10 +63,6 @@ classdef fbd < handle
         R             = []
         X1X2e         = []
         X1X2n         = []
-        %F1_sorted     = []
-        %F2_sorted     = []
-        %X1_sorted     = []
-        %X2_sorted     = []
         sort_idx1     = []
         sort_idx2     = []
     end
@@ -109,18 +105,20 @@ classdef fbd < handle
             X1 = obj.mdl1.data;
             X2 = obj.mdl2.data;
 
+            E1 = obj.mdl1.residuals;
+
             F1 = obj.mdl1.design;
             F2 = obj.mdl2.design;
 
-            [F1_sorted,idx1] = sort(F1,"ascend");
+            [~,idx1] = sortrows(F1);
             X1_sorted = X1(idx1,:);
             Z1_sorted = obj.mdl1.D(idx1,:);
-            %obj.sort_idx1 = idx1;
+            obj.sort_idx1 = idx1;
 
-            [F2_sorted,idx2] = sort(F2,"ascend");
+            [~,idx2] = sortrows(F2);
             X2_sorted = X2(idx2,:);
             Z2_sorted = obj.mdl2.D(idx2,:);
-            %obj.sort_idx2 = idx2;
+            obj.sort_idx2 = idx2;
             
             B1hat = pinv(Z1_sorted)*X1_sorted;
             X1n = Z1_sorted*B1hat;
@@ -129,8 +127,8 @@ classdef fbd < handle
             B2hat = pinv(Z2_sorted)*X2_sorted;
             X2n = Z2_sorted*B2hat;
 
-            [~,~,V1] = svds(X1n,rank(X1n));
-            [~,~,V2] = svds(X2n,rank(X2n));
+            [~,S1,V1] = svds(X1n,rank(X1n));
+            [~,S2,V2] = svds(X2n,rank(X2n));
 
 
             % T1 = U1*S1;
@@ -144,11 +142,16 @@ classdef fbd < handle
             % % 
             
             %X12h = U1 * obj.R *S2 * obj.R' * V2';
-            X12h_sorted = X1n*V1*obj.R*V2';
+            Sp1 = diag(diag(S1.^(-0.5)));
+            Sp2 = S2.^(0.5);
+
+            X12h_sorted = X1n*V1*Sp1*obj.R*Sp2*V2';
+            X12e_sorted = (X1n + E1(idx1,:))*V1*Sp1*obj.R*Sp2*V2';
 
             inv_idx1 = zeros(size(idx1));
             inv_idx1(idx1) = 1:numel(idx1);
             obj.X1X2n = X12h_sorted(inv_idx1,:);
+            obj.X1X2e = X12e_sorted(inv_idx1,:);
 
 
             %obj.X1X2n = X12h;
