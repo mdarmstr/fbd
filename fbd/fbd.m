@@ -53,6 +53,18 @@ classdef fbd < handle
 % MEDA dependencies: parglmo
 
     properties
+        X11n          = []
+        X22n          = []
+        E11           = []
+        E22           = []
+        T1o           = []
+        T1u           = []
+        T2o           = []
+        T2u           = []
+        Sp11          = []
+        Sp22          = []
+        V11           = []
+        V22           = []
         n_perms       = []
         mdl1          = []
         mdl2          = []
@@ -65,15 +77,20 @@ classdef fbd < handle
         X1X2n         = []
         sort_idx1     = []
         sort_idx2     = []
+        F11_sorted    = []
+        F22_sorted    = []
+        Er            = []
+        Ep            = []
+
     end
 
     methods
         function obj = fbd(parglmoA, parglmoB, n_perms)
             % --- Required arguments ---
-            if nargin < 5
+            if nargin < 3
                 n_perms = 1000;
-            elseif nargin < 4
-                error('FBD requires X1, F1, X2, and F2.');
+            elseif nargin < 2
+                error('FBD requires input parglmoA, parglmoB');
             end
 
             % --- Add paths (helpers + MEDA) ---
@@ -83,86 +100,137 @@ classdef fbd < handle
                 error('Statistics and Machine Learning Toolbox not available.');
             end
 
-            % --- Store data ---
+            % --- Store data struct ---
+            %
             obj.mdl1 = parglmoA;
             obj.mdl2 = parglmoB;
             obj.n_perms = n_perms;
+
+            % --- Calculate SVDs ---
+            %
+            X11 = obj.mdl1.data;
+            X22 = obj.mdl2.data;
+            F1 = obj.mdl1.design;
+            F2 = obj.mdl2.design;
+            E11 = obj.mdl1.residuals;
+
+            [obj.F11_sorted,idx1] = sortrows(F1, 1:size(F1,2),'ascend');
+            X11_sorted = X11(idx1,:);
+            Z11_sorted = obj.mdl1.D(idx1,:);
+            %
+            obj.sort_idx1 = idx1;
+
+            [obj.F22_sorted,idx2] = sortrows(F2, 1:size(F2,2),'ascend');
+            X22_sorted = X22(idx2,:);
+            Z22_sorted = obj.mdl2.D(idx2,:);
+            %
+            obj.sort_idx2 = idx2;
+
+            B11hat = pinv(Z11_sorted)*X11_sorted;
+            X11n = Z11_sorted*B11hat;
+
+            B22hat = pinv(Z22_sorted)*X22_sorted;
+            X22n = Z22_sorted*B22hat;
+
+            [~,S11,V11] = svds(X11n,rank(X11n));
+            [~,S22,V22] = svds(X22n,rank(X22n));
+
+            Sp11 = diag(diag(S11.^(-0.5)));
+            Sp22 = diag(diag(S22.^(0.5)));
+
+            % --- Store results ---
+            obj.X11n = X11n;
+            obj.X22n = X22n;
+            obj.Sp11 = Sp11;
+            obj.Sp22 = Sp22;
+            obj.V11 = V11;
+            obj.V22 = V22;
+            obj.E11 = E11(idx1,:);
+
+        end
+
+        function opt(obj)
+
+            % Full score matrices in sorted design order
+            obj.T1o = obj.X11n * obj.V11;
+            obj.T2o = obj.X22n * obj.V22;
+
+            % Collapse approximately duplicate rows to force common dimensionality
+            [~, ia1] = uniquetol(obj.T1o, 1e-6, 'ByRows', true);
+            obj.T1u = obj.T1o(sort(ia1), :);
+            
+            [~, ia2] = uniquetol(obj.T2o, 1e-6, 'ByRows', true);
+            obj.T2u = obj.T2o(sort(ia2),:);
+
+            % [T2u_raw, ord2, ~] = uniquetol(obj.T2o, 1e-6, ...
+            %    'ByRows', true, 'PreserveRange', true);
+
+            % % % Recover corresponding factor-level rows
+            % lvls1_raw = obj.F11_sorted(ord1, :);
+            % lvls2_raw = obj.F22_sorted(ord2, :);
+            % 
+            % % Re-sort unique score rows according to experimental design
+            % [lvls1, s1] = sortrows(lvls1_raw, 1:size(lvls1_raw,2), 'ascend');
+            % T1u = T1u_raw(s1,:);
+            % 
+            % [lvls2, s2] = sortrows(lvls2_raw, 1:size(lvls2_raw,2), 'ascend');
+            % T2u = T2u_raw(s2,:);
+            % 
+            % % Match T2 unique rows onto T1 unique design order
+            % [tf, perm_idx] = ismember(lvls1, lvls2, 'rows');
+            % assert(isequal(lvls1, lvls2(perm_idx,:)), ...
+            % 'Aligned unique design rows still do not match exactly.');
+            % 
+            % T2ua = T2u(perm_idx,:);
+
+            % Store unique rows on the object
+
+            % Orthogonal Procrustes
+            M = obj.T1u' * obj.T2u;
+            [Up, ~, Vp] = svd(M, 'econ');
+            obj.R = Up * Vp';
+            obj.Er = obj.T1u * obj.R - obj.T2u;
+
+            % DEBUG PLOT
+            % T1 = obj.T1u*obj.R;
+            % T2 = obj.T2u;
+            % 
+            % gscatter(T1(:,1),T1(:,2),sort(ia1)); hold on;
+            % gscatter(T2(:,1),T2(:,2),sort(ia2)); hold off;
+
+            % Closest signed permutation matrix in component space
+            n = size(obj.R, 1);
+            costMat = -abs(obj.R);
+            assignment = matchpairs(costMat, 1e6);
+
+            P = zeros(n);
+            for k = 1:size(assignment, 1)
+                i = assignment(k, 1);
+                j = assignment(k, 2);
+                if obj.R(i, j) >= 0
+                    P(i, j) = 1;
+                else
+                    P(i, j) = -1;
+                end
+            end
+
+            obj.Ep = obj.T1u * P - obj.T2u;
         end
 
         function test(obj)
-
-            [obj.p,obj.T1oe,obj.T1r,obj.T2oe,obj.R] = nnspt(obj.mdl1,obj.mdl2,obj.n_perms);
-            
+   
+            disp('not implemented yet')
         end
 
         function pred_X1X2(obj)
-
-            %For simplicity, we are using the whole design matrix, assuming
-            %the user has correctly trimmed the model previously.
             
-            % Calculate matrix of expected values - first order
-            % experimental designs consistently.
-            X1 = obj.mdl1.data;
-            X2 = obj.mdl2.data;
+            X12h_sorted = obj.X11n*obj.V11*obj.Sp11*obj.R*obj.Sp22*obj.V22';
+            X12e_sorted = (obj.X11n + obj.E11)*obj.V11*obj.Sp11*obj.R*obj.Sp22*obj.V22';
 
-            E1 = obj.mdl1.residuals;
-
-            F1 = obj.mdl1.design;
-            F2 = obj.mdl2.design;
-
-            [~,idx1] = sortrows(F1);
-            X1_sorted = X1(idx1,:);
-            Z1_sorted = obj.mdl1.D(idx1,:);
-            obj.sort_idx1 = idx1;
-
-            [~,idx2] = sortrows(F2);
-            X2_sorted = X2(idx2,:);
-            Z2_sorted = obj.mdl2.D(idx2,:);
-            obj.sort_idx2 = idx2;
-            
-            B1hat = pinv(Z1_sorted)*X1_sorted;
-            X1n = Z1_sorted*B1hat;
-            %E1 = X1 - X1n;
-
-            B2hat = pinv(Z2_sorted)*X2_sorted;
-            X2n = Z2_sorted*B2hat;
-
-            [~,S1,V1] = svds(X1n,rank(X1n));
-            [~,S2,V2] = svds(X2n,rank(X2n));
-
-
-            % T1 = U1*S1;
-            % T2 = U2*S2;
-            % 
-            % [T1u, ord1, ~] = uniquetol(T1,1e-6, 'ByRows', true, 'PreserveRange', true);
-            % [T2u, ord1, ~] = uniquetol(T2,1e-6, 'ByRows', true, 'PreserveRange', true);
-            % % 
-            % S12 = cov(obj.R'*T1u'*T2u);
-            % S12 = diag(svd(S12))^(0.5);
-            % % 
-            
-            %X12h = U1 * obj.R *S2 * obj.R' * V2';
-            Sp1 = diag(diag(S1.^(-0.5)));
-            Sp2 = S2.^(0.5);
-
-            X12h_sorted = X1n*V1*Sp1*obj.R*Sp2*V2';
-            X12e_sorted = (X1n + E1(idx1,:))*V1*Sp1*obj.R*Sp2*V2';
-
-            inv_idx1 = zeros(size(idx1));
-            inv_idx1(idx1) = 1:numel(idx1);
+            inv_idx1 = zeros(size(obj.sort_idx1));
+            inv_idx1(obj.sort_idx1) = 1:numel(obj.sort_idx1);
             obj.X1X2n = X12h_sorted(inv_idx1,:);
             obj.X1X2e = X12e_sorted(inv_idx1,:);
-
-
-            %obj.X1X2n = X12h;
-
-            % hello
-
-            % Store meta-data
-            %obj.F1_sorted = F1;
-            %obj.F2_sorted = F2;
-            %obj.X1_sorted = X1;
-            %obj.X2_sorted = X2;
 
         end
  

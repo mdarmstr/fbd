@@ -1,4 +1,4 @@
-function [p,T1oe,T1r,T2oe,R] = nnspt(X11n, F1, V11, E11, X22n, F2, V22, n_perms)
+function [p,T1oe,T1r,T2oe,R,S] = nnspt(parglmoA, parglmoB, n_perms)
 
 %% Next Nearest Signed Permutation Test
 % Tests whether the scores in parglmoA are independently distributed with 
@@ -48,45 +48,45 @@ function [p,T1oe,T1r,T2oe,R] = nnspt(X11n, F1, V11, E11, X22n, F2, V22, n_perms)
 %
 % MEDA dependencies: parglmo
 
-% Extract data - replace with sorted values
-% X1 = parglmoA.data;
-% X2 = parglmoB.data;
+% Extract data
+X1 = parglmoA.data;
+X2 = parglmoB.data;
 
-% F1 = parglmoA.design;
-% F2 = parglmoB.design;
-% 
-% % Ensure design matrices are sorted in the correct order
-% [F1,idx] = sortrows(F1,1:size(F1,2),'ascend');
-% X1 = X1(idx,:);
-% Z1 = parglmoA.D(idx,:);
-% 
-% [F2,idx] = sortrows(F2,1:size(F2,2),'ascend');
-% X2 = X2(idx,:);
-% Z2 = parglmoB.D(idx,:);
-% 
-% % Predicted coefficients
-% B1hat = pinv(Z1)*X1;
-% X1n = Z1*B1hat;
-% E1 = X1 - X1n;
-% 
-% B2hat = pinv(Z2)*X2;
-% X2n = Z2*B2hat;
-% E2 = X2 - X2n; 
-% 
-% % Nominal score calculation
-% [~, ~, V1] = svds(X1n, rank(X1n));
-% [~, ~, V2] = svds(X2n, rank(X2n));
+F1 = parglmoA.design;
+F2 = parglmoB.design;
 
-T1o = X11n * V11 ;
-T2o = X22n * V22 ;
+% Ensure design matrices are sorted in the correct order
+[F1,idx] = sort(F1,"ascend");
+X1 = X1(idx,:);
+Z1 = parglmoA.D(idx,:);
+
+[F2,idx] = sort(F2,"ascend");
+X2 = X2(idx,:);
+Z2 = parglmoB.D(idx,:);
+
+% Predicted coefficients
+B1hat = pinv(Z1)*X1;
+X1n = Z1*B1hat;
+E1 = X1 - X1n;
+
+B2hat = pinv(Z2)*X2;
+X2n = Z2*B2hat;
+E2 = X2 - X2n; 
+
+% Nominal score calculation
+[~, ~, V1] = svds(X1n, rank(X1n));
+[~, ~, V2] = svds(X2n, rank(X2n));
+
+T1o = X1n * V1 ;
+T2o = X2n * V2 ;
 
 % Calculate diasmetic statistic
 [R,P,T1u,Er,Ep] = diasrot(T1o,T2o,F1,F2);
 
 % Incorporate noise and apply the rotation
-T1oe = ((X11n + E11) * V11);    % T1 with noise (before rotation)
+T1oe = ((X1n + E1) * V1);    % T1 with noise (before rotation)
 T1r = T1oe * R;              % T1 after rotation
-%T2oe = (X22n + E2) * V22;      % T2 after noise (no rotation)
+T2oe = (X2n + E2) * V2;      % T2 after noise (no rotation)
 
 N = size(T1u,1);
 
@@ -99,9 +99,9 @@ Fp = zeros([1,n_perms]);
 
 for ii = 1:n_perms
     % TIII permutation
-    perms = randperm(size(E11,1));
-    Eperm = E11(perms,:);
-    Xperm = X11n + Eperm;
+    perms = randperm(size(E1,1));
+    Eperm = E1(perms,:);
+    Xperm = X1n + Eperm;
 
     % Recalculate GLM
     pD1 =  pinv(Z1);
@@ -109,7 +109,7 @@ for ii = 1:n_perms
     X1perm = Z1*Bperm;
     
     % Calculate unique, permuted scores
-    Tpm = X1perm * V11;
+    Tpm = X1perm * V1;
     [Tpu, ~, ~] = uniquetol(Tpm,1e-6, 'ByRows', true, 'PreserveRange', true);
 
     % Permutational test statistic

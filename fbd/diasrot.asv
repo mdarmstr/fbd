@@ -54,7 +54,7 @@ T2ua = P * T2u;
 M = T1u' * T2ua;
 [Up, ~, Vp] = svd(M);
 R = Up * Vp';  % Rotation matrix
-Er = T1u * R - T2ua;
+Er = T1u * R - T2                                                                                                                                                                                                  ua;
 
 n = size(R, 1);
 

@@ -1,0 +1,349 @@
+%% run_fbd_experiments.m
+% Requires:
+% - MEDA toolbox on path
+% - fbd class on path
+% - createDesign
+% - smpl_blkdiag
+%
+% Exports:
+%   exp1_reps_vs_reldim.csv
+%   exp1_reps_vs_reldim.tex
+%   exp2_reps_vs_levels.csv
+%   exp2_reps_vs_levels.tex
+%   exp3_levels_vs_reldim.csv
+%   exp3_levels_vs_reldim.tex
+
+clear; clc;
+
+%% Setup
+addpath(genpath('../MEDA'));
+
+vars_pos = 400;
+nse = 1;
+n_perms = 5;
+n_trials = 5;        % number of Monte Carlo repetitions per condition
+rng('shuffle');
+
+% Grids
+reps_grid = [10, 25, 50, 75, 100];
+reldim_grid = [0.3, 0.4, 0.5, 0.6, 0.7];
+levels_grid = [3, 4, 5, 6, 7];
+
+% Output folder
+outdir = 'results_fbd';
+if ~exist(outdir, 'dir')
+    mkdir(outdir);
+end
+
+%% Experiment 1: reps_pos vs relative dimensions
+% rows = reps_pos
+% cols = relative_dim
+% fixed levels = 3
+
+disp('Running Experiment 1: reps_pos vs relative_dim');
+
+fixed_levels = {[1, 2, 3]};
+
+exp1_recon_mean = zeros(numel(reps_grid), numel(reldim_grid));
+exp1_recon_sd   = zeros(numel(reps_grid), numel(reldim_grid));
+exp1_rv_mean    = zeros(numel(reps_grid), numel(reldim_grid));
+exp1_rv_sd      = zeros(numel(reps_grid), numel(reldim_grid));
+exp1_display    = strings(numel(reps_grid), numel(reldim_grid));
+
+for i = 1:numel(reps_grid)
+    for j = 1:numel(reldim_grid)
+        reps_pos = reps_grid(i);
+        splitFrac = reldim_grid(j);
+
+        [recon_vals, rv_vals] = run_condition(fixed_levels, reps_pos, vars_pos, ...
+            nse, n_perms, splitFrac, n_trials);
+
+        exp1_recon_mean(i,j) = mean(recon_vals, 'omitnan');
+        exp1_recon_sd(i,j)   = std(recon_vals, 0, 'omitnan');
+        exp1_rv_mean(i,j)    = mean(rv_vals, 'omitnan');
+        exp1_rv_sd(i,j)      = std(rv_vals, 0, 'omitnan');
+
+        exp1_display(i,j) = sprintf(['\\begin{tabular}{@{}c@{}}' ...
+        '%.3f $\\pm$ %.3f \\\\ ' ...
+        '(%.3f $\\pm$ %.3f)' ...
+        '\\end{tabular}'], ...
+            exp1_recon_mean(i,j), exp1_recon_sd(i,j), ...
+            exp1_rv_mean(i,j), exp1_rv_sd(i,j));
+    end
+end
+
+T1 = array2table(exp1_display, ...
+    'VariableNames', matlab.lang.makeValidName(compose('d%.1f', reldim_grid)));
+T1 = addvars(T1, reps_grid(:), 'Before', 1, 'NewVariableNames', 'reps_pos');
+
+writetable(T1, fullfile(outdir, 'exp1_reps_vs_reldim.csv'));
+write_latex_table(T1, fullfile(outdir, 'exp1_reps_vs_reldim.tex'), ...
+    'Experiment 1: reps\_pos vs relative dimension split');
+
+%% Experiment 2: reps_pos vs number of levels
+% rows = reps_pos
+% cols = levels
+% fixed relative_dim = 0.4
+disp('Running Experiment 2: reps_pos vs levels');
+
+fixed_splitFrac = 0.4;
+
+exp2_recon_mean = zeros(numel(reps_grid), numel(levels_grid));
+exp2_recon_sd   = zeros(numel(reps_grid), numel(levels_grid));
+exp2_rv_mean    = zeros(numel(reps_grid), numel(levels_grid));
+exp2_rv_sd      = zeros(numel(reps_grid), numel(levels_grid));
+exp2_display    = strings(numel(reps_grid), numel(levels_grid));
+
+for i = 1:numel(reps_grid)
+    for j = 1:numel(levels_grid)
+        reps_pos = reps_grid(i);
+        n_levels = levels_grid(j);
+        levels = {1:n_levels};
+
+        [recon_vals, rv_vals] = run_condition(levels, reps_pos, vars_pos, ...
+            nse, n_perms, fixed_splitFrac, n_trials);
+
+        exp2_recon_mean(i,j) = mean(recon_vals, 'omitnan');
+        exp2_recon_sd(i,j)   = std(recon_vals, 0, 'omitnan');
+        exp2_rv_mean(i,j)    = mean(rv_vals, 'omitnan');
+        exp2_rv_sd(i,j)      = std(rv_vals, 0, 'omitnan');
+
+        exp2_display(i,j) = sprintf(['\\begin{tabular}{@{}c@{}}' ...
+        '%.3f $\\pm$ %.3f \\\\ ' ...
+        '(%.3f $\\pm$ %.3f)' ...
+        '\\end{tabular}'], ...
+        exp2_recon_mean(i,j), exp2_recon_sd(i,j), ...
+        exp2_rv_mean(i,j), exp2_rv_sd(i,j));
+    end
+end
+
+T2 = array2table(exp2_display, ...
+    'VariableNames', matlab.lang.makeValidName(compose('L%d', levels_grid)));
+T2 = addvars(T2, reps_grid(:), 'Before', 1, 'NewVariableNames', 'reps_pos');
+
+writetable(T2, fullfile(outdir, 'exp2_reps_vs_levels.csv'));
+write_latex_table(T2, fullfile(outdir, 'exp2_reps_vs_levels.tex'), ...
+    'Experiment 2: reps\_pos vs number of levels');
+
+%% Experiment 3: number of levels vs relative dimensions
+% rows = levels
+% cols = relative_dim
+% fixed reps_pos = 50
+disp('Running Experiment 3: levels vs relative_dim');
+
+fixed_reps_pos = 50;
+
+exp3_recon_mean = zeros(numel(levels_grid), numel(reldim_grid));
+exp3_recon_sd   = zeros(numel(levels_grid), numel(reldim_grid));
+exp3_rv_mean    = zeros(numel(levels_grid), numel(reldim_grid));
+exp3_rv_sd      = zeros(numel(levels_grid), numel(reldim_grid));
+exp3_display    = strings(numel(levels_grid), numel(reldim_grid));
+
+for i = 1:numel(levels_grid)
+    for j = 1:numel(reldim_grid)
+        n_levels = levels_grid(i);
+        splitFrac = reldim_grid(j);
+        levels = {1:n_levels};
+
+        [recon_vals, rv_vals] = run_condition(levels, fixed_reps_pos, vars_pos, ...
+            nse, n_perms, splitFrac, n_trials);
+
+        exp3_recon_mean(i,j) = mean(recon_vals, 'omitnan');
+        exp3_recon_sd(i,j)   = std(recon_vals, 0, 'omitnan');
+        exp3_rv_mean(i,j)    = mean(rv_vals, 'omitnan');
+        exp3_rv_sd(i,j)      = std(rv_vals, 0, 'omitnan');
+
+        exp3_display(i,j) = sprintf(['\\begin{tabular}{@{}c@{}}' ...
+        '%.3f $\\pm$ %.3f \\\\ ' ...
+        '(%.3f $\\pm$ %.3f)' ...
+        '\\end{tabular}']', ...
+            exp3_recon_mean(i,j), exp3_recon_sd(i,j), ...
+            exp3_rv_mean(i,j), exp3_rv_sd(i,j));
+    end
+end
+
+T3 = array2table(exp3_display, ...
+    'VariableNames', matlab.lang.makeValidName(compose('d%.1f', reldim_grid)));
+T3 = addvars(T3, levels_grid(:), 'Before', 1, 'NewVariableNames', 'levels');
+
+writetable(T3, fullfile(outdir, 'exp3_levels_vs_reldim.csv'));
+write_latex_table(T3, fullfile(outdir, 'exp3_levels_vs_reldim.tex'), ...
+    'Experiment 3: number of levels vs relative dimension split');
+
+disp('All experiments completed.');
+disp(['Results written to: ' outdir]);
+
+%% Helper fns
+function [recon_vals, rv_vals] = run_condition(levels, reps_pos, vars_pos, ...
+    nse, n_perms, splitFrac, n_trials)
+
+    recon_vals = nan(n_trials,1);
+    rv_vals    = nan(n_trials,1);
+
+    for ii = 1:n_trials
+        try
+            [X11, X22, X12, ~, F1, F2, ~] = simul_data('pos', levels, reps_pos, ...
+                vars_pos, nse, splitFrac, 'both');
+
+            % Fit parglm models
+            [~, parglmo1] = parglm(X11 - mean(X11,1), F1, 'Preprocessing', 0);
+            [~, parglmo2] = parglm(X22 - mean(X22,1), F2, 'Preprocessing', 0);
+
+            % FBD model and prediction
+            mdl = fbd(parglmo1, parglmo2, n_perms);
+            mdl.opt();
+            mdl.pred_X1X2();
+
+            % Nominal target block using the factor matrix from X12
+            [~, parglmo12] = parglm(X12 - mean(X12,1), F1, 'Preprocessing', 0);
+            X  = parglmo12.factors{1}.matrix;
+            Xh = mdl.X1X2n;
+
+            % Size safety
+            if ~isequal(size(X), size(Xh))
+                warning('Skipping trial: X and Xh size mismatch.');
+                continue;
+            end
+
+            % Metrics
+            recon_vals(ii) = norm(X - Xh, 'fro')^2 / norm(X, 'fro')^2;
+            rv_vals(ii)    = rv_coefficient(X, Xh);
+
+        catch ME
+            warning('Trial %d failed: %s', ii, ME.message);
+            continue;
+        end
+    end
+end
+
+%% =========================================================
+% Data simulation
+%% =========================================================
+function [X1, X2, Xoff12, Xoff21, F1, F2, sz] = simul_data(mode, levels, reps_pos, vars_pos, nse, splitFrac, splitMode)
+%SIMUL_DATA Simulate data for FBD experiments.
+
+    if nargin < 7 || isempty(splitMode), splitMode = 'both'; end
+    if nargin < 6 || isempty(splitFrac), splitFrac = 0.4; end
+
+    mode = lower(string(mode));
+    if mode == "positive", mode = "pos"; end
+    if mode == "negative", mode = "neg"; end
+
+    Xoff12 = [];
+    Xoff21 = [];
+
+    switch mode
+        case "pos"
+            [X, F] = local_sim_one(levels, reps_pos, vars_pos, nse);
+
+            rp = randperm(size(X,1));
+            X = X(rp,:);
+            F = F(rp,:);
+
+            [X1, X2, Xoff12, Xoff21] = smpl_blkdiag(X, splitFrac, splitMode);
+
+            F1 = F(1:size(X1,1), :);
+            F2 = F(size(X1,1)+1:end, :);
+
+            sz = struct();
+            sz.mode = 'pos';
+            sz.X1 = size(X1);
+            sz.X2 = size(X2);
+            sz.Xoff12 = size(Xoff12);
+            sz.Xoff21 = size(Xoff21);
+
+        case "neg"
+            reps1 = floor(splitFrac * reps_pos);
+            vars1 = floor(splitFrac * vars_pos);
+            [X1, F1] = local_sim_one(levels, reps1, vars1, nse);
+
+            reps2 = floor((1 - splitFrac) * reps_pos);
+            vars2 = floor((1 - splitFrac) * vars_pos);
+            [X2, F2] = local_sim_one(levels, reps2, vars2, nse);
+
+            Xoff12 = [];
+            Xoff21 = [];
+
+            sz = struct();
+            sz.mode = 'neg';
+            sz.X1 = size(X1);
+            sz.X2 = size(X2);
+
+        otherwise
+            error('simul_data:badMode', 'mode must be ''pos'' or ''neg''.');
+    end
+end
+
+function [X, F] = local_sim_one(levels, reps, vars, nse)
+    F = createDesign(levels, 'Replicates', reps);
+    X = zeros(size(F,1), vars);
+
+    for ii = 1:length(levels{1})
+        idx = find(F(:,1) == levels{1}(ii));
+        X(idx,:) = randn(numel(idx), vars) + ...
+            nse .* repmat(randn(1,vars), numel(idx), 1);
+    end
+end
+
+%% =========================================================
+% RV coefficient
+%% =========================================================
+function rv = rv_coefficient(X, Y)
+    XY = X' * Y;
+    rv = trace(XY * XY') / sqrt(trace((X' * X)^2) * trace((Y' * Y)^2));
+end
+
+%% =========================================================
+% LaTeX exporter
+%% =========================================================
+function write_latex_table(T, filename, caption_text)
+    fid = fopen(filename, 'w');
+    if fid == -1
+        error('Could not open file for writing: %s', filename);
+    end
+
+    ncols = width(T);
+
+    fprintf(fid, '\\begin{table}[ht]\n');
+    fprintf(fid, '\\centering\n');
+    fprintf(fid, '\\caption{%s}\n', caption_text);
+    fprintf(fid, '\\begin{tabular}{%s}\n', ['l' repmat('c',1,ncols-1)]);
+    fprintf(fid, '\\hline\n');
+
+    % Header
+    headers = T.Properties.VariableNames;
+    headers = strrep(headers, '_', '\_');
+    fprintf(fid, '%s', headers{1});
+    for j = 2:ncols
+        fprintf(fid, ' & %s', headers{j});
+    end
+    fprintf(fid, ' \\\\\n');
+    fprintf(fid, '\\hline\n');
+
+    % Rows
+    for i = 1:height(T)
+        rowname = T{i,1};
+        if isnumeric(rowname)
+            fprintf(fid, '%g', rowname);
+        else
+            fprintf(fid, '%s', string(rowname));
+        end
+
+        for j = 2:ncols
+            val = T{i,j};
+            if iscell(val)
+                out = string(val{1});
+            else
+                out = string(val);
+            end
+            fprintf(fid, ' & %s', out);
+        end
+        fprintf(fid, ' \\\\\n');
+    end
+
+    fprintf(fid, '\\hline\n');
+    fprintf(fid, '\\end{tabular}\n');
+    fprintf(fid, '\\end{table}\n');
+
+    fclose(fid);
+end
