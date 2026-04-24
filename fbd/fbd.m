@@ -1,56 +1,56 @@
 classdef fbd < handle
 
-%% Fusion by Design (FBD)
-% A family of statistical tests and linear functions that align X1 to X2
-% and evaluate their statistical independence. with no common sample or 
-% feature modality via a common experimental design in F1, F2.
-%
-% IMPORTANT NOTE: Test all factors for evidence of significance across
-% parglmoA and parglmoB. Reinitialize with only the factors of interest in
-% F1, F2.
-%
-% INPUTS
-% parglmoA - output of parglm.m in MEDA toolbox for X1, F1
-% parglmoB - output of parglm.m in MEDA toolbox for X2, F2
-% OUTPUTS
-% -OBJ
-%   .p         - p-value for NNSPM heteromodal statistical test
-%   .T1oe      - Original PCA scores for X1 + E1, with respect to fctrs
-%   .T1r       - Rotated PCA scores for X1 + E1, with respect to fctrs, X2, F2
-%   .T2oe      - Original PCA scores for X2 + E2, with respect to fctrs
-%   .R         - Opimtal rotation for X_1 to X_2    
-%   .X1X2e     - Predicted off-diagonal entries with uncertainty    
-%   .X1X2n     - Expected values for off-diagonal entries    
-%   .F1_sorted - Sorted values of F1 in ascending order    
-%   .F2_sorted - Sorted values of F2 in ascending order    
-%   .X1_sorted - X1 sorted with respect to F1    
-%   .X2_sorted - X2 sorted with respect to F2    
-%   .idx       - Index used to sort X1, F1.    
-%
-% Software preparation:  Install MEDA-Toolbox following readme file;
-%
-% coded by: Michael Sorochan Armstrong (mdarmstr@ugr.es)
-%           Jose Camacho Paez (josecamacho@ugr.es)
-%
-% last modification: DEC 2025
-%
-% Copyright (C) 2025  University of Granada, Granada
-% Copyright (C) 2025  Michael Sorochan Armstrong, Jose Camacho Paez
-%
-% This program is free software: you can redistribute it and/or modify
-% it under the terms of the GNU General Public License as published by
-% the Free Software Foundation, either version 3 of the License, or
-% (at your option) any later version.
-%
-% This program is distributed in the hope that it will be useful,
-% but WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-% GNU General Public License for more details.
-%
-% You should have received a copy of the GNU General Public License
-% along with this program.  If not, see <http://www.gnu.org/licenses/>.
-%
-% MEDA dependencies: parglmo
+    %% Fusion by Design (FBD)
+    % A family of statistical tests and linear functions that align X1 to X2
+    % and evaluate their statistical independence. with no common sample or
+    % feature modality via a common experimental design in F1, F2.
+    %
+    % IMPORTANT NOTE: Test all factors for evidence of significance across
+    % parglmoA and parglmoB. Reinitialize with only the factors of interest in
+    % F1, F2.
+    %
+    % INPUTS
+    % parglmoA - output of parglm.m in MEDA toolbox for X1, F1
+    % parglmoB - output of parglm.m in MEDA toolbox for X2, F2
+    % OUTPUTS
+    % -OBJ
+    %   .p         - p-value for NNSPM heteromodal statistical test
+    %   .T1oe      - Original PCA scores for X1 + E1, with respect to fctrs
+    %   .T1r       - Rotated PCA scores for X1 + E1, with respect to fctrs, X2, F2
+    %   .T2oe      - Original PCA scores for X2 + E2, with respect to fctrs
+    %   .R         - Opimtal rotation for X_1 to X_2
+    %   .X1X2e     - Predicted off-diagonal entries with uncertainty
+    %   .X1X2n     - Expected values for off-diagonal entries
+    %   .F1_sorted - Sorted values of F1 in ascending order
+    %   .F2_sorted - Sorted values of F2 in ascending order
+    %   .X1_sorted - X1 sorted with respect to F1
+    %   .X2_sorted - X2 sorted with respect to F2
+    %   .idx       - Index used to sort X1, F1.
+    %
+    % Software preparation:  Install MEDA-Toolbox following readme file;
+    %
+    % coded by: Michael Sorochan Armstrong (mdarmstr@ugr.es)
+    %           Jose Camacho Paez (josecamacho@ugr.es)
+    %
+    % last modification: DEC 2025
+    %
+    % Copyright (C) 2025  University of Granada, Granada
+    % Copyright (C) 2025  Michael Sorochan Armstrong, Jose Camacho Paez
+    %
+    % This program is free software: you can redistribute it and/or modify
+    % it under the terms of the GNU General Public License as published by
+    % the Free Software Foundation, either version 3 of the License, or
+    % (at your option) any later version.
+    %
+    % This program is distributed in the hope that it will be useful,
+    % but WITHOUT ANY WARRANTY; without even the implied warranty of
+    % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    % GNU General Public License for more details.
+    %
+    % You should have received a copy of the GNU General Public License
+    % along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    %
+    % MEDA dependencies: parglmo
 
     properties
         X11n          = []
@@ -73,6 +73,7 @@ classdef fbd < handle
         T1r           = []
         T2oe          = []
         R             = []
+        P             = []
         X1X2e         = []
         X1X2n         = []
         sort_idx1     = []
@@ -158,32 +159,9 @@ classdef fbd < handle
             % Collapse approximately duplicate rows to force common dimensionality
             [~, ia1] = uniquetol(obj.T1o, 1e-6, 'ByRows', true);
             obj.T1u = obj.T1o(sort(ia1), :);
-            
+
             [~, ia2] = uniquetol(obj.T2o, 1e-6, 'ByRows', true);
             obj.T2u = obj.T2o(sort(ia2),:);
-
-            % [T2u_raw, ord2, ~] = uniquetol(obj.T2o, 1e-6, ...
-            %    'ByRows', true, 'PreserveRange', true);
-
-            % % % Recover corresponding factor-level rows
-            % lvls1_raw = obj.F11_sorted(ord1, :);
-            % lvls2_raw = obj.F22_sorted(ord2, :);
-            % 
-            % % Re-sort unique score rows according to experimental design
-            % [lvls1, s1] = sortrows(lvls1_raw, 1:size(lvls1_raw,2), 'ascend');
-            % T1u = T1u_raw(s1,:);
-            % 
-            % [lvls2, s2] = sortrows(lvls2_raw, 1:size(lvls2_raw,2), 'ascend');
-            % T2u = T2u_raw(s2,:);
-            % 
-            % % Match T2 unique rows onto T1 unique design order
-            % [tf, perm_idx] = ismember(lvls1, lvls2, 'rows');
-            % assert(isequal(lvls1, lvls2(perm_idx,:)), ...
-            % 'Aligned unique design rows still do not match exactly.');
-            % 
-            % T2ua = T2u(perm_idx,:);
-
-            % Store unique rows on the object
 
             % Orthogonal Procrustes
             M = obj.T1u' * obj.T2u;
@@ -194,7 +172,7 @@ classdef fbd < handle
             % DEBUG PLOT
             % T1 = obj.T1u*obj.R;
             % T2 = obj.T2u;
-            % 
+            %
             % gscatter(T1(:,1),T1(:,2),sort(ia1)); hold on;
             % gscatter(T2(:,1),T2(:,2),sort(ia2)); hold off;
 
@@ -203,27 +181,91 @@ classdef fbd < handle
             costMat = -abs(obj.R);
             assignment = matchpairs(costMat, 1e6);
 
-            P = zeros(n);
+            Pt = zeros(n);
             for k = 1:size(assignment, 1)
                 i = assignment(k, 1);
                 j = assignment(k, 2);
                 if obj.R(i, j) >= 0
-                    P(i, j) = 1;
+                    Pt(i, j) = 1;
                 else
-                    P(i, j) = -1;
+                    Pt(i, j) = -1;
                 end
             end
-
-            obj.Ep = obj.T1u * P - obj.T2u;
+            obj.P = Pt;
+            obj.Ep = obj.T1u * obj.P - obj.T2u;
         end
 
         function test(obj)
-   
-            disp('not implemented yet')
+
+            % Ensure opt(obj) has already been run
+            if isempty(obj.R) || isempty(obj.T1u) || isempty(obj.Er) || isempty(obj.Ep)
+                warning('obj.opt() not previously run. Running optimization.')
+                obj.opt();
+            end
+
+            % Use already-computed quantities
+            X1n = obj.X11n;
+            E1  = obj.E11;
+            V1  = obj.V11;
+
+            Z1 = obj.mdl1.D(obj.sort_idx1, :);
+
+            % P = obj.P;
+            % R  = obj.R;
+            % Er = obj.Er;
+            % Ep = obj.Ep;
+
+            %n_perms = obj.n_perms;
+
+            % Observed statistic scaling
+            N = size(obj.T1u, 1);
+
+            Sobs  = (obj.Er' * obj.Er + obj.Ep' * obj.Ep) / N;
+            Siobs = pinv(Sobs);
+            Lobs  = chol(Siobs, 'lower');
+
+            Fd = norm(obj.T1u * (obj.P - obj.R) * Lobs, 'fro')^2;
+
+            % Precompute pseudoinverse once
+            pZ1 = pinv(Z1);
+
+            Fp = zeros(1, obj.n_perms);
+
+            for ii = 1:obj.n_perms
+
+                % Permute residuals only
+                perms = randperm(size(E1, 1));
+                Xperm = X1n + E1(perms, :);
+
+                % Refit GLM using the same design
+                Bperm  = pZ1 * Xperm;
+                X1perm = Z1 * Bperm;
+
+                % Project into the already-computed nominal PCA basis
+                Tpm = X1perm * V1;
+
+                % Collapse duplicate design-level rows
+                [~, ia] = uniquetol(Tpm, 1e-6, 'ByRows', true);
+                Tpu = Tpm(sort(ia), :);
+
+                % Permutation statistic
+                Fp(ii) = norm(Tpu * (obj.P - obj.R) * Lobs,'fro')^2;
+
+            end
+
+            % Studentized statistic
+            mu_p = mean(Fp);
+            stdp = std(Fp);
+
+            chip = ((Fp - mu_p) ./ stdp).^2;
+            chid = ((Fd - mu_p)  / stdp) ^2;
+
+            obj.p = (sum(chid >= chip) + 1) / (obj.n_perms + 1);
+
         end
 
         function pred_X1X2(obj)
-            
+
             X12h_sorted = obj.X11n*obj.V11*obj.Sp11*obj.R*obj.Sp22*obj.V22';
             X12e_sorted = (obj.X11n + obj.E11)*obj.V11*obj.Sp11*obj.R*obj.Sp22*obj.V22';
 
@@ -233,6 +275,6 @@ classdef fbd < handle
             obj.X1X2e = X12e_sorted(inv_idx1,:);
 
         end
- 
+
     end
 end

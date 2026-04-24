@@ -1,7 +1,7 @@
 function [ps_pos, ps_neg] = fbd_demo(levels,reps_pos,smpl_ratio, N)
-
 % DEMONSTRATION OF FBD  
 close all;
+%N = 10
 % Arrays to store p-values
 ps_pos = zeros(N, 1);
 ps_neg = zeros(N, 1);
@@ -9,7 +9,6 @@ ps_neg = zeros(N, 1);
 nse = 1;
 %reps_pos = 40;
 vars_pos = 300;
-%N = 100;
 
 rng('shuffle');
 
@@ -23,6 +22,7 @@ for i = 1:N
 [~, parglmo2_pos] = parglm(X2 - mean(X2), F2, 'Preprocessing', 0);
 
 pos = fbd(parglmo1_pos,parglmo2_pos,2000);
+pos.opt()
 pos.test()
 p_pos = pos.p;
 
@@ -33,6 +33,7 @@ p_pos = pos.p;
 [~, parglmo2_neg] = parglm(X2_neg - mean(X2_neg), F2_neg, 'Preprocessing', 0);
 
 neg = fbd(parglmo1_neg,parglmo2_neg,2000);
+neg.opt()
 neg.test()
 p_neg = neg.p;
 %disp(szPos); disp(szNeg);
