@@ -266,8 +266,10 @@ classdef fbd < handle
 
         function pred_X1X2(obj)
 
+            
             X12h_sorted = obj.X11n*obj.V11*obj.Sp11*obj.R*obj.Sp22*obj.V22';
-            X12e_sorted = (obj.X11n + obj.E11)*obj.V11*obj.Sp11*obj.R*obj.Sp22*obj.V22';
+            %X12e_sorted = (obj.X11n + obj.E11)*obj.V11*obj.Sp11*obj.R*obj.Sp22*obj.V22';
+            X12e_sorted = obj.X11n*obj.V11*obj.Sp11*obj.R*obj.Sp22*obj.V22' + obj.E11*obj.V11*obj.R*obj.V22';
 
             inv_idx1 = zeros(size(obj.sort_idx1));
             inv_idx1(obj.sort_idx1) = 1:numel(obj.sort_idx1);

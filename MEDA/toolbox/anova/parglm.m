@@ -419,6 +419,11 @@ for i = 1 : nInteractions
     SSQinteractions(1,i) = sum(sum(parglmo.interactions{i}.matrix.^2));
 end
 
+%% MDSA ADDITION - for working with pre-centred matrices.
+if ~prep && (1/M)*norm(mean(X))^2 < 1e-3 %high tolerance ~0.1\%
+    Rdf = Rdf - 1;
+end
+
 MSq = SSQresiduals/Rdf;
 for f = 1 : nFactors
     parglmo.factors{f}.refF = [];
